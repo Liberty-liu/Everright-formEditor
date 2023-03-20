@@ -1,0 +1,13 @@
+@include b(FormTypesSlider_mobile) {
+  @include e(customButton) {
+    width: 26px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    background-color: var(--van-primary-color);
+    border-radius: 100px;
+  }
+}
+@include b(FormTypesSlider_pc) {
+}

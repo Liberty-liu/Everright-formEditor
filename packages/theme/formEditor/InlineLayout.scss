@@ -1,0 +1,10 @@
+@include b(InlineLayout) {
+  //padding: 10px 0;
+  position: relative;
+  &>div {
+    display: flex;
+  }
+  //min-height: 300px;
+  //display: flex;
+  //padding-left: 20px;
+}

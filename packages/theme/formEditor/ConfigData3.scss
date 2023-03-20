@@ -1,0 +1,29 @@
+@include b(ConfigData3) {
+  @include e(title) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .el-button {
+      background: none !important;
+      padding: 0;
+    }
+  }
+  @include e(content) {
+    li {
+      padding: 6px 20px 6px 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .el-input {
+        width: 86%;
+      }
+    }
+  }
+  @include e(icon) {
+    color: $primary-color;
+    font-size: 14px;
+  }
+  @include e(operate) {
+    display: flex;
+  }
+}

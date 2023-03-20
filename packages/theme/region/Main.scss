@@ -1,0 +1,106 @@
+@include b(Main) {
+  @include e(dropdown){
+    //min-width: 200px;
+    padding: 0;
+    min-width: 200px;
+    .el-tabs__header {
+      padding: 6px 12px 0;
+      //margin-bottom: 0;
+    }
+  }
+  @include e(wrap){
+    max-height: 274px;
+  }
+  @include e(regin){
+    width: 100%;
+    display: inline-block;
+    position: relative;
+  }
+  @include e(list){
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    box-sizing: border-box;
+    li {
+      @include when(Selected) {
+        color: var(--el-color-primary);
+        font-weight: bold;
+      }
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      padding: 0 32px 0 20px;
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #606266;
+      height: 34px;
+      line-height: 34px;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover {
+        background: #f5f7fa;
+      }
+    }
+  }
+  @include e(tagsWrap) {
+    position: absolute;
+    left: 0;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    line-height: normal;
+    text-align: left;
+    box-sizing: border-box;
+    .el-tag:not(.is-hit){
+      border-color: transparent;
+    }
+    .el-tag {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      margin: 2px 0 2px 6px;
+      text-overflow: ellipsis;
+    }
+  }
+  @include e(search-input) {
+    flex: 1;
+    height: 24px;
+    min-width: 60px;
+    margin: 2px 0 2px 11px;
+    padding: 0;
+    color: var(--el-text-color-regular);
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    background: transparent;
+  }
+  @include e(icon) {
+    transition: transform 0.3s;
+    font-size: 14px;
+  }
+  @include e(reverse) {
+    transform: rotateZ(180deg);
+  }
+  @include e(label) {
+    flex: 1;
+    text-align: left;
+    padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @include e(postfix) {
+    flex: 1;
+    text-align: left;
+    padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    right: 10px;
+  }
+}

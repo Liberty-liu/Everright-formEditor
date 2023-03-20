@@ -1,0 +1,48 @@
+$namespace: 'Everright-ckeditor';
+@include b(Main) {
+  width: 100%;
+  position: relative;
+  ul,ol {
+    margin-left: 2.666em;
+  }
+  @include e(toolbar) {
+    z-index: 1;
+    .ck.ck-toolbar {
+      border: 1px solid var(--ck-color-toolbar-border);
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  @include e(container) {
+    overflow-y: scroll;
+    .ck-content {
+      height: 300px;
+      padding: 10px;
+      border: 1px #D3D3D3 solid !important;
+      border-radius: var(--ck-border-radius);
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+  @include e('mobile') {
+    height: calc(100% - 46px);
+    display: flex;
+    flex-direction: column-reverse;
+    &>.#{$namespace}-Main__toolbar{
+      .ck.ck-toolbar {
+        border-left: 0;
+        border-right: 0;
+      }
+    }
+    &>.#{$namespace}-Main__container{
+      //border: none;
+      height: calc(100% - 60px);
+      .ck-content {
+        border: none;
+        box-sizing: border-box;
+        height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@include b(FormTypesSignature_pc) {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: black 1px solid;
+  @include e(clear) {
+    color: $primary-color;
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 30px;
+  }
+  @include e(noData) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @include e(canvas) {
+    border: 1px dashed #d3d3d3;
+    width: 100%;
+    height: 400px;
+  }
+}
+@include b(FormTypesSignature_mobile) {
+  @include e(canvasWrap) {
+    border: 1px dashed #d3d3d3;
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100vh - 50px);
+    position: relative;
+    &>canvas {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @include e(clear) {
+    color: $primary-color;
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 30px;
+  }
+}

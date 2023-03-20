@@ -1,0 +1,36 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.eslintrc-auto-import.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+auto-imports.d.ts
+components.d.ts
+
+.yarn/*
+backend/uploads
+uploads
+backend/data
+external/ckeditor5/node_modules
+external/ckeditor5/build
+server/db/Everright.db

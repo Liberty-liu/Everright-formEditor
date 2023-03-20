@@ -1,0 +1,64 @@
+@include b(ConfigData1) {
+  //font-size: inherit;
+  //.el-row {
+  //  margin: 10px 0;
+  //}
+  //@include e(icon) {
+  //  color: $primary-color;
+  //}
+  //@include e(tree) {
+  //  .el-tree-node__content {
+  //    height: auto;
+  //  }
+  //  .el-tree-node__children {
+  //    overflow: inherit !important;
+  //  }
+  //}
+  //@include e(treeContent) {
+  //  display: flex;
+  //  padding: 4px 0;
+  //  width: 300px;
+  //}
+  @include e(icon) {
+    color: $primary-color;
+    font-size: 14px;
+  }
+  @include e(operate) {
+    display: flex;
+  }
+  @include e(tableThead) {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    thead {
+      height: 44px;
+      background: #F5F7FA;
+      th {
+        font-size: 14px;
+        font-weight: inherit;
+        color: #333333;
+      }
+    }
+  }
+  @include e(table) {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    td {
+      padding: 10px;
+    }
+    tr td:first-child {
+      text-align: center;
+    }
+    .el-checkbox__label {
+      display: none;
+    }
+  }
+  @include e(button) {
+    width: 100%;
+    button {
+      border: 1px dashed #409EFF;
+      width: 100%;
+    }
+  }
+}
