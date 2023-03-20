@@ -1,0 +1,23 @@
+@include b(ConfigBorder) {
+  @include e(icon) {
+    color: $primary-color;
+    font-size: 20px;
+  }
+  @include e(borderStyle) {
+    display: flex;
+    justify-content: space-around;
+    li {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      background: #F9F9F9;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #F2F6FC;
+      border-radius: 4px;
+      &:hover,&.active {
+        border-color: $primary-color;
+      }
+    }
+  }
+}

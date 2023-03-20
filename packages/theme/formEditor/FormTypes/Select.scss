@@ -1,0 +1,14 @@
+@include b(FormTypesSelect_mobile) {
+  .el-select {
+    width: 100%;
+    .el-input__suffix {
+      display: none;
+    }
+    .el-input.is-focus .el-input__wrapper,.el-input__wrapper {
+      box-shadow: none !important;
+    }
+  }
+}
+@include b(FormTypesSelect_pc) {
+  width: 100%;
+}

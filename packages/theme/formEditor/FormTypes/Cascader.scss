@@ -1,0 +1,19 @@
+@include b(FormTypesCascader_mobile) {
+  .el-cascader {
+    width: 100%;
+    .el-input__suffix {
+      display: none;
+    }
+    .el-input__wrapper {
+      box-shadow: none !important;
+    }
+  }
+  @include e(cascader){
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: scroll;
+  }
+}
+@include b(FormTypesCascader_pc) {
+  width: 100%;
+}

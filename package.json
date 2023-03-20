@@ -1,0 +1,91 @@
+{
+  "name": "Everright-formEditor",
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/Everright-editor.umd.cjs",
+  "module": "dist/Everright-editor.js",
+  "exports": {
+    ".": {
+      "import": "dist/Everright-editor.js",
+      "require": "dist/Everright-editor.umd.cjs"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "scripts": {
+    "dev:ckeditor5": "pnpm -C external/ckeditor5 dev",
+    "build:ckeditor5": "pnpm -C external/ckeditor5 build",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx,.vue",
+    "lint-fix": "eslint --fix . --ext .js,.jsx,.vue",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@vant/area-data": "^1.4.0",
+    "@vant/touch-emulator": "^1.4.0",
+    "@vue/shared": "^3.2.45",
+    "@vuelidate/core": "^2.0.0",
+    "@vuelidate/validators": "^2.0.0",
+    "async": "^3.2.4",
+    "axios": "^1.2.2",
+    "dayjs": "^1.11.7",
+    "element-plus": "^2.2.28",
+    "jss": "^10.9.2",
+    "jss-preset-default": "^10.9.2",
+    "lodash-es": "^4.17.21",
+    "magic-string": "^0.30.0",
+    "nanoid": "^4.0.0",
+    "nzh": "^1.0.8",
+    "signature_pad": "^4.1.4",
+    "vant": "^4.0.8",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "@ckeditor/ckeditor5-alignment": "^35.4.0",
+    "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^35.4.0",
+    "@ckeditor/ckeditor5-build-inline": "^35.4.0",
+    "@ckeditor/ckeditor5-vue": "^4.0.1",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@element-plus/icons-vue": "^2.0.10",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitejs/plugin-vue-jsx": "^2.1.1",
+    "@vueuse/core": "^9.10.0",
+    "clipboard": "^2.0.11",
+    "cz-git": "^1.5.3",
+    "eslint": "^8.32.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "nodemon": "^2.0.20",
+    "sass": "^1.58.3",
+    "vite": "^3.2.5",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "lint-staged": {
+    "*.{vue,js,jsx}": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  }
+}

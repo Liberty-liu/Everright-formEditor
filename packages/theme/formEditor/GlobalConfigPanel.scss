@@ -1,0 +1,101 @@
+@include b(GlobalConfigPanel) {
+  overflow-y: hidden;
+  border-left: 1px solid #ccc;
+  padding: 16px;
+  .el-form-item__label {
+    color: #333333;
+  }
+  .subhead {
+    font-size: 12px;
+    color: #666;
+    margin-top: -10px;
+  }
+  &>form {
+    height: calc(100% - 40px);
+  }
+  .el-tabs {
+    .el-tabs__header {
+      background:none;
+      padding: 16px 0;
+    }
+    &,.el-tabs__header,.el-tabs__item{
+      border: none !important;
+    }
+    .el-tabs__nav-prev,.el-tabs__nav-next{
+      display: none;
+    }
+    .el-tabs__nav-wrap {
+      padding: 0;
+      margin: 0;
+    }
+    .el-tabs__nav {
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      padding: 2px;
+      background: #F2F2F2;
+      &>* {
+        flex: 1;
+      }
+      .el-tabs__item {
+        border-radius: 4px;
+        line-height: 36px;
+        height: 36px;
+        margin: 0;
+        color: #666666;
+        text-align: center;
+      }
+    }
+  }
+  .el-tabs__content,.el-tab-pane {
+    height: calc(100vh - 160px);
+    padding: 0;
+  }
+  @include e(breadcrumb) {
+    &>span:not(:last-child) {
+      span {
+        color: #909399;
+      }
+    }
+    &>span:last-child {
+      span {
+        color: #303133;
+      }
+    }
+  }
+  @include e(wrap) {
+    //height: 100%;
+    //li{
+    //  padding: 10px 0;
+    //  border-bottom: 1px solid #ccc;
+    //  h6 {
+    //    font-size: 14px;
+    //    margin: 4px 0 16px 0;
+    //    font-weight: 400;
+    //  }
+    //}
+  }
+  @include e(syncContent){
+    display: flex;
+    align-items: center;
+    .el-icon {
+      margin-right: 5px;
+    }
+  }
+  @include e(syncType){
+    display: flex;
+    justify-content: center;
+  }
+  @include e(syncActions){
+    text-align: right;
+    margin-top: 8px;
+  }
+  @include e(completeButtonColor){
+    .el-color-dropdown__link-btn {
+      display: none;
+    }
+    //text-align: right;
+    //margin-top: 8px;
+  }
+}

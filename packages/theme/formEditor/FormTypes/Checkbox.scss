@@ -1,0 +1,10 @@
+@include b(FormTypesCheckbox) {
+  @include e(blockLayout) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    .el-checkbox {
+      margin-right: 0;
+    }
+  }
+}

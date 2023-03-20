@@ -1,0 +1,81 @@
+@include b(ConfigData2) {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 400px;
+  @include e(title) {
+    color: #666;
+    font-weight: bold;
+    padding-bottom: 4px;
+  }
+  @include e(input) {
+    width: 170px;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid #dcdfe6;
+    .el-input__wrapper {
+      box-shadow: none;
+    }
+    @include when(Selected) {
+      border-color: var(--el-color-primary);
+      &>.#{$namespace}-ConfigData2__del,&>.#{$namespace}-ConfigData2__hide {
+        display: block;
+      }
+    }
+  }
+  @include e(del) {
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #F56C6C;
+    width: 10px;
+    height: 10px;
+    border-radius: 14px;
+    display: none;
+  }
+  @include e(hide) {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: -36px;
+    //background: #F56C6C;
+    width: 16px;
+    height: 16px;
+    display: none;
+    //border-radius: 14px;
+    //display: none;
+  }
+  @include e(show) {
+    display: block;
+  }
+  @include e(item) {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid #ddd;
+    padding-left: 30px;
+    position: relative;
+    box-sizing: border-box;
+    //.el-scrollbar__wrap {
+    //  min-height: 400px;
+    //}
+    //.el-input {
+    //}
+    li {
+      padding: 6px 0;
+    }
+  }
+  @include e(control) {
+    //position: absolute;
+    //left: 0;
+    //bottom: 0;
+    height: 30px;
+    width: 100%;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    .el-button {
+      background: none !important;
+      padding: 0;
+    }
+  }
+}

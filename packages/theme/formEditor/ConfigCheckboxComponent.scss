@@ -1,0 +1,15 @@
+@include b(ConfigCheckboxComponent) {
+  padding: 16px;
+  margin: 2px 0;
+  @include e(open) {
+    background: #F9F9F9;
+    border-radius: 4px;
+  }
+  //@include e(label) {
+  //  font-weight: bold;
+  //  font-size: 14px;
+  //}
+  @include e(slot) {
+    padding-top: 10px;
+  }
+}

@@ -1,0 +1,67 @@
+@include b(Blocks) {
+  border-right: 1px solid #ccc;
+  .el-menu {
+    border: none;
+  }
+  &>ul {
+  }
+  //@include e(menu) {
+  //  border: none;
+  //  padding: 0 8px;
+  //}
+  //@include e(icon) {
+  //  color: #999999;
+  //}
+  .el-scrollbar {
+    height: calc(100% - 54px);
+  }
+  //@include e(device) {
+  //  height: 52px;
+  //  display: flex;
+  //  justify-content: flex-end;
+  //  align-items: center;
+  //  border-top: 1px solid #DDDDDD;
+  //  &>div{
+  //    width: 78px;
+  //    height: 36px;
+  //    background: #F2F2F2;
+  //    margin-right: 10px;
+  //    border-radius: 6px;
+  //    display: flex;
+  //    align-items: center;
+  //    &>*{
+  //      text-align: center;
+  //      flex: 1;
+  //    }
+  //  }
+  //  .#{$namespace}-Icon {
+  //    font-size: 20px;
+  //    margin: 2px;
+  //    border-radius: 6px;
+  //  }
+  //  .#{$namespace}-Icon.active {
+  //    background: #fff;
+  //    color: #000;
+  //  }
+  //}
+  @include e(dragContent) {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      border-radius: 4px;
+      margin: 2px;
+      background: #f1f2f3;
+      font-size: 14px;
+      cursor: grab;
+      height: 36px;
+      width: 48%;
+      box-sizing: border-box;
+      line-height: 36px;
+      padding: 2px 10px;
+      &[draggable="true"] {
+        cursor: grabbing;
+      }
+    }
+  }
+}

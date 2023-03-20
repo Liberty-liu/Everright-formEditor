@@ -1,0 +1,90 @@
+@include b(Main) {
+  height: 100%;
+  overflow-y: hidden;
+  @include e(icon) {
+    color: $primary-color;
+    cursor: pointer;
+  }
+  @include e(operation) {
+    //border-bottom: 1px #000;
+    flex-shrink: 0;
+    height: 52px;
+  }
+  @include e(container) {
+    height: calc(100vh - 52px);
+  }
+  @include when(Selected) {
+  }
+  @include e(previewDialog) {
+    overflow: hidden;
+    .el-dialog__body {
+      height: calc(100% - 100px);
+    }
+    //height: calc(100vh - 52px);
+    .#{$namespace}-EverrightEditor__container,.#{$namespace}-Canves__wrap{
+      height: auto;
+    }
+    //.#{$namespace}-EverrightEditor{
+    //  height: calc(100% - 52px);
+    //}
+  }
+  @include e(device) {
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #DDDDDD;
+    &>div{
+      width: 78px;
+      height: 36px;
+      background: #F2F2F2;
+      margin-right: 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      &>*{
+        text-align: center;
+        flex: 1;
+      }
+    }
+  }
+}
+.drag-line-top,.drag-line-bottom,.drag-line-left,.drag-line-right {
+  position: relative;
+  &::after {
+    content: ' ';
+    position: absolute;
+    display: block;
+    background: #F56C6C;
+  }
+}
+.drag-line-top{
+  &::after {
+    width: 100%;
+    height: 2px;
+    top: 0;
+  }
+}
+.drag-line-bottom{
+  &::after {
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+  }
+}
+.drag-line-left{
+  &::after {
+    width: 2px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+.drag-line-right{
+  &::after {
+    width: 2px;
+    height: 100%;
+    right: 0;
+    top: 0;
+  }
+}

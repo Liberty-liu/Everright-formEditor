@@ -1,0 +1,17 @@
+@include b(ConfigAllsides) {
+  background: #F9F9F9;
+  border-radius: 4px;
+  padding: 16px;
+  &>div:first-child {
+    padding-top: 0;
+  }
+  &>div:last-child {
+    padding-bottom: 0;
+  }
+  &>div{
+    padding: 10px 0;
+  }
+  .el-input-number {
+    width: 100%;
+  }
+}
