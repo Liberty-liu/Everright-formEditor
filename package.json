@@ -78,7 +78,7 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "lint-staged": {
-    "*.{vue,js,jsx}": "eslint --fix"
+    "*.{vue,js,jsx}": "eslint"
   },
   "config": {
     "commitizen": {

@@ -2,14 +2,14 @@
 import { reactive, ref, onMounted } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
-</script>
-<script setup>
 export default {
   name: 'ConfigBackground',
   inheritAttrs: false,
   customOptions: {}
 }
 
+</script>
+<script setup>
 const {
   target
 } = hooks.useTarget()
