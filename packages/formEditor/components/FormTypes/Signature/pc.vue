@@ -1,7 +1,4 @@
 <script>
-import {
-  Edit
-} from '@element-plus/icons-vue'
 import { ref, nextTick, watch, onBeforeUnmount, unref } from 'vue'
 import SignaturePad from 'signature_pad'
 import Icon from '@ER/icon'
@@ -111,7 +108,7 @@ const handleCommit = async () => {
       v-else
       :class="[ns.e('noData')]"
     >
-      <el-button @click="handleOpen" text type="primary" :icon="Edit" circle>
+      <el-button @click="handleOpen" text type="primary" icon="Edit" circle>
         添加签名
       </el-button>
     </div>

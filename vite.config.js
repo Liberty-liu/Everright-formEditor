@@ -8,21 +8,14 @@ const examplePlugin = () => {
   let config
 
   return {
-    name: 'read-config',
-
-    configResolved (resolvedConfig) {
-      // 存储最终解析的配置
-      // config = resolvedConfig
-    },
-
-    // 在其他钩子中使用存储的配置
+    name: 'custom-vuedraggableAndSortable',
     transform (code, id) {
       /*eslint-disable*/
       if (isProduction) {
-        if (/vuedraggable/.test(id)) {
-          return code.replace('this._sortable = new external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default.a(targetDomElement, sortableOptions);', (...e) => {
-            return `external_commonjs_sortablejs_commonjs2_sortablejs_amd_sortablejs_root_Sortable_default.a.mount($attrs.plugins || []);
-  ${e[0]}`
+        if (/vuedraggable\.js/.test(id)) {
+          return code.replace('this._sortable = new Sortable(targetDomElement, sortableOptions);', (...e) => {
+            return `Sortable.mount($attrs.plugins || []);
+            ${e[0]}`
           })
         }
         if (/sortablejs/.test(id)) {
@@ -67,18 +60,17 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'packages/formEditor/index.js'),
-      name: 'ER',
-      formats: ['es', 'umd', 'cjs'],
-      // the proper extensions will be added
-      fileName: 'Everright-editor',
+      name: 'Everright-formEditor',
+      formats: ['es', 'umd'],
+      fileName: 'Everright-formEditor'
     },
     rollupOptions: {
-      external: ['vue', 'element-plus'],
+      external: ['vue', 'element-plus', 'vant'],
       // https://rollupjs.org/guide/en/#big-list-of-options
       output: {
-        sourcemap: 'inline',
         globals: {
           vue: 'Vue',
+          vant: 'Vant',
           'element-plus': 'elementPlus'
         }
       }
@@ -86,6 +78,10 @@ export default defineConfig({
   },
   resolve: {
     alias: [
+      {
+        find: 'vuedraggable',
+        replacement: isProduction ? 'vuedraggable/src/vuedraggable' : 'vuedraggable'
+      },
       // {
       //   find: 'editor',
       //   replacement: resolve(__dirname, 'packages/formEditor')

@@ -1,5 +1,4 @@
 <script>
-import { ArrowRight } from '@element-plus/icons-vue'
 import NAME from '@ER/formEditor/name.js'
 import hooks from '@ER/hooks'
 import { ref, computed, reactive, watch, onMounted } from 'vue'
@@ -108,7 +107,7 @@ watch(target, () => {
 </script>
 <template>
   <el-aside :class="[ns.b()]" width="412px">
-    <el-breadcrumb :class="[ns.e('breadcrumb')]" :separator-icon="ArrowRight">
+    <el-breadcrumb :class="[ns.e('breadcrumb')]" separator-icon="ArrowRight">
 <!--      <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>-->
 <!--      <el-breadcrumb-item>promotion list</el-breadcrumb-item>-->
 <!--      <el-breadcrumb-item>promotion detail</el-breadcrumb-item>-->

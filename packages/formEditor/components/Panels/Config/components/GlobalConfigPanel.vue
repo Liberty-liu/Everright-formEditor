@@ -5,7 +5,6 @@ import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import _ from 'lodash-es'
 import { ref, unref, computed } from 'vue'
 import { ClickOutside as vClickOutside } from 'element-plus'
-import { QuestionFilled } from '@element-plus/icons-vue'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 export default {
   name: 'GlobalConfigPanel',
