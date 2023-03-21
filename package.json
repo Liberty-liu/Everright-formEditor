@@ -1,15 +1,16 @@
 {
   "name": "Everright-formEditor",
-  "version": "0.0.0",
+  "version": "0.0.9",
   "files": [
     "dist"
   ],
-  "main": "dist/Everright-editor.umd.cjs",
-  "module": "dist/Everright-editor.js",
+  "type": "module",
+  "main": "dist/Everright-formEditor.umd.cjs",
+  "module": "dist/Everright-formEditor.js",
   "exports": {
     ".": {
-      "import": "dist/Everright-editor.js",
-      "require": "dist/Everright-editor.umd.cjs"
+      "import": "dist/Everright-formEditor.js",
+      "require": "dist/Everright-formEditor.umd.cjs"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
@@ -61,7 +62,6 @@
     "@element-plus/icons-vue": "^2.0.10",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
-    "@vueuse/core": "^9.10.0",
     "clipboard": "^2.0.11",
     "cz-git": "^1.5.3",
     "eslint": "^8.32.0",

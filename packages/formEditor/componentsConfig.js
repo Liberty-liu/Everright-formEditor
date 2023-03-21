@@ -1,106 +1,5 @@
 export const fieldConfig = [
   {
-    name: '容器',
-    id: 'container',
-    list: [
-      {
-        type: 'grid',
-        label: 'grid',
-        icon: 'input',
-        id: '',
-        columns: [
-          {
-            id: '',
-            options: {
-              span: {
-                pc: 12,
-                mobile: 24
-              },
-              offset: 0,
-              pull: 0,
-              push: 0
-            },
-            type: 'col',
-            list: [
-            ]
-          }
-        ],
-        options: {
-          gutter: 0,
-          justify: 'start',
-          align: 'top'
-        }
-      },
-      {
-        type: 'table',
-        label: '表格布局',
-        icon: 'input',
-        id: '',
-        rows: [
-          {
-            type: 'tr',
-            columns: [
-              {
-                type: 'td',
-                options: {
-                  colspan: 1,
-                  rowspan: 1,
-                  isMerged: false
-                },
-                list: [],
-                style: {}
-              }
-            ]
-          }
-        ],
-        options: {
-          width: 100,
-          widthType: '%'
-        }
-      },
-      {
-        type: 'tabs',
-        label: '标签页',
-        icon: 'input',
-        id: '',
-        columns: [
-        ],
-        options: {
-          type: '',
-          tabPosition: 'top',
-          align: 'top',
-          hidden: false
-        }
-      },
-      {
-        type: 'collapse',
-        label: '折叠面板',
-        icon: 'input',
-        id: '',
-        columns: [],
-        options: {
-          defaultValue: [],
-          accordion: false
-        }
-      },
-      {
-        type: 'divider',
-        label: '分割线',
-        icon: 'cascader',
-        key: '',
-        id: '',
-        options: {
-          contentPosition: 'center',
-          filterable: true,
-          defaultValue: 'divider',
-          labelWidth: 100,
-          labelHidden: true,
-          required: false
-        }
-      }
-    ]
-  },
-  {
     name: '基础字段',
     id: 'field',
     list: [
@@ -479,6 +378,107 @@ export const fieldConfig = [
           defaultValue: '',
           selectType: 3,
           filterable: true
+        }
+      }
+    ]
+  },
+  {
+    name: '容器',
+    id: 'container',
+    list: [
+      {
+        type: 'grid',
+        label: 'grid',
+        icon: 'input',
+        id: '',
+        columns: [
+          {
+            id: '',
+            options: {
+              span: {
+                pc: 12,
+                mobile: 24
+              },
+              offset: 0,
+              pull: 0,
+              push: 0
+            },
+            type: 'col',
+            list: [
+            ]
+          }
+        ],
+        options: {
+          gutter: 0,
+          justify: 'start',
+          align: 'top'
+        }
+      },
+      {
+        type: 'table',
+        label: '表格布局',
+        icon: 'input',
+        id: '',
+        rows: [
+          {
+            type: 'tr',
+            columns: [
+              {
+                type: 'td',
+                options: {
+                  colspan: 1,
+                  rowspan: 1,
+                  isMerged: false
+                },
+                list: [],
+                style: {}
+              }
+            ]
+          }
+        ],
+        options: {
+          width: 100,
+          widthType: '%'
+        }
+      },
+      {
+        type: 'tabs',
+        label: '标签页',
+        icon: 'input',
+        id: '',
+        columns: [
+        ],
+        options: {
+          type: '',
+          tabPosition: 'top',
+          align: 'top',
+          hidden: false
+        }
+      },
+      {
+        type: 'collapse',
+        label: '折叠面板',
+        icon: 'input',
+        id: '',
+        columns: [],
+        options: {
+          defaultValue: [],
+          accordion: false
+        }
+      },
+      {
+        type: 'divider',
+        label: '分割线',
+        icon: 'cascader',
+        key: '',
+        id: '',
+        options: {
+          contentPosition: 'center',
+          filterable: true,
+          defaultValue: 'divider',
+          labelWidth: 100,
+          labelHidden: true,
+          required: false
         }
       }
     ]

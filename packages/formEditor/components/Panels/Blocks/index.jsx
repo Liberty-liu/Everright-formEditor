@@ -87,32 +87,6 @@ export default {
     const handleMove = (evt, originalEvent) => {
       return true
     }
-    const renderType = () => {
-      if (state.sector.type !== 'grid') return false
-      const ownCheckboxs = state.sector.columns.map((e, index) => index)
-      ownCheckboxs.push(-1)
-      return (
-        <div>
-          <el-radio-group vModel={radio1.value}>
-            <el-radio label="1" size="large">After</el-radio>
-            <el-radio label="2" size="large">Inside</el-radio>
-          </el-radio-group>
-          {radio1.value === '2' && (
-            <el-checkbox-group v-model={insideType.value}>
-              {
-                ownCheckboxs.map((item, index) => {
-                  let context = `第${index + 1}列`
-                  if (index === ownCheckboxs.length - 1) {
-                    context = '新增列'
-                  }
-                  return <el-checkbox label={item}>{context}</el-checkbox>
-                })
-              }
-            </el-checkbox-group>
-          )}
-        </div>
-      )
-    }
     const dragOptions = {
       ControlInsertion: true,
       dataSource: 'block',

@@ -1,15 +1,15 @@
 <script>
-import { reactive, ref } from 'vue'
-import { useEventListener } from '@vueuse/core'
+import { reactive, ref, onMounted } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
+</script>
+<script setup>
 export default {
   name: 'ConfigBackground',
   inheritAttrs: false,
   customOptions: {}
 }
-</script>
-<script setup>
+
 const {
   target
 } = hooks.useTarget()
@@ -152,38 +152,72 @@ const modifyBackBackground = (key, value) => {
   }
 }
 // modifyBackBackground('backgroundColor')
-useEventListener(element, 'click', (e) => {
-  if (/[LI, IMG]/.test(e.target.tagName)) {
-    if (state.value0) {
-      modifyBackBackground('image', e.target.dataset.value)
-      state.defaultBackground = {
-        backgroundImage: e.target.dataset.value
+onMounted(() => {
+  element.value.addEventListener('click', (e) => {
+    if (/[LI, IMG]/.test(e.target.tagName)) {
+      if (state.value0) {
+        modifyBackBackground('image', e.target.dataset.value)
+        state.defaultBackground = {
+          backgroundImage: e.target.dataset.value
+        }
+      } else {
+        modifyBackBackground('color', e.target.dataset.value)
+        state.defaultBackground = {
+          backgroundColor: e.target.dataset.value
+        }
+        target.value.style.isCustomBackground = false
       }
-    } else {
-      modifyBackBackground('color', e.target.dataset.value)
-      state.defaultBackground = {
-        backgroundColor: e.target.dataset.value
+    }
+  })
+  element.value.addEventListener('mousemove', (e) => {
+    if (/[LI, IMG]/.test(e.target.tagName)) {
+      if (state.value0) {
+        modifyBackBackground('image', e.target.dataset.value)
+      } else {
+        modifyBackBackground('color', e.target.dataset.value)
       }
-      target.value.style.isCustomBackground = false
     }
-  }
-})
-useEventListener(element, 'mousemove', (e) => {
-  if (/[LI, IMG]/.test(e.target.tagName)) {
-    if (state.value0) {
-      modifyBackBackground('image', e.target.dataset.value)
+  })
+  element.value.addEventListener('mouseleave', (e) => {
+    if (state.defaultBackground.backgroundColor) {
+      modifyBackBackground('color', state.defaultBackground.backgroundColor)
     } else {
-      modifyBackBackground('color', e.target.dataset.value)
+      modifyBackBackground('image', state.defaultBackground.backgroundImage)
     }
-  }
+  })
 })
-useEventListener(element, 'mouseleave', (e) => {
-  if (state.defaultBackground.backgroundColor) {
-    modifyBackBackground('color', state.defaultBackground.backgroundColor)
-  } else {
-    modifyBackBackground('image', state.defaultBackground.backgroundImage)
-  }
-})
+// useEventListener(element, 'click', (e) => {
+//   if (/[LI, IMG]/.test(e.target.tagName)) {
+//     if (state.value0) {
+//       modifyBackBackground('image', e.target.dataset.value)
+//       state.defaultBackground = {
+//         backgroundImage: e.target.dataset.value
+//       }
+//     } else {
+//       modifyBackBackground('color', e.target.dataset.value)
+//       state.defaultBackground = {
+//         backgroundColor: e.target.dataset.value
+//       }
+//       target.value.style.isCustomBackground = false
+//     }
+//   }
+// })
+// useEventListener(element, 'mousemove', (e) => {
+//   if (/[LI, IMG]/.test(e.target.tagName)) {
+//     if (state.value0) {
+//       modifyBackBackground('image', e.target.dataset.value)
+//     } else {
+//       modifyBackBackground('color', e.target.dataset.value)
+//     }
+//   }
+// })
+// useEventListener(element, 'mouseleave', (e) => {
+//   if (state.defaultBackground.backgroundColor) {
+//     modifyBackBackground('color', state.defaultBackground.backgroundColor)
+//   } else {
+//     modifyBackBackground('image', state.defaultBackground.backgroundImage)
+//   }
+// })
 const handleActiveChange = (value) => {
   target.value.style.isCustomBackground = !!value
   target.value.style.background.color = value
