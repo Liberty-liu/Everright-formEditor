@@ -89,6 +89,10 @@ export default defineConfig({
       {
         find: '@ER',
         replacement: resolve(__dirname, 'packages')
+      },
+      {
+        find: '@ER-examples',
+        replacement: resolve(__dirname, 'examples')
       }
       // {
       //   find: '@ER-FILTER',
