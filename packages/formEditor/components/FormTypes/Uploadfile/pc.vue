@@ -1,6 +1,7 @@
 <script>
 import { ref, nextTick, watch, unref } from 'vue'
 import { ElMessage } from 'element-plus'
+import hooks from '@ER/hooks'
 import _ from 'lodash-es'
 export default {
   name: 'er-uploadfile',
@@ -9,6 +10,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const fileList = ref(_.cloneDeep(props.data.options.defaultValue))
 const dialogImageUrl = ref(0)
@@ -51,7 +55,7 @@ const handlePictureCardPreview = (uploadFile) => {
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.size > props.params.maxSize) {
     ElMessage({
-      message: `文件大小不能超过 ${props.data.size} MB`,
+      message: t('er.validateMsg.fileSize', { size: props.data.size }),
       type: 'warning'
     })
     return false

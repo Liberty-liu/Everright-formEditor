@@ -1,0 +1,8 @@
+@include b(TabsLayout) {
+  //width: 100%;
+  //table-layout: fixed;
+  //border-collapse: collapse;
+  @include e(area) {
+    outline: 1px dashed #ddd;
+  }
+}

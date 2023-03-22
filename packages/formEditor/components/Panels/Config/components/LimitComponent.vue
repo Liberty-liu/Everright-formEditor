@@ -10,6 +10,9 @@ export default {
 </script>
 <script setup>
 const {
+  t
+} = hooks.useI18n()
+const {
   target
 } = hooks.useTarget()
 const ns = hooks.useNamespace('ConfigLimitComponent')
@@ -26,7 +29,7 @@ const ns = hooks.useNamespace('ConfigLimitComponent')
 <template>
   <el-row align="middle" :gutter="8">
     <el-col :span="11">
-      <el-form-item label="最小">
+      <el-form-item :label="t('er.public.min')">
         <el-date-picker
           v-model="target.options.startTime"
           value-format="X"
@@ -38,7 +41,7 @@ const ns = hooks.useNamespace('ConfigLimitComponent')
     </el-col>
     <el-col :span="2">~</el-col>
     <el-col :span="11">
-      <el-form-item label="最大">
+      <el-form-item :label="t('er.public.max')">
         <el-date-picker
           value-format="X"
           v-model="target.options.endTime"

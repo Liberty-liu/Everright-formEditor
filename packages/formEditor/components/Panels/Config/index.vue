@@ -1,5 +1,6 @@
 <script>
 import NAME from '@ER/formEditor/name.js'
+import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import { ref, computed, reactive, watch, onMounted } from 'vue'
 import _ from 'lodash-es'
@@ -28,6 +29,9 @@ const {
   isSelectCollapse,
   isSelectTable
 } = hooks.useTarget()
+const {
+  t
+} = hooks.useI18n()
 const activeName0 = ref('props')
 const isShow = computed(() => {
   return !_.isEmpty(state.sector) && state.sector.type !== 'grid'
@@ -42,13 +46,13 @@ const validator = (rule, value, callback) => {
   state.validator(target.value, (type) => {
     switch (type) {
       case 0:
-        callback(new Error('必填'))
+        callback(new Error(t('er.validateMsg.required')))
         break
       case 1:
         callback()
         break
       case 2:
-        callback(new Error('重复'))
+        callback(new Error(t('er.validateMsg.idUnique')))
         break
     }
   })
@@ -84,9 +88,27 @@ const bars = computed(() => {
   //   result = result.concat(target.value.context.parents)
   // }
   if (!isSelectRoot.value) {
-    result = result.concat(target.value.context.parents.filter(e => e.type !== 'inline'))
+    result = result.concat(target.value.context.parents.filter(e => !/^(inline|tr)$/.test(e.type)))
   }
-  return result
+  // console.log(result)
+  return result.map(node => {
+    const result = {
+      // eslint-disable-next-line
+      node: node,
+      label: ''
+    }
+    if (node === 'root') {
+      result.label = t('er.panels.config')
+    } else {
+      if (/^(col|collapseCol|tabsCol|td)$/.test(node.type)) {
+        result.label = t(`er.layout.${node.type}`)
+      } else {
+        // result.label = t(`er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`)
+        result.label = utils.fieldLabel(t, node)
+      }
+    }
+    return result
+  })
 })
 const handleBreadcrumbClick = (item) => {
   if (item !== 'root') {
@@ -111,8 +133,8 @@ watch(target, () => {
 <!--      <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>-->
 <!--      <el-breadcrumb-item>promotion list</el-breadcrumb-item>-->
 <!--      <el-breadcrumb-item>promotion detail</el-breadcrumb-item>-->
-      <el-breadcrumb-item @click="index !== bars.length - 1 && handleBreadcrumbClick(item)" v-for="(item, index) in bars" :key="index">
-        {{index ? item.type : item}}
+      <el-breadcrumb-item @click="index !== bars.length - 1 && handleBreadcrumbClick(item.node)" v-for="(item, index) in bars" :key="index">
+        {{item.label}}
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-form
@@ -129,11 +151,6 @@ watch(target, () => {
         <el-tab-pane
           v-if="isSelectAnyElement"
           name="props">
-          <template #label>
-            <span class="custom-tabs-label">
-              <span>属性</span>
-            </span>
-          </template>
           <el-scrollbar>
             <PanelsConfigComponentsPropsPanel
               :key="target.id"
@@ -144,11 +161,6 @@ watch(target, () => {
         <el-tab-pane
           v-if="isSelectRoot"
           name="root">
-          <template #label>
-            <span class="custom-tabs-label">
-              <span>全局配置</span>
-            </span>
-          </template>
           <el-scrollbar>
             <GlobalConfigPanel></GlobalConfigPanel>
           </el-scrollbar>

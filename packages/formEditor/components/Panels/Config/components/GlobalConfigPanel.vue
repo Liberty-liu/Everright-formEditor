@@ -18,6 +18,9 @@ const {
   state,
   isPc
 } = hooks.useTarget()
+const {
+  t
+} = hooks.useI18n()
 const ns = hooks.useNamespace('GlobalConfigPanel')
 const compareKeys = ['labelPosition', 'completeButton']
 const visible = ref(false)
@@ -75,7 +78,7 @@ const handleClick = (type) => {
           <el-icon color="#f90">
             <QuestionFilled />
           </el-icon>
-          数据存在不一致，根据你的选择进行同步
+          {{ t('er.config.globalConfig.sync.warning') }}
         </div>
         <el-radio-group :class="[ns.e('syncType')]" v-model="radio1" class="ml-4">
           <el-radio label="pc">pc</el-radio>
@@ -87,40 +90,40 @@ const handleClick = (type) => {
           size="small"
           :text="true"
           @click="handleClick(1)"
-        >取消</el-button>
+        >{{t('er.public.cancel')}}</el-button>
         <el-button
           size="small"
           type="primary"
           @click="handleClick(2)"
         >
-          确定
+          {{ t('er.public.confirm') }}
         </el-button>
       </div>
     </el-popover>
     <DeviceSwitch justify-content="center"></DeviceSwitch>
-    <el-form-item label="同步设置电脑和移动端" label-position="left">
+    <el-form-item :label="t('er.config.globalConfig.sync.label')" label-position="left">
       <el-switch
         ref="buttonRef"
         v-click-outside:[popperPaneRef]="onClickOutside"
         :before-change="handleBeforeChange"
         v-model="target.isSync"/>
     </el-form-item>
-    <el-form-item label="组件尺寸" v-if="isPc">
+    <el-form-item :label="t('er.config.globalConfig.componentSize.label')" v-if="isPc">
       <el-radio-group v-model="target[state.platform].size" size="large">
-        <el-radio-button label="large">大</el-radio-button>
-        <el-radio-button label="default" >中</el-radio-button>
-        <el-radio-button label="small" >小</el-radio-button>
+        <el-radio-button label="large">{{t('er.config.globalConfig.componentSize.large')}}</el-radio-button>
+        <el-radio-button label="default" >{{t('er.config.globalConfig.componentSize.default')}}</el-radio-button>
+        <el-radio-button label="small" >{{t('er.config.globalConfig.componentSize.small')}}</el-radio-button>
       </el-radio-group>
     </el-form-item>
-    <el-form-item label="标签对齐方式">
+    <el-form-item :label="t('er.config.globalConfig.labelPosition.label')">
 <!--      <el-radio-group v-model="target[state.platform].labelPosition" size="large">-->
       <el-radio-group :model-value="target[state.platform].labelPosition" @update:modelValue="(e) => handleModelValue('labelPosition', e)" size="large">
-        <el-radio-button name="left" label="left" />
-        <el-radio-button name="top" label="top" />
-        <el-radio-button name="right" label="right" />
+        <el-radio-button name="left" label="left">{{t('er.config.globalConfig.labelPosition.left')}}</el-radio-button>
+        <el-radio-button name="top" label="top">{{t('er.config.globalConfig.labelPosition.top')}}</el-radio-button>
+        <el-radio-button name="right" label="right">{{t('er.config.globalConfig.labelPosition.right')}}</el-radio-button>
       </el-radio-group>
     </el-form-item>
-    <el-form-item label="按钮">
+    <el-form-item :label="t('er.public.button')">
       <div>
         <div>
           <CompleteButton mode="preview"/>
@@ -128,7 +131,7 @@ const handleClick = (type) => {
         <div>
           <el-row :gutter="8">
             <el-col>
-              <el-form-item label="文字">
+              <el-form-item :label="t('er.public.text')">
                 <el-input
                   :model-value="target[state.platform].completeButton.text"
                   show-word-limit
@@ -140,7 +143,7 @@ const handleClick = (type) => {
           </el-row>
           <el-row :gutter="8">
             <el-col :span="12">
-              <el-form-item label="颜色">
+              <el-form-item :label="t('er.public.color')">
                 <el-color-picker
                   :popper-class="ns.e('completeButtonColor')"
                   :model-value="target[state.platform].completeButton.color"
@@ -150,7 +153,7 @@ const handleClick = (type) => {
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="背景">
+              <el-form-item :label="t('er.public.backgroundColor')">
                 <el-color-picker
                   :popper-class="ns.e('completeButtonColor')"
                   :model-value="target[state.platform].completeButton.backgroundColor"

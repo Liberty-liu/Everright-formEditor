@@ -9,7 +9,6 @@ export const fieldConfig = [
         icon: 'input',
         key: '',
         id: '',
-        fieldType: 2,
         options: {
           clearable: true,
           isShowWordLimit: false,
@@ -182,7 +181,7 @@ export const fieldConfig = [
           filterable: true,
           multiple: false,
           defaultValue: '',
-          placeholder: '',
+          placeholder: ' ',
           labelWidth: 100,
           isShowLabel: true,
           disabled: false,
@@ -302,7 +301,7 @@ export const fieldConfig = [
         id: '',
         options: {
           defaultValue: '',
-          placeholder: '',
+          placeholder: ' ',
           action: '/dev-api/uploads',
           size: 1,
           labelWidth: 100,
@@ -322,7 +321,7 @@ export const fieldConfig = [
           multiple: false,
           checkStrictly: false,
           defaultValue: '',
-          placeholder: '',
+          placeholder: ' ',
           labelWidth: 100,
           isShowLabel: true,
           required: false,
@@ -372,6 +371,7 @@ export const fieldConfig = [
         key: '',
         id: '',
         options: {
+          placeholder: ' ',
           required: false,
           isShowLabel: true,
           labelWidth: 100,

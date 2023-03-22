@@ -44,8 +44,8 @@ export default defineComponent({
         }
       }
       return (
-        <SectorSelectElement {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasDiscolor hasInserColumn hasInserRow data={props.data} parent={props.parent}>
-          <table class={ns.b()}>
+        <SectorSelectElement class={ns.b()} {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasDiscolor hasInserColumn hasInserRow data={props.data} parent={props.parent}>
+          <table>
             <tbody>
             {
               props.data.rows.map((element, index0) => {
@@ -56,6 +56,7 @@ export default defineComponent({
                         const node = !element1.options.isMerged && (
                           <SectorSelectElement
                             tag="td"
+                            class={[ns.e('area')]}
                             key={element1.id}
                             data={element1}
                             parent={element}

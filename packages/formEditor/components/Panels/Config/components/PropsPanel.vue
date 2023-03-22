@@ -7,7 +7,6 @@ import PanelsConfigComponentsBorderComponent from './BorderComponent.vue'
 import PanelsConfigComponentsLimitComponent from './LimitComponent.vue'
 import PanelsConfigComponentsGridLayoutComponent from './GridLayoutComponent.vue'
 import PanelsConfigComponentsTabsLayout from './TabsLayout.vue'
-import PanelsConfigComponentsTableLayout from './TableLayout.vue'
 import PanelsConfigComponentsAllsidesComponent from './AllsidesComponent.vue'
 import PanelsConfigComponentsBackgroundComponent from './BackgroundComponent.vue'
 import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
@@ -20,6 +19,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const {
   type,
   state,
@@ -193,14 +195,14 @@ const handleAction = (type, value) => {
 <template>
 <!--  <template v-if="isSelectField">-->
 <!--  </template>-->
-  <el-form-item label="唯一标识" prop="id">
-    <el-tag type="warning">
-      {{target.id}}
-    </el-tag>
-  </el-form-item>
-  <PanelsConfigComponentsCheckboxComponent v-if="isSelectField" label="标题" field="isShowLabel">
+<!--  <el-form-item label="唯一标识" prop="id">-->
+<!--    <el-tag type="warning">-->
+<!--      {{target.id}}-->
+<!--    </el-tag>-->
+<!--  </el-form-item>-->
+  <PanelsConfigComponentsCheckboxComponent v-if="isSelectField" :label="t('er.config.propsPanel.title')" field="isShowLabel">
     <el-row style="margin-bottom: 16px;" align="middle">
-      <el-col :span="10">标题</el-col>
+      <el-col :span="10">{{ t('er.config.propsPanel.title') }}</el-col>
       <el-col :span="14">
         <el-input
           v-model="target.label"
@@ -208,7 +210,7 @@ const handleAction = (type, value) => {
       </el-col>
     </el-row>
     <el-row align="middle" v-if="isPc">
-      <el-col :span="10">宽度</el-col>
+      <el-col :span="10">{{ t('er.config.propsPanel.titleWidth') }}</el-col>
       <el-col :span="14">
         <el-input-number
           style="width: 100%;"
@@ -218,12 +220,12 @@ const handleAction = (type, value) => {
       </el-col>
     </el-row>
   </PanelsConfigComponentsCheckboxComponent>
-  <el-form-item v-if="isSelectField" label="字段唯一标识" prop="key">
+  <el-form-item v-if="isSelectField" :label="t('er.config.propsPanel.id')" prop="key">
     <el-input
       v-model="target.key"
     />
   </el-form-item>
-  <el-form-item label="默认内容" v-if="checkTypeBySelected([
+  <el-form-item :label="t('er.config.propsPanel.defaultContent')" v-if="checkTypeBySelected([
       'input',
       'textarea',
       'time',
@@ -242,6 +244,7 @@ const handleAction = (type, value) => {
       <el-cascader
         v-model="target.options.defaultValue"
         v-bind="typeProps"
+        clearable
         style="width: 100%;"
       />
     </template>
@@ -281,7 +284,7 @@ const handleAction = (type, value) => {
         v-bind="typeProps"
         v-model="target.options.defaultValue"
       />
-      <el-button link @click="target.options.defaultValue = 0">清空</el-button>
+      <el-button link @click="target.options.defaultValue = 0">{{t('er.public.clear')}}</el-button>
     </template>
     <template v-else-if="checkTypeBySelected(['switch'])">
       <el-switch
@@ -297,11 +300,11 @@ const handleAction = (type, value) => {
       />
     </template>
   </el-form-item>
-  <el-form-item label="数据" v-if="checkTypeBySelected(['select', 'radio', 'checkbox', 'cascader', 'rate'])">
-    <el-button style="width: 100%;" type="primary" @click="dialogVisible = true">录入数据</el-button>
+  <el-form-item :label="t('er.public.Data')" v-if="checkTypeBySelected(['select', 'radio', 'checkbox', 'cascader', 'rate'])">
+    <el-button style="width: 100%;" type="primary" @click="dialogVisible = true">{{t('er.public.dataEntry')}}</el-button>
   </el-form-item>
 <!-- placeholder -->
-  <el-form-item label="提示文字" v-if="checkTypeBySelected([
+  <el-form-item :label="t('er.config.propsPanel.placeholder')" v-if="checkTypeBySelected([
       'input',
       'textarea',
       'select',
@@ -314,22 +317,24 @@ const handleAction = (type, value) => {
     <el-input
       v-if="checkTypeBySelected(['input', 'select', 'cascader', 'time', 'date', 'html', 'region'])"
       v-model="target.options.placeholder"
+      clearable
     />
     <el-input
       v-else-if="checkTypeBySelected(['textarea'])"
       type="textarea"
       v-model="target.options.placeholder"
+      clearable
     />
   </el-form-item>
   <div v-if="checkTypeBySelected(['signature'])">
-    <el-form-item label="画笔颜色">
+    <el-form-item :label="t('er.config.propsPanel.brushColor')">
       <el-color-picker
         color-format="rgb"
         v-model="target.options.penColor"
       />
     </el-form-item>
   </div>
-  <el-form-item v-if="checkTypeBySelected(['time', 'date'])" label="显示格式">
+  <el-form-item v-if="checkTypeBySelected(['time', 'date'])" :label="t('er.config.propsPanel.format')">
     <el-select v-model="target.options.format" placeholder="Select" style="width: 100%">
       <el-option
         v-for="item in options0"
@@ -339,7 +344,7 @@ const handleAction = (type, value) => {
       />
     </el-select>
   </el-form-item>
-  <el-form-item v-if="checkTypeBySelected(['date'])" label="显示类型">
+  <el-form-item v-if="checkTypeBySelected(['date'])" :label="t('er.config.propsPanel.dateType')">
     <el-select v-model="target.options.type" placeholder="Select" size="large" @change="handleChange0">
       <el-option
         v-for="item in options"
@@ -349,31 +354,31 @@ const handleAction = (type, value) => {
       />
     </el-select>
   </el-form-item>
-  <el-form-item v-if="checkTypeBySelected(['radio', 'checkbox'])" label="布局方式">
+  <el-form-item v-if="checkTypeBySelected(['radio', 'checkbox'])" :label="t('er.config.propsPanel.layout.label')">
     <el-radio-group v-model="target.options.displayStyle" size="large">
-      <el-radio-button name="块级" label="block" />
-      <el-radio-button name="行级" label="inline" />
+      <el-radio-button label="block">{{t('er.config.propsPanel.layout.options[0]')}}</el-radio-button>
+      <el-radio-button label="inline">{{t('er.config.propsPanel.layout.options[1]')}}</el-radio-button>
     </el-radio-group>
   </el-form-item>
-  <el-form-item v-if="checkTypeBySelected(['divider'])" label="文案位置">
+  <el-form-item v-if="checkTypeBySelected(['divider'])" :label="t('er.config.propsPanel.contentPosition.label')">
     <el-radio-group v-model="target.options.contentPosition" size="large">
-      <el-radio-button name="left" label="left" />
-      <el-radio-button name="center" label="center" />
-      <el-radio-button name="right" label="right" />
+      <el-radio-button name="left" label="left">{{t('er.config.propsPanel.contentPosition.options[0]')}}</el-radio-button>
+      <el-radio-button name="center" label="center">{{t('er.config.propsPanel.contentPosition.options[1]')}}</el-radio-button>
+      <el-radio-button name="right" label="right">{{t('er.config.propsPanel.contentPosition.options[2]')}}</el-radio-button>
     </el-radio-group>
   </el-form-item>
-  <el-form-item v-if="checkTypeBySelected(['textarea'])" label="文本域高度">
+  <el-form-item v-if="checkTypeBySelected(['textarea'])" :label="t('er.config.propsPanel.textareaHeight')">
     <el-slider v-model="target.options.rows" :max="10" show-input />
   </el-form-item>
   <div v-if="checkTypeBySelected(['uploadfile'])">
-    <el-form-item label="文件类型">
+    <el-form-item :label="t('er.config.propsPanel.uploadfile.fileType')">
       <el-input
         v-model="target.options.accept"
         placeholder="输入只接受的文件类型后缀。例如 .png,.jpg" />
     </el-form-item>
     <el-row :gutter="8">
       <el-col :span="12">
-        <el-form-item label="上传个数限制">
+        <el-form-item :label="t('er.config.propsPanel.uploadfile.uploadLimit')">
           <el-input-number
             style="width: 100%;"
             :min="1"
@@ -382,7 +387,7 @@ const handleAction = (type, value) => {
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="文件大小(MB)">
+        <el-form-item :label="`${t('er.config.propsPanel.uploadfile.fileSize')}(MB)`">
           <el-input-number
             style="width: 100%;"
             v-model="target.options.size"
@@ -393,16 +398,16 @@ const handleAction = (type, value) => {
       </el-col>
     </el-row>
   </div>
-  <el-row v-if="checkTypeBySelected(['input']) && target.options.renderType === 1 && state.isPc" :gutter="8">
+  <el-row v-if="checkTypeBySelected(['input']) && target.options.renderType === 1 && isPc" :gutter="8">
     <el-col :span="12">
-      <el-form-item label="前缀">
+      <el-form-item :label="t('er.config.propsPanel.prepend')">
         <el-input
           style="width: 100%;"
           v-model="target.options.prepend" />
       </el-form-item>
     </el-col>
     <el-col :span="12">
-      <el-form-item label="后缀">
+      <el-form-item :label="t('er.config.propsPanel.append')">
         <el-input
           style="width: 100%;"
           v-model="target.options.append"
@@ -412,13 +417,13 @@ const handleAction = (type, value) => {
   </el-row>
   <el-row :gutter="8" v-if="checkTypeBySelected(['number', 'slider'])">
     <el-col :span="12">
-      <el-form-item label="步长">
+      <el-form-item :label="t('er.config.propsPanel.step')">
         <el-input-number
           controls-position="right" v-model="target.options.step" />
       </el-form-item>
     </el-col>
     <el-col :span="12">
-      <el-form-item v-if="type !== 'slider'" label="精度">
+      <el-form-item v-if="type !== 'slider'" :label="t('er.config.propsPanel.precision')">
         <el-input-number
           controls-position="right" v-model="target.options.precision" />
       </el-form-item>
@@ -426,45 +431,45 @@ const handleAction = (type, value) => {
   </el-row>
   <el-row :gutter="8" v-if="checkTypeBySelected(['slider'])">
     <el-col :span="12">
-      <el-form-item label="最大">
+      <el-form-item :label="t('er.public.max')">
         <el-input-number
           controls-position="right"
           v-model="target.options.max" />
       </el-form-item>
     </el-col>
     <el-col :span="12">
-      <el-form-item label="最小">
+      <el-form-item :label="t('er.public.min')">
         <el-input-number
           controls-position="right" v-model="target.options.min" />
       </el-form-item>
     </el-col>
   </el-row>
-  <el-form-item v-if="checkTypeBySelected(['region'])" label="选择范围">
+  <el-form-item v-if="checkTypeBySelected(['region'])" :label="t('er.config.propsPanel.region.label')">
     <el-radio-group v-model="target.options.selectType" @change="target.options.defaultValue = ''" size="large">
-      <el-radio-button :label="1">省</el-radio-button>
-      <el-radio-button :label="2">省/市</el-radio-button>
-      <el-radio-button :label="3">省/市/县</el-radio-button>
+      <el-radio-button :label="1">{{ t('er.config.propsPanel.region.options[0]') }}</el-radio-button>
+      <el-radio-button :label="2">{{ t('er.config.propsPanel.region.options[1]') }}</el-radio-button>
+      <el-radio-button :label="3">{{ t('er.config.propsPanel.region.options[2]') }}</el-radio-button>
     </el-radio-group>
   </el-form-item>
-  <el-form-item v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4" label="宽度">
+  <el-form-item v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4" :label="t('er.public.width')">
     <el-button-group>
       <el-button @click="() => handleAction(3, item.value)" v-for="item in options1" :disabled="item.disabled" :key="item.value">{{ item.value }}</el-button>
     </el-button-group>
   </el-form-item>
-  <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'])" label="去除首尾空格" field="isShowTrim"/>
-  <PanelsConfigComponentsCheckboxComponent v-if="(checkTypeBySelected(['input']) && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'])" label="限定字符" field="isShowWordLimit">
+  <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'])" :label="t('er.config.propsPanel.trim')" field="isShowTrim"/>
+  <PanelsConfigComponentsCheckboxComponent v-if="(checkTypeBySelected(['input']) && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'])" :label="t('er.config.propsPanel.wordLimit')" field="isShowWordLimit">
     <el-row align="middle" :gutter="8">
       <el-col :span="11">
-        <el-form-item label="最少">
+        <el-form-item :label="t('er.public.min')">
           <el-input-number
             controls-position="right"
-            :max="target.options.max - 1"
+            :max="(target.options.max === null || target.options.max === undefined) ? undefined : target.options.max - 1"
             v-model="target.options.min" />
         </el-form-item>
       </el-col>
       <el-col :span="2">~</el-col>
       <el-col :span="11">
-        <el-form-item label="最多">
+        <el-form-item :label="t('er.public.max')">
           <el-input-number
             :min="target.options.min + 1"
             controls-position="right"
@@ -473,10 +478,10 @@ const handleAction = (type, value) => {
       </el-col>
     </el-row>
   </PanelsConfigComponentsCheckboxComponent>
-  <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['date'])" label="限定日期范围" field="isShowWordLimit">
+  <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['date'])" :label="t('er.config.propsPanel.dateRange')" field="isShowWordLimit">
     <PanelsConfigComponentsLimitComponent/>
   </PanelsConfigComponentsCheckboxComponent>
-  <PanelsConfigComponentsCheckboxComponent v-if="isSelectField && !checkTypeBySelected(['rate', 'switch', 'slider', 'divider'])" label="必填" field="required"/>
+  <PanelsConfigComponentsCheckboxComponent v-if="isSelectField && !checkTypeBySelected(['rate', 'switch', 'slider', 'divider'])" :label="t('er.validateMsg.required')" field="required"/>
   <PanelsConfigComponentsGridLayoutComponent
     v-if="isSelectGrid"
   />
@@ -485,9 +490,6 @@ const handleAction = (type, value) => {
   />
   <PanelsConfigComponentsTabsLayout
     v-if="isSelectTabs"
-  />
-  <PanelsConfigComponentsTableLayout
-    v-if="isSelectTable"
   />
   <PanelsConfigComponentsAllsidesComponent
     field="margin"
@@ -503,40 +505,40 @@ const handleAction = (type, value) => {
   <PanelsConfigComponentsBorderComponent
     v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'])"
   />
-  <PanelsConfigComponentsCheckboxComponent v-if="isSelectCollapse" label="手风琴模式" field="accordion">
+  <PanelsConfigComponentsCheckboxComponent v-if="isSelectCollapse" :label="t('er.config.propsPanel.accordion')" field="accordion">
   </PanelsConfigComponentsCheckboxComponent>
   <template v-if="isSelectField && !checkTypeBySelected(['divider'])">
-    <PanelsConfigComponentsCheckboxComponent label="禁用" field="disabled">
+    <PanelsConfigComponentsCheckboxComponent :label="t('er.public.disabled')" field="disabled">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input']) && target.options.renderType === 1" label="作为密码" field="showPassword">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input']) && target.options.renderType === 1" :label="t('er.config.propsPanel.showPassword')" field="showPassword">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'])" label="多选" @change="handleMultipleChange" field="multiple">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'])" :label="t('er.config.propsPanel.multiple')" @change="handleMultipleChange" field="multiple">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'])" label="搜索" field="filterable">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'])" :label="t('er.config.propsPanel.filterable')" field="filterable">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'])" label="控制按钮" field="controls">
+    <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'])" :label="t('er.config.propsPanel.numberControls.label')" field="controls">
       <el-row align="middle">
-        <el-col :span="10">按钮位置</el-col>
+        <el-col :span="10">{{ t('er.config.propsPanel.numberControls.position') }}</el-col>
         <el-col :span="14">
           <el-radio-group v-model="target.options.controlsPosition" size="large">
-            <el-radio-button :label="false">左右</el-radio-button>
-            <el-radio-button :label="true">上下</el-radio-button>
+            <el-radio-button :label="false">{{ t('er.config.propsPanel.numberControls.options[0]') }}</el-radio-button>
+            <el-radio-button :label="true">{{ t('er.config.propsPanel.numberControls.options[1]') }}</el-radio-button>
           </el-radio-group>
         </el-col>
       </el-row>
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['rate'])" label="半选" field="allowHalf">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['rate'])" :label="t('er.config.propsPanel.allowHalf')" field="allowHalf">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'])" label="透明度" field="showAlpha">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'])" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'])" label="选择任意节点" field="checkStrictly">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'])" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly">
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'])" label="一键清除按钮" field="clearable">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'])" :label="t('er.config.propsPanel.clearable')" field="clearable">
     </PanelsConfigComponentsCheckboxComponent>
   </template>
   <el-dialog
     v-model="dialogVisible"
-    title="录入数据"
+    :title="t('er.public.dataEntry')"
     :destroy-on-close="true"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -548,10 +550,10 @@ const handleAction = (type, value) => {
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="handleAction(2)">
-          取消
+          {{t('er.public.cancel')}}
         </el-button>
         <el-button type="primary" @click="handleAction(1)">
-          确认
+          {{t('er.public.confirm')}}
         </el-button>
       </span>
     </template>

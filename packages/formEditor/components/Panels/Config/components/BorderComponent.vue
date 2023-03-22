@@ -14,6 +14,9 @@ const {
   target,
   checkTypeBySelected
 } = hooks.useTarget()
+const {
+  t
+} = hooks.useI18n()
 const ns = hooks.useNamespace('ConfigBorder')
 const options0 = [
   'none',
@@ -53,7 +56,6 @@ const bindingEvent = () => {
       target.value.style.borderType = state.default = borderActions.indexOf(value)
     })
     e.addEventListener('mouseenter', (e) => {
-      console.log(borderActions.indexOf(e.target.dataset.value))
       target.value.style.borderType = borderActions.indexOf(e.target.dataset.value)
     })
     e.addEventListener('mouseleave', (e) => {
@@ -66,7 +68,7 @@ onMounted(bindingEvent)
 </script>
 <template>
   <div v-if="checkTypeBySelected(['table'])">
-    <el-form-item size="default" label="边框线">
+    <el-form-item size="default" :label="t('er.config.borderComponent.borderLine')">
       <div style="width: 100%">
         <ul :class="ns.e('borderStyle')">
           <li :class="index === state.default && 'active'" :data-value="item" ref="elements" v-for="(item, index) in borderActions" :key="item">
@@ -80,7 +82,7 @@ onMounted(bindingEvent)
         </ul>
       </div>
     </el-form-item>
-    <el-form-item size="default" label="边框线宽度">
+    <el-form-item size="default" :label="t('er.config.borderComponent.borderWidth')">
       <el-input-number
         :min="0"
         v-model="target.style.borderWidth"
@@ -93,7 +95,7 @@ onMounted(bindingEvent)
       <div>
         <el-row :gutter="14">
           <el-col :span="12">
-            <div>Width</div>
+            <div>{{t('er.public.width')}}</div>
             <el-input-number
               :step="10"
               v-model="target.style.border.width"
@@ -101,7 +103,7 @@ onMounted(bindingEvent)
             />
           </el-col>
           <el-col :span="12">
-            <div>Radius</div>
+            <div>{{t('er.public.radius')}}</div>
             <el-input-number
               :step="10"
               v-model="target.style.borderRadius"
@@ -111,7 +113,7 @@ onMounted(bindingEvent)
         </el-row>
         <el-row :gutter="14">
           <el-col :span="12">
-            <div>Style</div>
+            <div>{{t('er.public.style')}}</div>
             <el-select v-model="target.style.border.style" placeholder="Select" size="large">
               <el-option
                 v-for="item in options0"
@@ -122,7 +124,7 @@ onMounted(bindingEvent)
             </el-select>
           </el-col>
           <el-col :span="12">
-            <div>Color</div>
+            <div>{{t('er.public.color')}}</div>
             <el-color-picker
               v-model="target.style.border.color"
             />

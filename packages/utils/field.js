@@ -48,10 +48,10 @@ const wrapElement = (element, fn) => {
           left: 0
         },
         padding: {
-          top: 16,
-          right: 16,
-          bottom: 16,
-          left: 16
+          top: 8,
+          right: 8,
+          bottom: 8,
+          left: 8
         },
         background: {
           color: '',
@@ -103,10 +103,10 @@ const wrapElement = (element, fn) => {
     if (/^(td)$/.test(node.type)) {
       node.style = {
         padding: {
-          top: 16,
-          right: 16,
-          bottom: 16,
-          left: 16
+          top: 8,
+          right: 8,
+          bottom: 8,
+          left: 8
         },
         background: {
           color: '',
@@ -293,6 +293,7 @@ const syncWidthByPlatform = (node, platform, value) => {
     }
   })
 }
+const fieldLabel = (t, node) => t(`er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`)
 export {
   syncWidthByPlatform,
   wrapElement,
@@ -305,5 +306,6 @@ export {
   combinationData2,
   checkIslineChildren,
   checkIsField,
-  pickfields
+  pickfields,
+  fieldLabel
 }

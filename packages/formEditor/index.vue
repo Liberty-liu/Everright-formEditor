@@ -1,10 +1,10 @@
 <script>
+import { ClickOutside as vClickOutside } from 'element-plus'
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, nextTick, onMounted } from 'vue'
 import PanelsBlocks from '@ER/formEditor/components/Panels/Blocks'
 import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
 import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
 import Icon from '@ER/icon'
-import { ElMessage } from 'element-plus'
 import NAME from '@ER/formEditor/name.js'
 import ClipboardJS from 'clipboard'
 import hooks from '@ER/hooks'
@@ -92,6 +92,9 @@ const {
   // stop,
   // restart
 } = hooks.useHistory(state)
+const {
+  t
+} = hooks.useI18n(props)
 const element = ref('')
 const copyElement = ref(null)
 const isShow = ref(true)
@@ -152,7 +155,7 @@ const addFieldData = (node) => {
     node.options.action = props.fileUploadURI
   }
 }
-const wrapElement = (el, isWrap = true, isSetSector = true, isRegen = true) => {
+const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true) => {
   const newEl = isWrap
     ? {
         type: 'inline',
@@ -161,7 +164,10 @@ const wrapElement = (el, isWrap = true, isSetSector = true, isRegen = true) => {
         ]
       }
     : el
-  const node = isRegen
+  if (sourceBlock) {
+    el.label = utils.fieldLabel(t, el)
+  }
+  const node = sourceBlock
     ? utils.wrapElement(newEl, (node) => {
       addFieldData(node)
       addField(node)
@@ -355,6 +361,9 @@ const handleOperation = (type) => {
       break
   }
 }
+const onClickOutside = () => {
+  // setSector('root')
+}
 </script>
 <template>
 <!--  <el-dialog destroy-on-close :class="[ns.e('previewDialog')]" fullscreen v-model="state.previewVisible">-->
@@ -391,7 +400,7 @@ const handleOperation = (type) => {
     </el-container>
     <el-container :class="[ns.e('container')]">
       <PanelsBlocks></PanelsBlocks>
-      <PanelsCanves v-if="isShow" :data="state.store"></PanelsCanves>
+      <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
       <PanelsConfig v-if="isShow && isShowConfig"></PanelsConfig>
     </el-container>
   </el-container>

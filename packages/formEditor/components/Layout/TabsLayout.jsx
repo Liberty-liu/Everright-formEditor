@@ -15,11 +15,12 @@ export default defineComponent({
     return () => {
       return (
         <SectorSelectElement {...useAttrs()} data={props.data} parent={props.parent} hasCopy hasDel hasDrag hasWidthScale>
-          <el-tabs vModel={props.data.options.defaultValue} type={props.data.options.type} tabPosition={props.data.options.tabPosition}>
+          <el-tabs class={[ns.b()]} vModel={props.data.options.defaultValue} type={props.data.options.type} tabPosition={props.data.options.tabPosition}>
             {
               props.data.columns.map((element, index0) => {
                 return (
                   <SectorSelectElement
+                    class={[ns.e('area')]}
                     tag='el-tab-pane' label={element.label} name={element.value} data={element} parent={props.data}
                   >
                     <LayoutDragGable

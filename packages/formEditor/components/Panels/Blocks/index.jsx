@@ -23,6 +23,10 @@ export default {
     const ER = inject('Everright')
     const ns = hooks.useNamespace('Blocks')
     const {
+      t
+    } = hooks.useI18n()
+    // console.log(t('lhf'))
+    const {
       state,
       setSector
     } = hooks.useTarget()
@@ -75,7 +79,7 @@ export default {
         return (
           <li onClick={() => addStore(element)}>
             <Icon class={[ns.e('icon')]} icon={element.icon}></Icon>
-            {element.label}
+            {utils.fieldLabel(t, element)}
           </li>
         )
       }
@@ -106,7 +110,7 @@ export default {
                     index={String(index)}
                     v-slots={{
                       title () {
-                        return element.name
+                        return t(`er.blocks.${element.id}`)
                       },
                       default () {
                         return (

@@ -1,15 +1,15 @@
 @include b(DragGableLayout) {
   //background: #F2F8FF !important;
   @include e(edit) {
-    padding: 10px;
-    outline: 1px dashed #ddd;
+    //padding: 10px;
+    //outline: 1px dashed #ddd;
     .el-row {
       padding: 10px;
     }
   }
   @include e(dropHere) {
     display: flex;
-    background: #F2F8FF !important;
+    //background: #F2F8FF !important;
     justify-content: center;
     align-items: center;
     height: 60px;

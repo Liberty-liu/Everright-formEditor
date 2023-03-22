@@ -24,6 +24,7 @@ export default defineComponent({
                 return (
                   <el-collapse-item title={element.label} name={element.id}>
                     <SectorSelectElement
+                      class={[ns.e('area')]}
                       data={element} parent={props.data}
                     >
                       <LayoutDragGable
