@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next()
 })
 routes(app)
-const { PORT = 8000 } = process.env
+const { PORT = 8001 } = process.env
 app.listen(PORT, () => {
   console.log()
   console.log(` Server app running in port ${PORT}`)

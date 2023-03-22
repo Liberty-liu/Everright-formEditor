@@ -53,6 +53,12 @@
     padding: 0;
   }
   @include e(breadcrumb) {
+    .el-breadcrumb__item {
+      padding-bottom: 10px;
+    }
+    .el-breadcrumb__inner {
+      cursor: pointer !important;
+    }
     &>span:not(:last-child) {
       span {
         color: #909399;
@@ -65,6 +71,9 @@
     }
   }
   @include e(wrap) {
+    &>.el-tabs__header {
+      display: none;
+    }
     //height: 100%;
     //li{
     //  padding: 10px 0;

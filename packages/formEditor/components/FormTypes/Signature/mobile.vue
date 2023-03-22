@@ -12,6 +12,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const ns = hooks.useNamespace('FormTypesSignature_mobile')
 const element = ref()
@@ -121,7 +124,7 @@ const handleAction = async (type) => {
         :class="[ns.e('noData')]"
       >
         <el-button text type="primary" icon="Edit" circle>
-          添加签名
+          {{t('er.form.addSignature')}}
         </el-button>
       </div>
     </template>
@@ -135,12 +138,12 @@ const handleAction = async (type) => {
     :style="{ width: '100%', height: '100%' }"
   >
     <van-nav-bar
-      title="添加签名"
-      left-text="返回"
+      :title="t('er.form.addSignature')"
+      :left-text="t('er.public.back')"
       left-arrow
       @click-left="handleAction(1)">
       <template v-if="showClear" #right>
-        <span @click="handleAction(2)" class="van-nav-bar__text">使用签名</span>
+        <span @click="handleAction(2)" class="van-nav-bar__text">{{ t('er.form.useSignature') }}</span>
       </template>
     </van-nav-bar>
     <div

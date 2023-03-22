@@ -1,10 +1,13 @@
 export default {
+  lang: {
+    type: String,
+    default: 'zh-cn'
+  },
   layoutType: {
     type: Number,
     default: 2
   },
   fileUploadURI: {
-    type: String,
-    default: 'http://localhost:8000/Everright-api/lowCode/uploads'
+    type: String
   }
 }

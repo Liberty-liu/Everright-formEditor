@@ -4,8 +4,8 @@ import dayjs from 'dayjs'
 import _ from 'lodash-es'
 import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
-
-const addValidate = (result, node, isPc) => {
+import { useI18n } from '../use-i18n'
+const addValidate = (result, node, isPc, t) => {
   const {
     options
   } = node
@@ -58,7 +58,7 @@ const addValidate = (result, node, isPc) => {
     const newValue = options.isShowTrim ? value.trim() : value
     // if (options.required && (!newValue || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
     if (options.required && (newValue === '' || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
-      reject('必填')
+      reject(t('er.validateMsg.required'))
       return
     }
     switch (node.type) {
@@ -66,35 +66,35 @@ const addValidate = (result, node, isPc) => {
         switch (options.renderType) {
           case 1:
             if (!!newValue && options.isShowWordLimit && newValue.length < options.min) {
-              reject(`最少 ${options.min}字符`)
+              reject(t('er.validateMsg.limitWord', { min: options.min }))
             } else {
               resolve()
             }
             break
           case 2:
             if (!!newValue && !/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(newValue)) {
-              reject('输入邮箱地址不符合规则')
+              reject(t('er.validateMsg.email'))
             } else {
               resolve()
             }
             break
           case 3:
             if (!!newValue && !/^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(newValue)) {
-              reject('输入身份证不符合规则')
+              reject(t('er.validateMsg.IdNumber'))
             } else {
               resolve()
             }
             break
           case 4:
             if (!!newValue && !/^(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(newValue)) {
-              reject('输入手机号不符合规则')
+              reject(t('er.validateMsg.phone'))
             } else {
               resolve()
             }
             break
           case 5:
             if (!!newValue && !/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(newValue)) {
-              reject('输入网址不符合规则')
+              reject(t('er.validateMsg.http'))
             } else {
               resolve()
             }
@@ -103,7 +103,7 @@ const addValidate = (result, node, isPc) => {
         break
       case 'textarea':
         if (!!newValue && options.isShowWordLimit && newValue.length < options.min) {
-          reject(`最少 ${options.min}字符`)
+          reject(t('er.validateMsg.limitWord', { min: options.min }))
         } else {
           resolve()
         }
@@ -122,6 +122,9 @@ const addValidate = (result, node, isPc) => {
   result.rules = [obj]
 }
 export const useProps = (state, data, isPc = true, isRoot = false, specialHandling) => {
+  const {
+    t
+  } = useI18n()
   return computed(() => {
     let node = isRoot ? data.config : data
     let result = {}
@@ -150,7 +153,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       required: options.required
     }
     if (isPc) {
-      addValidate(result, node, isPc)
+      addValidate(result, node, isPc, t)
       // result.style = {
       //   width: options.width + options.widthType
       // }
@@ -158,7 +161,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       // result.labelWidth = !options.isShowLabel && 'auto'
     } else {
       // result.labelWidth = options.isShowLabel ? options.labelWidth + 'px' : 'auto'
-      addValidate(result, node, isPc)
+      addValidate(result, node, isPc, t)
       // result.label = node.label
     }
     switch (node.type) {
@@ -381,7 +384,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         } else {
           result.maxCount = options.limit
           result.onOversize = (file) => {
-            showToast(`文件大小不能超过 ${options.size} MB`)
+            showToast(t('er.validateMsg.fileSize', { size: options.size }))
           }
         }
         break

@@ -23,7 +23,7 @@ const state = reactive({
   platform: utils.isPc() ? 'pc' : 'mobile',
   mode: 'preview',
   config: {},
-  Namespace: 'editor',
+  Namespace: 'formEditor',
   validateStates: [],
   data: {},
   fields: []
@@ -41,7 +41,8 @@ const getData = () => {
 provide('Everright', {
   state,
   emit,
-  getData
+  getData,
+  props
 })
 hooks.useTarget()
 const setData = (data, value) => {

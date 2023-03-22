@@ -8,9 +8,11 @@ export default {
 </script>
 <script setup>
 const props = defineProps(['data', 'params'])
+const ns = hooks.useNamespace('FormTypesNumber_pc')
 </script>
 <template>
   <el-input-number
+    :class="[ns.b()]"
     v-model="data.options.defaultValue"
     v-bind="params"
   />

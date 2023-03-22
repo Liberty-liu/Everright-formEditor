@@ -13,6 +13,9 @@ const {
   checkTypeBySelected,
   target
 } = hooks.useTarget()
+const {
+  t
+} = hooks.useI18n()
 const ns = hooks.useNamespace('ConfigData3')
 const handleAction = (type) => {
   switch (type) {
@@ -31,8 +34,8 @@ const handleAction = (type) => {
   <el-form-item>
     <template v-slot:label>
       <div :class="[ns.e('title')]">
-        <span class="el-form-item__label">面板</span>
-        <el-button text @click="handleAction(1)">添加面板</el-button>
+        <span class="el-form-item__label">{{t('er.config.dataComponent3.panel')}}</span>
+        <el-button text @click="handleAction(1)">{{t('er.config.dataComponent3.add')}}</el-button>
       </div>
     </template>
     <div style="width: 100%;">

@@ -1,5 +1,5 @@
 @include b(selectElement) {
-  padding: 16px;
+  padding: 8px;
   position: relative;
   outline-offset: -1px;
   box-sizing: border-box;
@@ -24,6 +24,8 @@
     }
   }
   @include when(Selected) {
+    outline: 1px solid #ffbd00;
+    //background: none !important;
     &>.#{$namespace}-selectElement__topLeft,&>.#{$namespace}-selectElement__topRight,&>.#{$namespace}-selectElement__bottomRight {
       opacity: 1;
     }
@@ -46,6 +48,9 @@
     text-align: center;
     line-height: 24px;
     margin: 0 4px;
+  }
+  @include e(widthScale) {
+    cursor: col-resize;
   }
   @include e((topLeft,topRight,bottomRight)) {
     position: absolute;

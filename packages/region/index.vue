@@ -19,6 +19,9 @@ const props = defineProps({
   },
   modelValue: {
     type: Array
+  },
+  placeholder: {
+    type: String
   }
 })
 const emit = defineEmits(['update:modelValue', 'change'])
@@ -288,7 +291,7 @@ onMounted(() => {
         <el-input
           :readonly="multiple"
           ref="input"
-          :placeholder="searchInputValue ? '' : '请输入'"
+          :placeholder="searchInputValue ? '' : placeholder"
           v-model="state.value0"
           @input="handleInput"
         >

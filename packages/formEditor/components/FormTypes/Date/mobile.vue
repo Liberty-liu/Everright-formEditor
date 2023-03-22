@@ -11,6 +11,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const showPicker = ref(false)
 const currentDate = ref('')
@@ -75,7 +78,7 @@ const onConfirm = (value) => {
     currentValue.value = [value[0].selectedValues, value[1].selectedValues]
   }
 }
-const onCancel = ({ selectedOptions }) => {
+const onCancel = () => {
   showPicker.value = false
 }
 const onClear = () => {
@@ -120,7 +123,7 @@ const onClear = () => {
   <van-popup v-if="params.type === 'datetime'" v-model:show="showPicker" round position="bottom">
     <van-picker-group
       v-if="params.type === 'datetime'"
-      :tabs="['选择日期', '选择时间']"
+      :tabs="[t('er.form.selectDate'), t('er.form.selectTime')]"
       @confirm="onConfirm"
       @cancel="onCancel"
     >

@@ -11,6 +11,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const ns = hooks.useNamespace('FormTypesSignature_pc')
 const element = ref()
@@ -109,13 +112,13 @@ const handleCommit = async () => {
       :class="[ns.e('noData')]"
     >
       <el-button @click="handleOpen" text type="primary" icon="Edit" circle>
-        添加签名
+        {{ t('er.form.addSignature') }}
       </el-button>
     </div>
   </div>
   <el-dialog
     v-model="dialogVisible"
-    title="添加签名"
+    :title="t('er.form.addSignature')"
     width="900px"
     destroy-on-close
     :close-on-press-escape="false"
@@ -129,9 +132,9 @@ const handleCommit = async () => {
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button :disabled="showClear" @click="handleClear">重置</el-button>
+        <el-button :disabled="showClear" @click="handleClear">{{ t('er.public.reset') }}</el-button>
         <el-button :disabled="showClear" type="primary" @click="handleCommit">
-          使用签名
+          {{ t('er.form.useSignature') }}
         </el-button>
       </span>
     </template>

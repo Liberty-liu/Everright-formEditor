@@ -2,11 +2,11 @@
 import { ref, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import hooks from '@ER/hooks'
-import { EverrightEditor } from '@ER/formEditor'
+import { EverrightPreview } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 const route = useRoute()
 const loading = ref(true)
-const lang = ref('zh-cn')
+const lang = ref('en')
 const EReditorRef = ref(null)
 const state = reactive({
   name: ''
@@ -29,6 +29,7 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
+  console.log(type)
   if (type === 'getJson') {
     // console.log(data)
     // return false
@@ -52,10 +53,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <EverrightEditor
+  <EverrightPreview
     :lang="lang"
     @listener="handleListener"
     v-loading="loading"
-    :fileUploadURI="uri.uploadFile"
     ref="EReditorRef"/>
 </template>

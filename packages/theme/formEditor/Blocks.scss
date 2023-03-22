@@ -44,6 +44,9 @@
   //    color: #000;
   //  }
   //}
+  .#{$namespace}-DeviceSwitch {
+    border-top: 1px solid #DDDDDD;
+  }
   @include e(dragContent) {
     display: flex;
     justify-content: space-between;

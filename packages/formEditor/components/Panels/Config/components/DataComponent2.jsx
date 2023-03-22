@@ -76,6 +76,10 @@ export default defineComponent({
     }
   },
   render (props) {
+    const {
+      t,
+      lang
+    } = hooks.useI18n()
     const ns = hooks.useNamespace('ConfigData2')
     const handleAction = (type, x, data) => {
       switch (type) {
@@ -118,7 +122,7 @@ export default defineComponent({
     const listComponent = ({ items, index }) => {
       return (
         <div class={[ns.e('item')]}>
-          <div class={ns.e('title')}>{nzhcn.encodeS(index + 1)}级选项</div>
+          <div class={ns.e('title')}>{lang.value === 'zh-cn' ? `${nzhcn.encodeS(index + 1)}${t('er.config.dataComponent2.level')}` : `${t('er.config.dataComponent2.level')} ${index + 1}`}</div>
           <div>
             <el-scrollbar ref={(el) => this.scrollbars.push(el)} tag="ul" max-height="320px">
               {
@@ -153,7 +157,7 @@ export default defineComponent({
                 icon={'CirclePlus'}
                 onClick={() => handleAction(1, index, items)}
                 text>
-                添加选项
+                {t('er.config.dataComponent2.add')}
               </el-button>
             </div>
           )}

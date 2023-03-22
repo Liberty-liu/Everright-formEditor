@@ -11,6 +11,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const fileList = ref(_.cloneDeep(props.data.options.defaultValue))
 const afterRead = async (file) => {
@@ -19,7 +22,7 @@ const afterRead = async (file) => {
   const form = new FormData()
   files.forEach((e) => {
     e.status = 'uploading'
-    e.message = '上传中...'
+    e.message = t('er.form.uploading')
     // e.status = 'uploading'
     form.append('file', e.file)
   })
@@ -38,7 +41,7 @@ const afterRead = async (file) => {
   } catch (e) {
     files.forEach((e) => {
       e.status = 'failed'
-      e.message = '上传失败'
+      e.message = t('er.form.uploadFailed')
       // form.append('file', e.file)
     })
     showToast(e.message)

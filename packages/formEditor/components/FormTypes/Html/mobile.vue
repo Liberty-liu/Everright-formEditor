@@ -10,6 +10,9 @@ export default {
 }
 </script>
 <script setup>
+const {
+  t
+} = hooks.useI18n()
 const props = defineProps(['data', 'params'])
 const dialogVisible = ref(false)
 const popup = ref()
@@ -18,9 +21,9 @@ const currentValue = computed({
   get () {
     let result = ''
     if (props.data.options.defaultValue) {
-      result = '已填写'
+      result = t('er.form.filled')
     } else {
-      result = '未填写'
+      result = t('er.form.notFilled')
     }
     return result
   }
@@ -47,11 +50,11 @@ const handleAction = async (type) => {
     :safe-area-inset-bottom="true"
   >
     <van-nav-bar
-      left-text="返回"
+      :left-text="t('er.public.back')"
       left-arrow
       @click-left="handleAction(1)">
       <template #right>
-        <span @click="handleAction(2)" class="van-nav-bar__text">保存</span>
+        <span @click="handleAction(2)" class="van-nav-bar__text">{{ t('er.public.save') }}</span>
       </template>
     </van-nav-bar>
     <CKEditor

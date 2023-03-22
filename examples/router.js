@@ -2,6 +2,7 @@ import * as VueRouter from 'vue-router'
 import FormEditorView from './views/formEditor.vue'
 import FormEditorObjListView from './views/formEditor/objList.vue'
 import FormEditorObjEditView from './views/formEditor/objEdit.vue'
+import FormEditorObjActionView from './views/formEditor/objAction.vue'
 const routes = [
   {
     path: '/',
@@ -26,6 +27,11 @@ const routes = [
         name: 'objEdit',
         path: 'objEdit/:objid?',
         component: FormEditorObjEditView
+      },
+      {
+        name: 'objAction',
+        path: 'objAction/:objid?',
+        component: FormEditorObjActionView
       }
     ]
   }

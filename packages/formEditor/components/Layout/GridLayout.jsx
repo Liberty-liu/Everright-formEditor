@@ -51,6 +51,7 @@ export default defineComponent({
                     // hasAddContainer
                     data-layout-type={'grid-col'}
                     tag={'el-col'}
+                    class={[ns.e('area')]}
                     span={element.options.span[state.platform]}
                     offset={element.options.offset}
                     pull={element.options.pull}

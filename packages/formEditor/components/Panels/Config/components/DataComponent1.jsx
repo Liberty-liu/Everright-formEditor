@@ -75,16 +75,19 @@ export default defineComponent({
     }
   },
   render (props) {
+    const {
+      t
+    } = hooks.useI18n()
     const ns = hooks.useNamespace('ConfigData1')
     const validator = ({ field }, value, callback) => {
       const newValue = value.trim()
       if (newValue === '' || newValue === null || newValue === undefined) {
-        callback(new Error('必填'))
+        callback(new Error(t('er.validateMsg.required')))
         return false
       }
       if (field.includes('value')) {
         if (this.data.filter((e) => e.value === newValue).length > 1) {
-          callback(new Error('唯一标识重复'))
+          callback(new Error(t('er.validateMsg.idUnique')))
           return false
         } else {
           callback()
@@ -145,13 +148,13 @@ export default defineComponent({
     }
     return (
       <div>
-        <table className={[ns.e('tableThead')]}>
+        <table class={[ns.e('tableThead')]}>
           <thead>
           <tr>
-            <th width="42">默认</th>
-            <th>选项唯一标识</th>
-            <th>选项名称</th>
-            <th width="80">操作</th>
+            <th width="42">{t('er.config.dataComponent1.defaultLabel')}</th>
+            <th>{t('er.config.dataComponent1.unique')}</th>
+            <th>{t('er.config.dataComponent1.name')}</th>
+            <th width="80">{t('er.config.dataComponent1.operate')}</th>
           </tr>
           </thead>
         </table>
@@ -182,7 +185,7 @@ export default defineComponent({
           </el-form>
         </el-scrollbar>
         <div class={ns.e('button')}>
-          <el-button onClick={() => handleAction(1)}>添加选项</el-button>
+          <el-button onClick={() => handleAction(1)}>{t('er.config.dataComponent1.add')}</el-button>
         </div>
       </div>
     )

@@ -1,4 +1,5 @@
 <script>
+import { computed } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 export default {
@@ -11,28 +12,33 @@ const {
   checkTypeBySelected,
   target
 } = hooks.useTarget()
-const options0 = [
-  {
-    label: '左对齐',
-    value: 'start'
-  },
-  {
-    label: '右对齐',
-    value: 'end'
-  },
-  {
-    label: '居中',
-    value: 'center'
-  },
-  {
-    label: '两侧间隔相等',
-    value: 'space-around'
-  },
-  {
-    label: '两侧间隔相等',
-    value: 'space-between'
-  }
-]
+const {
+  t
+} = hooks.useI18n()
+const options0 = computed(() => {
+  return [
+    {
+      label: t('er.config.gridLayout.justify.options[0]'),
+      value: 'start'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[1]'),
+      value: 'end'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[2]'),
+      value: 'center'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[3]'),
+      value: 'space-around'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[4]'),
+      value: 'space-between'
+    }
+  ]
+})
 // const options1 = [
 //   {
 //     label: '顶对齐',
@@ -51,7 +57,7 @@ const options0 = [
 <template>
   <div>
     <template v-if="checkTypeBySelected(['grid'])">
-      <el-form-item label="水平排列方式">
+      <el-form-item :label="t('er.config.gridLayout.justify.label')">
         <el-select style="width: 100%;" v-model="target.options.justify" class="m-2" placeholder="Select" size="large">
           <el-option
             v-for="item in options0"

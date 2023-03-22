@@ -9,6 +9,9 @@ export default {
 </script>
 <script setup>
 const {
+  t
+} = hooks.useI18n()
+const {
   target
 } = hooks.useTarget()
 const ns = hooks.useNamespace('ConfigAllsides')
@@ -24,8 +27,8 @@ const props = defineProps({
 })
 </script>
 <template>
-  <el-form-item size="default" :label="props.field">
-    <span class="subhead">单位：px</span>
+  <el-form-item size="default" :label="t(`er.public.${props.field}`)">
+    <span class="subhead">{{t('er.public.unit')}}：px</span>
     <div :class="[ns.b()]">
       <el-row :gutter="14" justify="center">
         <el-col :span="12">

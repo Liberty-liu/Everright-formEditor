@@ -11,6 +11,9 @@ export default {
 </script>
 <script setup>
 const {
+  t
+} = hooks.useI18n()
+const {
   target
 } = hooks.useTarget()
 const nums = reactive([0, 0, 0, 0])
@@ -252,13 +255,13 @@ const handleClick = (type) => {
 }
 </script>
 <template>
-  <el-form-item size="default" label="背景">
+  <el-form-item size="default" :label="t('er.public.background')">
     <template v-slot:label>
       <div :class="[ns.e('backgroundTitle')]">
-        <span class="el-form-item__label">背景</span>
+        <span class="el-form-item__label">{{t('er.public.background')}}</span>
         <el-radio-group v-model="state.value0" size="large">
-          <el-radio-button :label="false">颜色</el-radio-button>
-          <el-radio-button :label="true">图片</el-radio-button>
+          <el-radio-button :label="false">{{t('er.public.color')}}</el-radio-button>
+          <el-radio-button :label="true">{{t('er.public.image')}}</el-radio-button>
         </el-radio-group>
       </div>
     </template>
@@ -337,7 +340,7 @@ const handleClick = (type) => {
       </div>
       <el-row :class="ns.e('clear')">
         <el-col :span="24">
-          <el-button style="width: 100%;" v-if="state.defaultBackground.backgroundColor || state.defaultBackground.backgroundImage" @click="() => handleClick(1)">移除</el-button>
+          <el-button style="width: 100%;" v-if="state.defaultBackground.backgroundColor || state.defaultBackground.backgroundImage" @click="() => handleClick(1)">{{t('er.public.remove')}}</el-button>
         </el-col>
 <!--        <el-col>-->
 <!--          <el-button style="width: 100%;" type="primary" @click="() => handleClick(2)">保存</el-button>-->

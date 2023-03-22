@@ -75,6 +75,9 @@ export default {
   },
   setup (props) {
     const ER = inject('Everright')
+    const {
+      t
+    } = hooks.useI18n()
     const ns = hooks.useNamespace('selectElement')
     const isHover = ref(false)
     const isInlineChildren = utils.checkIslineChildren(props.data)
@@ -114,20 +117,20 @@ export default {
         dropdown: () => {
           let node = (
             <el-dropdown-menu>
-              <el-dropdown-item command="insert left">左插入列</el-dropdown-item>
-              <el-dropdown-item command="insert right">右插入列</el-dropdown-item>
-              <el-dropdown-item command="insert top">上插入行</el-dropdown-item>
-              <el-dropdown-item command="insert bottom">下插入行</el-dropdown-item>
-              <el-dropdown-item command="merge left" disabled={props.data.context.isDisableMargeLeft} divided>向左合并</el-dropdown-item>
-              <el-dropdown-item command="merge right" disabled={props.data.context.isDisableMargeRight}>向右合并</el-dropdown-item>
-              <el-dropdown-item command="merge row" disabled={props.data.context.isDisableMargeRow}>合并整行</el-dropdown-item>
-              <el-dropdown-item command="merge top" disabled={props.data.context.isDisableMargeTop} divided>向上合并</el-dropdown-item>
-              <el-dropdown-item command="merge bottom" disabled={props.data.context.isDisableMargeBottom}>向下合并</el-dropdown-item>
-              <el-dropdown-item command="merge column" disabled={props.data.context.isDisableMargeColumn}>合并整列</el-dropdown-item>
-              <el-dropdown-item command="del row" divided disabled={props.data.context.isDisableDelRow}>删除整行</el-dropdown-item>
-              <el-dropdown-item command="del column" disabled={props.data.context.isDisableDelColumn}>删除整列</el-dropdown-item>
-              <el-dropdown-item command="split column" disabled={props.data.context.isDisableSplitColumn} divided>拆分成列</el-dropdown-item>
-              <el-dropdown-item command="split row" disabled={props.data.context.isDisableSplitRow}>拆分成行</el-dropdown-item>
+              <el-dropdown-item command="insert left">{t('er.sector.insertLeft')}</el-dropdown-item>
+              <el-dropdown-item command="insert right">{t('er.sector.insertRight')}</el-dropdown-item>
+              <el-dropdown-item command="insert top">{t('er.sector.insertTop')}</el-dropdown-item>
+              <el-dropdown-item command="insert bottom">{t('er.sector.insertBottom')}</el-dropdown-item>
+              <el-dropdown-item command="merge left" disabled={props.data.context.isDisableMargeLeft} divided>{t('er.sector.mergeLeft')}</el-dropdown-item>
+              <el-dropdown-item command="merge right" disabled={props.data.context.isDisableMargeRight}>{t('er.sector.mergeRight')}</el-dropdown-item>
+              <el-dropdown-item command="merge row" disabled={props.data.context.isDisableMargeRow}>{t('er.sector.mergeRow')}</el-dropdown-item>
+              <el-dropdown-item command="merge top" disabled={props.data.context.isDisableMargeTop} divided>{t('er.sector.mergeTop')}</el-dropdown-item>
+              <el-dropdown-item command="merge bottom" disabled={props.data.context.isDisableMargeBottom}>{t('er.sector.mergeBottom')}</el-dropdown-item>
+              <el-dropdown-item command="merge column" disabled={props.data.context.isDisableMargeColumn}>{t('er.sector.mergeColumn')}</el-dropdown-item>
+              <el-dropdown-item command="del row" divided disabled={props.data.context.isDisableDelRow}>{t('er.sector.delRow')}</el-dropdown-item>
+              <el-dropdown-item command="del column" disabled={props.data.context.isDisableDelColumn}>{t('er.sector.delColumn')}</el-dropdown-item>
+              <el-dropdown-item command="split column" disabled={props.data.context.isDisableSplitColumn} divided>{t('er.sector.splitColumn')}</el-dropdown-item>
+              <el-dropdown-item command="split row" disabled={props.data.context.isDisableSplitRow}>{t('er.sector.splitRow')}</el-dropdown-item>
             </el-dropdown-menu>
           )
           if (!isShowCell.value) {
@@ -307,6 +310,11 @@ export default {
           {
             unref(isEditModel) && (
               <div class={[ns.e('bottomRight')]}>
+                {props.hasDel && (
+                  <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
+                    handleAction(1)
+                  }, ['stop'])} icon="delete"></Icon>
+                )}
                 {
                   props.hasInserColumn && (<Icon class={[ns.e('charulieIcon')]} onClick={withModifiers((e) => {
                     handleAction(4)
@@ -322,11 +330,6 @@ export default {
                     handleAction(2)
                   }, ['stop'])} icon="copy"></Icon>)
                 }
-                {props.hasDel && (
-                  <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
-                    handleAction(1)
-                  }, ['stop'])} icon="delete"></Icon>
-                )}
                 {props.hasWidthScale && (
                   <div ref={widthScaleElement}><Icon class={[ns.e('widthScale')]} icon="zuoyouyidong"></Icon></div>)}
                 {props.hasTableCellOperator && renderTableCellOperator()}
