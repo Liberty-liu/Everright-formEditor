@@ -14,15 +14,22 @@
   @include e(container) {
     box-sizing: content-box;
     height: 100%;
-    margin: 0 32px 0;
-    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-    .el-scrollbar__view,.el-scrollbar__view>div,.el-form,.van-form {
+    .el-scrollbar__view,.el-scrollbar__view>div{
+      min-height: 100%;
+    }
+    .el-form,.van-form {
       height: 100%;
     }
+  }
+  @include e(subject) {
+    margin: 0 32px 0;
+    min-height: calc(100vh - 52px);
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   }
   @include e(wrap) {
     //height: calc(100vh - 124px);
     padding: 10px;
+    min-height: calc(100vh - 52px);
     box-sizing: border-box;
     height: 100%;
   }

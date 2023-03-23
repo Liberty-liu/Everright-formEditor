@@ -17,7 +17,8 @@ const sheet = jss.createStyleSheet({
 }).attach()
 const renderTable = (style) => {
   let result = {
-    width: style.width
+    width: style.width,
+    margin: style.margin
   }
   const value = {
     width: style.borderWidth,

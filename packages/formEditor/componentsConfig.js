@@ -124,7 +124,7 @@ export const fieldConfig = [
         id: '',
         options: {
           min: 0,
-          max: 1000,
+          max: null,
           step: 1,
           precision: 0,
           disabled: false,
@@ -396,8 +396,38 @@ export const fieldConfig = [
             id: '',
             options: {
               span: {
-                pc: 12,
-                mobile: 24
+                pc: 6,
+                mobile: 6
+              },
+              offset: 0,
+              pull: 0,
+              push: 0
+            },
+            type: 'col',
+            list: [
+            ]
+          },
+          {
+            id: '',
+            options: {
+              span: {
+                pc: 6,
+                mobile: 6
+              },
+              offset: 0,
+              pull: 0,
+              push: 0
+            },
+            type: 'col',
+            list: [
+            ]
+          },
+          {
+            id: '',
+            options: {
+              span: {
+                pc: 6,
+                mobile: 6
               },
               offset: 0,
               pull: 0,
@@ -410,7 +440,7 @@ export const fieldConfig = [
         ],
         options: {
           gutter: 0,
-          justify: 'start',
+          justify: 'space-around',
           align: 'top'
         }
       },
@@ -423,6 +453,41 @@ export const fieldConfig = [
           {
             type: 'tr',
             columns: [
+              {
+                type: 'td',
+                options: {
+                  colspan: 1,
+                  rowspan: 1,
+                  isMerged: false
+                },
+                list: [],
+                style: {}
+              },
+              {
+                type: 'td',
+                options: {
+                  colspan: 1,
+                  rowspan: 1,
+                  isMerged: false
+                },
+                list: [],
+                style: {}
+              }
+            ]
+          },
+          {
+            type: 'tr',
+            columns: [
+              {
+                type: 'td',
+                options: {
+                  colspan: 1,
+                  rowspan: 1,
+                  isMerged: false
+                },
+                list: [],
+                style: {}
+              },
               {
                 type: 'td',
                 options: {

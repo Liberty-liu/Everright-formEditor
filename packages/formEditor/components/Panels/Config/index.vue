@@ -2,7 +2,7 @@
 import NAME from '@ER/formEditor/name.js'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
-import { ref, computed, reactive, watch, onMounted } from 'vue'
+import { ref, computed, reactive, watch, onMounted, inject } from 'vue'
 import _ from 'lodash-es'
 import Icon from '@ER/icon'
 import PanelsConfigComponentsPropsPanel from '@ER/formEditor/components/Panels/Config/components/PropsPanel.vue'
@@ -29,6 +29,7 @@ const {
   isSelectCollapse,
   isSelectTable
 } = hooks.useTarget()
+const ER = inject('Everright')
 const {
   t
 } = hooks.useI18n()
@@ -128,7 +129,7 @@ watch(target, () => {
 })
 </script>
 <template>
-  <el-aside :class="[ns.b()]" width="412px">
+  <el-aside :class="[ns.b()]" :width="ER.props.configPanelWidth">
     <el-breadcrumb :class="[ns.e('breadcrumb')]" separator-icon="ArrowRight">
 <!--      <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>-->
 <!--      <el-breadcrumb-item>promotion list</el-breadcrumb-item>-->

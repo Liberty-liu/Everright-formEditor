@@ -19,7 +19,16 @@ export default {
 </script>
 <script setup>
 const emit = defineEmits(['listener'])
-const props = defineProps(defaultProps)
+const props = defineProps(_.merge({
+  blockPanelWidth: {
+    type: String,
+    default: '220px'
+  },
+  configPanelWidth: {
+    type: String,
+    default: '320px'
+  }
+}, defaultProps))
 const layout = {
   pc: [],
   mobile: []
@@ -111,7 +120,7 @@ const setSector = (node) => {
       result = node
     }
   }
-  isShowConfig.value = false
+  isShowConfig.value = state.sector === result
   state.sector = result
   nextTick(() => {
     isShowConfig.value = true
@@ -247,6 +256,7 @@ const switchPlatform = (platform) => {
   state.platform = platform
   setSector('root')
 }
+const canvesScrollRef = ref('')
 provide('Everright', {
   state,
   setSector,
@@ -255,7 +265,8 @@ provide('Everright', {
   delField,
   addField,
   switchPlatform,
-  addFieldData
+  addFieldData,
+  canvesScrollRef
 })
 window.state = state
 const ns = hooks.useNamespace('Main', state.Namespace)
