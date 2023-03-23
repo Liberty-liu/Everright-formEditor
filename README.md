@@ -14,7 +14,9 @@
 
 [简体中文](./README.zh-cn.md) | English
 
-Everright-formEditor is a free and open source javascript visual low-code editor. It can creates forms with simple operations through the gui interface. It has a flexible interactive interface. The PC side depends on element-plus, and the mobile depends on vant. There is a set of internal Adapter, the component that adapts element-plus and vant
+Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
+
+<img height="400px" alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/21301475/227166023-2abf45c8-cab6-49b1-a787-53e07cf0ecf7.png">
 
 ## Features
 
@@ -50,7 +52,7 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 
 
 
-## Container adaptation
+## Containers adaptation
 
 | Type  | Pc | Mobile |
 | ------------- | ------------- | ------------- |
