@@ -71,8 +71,10 @@ export default {
       state.store.push(newElement)
       utils.addContext(newElement, state.store)
       nextTick(() => {
-        ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
         setSector(newElement)
+        setTimeout(() => {
+          ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
+        }, 100)
       })
     }
     const slots = {
