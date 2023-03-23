@@ -71,6 +71,7 @@ export default {
       state.store.push(newElement)
       utils.addContext(newElement, state.store)
       nextTick(() => {
+        ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
         setSector(newElement)
       })
     }
@@ -100,7 +101,7 @@ export default {
     }
     return () => {
       return (
-        <ElAside class={[ns.b()]} width="300px">
+        <ElAside class={[ns.b()]} width={ER.props.blockPanelWidth}>
           <el-scrollbar>
             <el-menu
               default-openeds={['0', '1']}>

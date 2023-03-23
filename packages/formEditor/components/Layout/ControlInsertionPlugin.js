@@ -151,7 +151,7 @@ const getDragElement = (node) => {
   return node.__draggable_context.element
 }
 
-const setStates = (type, newTarget, ev) => {
+const setStates = (newTarget, ev, ER) => {
   const {
     activeSortable: {
       constructor: {
@@ -184,17 +184,18 @@ const setStates = (type, newTarget, ev) => {
   const direction = getDirection(newTarget, originalEvent)
   const cols = newTarget.parentNode.children
   const colIndex = utils.index(newTarget)
-  // console.log(!el.contains(dragEl))
-  // console.log(utils)
   if (/^(2|4)$/.test(direction)) {
     if (targetList.length === 4 && !el.contains(dragEl)) {
-      // console.log(123123)
+      return false
+    }
+  }
+  if (/^(1)$/.test(direction)) {
+    if (ER.state.store.length > 0 && (/^(root)$/.test(el.dataset.layoutType))) {
       return false
     }
   }
   switch (direction) {
     case 1:
-      // console.log(sortable.options.parent)
       prevSortable = sortable
       prevEl = targetContainer
       inserRowIndex = utils.index(prevEl)
@@ -332,6 +333,10 @@ function ControlInsertionPlugin (ER) {
       const targetContainer = el.parentNode
       const targetOnlyOne = targetList.length === 1
       let newTarget = utils.closest(target, this.options.draggable, sortable.el)
+      // console.log(ER.state.store.length)
+      // if (ER.state.store.length > 0 && (/^(root)$/.test(target.dataset.layoutType))) {
+      //   return false
+      // }
       if (/^(grid-col|tabs-col|td|collapse-col|root|inline)$/.test(target.dataset.layoutType)) {
         newTarget = target
         const state = (newTarget.__draggable_component__ || newTarget.children[0].__draggable_component__)
@@ -360,7 +365,7 @@ function ControlInsertionPlugin (ER) {
           }
         }
       } else {
-        setStates(1, newTarget, e)
+        setStates(newTarget, e, ER)
       }
     }
   }

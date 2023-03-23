@@ -284,7 +284,7 @@ const handleAction = (type, value) => {
         v-bind="typeProps"
         v-model="target.options.defaultValue"
       />
-      <el-button link @click="target.options.defaultValue = 0">{{t('er.public.clear')}}</el-button>
+      <el-button v-if="target.options.defaultValue > 0" link @click="target.options.defaultValue = 0">{{t('er.public.clear')}}</el-button>
     </template>
     <template v-else-if="checkTypeBySelected(['switch'])">
       <el-switch
@@ -453,7 +453,7 @@ const handleAction = (type, value) => {
   </el-form-item>
   <el-form-item v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4" :label="t('er.public.width')">
     <el-button-group>
-      <el-button @click="() => handleAction(3, item.value)" v-for="item in options1" :disabled="item.disabled" :key="item.value">{{ item.value }}</el-button>
+      <el-button @click="() => handleAction(3, item.value)" v-for="item in options1" :disabled="item.disabled" :key="item.value" size="small">{{ item.value }}</el-button>
     </el-button-group>
   </el-form-item>
   <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'])" :label="t('er.config.propsPanel.trim')" field="isShowTrim"/>
@@ -473,6 +473,7 @@ const handleAction = (type, value) => {
           <el-input-number
             :min="target.options.min + 1"
             controls-position="right"
+            step="10"
             v-model="target.options.max" />
         </el-form-item>
       </el-col>
@@ -493,7 +494,7 @@ const handleAction = (type, value) => {
   />
   <PanelsConfigComponentsAllsidesComponent
     field="margin"
-    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"
+    v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"
   />
   <PanelsConfigComponentsAllsidesComponent
     field="padding"

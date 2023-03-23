@@ -83,7 +83,13 @@ const wrapElement = (element, fn) => {
           attachment: 'scroll',
           size: 'auto'
         },
-        isCustomBackground: false
+        isCustomBackground: false,
+        margin: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+        }
       })
     }
     if (/^(tabs)$/.test(node.type)) {
