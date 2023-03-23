@@ -12,20 +12,20 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-[简体中文](./README.zh-cn.md) | English
+[English](./README.md) | 简体中文
 
-Everright-formEditor is a free and open source javascript visual low-code editor. It can creates forms with simple operations through the gui interface. It has a flexible interactive interface. The PC side depends on element-plus, and the mobile depends on vant. There is a set of internal Adapter, the component that adapts element-plus and vant
+Everright-formEditor是一个免费开源的javascript可视化低代码编辑器，通过gui的界面只需简单的操作即可创建出表单，拥有灵活的交互界面，pc端依赖element-plus，mobile依赖vant,内部有一套适配器，适配element和vant的组件
 
-## Features
+## 特点
 
-* 1.Support Chinese and English
-* 2.Support Pc and Mobile
-* 3.Rich fields and layout containers
-* 4.Flexible interaction
+* 1.支持中文和英文
+* 2.多终端适配
+* 3.丰富的字段和布局容器
+* 4.灵活的交互方式
 
-## Fields adaptation
+## 字段适配
 
-| Type  | Pc | Mobile |
+| Field  | Pc | Mobile |
 | ------------- | ------------- | ------------- |
 | Input  | :white_check_mark:  | :white_check_mark:  |
 | Email  | :white_check_mark: | :white_check_mark:  |
@@ -50,9 +50,9 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 
 
 
-## Container adaptation
+## 容器适配
 
-| Type  | Pc | Mobile |
+| Field  | Pc | Mobile |
 | ------------- | ------------- | ------------- |
 | Grid  | :white_check_mark:  | :white_check_mark:  |
 | Table  | :white_check_mark: | :x:  |
