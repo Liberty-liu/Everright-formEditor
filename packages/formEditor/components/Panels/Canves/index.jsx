@@ -1,12 +1,11 @@
 import { defineComponent, inject, ref, resolveComponent, unref } from 'vue'
-import NAME from '@ER/formEditor/name.js'
 import LayoutDragGable from '@ER/formEditor/components/Layout/DragGable'
 import LayoutInlineLayout from '@ER/formEditor/components/Layout/InlineLayout'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import hooks from '@ER/hooks'
 import _ from 'lodash-es'
 export default defineComponent({
-  name: NAME.ERCANVES,
+  name: 'Canves',
   inheritAttrs: false,
   customOptions: {},
   setup () {

@@ -1,6 +1,5 @@
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
-import NAME from '@ER/formEditor/name.js'
 import { dragGableWrap } from '@ER/formEditor/components/Layout/DragGable.jsx'
 import { inject, ref, reactive, nextTick } from 'vue'
 import _ from 'lodash-es'
@@ -9,7 +8,7 @@ import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import ControlInsertionPlugin from '../../Layout/ControlInsertionPlugin.js'
 import { nanoid } from 'nanoid'
 export default {
-  name: NAME.ERBLOCKS,
+  name: 'Blocks',
   inheritAttrs: false,
   customOptions: {},
   props: {

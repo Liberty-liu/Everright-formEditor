@@ -1,20 +1,20 @@
 <script>
 import { ClickOutside as vClickOutside } from 'element-plus'
-import { defineProps, ref, reactive, computed, provide, getCurrentInstance, nextTick, onMounted } from 'vue'
+import { defineProps, ref, reactive, computed, provide, getCurrentInstance, nextTick, onMounted, watch } from 'vue'
 import PanelsBlocks from '@ER/formEditor/components/Panels/Blocks'
 import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
 import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
 import Icon from '@ER/icon'
-import NAME from '@ER/formEditor/name.js'
 import ClipboardJS from 'clipboard'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
-import { fieldConfig } from './componentsConfig'
+import { fieldConfig, globalConfig } from './componentsConfig'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
+import generatorData from './generatorData'
 // import utilsa from '@ER/formEditor/name.js'
 export default {
-  name: NAME.EVERRIGHTEDITOR
+  name: 'Everright-form-editor'
 }
 </script>
 <script setup>
@@ -40,26 +40,7 @@ const state = reactive({
   mode: 'edit',
   platform: 'pc',
   children: [],
-  config: {
-    isSync: true,
-    pc: {
-      size: 'default',
-      labelPosition: 'left',
-      completeButton: {
-        text: '提交',
-        color: '',
-        backgroundColor: ''
-      }
-    },
-    mobile: {
-      labelPosition: 'left',
-      completeButton: {
-        text: '提交',
-        color: '',
-        backgroundColor: ''
-      }
-    }
-  },
+  config: globalConfig,
   previewVisible: false,
   widthScaleLock: false,
   data: {},
@@ -71,7 +52,7 @@ state.validator = (target, fn) => {
   if (target) {
     const count = _.countBy(state.validateStates, 'data.key')
     const newValue = target.key.trim()
-    if (newValue === '' || newValue === null || newValue === undefined) {
+    if (utils.isNull(newValue)) {
       _.find(state.validateStates, { data: { key: target.key } }).isWarning = true
       fn && fn(0)
       return false
@@ -102,7 +83,8 @@ const {
   // restart
 } = hooks.useHistory(state)
 const {
-  t
+  t,
+  lang
 } = hooks.useI18n(props)
 const element = ref('')
 const copyElement = ref(null)
@@ -165,23 +147,43 @@ const addFieldData = (node) => {
   }
 }
 const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true) => {
-  const newEl = isWrap
-    ? {
-        type: 'inline',
-        columns: [
-          el
-        ]
-      }
-    : el
-  if (sourceBlock) {
-    el.label = utils.fieldLabel(t, el)
-  }
+  // console.log(generatorData)
+  // const newEl = isWrap
+  //   ? {
+  //       type: 'inline',
+  //       columns: [
+  //         el
+  //       ]
+  //     }
+  //   : el
+  // if (sourceBlock) {
+  //   el.label = utils.fieldLabel(t, el)
+  // }
+  // const node = sourceBlock
+  //   ? utils.wrapElement(newEl, (node) => {
+  //     addFieldData(node)
+  //     addField(node)
+  //   })
+  //   : newEl
+  // if (isSetSector) {
+  //   nextTick(() => {
+  //     setSector(node)
+  //   })
+  // }
+  // return node
   const node = sourceBlock
-    ? utils.wrapElement(newEl, (node) => {
+    ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
       addFieldData(node)
       addField(node)
     })
-    : newEl
+    : isWrap
+      ? {
+          type: 'inline',
+          columns: [
+            el
+          ]
+        }
+      : el
   if (isSetSector) {
     nextTick(() => {
       setSector(node)
@@ -270,7 +272,6 @@ provide('Everright', {
 })
 window.state = state
 const ns = hooks.useNamespace('Main', state.Namespace)
-hooks.useTarget()
 const getData1 = () => {
   return utils.disassemblyData1(_.cloneDeep({
     list: state.store,
@@ -366,12 +367,21 @@ const handleOperation = (type) => {
       break
     case 4:
       emit('listener', {
-        type: 'getJson',
+        type: 'getData',
         data: getData()
       })
       break
   }
 }
+watch(() => state.sector, (newVal) => {
+  emit('listener', {
+    type: 'changeParams',
+    data: _.cloneDeep(newVal)
+  })
+}, {
+  deep: true,
+  immediate: true
+})
 const onClickOutside = () => {
   // setSector('root')
 }

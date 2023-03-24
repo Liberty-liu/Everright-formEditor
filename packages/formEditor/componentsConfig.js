@@ -1,3 +1,23 @@
+export const globalConfig = {
+  isSync: true,
+  pc: {
+    size: 'default',
+    labelPosition: 'left',
+    completeButton: {
+      text: '提交',
+      color: '',
+      backgroundColor: ''
+    }
+  },
+  mobile: {
+    labelPosition: 'left',
+    completeButton: {
+      text: '提交',
+      color: '',
+      backgroundColor: ''
+    }
+  }
+}
 export const fieldConfig = [
   {
     name: '基础字段',

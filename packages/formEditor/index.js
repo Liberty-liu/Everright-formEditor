@@ -1,7 +1,20 @@
 import './style/index.js'
-import EverrightEditor from './index.vue'
-import EverrightPreview from './preview.vue'
+import erFormEditor from './index.vue'
+import erFormPreview from './preview.vue'
+import erFormConfig from './config.vue'
+import erGeneratorData from './generatorData'
+import * as erComponentsConfig from './componentsConfig'
+import utils from '@ER/utils'
+/*
+* er-form-editor
+* er-form-preview
+* er-form-configPanel
+* */
 export {
-  EverrightEditor,
-  EverrightPreview
+  erFormEditor,
+  erFormPreview,
+  erFormConfig,
+  erGeneratorData,
+  erComponentsConfig,
+  utils
 }

@@ -11,14 +11,12 @@ import {
   computed
 } from 'vue'
 import { isHTMLTag } from '@vue/shared'
-import NAME from '@ER/formEditor/name.js'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
 import Icon from '@ER/icon'
-import { checkIsField, deepTraversal } from '../../../utils/field'
 export default {
-  name: NAME.ERSELECTELEMENT,
+  name: 'SelectElement',
   inheritAttrs: false,
   customOptions: {},
   props: {
@@ -94,7 +92,7 @@ export default {
     const handleClick = (e) => {
       setSector(props.data)
     }
-    if (props.data.type && utils.isField(props.data.type.value)) {
+    if (props.data.type && utils.checkIsField(props.data.type)) {
       state.validateStates.push({
         data: props.data,
         isWarning
@@ -160,7 +158,7 @@ export default {
         case 1:
           props.data.context.delete()
           utils.deepTraversal(props.data, (node) => {
-            if (checkIsField(node.type)) {
+            if (utils.checkIsField(node.type)) {
               ER.delField(node)
             }
           })
@@ -186,7 +184,7 @@ export default {
           setSector(copyData)
           utils.deepTraversal(copyData, (node) => {
             ER.addFieldData(node)
-            if (checkIsField(node.type)) {
+            if (utils.checkIsField(node.type)) {
               ER.addField(node)
             }
           })

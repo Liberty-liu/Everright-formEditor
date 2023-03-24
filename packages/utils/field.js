@@ -18,11 +18,6 @@ const wrapElement = (element, fn) => {
     if (!node.key) {
       node.key = `${node.type}_${node.id}`
     }
-    // if (checkIsField(node.type) || /^(grid|tabs|collapse|table)$/.test(node.type)) {
-    //   node.style = {
-    //     width: '100%'
-    //   }
-    // }
     if (/^(grid|tabs|collapse|table|divider)$/.test(node.type)) {
       node.style = {
         width: '100%'
@@ -125,20 +120,6 @@ const wrapElement = (element, fn) => {
         isCustomBackground: false
       }
     }
-    if (/^(radio|cascader|checkbox|select)$/.test(node.type)) {
-      // console.log(123123)
-      // state.data[node.id] = {
-      //   type: node.type,
-      //   list: utils.generateOptions(3).map((e, i) => {
-      //     e.label += i + 1
-      //     return e
-      //   })
-      // }
-
-    }
-    // if (/^(uploadfile|signature|html)$/.test(node.type)) {
-    //   node.options.action = ER.props.fileUploadURI
-    // }
     fn && fn(node)
   })
   return result
@@ -299,7 +280,18 @@ const syncWidthByPlatform = (node, platform, value) => {
     }
   })
 }
-const fieldLabel = (t, node) => t(`er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`)
+const transferLabelPath = (node) => `er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`
+const fieldLabel = (t, node) => t(transferLabelPath(node))
+const transferData = (lang, path, locale, options = {}) => {
+  let result = ''
+  if (_.isEmpty(options)) {
+    result = _.get(locale[lang], path, '')
+  } else {
+    result = _.template(_.get(locale[lang], path, ''))(options)
+  }
+  return result
+}
+const isNull = (e) => e === '' || e === null || e === undefined
 export {
   syncWidthByPlatform,
   wrapElement,
@@ -313,5 +305,8 @@ export {
   checkIslineChildren,
   checkIsField,
   pickfields,
-  fieldLabel
+  fieldLabel,
+  transferData,
+  transferLabelPath,
+  isNull
 }

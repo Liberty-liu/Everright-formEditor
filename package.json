@@ -1,5 +1,5 @@
 {
-  "name": "Everright-formEditor",
+  "name": "everright-formeditor",
   "version": "0.0.9",
   "files": [
     "dist"
@@ -29,6 +29,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "element-plus": "^2.2.28",
+    "vant": "^4.0.8",
+    "vue": "^3.2.45",
     "@vant/area-data": "^1.4.0",
     "@vant/touch-emulator": "^1.4.0",
     "@vue/shared": "^3.2.45",
@@ -46,9 +49,6 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "element-plus": "^2.2.28",
-    "vant": "^4.0.8",
-    "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "express": "^4.18.2",
     "@babel/core": "^7.21.0",
@@ -87,8 +87,5 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
-  },
-  "publishConfig": {
-    "registry": "http://localhost:4873"
   }
 }

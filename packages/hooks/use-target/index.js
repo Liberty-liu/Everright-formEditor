@@ -1,15 +1,13 @@
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, inject, onBeforeUnmount, unref } from 'vue'
-import NAME from '@ER/formEditor/name.js'
 import _ from 'lodash-es'
 import utils from '@ER/utils'
 export const useTarget = () => {
-  const Instance = getCurrentInstance()
-  const {
-    type: {
-      name
-    }
-  } = Instance
-  if (name === NAME.EVERRIGHTEDITOR) return false
+  // const Instance = getCurrentInstance()
+  // const {
+  //   type: {
+  //     name
+  //   }
+  // } = Instance
   const { state, setSector } = inject('Everright')
   // onBeforeUnmount(() => {
   //   state.children.splice(state.children.indexOf(Instance), 1)
@@ -84,7 +82,7 @@ export const useTarget = () => {
   })
   const isEditModel = computed({
     get () {
-      return state.mode === 'edit'
+      return /^(edit|config)$/.test(state.mode)
     }
   })
   return {

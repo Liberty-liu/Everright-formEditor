@@ -1,13 +1,12 @@
 <script>
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, watch, nextTick, onMounted } from 'vue'
 import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
-import NAME from '@ER/formEditor/name.js'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
 export default {
-  name: NAME.EVERRIGHTEDITOR
+  name: 'Everright-form-preview'
 }
 </script>
 <script setup>
@@ -28,9 +27,7 @@ const state = reactive({
   data: {},
   fields: []
 })
-const element = ref('')
 const ns = hooks.useNamespace('EverrightEditor', state.Namespace)
-const loading = ref(false)
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
@@ -44,7 +41,6 @@ provide('Everright', {
   getData,
   props
 })
-hooks.useTarget()
 const setData = (data, value) => {
   const newData = _.cloneDeep(data)
   layout.pc = newData.layout.pc
@@ -67,24 +63,6 @@ const setData = (data, value) => {
     })
   }
 }
-// const setData = (data, value) => {
-//   console.log(props.layoutType)
-//   const newData = utils.combinationData(data)
-//   state.store = newData.list
-//   state.config = newData.config
-//   state.data = newData.data
-//   state.store.forEach((e) => {
-//     utils.addContext(e, state.store, false)
-//   })
-//   state.allFields = utils.getAllFields(state.store)
-//   if (!_.isEmpty(value)) {
-//     state.allFields.forEach((e) => {
-//       if (value[e.key]) {
-//         e.options.defaultValue = value[e.key]
-//       }
-//     })
-//   }
-// }
 defineExpose({
   state,
   switchPlatform (platform) {

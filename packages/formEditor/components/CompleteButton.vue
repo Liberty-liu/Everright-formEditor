@@ -28,7 +28,7 @@ const handleClick = async (type) => {
   try {
     await Promise.resolve(unref(props.handle).validate())
     ER.emit('listener', {
-      type: 'getData',
+      type: 'submit',
       data: ER.getData()
     })
     // console.log(JSON.stringify(_.cloneDeep(result)))

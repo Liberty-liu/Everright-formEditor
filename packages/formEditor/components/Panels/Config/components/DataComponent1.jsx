@@ -1,4 +1,15 @@
-import { computed, defineComponent, resolveComponent, unref, ref, watch, reactive, defineExpose, nextTick } from 'vue'
+import {
+  computed,
+  defineComponent,
+  resolveComponent,
+  unref,
+  ref,
+  watch,
+  reactive,
+  defineExpose,
+  nextTick,
+  inject
+} from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import Icon from '@ER/icon'
@@ -43,7 +54,11 @@ export default defineComponent({
       state,
       target
     } = hooks.useTarget()
-    this.data = _.cloneDeep(state.data[target.value.options.dataKey].list)
+    if (state.mode === 'config') {
+      this.data = target.value.options.data = target.value.options.data || [...utils.generateOptions(3)]
+    } else {
+      this.data = _.cloneDeep(state.data[target.value.options.dataKey].list)
+    }
     if (this.isMultiple) {
       this.checkList = _.cloneDeep(target.value.options.defaultValue)
     } else {

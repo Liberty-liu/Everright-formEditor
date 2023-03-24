@@ -1,15 +1,16 @@
 import { computed, inject } from 'vue'
 import locale from '@ER/formEditor/locale'
+import utils from '@ER/utils'
 import { get, template, isEmpty } from 'lodash-es'
-const transferData = (lang, path, options = {}) => {
-  let result = ''
-  if (isEmpty(options)) {
-    result = get(locale[lang.value], path, '')
-  } else {
-    result = template(get(locale[lang.value], path, ''))(options)
-  }
-  return result
-}
+// const transferData = (lang, path, options = {}) => {
+//   let result = ''
+//   if (isEmpty(options)) {
+//     result = get(locale[lang.value], path, '')
+//   } else {
+//     result = template(get(locale[lang.value], path, ''))(options)
+//   }
+//   return result
+// }
 export const useI18n = (props) => {
   const ER = inject('Everright', { props })
   const lang = computed(() => {
@@ -18,7 +19,7 @@ export const useI18n = (props) => {
   return {
     lang,
     t (path, options) {
-      return transferData(lang, path, options)
+      return utils.transferData(lang.value, path, locale, options)
     }
   }
 }

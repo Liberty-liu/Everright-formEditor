@@ -2,7 +2,7 @@
 import { ref, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import hooks from '@ER/hooks'
-import { EverrightPreview } from '@ER/formEditor'
+import { erFormPreview } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 const route = useRoute()
 const loading = ref(true)
@@ -30,9 +30,7 @@ const getObjData = async () => {
 }
 const handleListener = async ({ type, data }) => {
   console.log(type)
-  if (type === 'getJson') {
-    // console.log(data)
-    // return false
+  if (type === 'submit') {
     loading.value = true
     try {
       const postData = {
@@ -53,7 +51,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <EverrightPreview
+  <er-form-preview
     :lang="lang"
     @listener="handleListener"
     v-loading="loading"

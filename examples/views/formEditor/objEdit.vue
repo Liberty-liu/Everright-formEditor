@@ -2,7 +2,7 @@
 import { ref, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import hooks from '@ER/hooks'
-import { EverrightEditor } from '@ER/formEditor'
+import { erFormEditor } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 const route = useRoute()
 const loading = ref(true)
@@ -29,9 +29,7 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
-  if (type === 'getJson') {
-    // console.log(data)
-    // return false
+  if (type === 'getData') {
     loading.value = true
     try {
       const postData = {
@@ -52,7 +50,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <EverrightEditor
+  <er-form-editor
     :lang="lang"
     @listener="handleListener"
     v-loading="loading"

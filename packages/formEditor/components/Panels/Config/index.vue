@@ -1,5 +1,4 @@
 <script>
-import NAME from '@ER/formEditor/name.js'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import { ref, computed, reactive, watch, onMounted, inject } from 'vue'
@@ -9,12 +8,18 @@ import PanelsConfigComponentsPropsPanel from '@ER/formEditor/components/Panels/C
 import GlobalConfigPanel from './components/GlobalConfigPanel.vue'
 // import PanelsConfigComponentsDataPanel from './components/Data.jsx'
 export default {
-  name: NAME.ERCONFIG,
+  name: 'Config',
   inheritAttrs: false,
   customOptions: {}
 }
 </script>
 <script setup>
+const props = defineProps({
+  mode: {
+    type: String,
+    default: 'editor'
+  }
+})
 const {
   state,
   isSelectAnyElement,
@@ -44,7 +49,7 @@ const handleChangePanel = (panel) => {
 }
 const validator = (rule, value, callback) => {
   const newValue = value.trim()
-  state.validator(target.value, (type) => {
+  const fn = (type) => {
     switch (type) {
       case 0:
         callback(new Error(t('er.validateMsg.required')))
@@ -56,7 +61,17 @@ const validator = (rule, value, callback) => {
         callback(new Error(t('er.validateMsg.idUnique')))
         break
     }
-  })
+  }
+  if (props.mode === 'editor') {
+    state.validator(target.value, fn)
+  } else {
+    if (utils.isNull(newValue)) {
+      fn(0)
+    } else {
+      fn(1)
+    }
+  }
+
   // if (newValue === '' || newValue === null || newValue === undefined) {
   //   callback(new Error('必填'))
   //   return false

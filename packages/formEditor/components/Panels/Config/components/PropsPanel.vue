@@ -167,6 +167,12 @@ const handleMultipleChange = (value) => {
 const handleAction = (type, value) => {
   switch (type) {
     case 1:
+      if (state.mode === 'config') {
+        unref(dataRef).getData().then(({ data }) => {
+          dialogVisible.value = false
+        })
+        return false
+      }
       if (checkTypeBySelected(['cascader'])) {
         unref(dataRef).getData().then(({ data }) => {
           state.data[target.value.options.dataKey].list = data
@@ -473,7 +479,7 @@ const handleAction = (type, value) => {
           <el-input-number
             :min="target.options.min + 1"
             controls-position="right"
-            step="10"
+            :step="10"
             v-model="target.options.max" />
         </el-form-item>
       </el-col>
