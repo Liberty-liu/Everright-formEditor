@@ -1,4 +1,5 @@
 import * as VueRouter from 'vue-router'
+import demo from './views/demo.vue'
 import FormEditorView from './views/formEditor.vue'
 import FormEditorConfigView from './views/formEditorConfig.vue'
 import FormEditorObjListView from './views/formEditor/objList.vue'
@@ -8,6 +9,10 @@ const routes = [
   {
     path: '/',
     redirect: '/formEditor'
+  },
+  {
+    path: '/demo',
+    component: demo
   },
   {
     path: '/formEditor',

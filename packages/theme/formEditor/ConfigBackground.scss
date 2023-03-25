@@ -12,7 +12,11 @@
     //padding: 10px;
     display: flex;
     .el-color-picker {
-      margin-right: 10px;
+      //margin-right: 10px;
+      .el-color-picker__trigger {
+        border-right: none;
+        border-radius: 4px 0px 0px 4px;
+      }
     }
     ul {
       width: 100%;
@@ -30,7 +34,7 @@
     }
   }
   @include e(quickColor) {
-    border-radius: 4px;
+    border-radius: 0px 4px 4px 0px;
     overflow: hidden;
     border: 1px solid #DCDFE6;
     li:not(:last-child) {

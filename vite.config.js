@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import eslintPlugin from 'vite-plugin-eslint'
+import svgLoader from 'vite-svg-loader'
 const isProduction = process.env.NODE_ENV === 'production'
 const examplePlugin = () => {
   let config
@@ -111,6 +112,7 @@ export default defineConfig({
   plugins: [
     // backend,
     examplePlugin(),
+    svgLoader(),
     vue(),
     eslintPlugin({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']

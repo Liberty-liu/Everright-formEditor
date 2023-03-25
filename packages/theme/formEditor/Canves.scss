@@ -1,5 +1,6 @@
 @include b(Canves) {
   padding: 0;
+  height: calc(100% - 40px);
   //&>form, &>form>.el-scrollbar {
   //.el-form,.el-scrollbar__view,.el-scrollbar__view>div {
   //  height: 100%;
@@ -12,26 +13,28 @@
   //  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   //}
   @include e(container) {
-    box-sizing: content-box;
     height: 100%;
+    box-sizing: content-box;
+    //height: calc(100% - 20px);
     .el-scrollbar__view,.el-scrollbar__view>div{
-      min-height: 100%;
+      //min-height: 100%;
     }
     .el-form,.van-form {
-      height: 100%;
+      //height: 100%;
     }
   }
   @include e(subject) {
-    margin: 0 32px 0;
-    min-height: calc(100vh - 52px);
+    margin: 0 28px 0;
+    //height: calc(100vh - 40px);
+    //min-height: calc(100vh - 52px);
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   }
   @include e(wrap) {
-    //height: calc(100vh - 124px);
-    padding: 10px;
-    min-height: calc(100vh - 52px);
+    margin: 0 10px;
+    padding-top: 10px;
+    min-height: calc(100vh - 60px);
     box-sizing: border-box;
-    height: 100%;
+    //height: 100%;
   }
   @include e(mobile) {
     //.el-scrollbar {

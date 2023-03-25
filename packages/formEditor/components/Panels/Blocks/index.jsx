@@ -81,7 +81,7 @@ export default {
         return (
           <li onClick={() => addStore(element)}>
             <Icon class={[ns.e('icon')]} icon={element.icon}></Icon>
-            {utils.fieldLabel(t, element)}
+            <span>{utils.fieldLabel(t, element)}</span>
           </li>
         )
       }
@@ -105,7 +105,7 @@ export default {
         <ElAside class={[ns.b()]} width={ER.props.blockPanelWidth}>
           <el-scrollbar>
             <el-menu
-              default-openeds={['0', '1']}>
+              default-openeds={['0', '1', '2']}>
               {state.blocks.map((element, index) => {
                 return (
                   <el-sub-menu
@@ -140,7 +140,7 @@ export default {
               })}
             </el-menu>
           </el-scrollbar>
-          <DeviceSwitch justifyContent={'flex-end'}></DeviceSwitch>
+          {/* <DeviceSwitch justifyContent={'flex-end'}></DeviceSwitch> */}
         </ElAside>
       )
     }

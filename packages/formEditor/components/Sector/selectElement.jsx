@@ -311,7 +311,7 @@ export default {
                 {props.hasDel && (
                   <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
                     handleAction(1)
-                  }, ['stop'])} icon="delete"></Icon>
+                  }, ['stop'])} icon="del"></Icon>
                 )}
                 {
                   props.hasInserColumn && (<Icon class={[ns.e('charulieIcon')]} onClick={withModifiers((e) => {

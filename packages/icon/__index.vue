@@ -1,9 +1,6 @@
 <script>
 import { ref } from 'vue'
 import hooks from '@ER/hooks'
-import svg from './svg'
-// const Cellphone = svg.Cellphone
-// console.log(svg.Cellphone)
 export default {
   name: 'er-icon'
 }
@@ -25,14 +22,11 @@ const element = ref('')
 // })
 </script>
 <template>
-<i ref="element" :class="[
-  `ER-icon`,
-  // `ER-icon-${props.icon}`,
-  props.disabled && 'is-disabled'
-  // props.disabled && ns.e('disabled')
-  ]">
-  <component :is="svg[props.icon]"></component>
-</i>
+  <i ref="element" :class="[
+    `ER-icon-${props.icon}`,
+    props.disabled && 'is-disabled'
+    // props.disabled && ns.e('disabled')
+    ]"/>
 </template>
 
 <style scoped>

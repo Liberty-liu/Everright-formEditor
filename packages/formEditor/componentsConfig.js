@@ -20,6 +20,100 @@ export const globalConfig = {
 }
 export const fieldConfig = [
   {
+    name: '预设字段',
+    id: 'defaultField',
+    list: [
+      {
+        type: 'input',
+        label: '邮箱',
+        icon: 'email',
+        key: '',
+        id: '',
+        options: {
+          clearable: true,
+          renderType: 2,
+          disabled: false,
+          showPassword: false,
+          defaultValue: '',
+          placeholder: '',
+          labelWidth: 100,
+          isShowLabel: true,
+          required: false
+        }
+      },
+      {
+        type: 'input',
+        label: '手机号',
+        icon: 'Cellphone',
+        key: '',
+        id: '',
+        options: {
+          clearable: true,
+          renderType: 4,
+          disabled: false,
+          showPassword: false,
+          defaultValue: '',
+          placeholder: '',
+          labelWidth: 100,
+          isShowLabel: true,
+          required: false
+        }
+      },
+      {
+        type: 'input',
+        label: '网址',
+        icon: 'url',
+        key: '',
+        id: '',
+        options: {
+          clearable: true,
+          renderType: 5,
+          disabled: false,
+          showPassword: false,
+          defaultValue: '',
+          placeholder: '',
+          labelWidth: 100,
+          isShowLabel: true,
+          required: false
+        }
+      },
+      {
+        type: 'region',
+        label: '省市区',
+        icon: 'location',
+        key: '',
+        id: '',
+        options: {
+          placeholder: ' ',
+          required: false,
+          isShowLabel: true,
+          labelWidth: 100,
+          defaultValue: '',
+          selectType: 3,
+          filterable: true
+        }
+      },
+      {
+        type: 'input',
+        label: '身份证号',
+        icon: 'ID',
+        key: '',
+        id: '',
+        options: {
+          clearable: true,
+          renderType: 3,
+          disabled: false,
+          showPassword: false,
+          defaultValue: '',
+          placeholder: '',
+          labelWidth: 100,
+          isShowLabel: true,
+          required: false
+        }
+      }
+    ]
+  },
+  {
     name: '基础字段',
     id: 'field',
     list: [
@@ -42,78 +136,6 @@ export const fieldConfig = [
           required: false,
           min: null,
           max: null
-        }
-      },
-      {
-        type: 'input',
-        label: '邮箱',
-        icon: 'input',
-        key: '',
-        id: '',
-        options: {
-          clearable: true,
-          renderType: 2,
-          disabled: false,
-          showPassword: false,
-          defaultValue: '',
-          placeholder: '',
-          labelWidth: 100,
-          isShowLabel: true,
-          required: false
-        }
-      },
-      {
-        type: 'input',
-        label: '身份证号',
-        icon: 'input',
-        key: '',
-        id: '',
-        options: {
-          clearable: true,
-          renderType: 3,
-          disabled: false,
-          showPassword: false,
-          defaultValue: '',
-          placeholder: '',
-          labelWidth: 100,
-          isShowLabel: true,
-          required: false
-        }
-      },
-      {
-        type: 'input',
-        label: '手机号',
-        icon: 'input',
-        key: '',
-        id: '',
-        options: {
-          clearable: true,
-          renderType: 4,
-          disabled: false,
-          showPassword: false,
-          defaultValue: '',
-          placeholder: '',
-          labelWidth: 100,
-          isShowLabel: true,
-          required: false
-        }
-      },
-      {
-        type: 'input',
-        label: '网址',
-        icon: 'input',
-        key: '',
-        id: '',
-        options: {
-          clearable: true,
-          renderType: 5,
-          disabled: false,
-          showPassword: false,
-          defaultValue: '',
-          placeholder: '',
-          labelWidth: 100,
-          isShowLabel: true,
-          required: false
         }
       },
       {
@@ -161,7 +183,7 @@ export const fieldConfig = [
       {
         type: 'radio',
         label: '单选框',
-        icon: 'radiobox',
+        icon: 'radio',
         key: '',
         id: '',
         options: {
@@ -177,7 +199,7 @@ export const fieldConfig = [
       {
         type: 'checkbox',
         label: '复选框',
-        icon: 'checkbox-checked',
+        icon: 'checkbox',
         key: '',
         id: '',
         options: {
@@ -193,7 +215,7 @@ export const fieldConfig = [
       {
         type: 'select',
         label: '下拉框',
-        icon: 'biaodanzujian-xialakuang',
+        icon: 'dropdown0',
         key: '',
         id: '',
         options: {
@@ -229,7 +251,7 @@ export const fieldConfig = [
       {
         type: 'date',
         label: '日期',
-        icon: 'date',
+        icon: 'calendar',
         key: '',
         id: '',
         options: {
@@ -250,7 +272,7 @@ export const fieldConfig = [
       {
         type: 'rate',
         label: '评分',
-        icon: 'pingfen',
+        icon: 'rating',
         key: '',
         id: '',
         options: {
@@ -352,7 +374,7 @@ export const fieldConfig = [
       {
         type: 'uploadfile',
         label: '上传文件',
-        icon: 'cascader',
+        icon: 'upload',
         key: '',
         id: '',
         options: {
@@ -371,7 +393,7 @@ export const fieldConfig = [
       {
         type: 'signature',
         label: '签名',
-        icon: 'cascader',
+        icon: 'signature',
         key: '',
         id: '',
         options: {
@@ -383,22 +405,6 @@ export const fieldConfig = [
           action: '/dev-api/uploads',
           disabled: false
         }
-      },
-      {
-        type: 'region',
-        label: '省市区',
-        icon: 'cascader',
-        key: '',
-        id: '',
-        options: {
-          placeholder: ' ',
-          required: false,
-          isShowLabel: true,
-          labelWidth: 100,
-          defaultValue: '',
-          selectType: 3,
-          filterable: true
-        }
       }
     ]
   },
@@ -409,7 +415,7 @@ export const fieldConfig = [
       {
         type: 'grid',
         label: 'grid',
-        icon: 'input',
+        icon: 'grid',
         id: '',
         columns: [
           {
@@ -467,7 +473,7 @@ export const fieldConfig = [
       {
         type: 'table',
         label: '表格布局',
-        icon: 'input',
+        icon: 'table',
         id: '',
         rows: [
           {
@@ -529,7 +535,7 @@ export const fieldConfig = [
       {
         type: 'tabs',
         label: '标签页',
-        icon: 'input',
+        icon: '',
         id: '',
         columns: [
         ],
@@ -543,7 +549,7 @@ export const fieldConfig = [
       {
         type: 'collapse',
         label: '折叠面板',
-        icon: 'input',
+        icon: '',
         id: '',
         columns: [],
         options: {
@@ -554,7 +560,7 @@ export const fieldConfig = [
       {
         type: 'divider',
         label: '分割线',
-        icon: 'cascader',
+        icon: 'divider',
         key: '',
         id: '',
         options: {

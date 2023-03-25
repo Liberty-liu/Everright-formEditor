@@ -36,6 +36,8 @@ const wrapElement = (element, fn) => {
         node.style = {}
       }
       Object.assign(node.style, {
+        // isShowMargin: false,
+        // isShowBorder: true,
         margin: {
           top: 0,
           right: 0,
@@ -58,8 +60,8 @@ const wrapElement = (element, fn) => {
         },
         isCustomBackground: false,
         border: {
-          width: 0,
-          style: 'none',
+          width: 1,
+          style: 'solid',
           color: '#4285f4'
         },
         borderRadius: 0
@@ -67,6 +69,7 @@ const wrapElement = (element, fn) => {
     }
     if (/^(table)$/.test(node.type)) {
       Object.assign(node.style, {
+        isShowBackground: true,
         borderColor: '#000',
         borderType: 0,
         borderWidth: 1,
@@ -91,6 +94,7 @@ const wrapElement = (element, fn) => {
       node.columns = new Array(3).fill('').map((e, index) => {
         const data = renderFieldData('tabsCol')
         data.label = `Tab ${index + 1}`
+        data.options = {}
         return data
       })
     }
@@ -98,6 +102,7 @@ const wrapElement = (element, fn) => {
       node.columns = new Array(3).fill('').map((e, index) => {
         const data = renderFieldData('collapseCol')
         data.label = `Tab ${index + 1}`
+        data.options = {}
         return data
       })
     }

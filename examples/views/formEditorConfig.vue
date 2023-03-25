@@ -2,10 +2,12 @@
 import _ from 'lodash-es'
 import { ref, onMounted, getCurrentInstance, reactive, computed } from 'vue'
 import { erFormConfig, erGeneratorData, erComponentsConfig, utils } from '@ER/formEditor'
+
+console.log(erComponentsConfig)
 const EReditorRef = ref(null)
-const layoutNodes = erComponentsConfig.fieldConfig[1].list.map(e => erGeneratorData(e, false, 'zh-cn'))
+const layoutNodes = erComponentsConfig.fieldConfig[2].list.map(e => erGeneratorData(e, false, 'zh-cn'))
 const store = reactive({
-  fields: erComponentsConfig.fieldConfig[0].list.map(e => erGeneratorData(e, false, 'zh-cn')),
+  fields: [...erComponentsConfig.fieldConfig[0].list, ...erComponentsConfig.fieldConfig[1].list].map(e => erGeneratorData(e, false, 'zh-cn')),
   layouts: []
 })
 const fieldData = ref({})
@@ -24,8 +26,9 @@ layoutNodes.forEach((node, index) => {
       break
   }
 })
+console.log(store)
 const all = [...store.fields, ...store.layouts]
-const value0 = ref(store.fields[9].id)
+const value0 = ref(store.layouts[2].id)
 const sector = computed(() => {
   let result = ''
   if (value0.value === 'root') {
@@ -62,7 +65,7 @@ const handleListener = async ({ type, data }) => {
       </div>
     </el-header>
     <el-container>
-      <el-aside width="300px">
+      <el-aside width="340px">
         <div class="customConfig">
           <er-form-config
             @listener="handleListener"
@@ -84,7 +87,9 @@ const handleListener = async ({ type, data }) => {
 </template>
 <style scoped lang="scss">
 .customConfig {
-  ::v-deep .Everright-formEditor-Config > form {
+  padding: 10px;
+  ::v-deep .Everright-formEditor-Config {
+    width: 100%;
     //height: 600px;
   }
 }

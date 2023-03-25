@@ -68,69 +68,115 @@ onMounted(bindingEvent)
 </script>
 <template>
   <div v-if="checkTypeBySelected(['table'])">
-    <el-form-item size="default" :label="t('er.config.borderComponent.borderLine')">
-      <div style="width: 100%">
-        <ul :class="ns.e('borderStyle')">
-          <li :class="index === state.default && 'active'" :data-value="item" ref="elements" v-for="(item, index) in borderActions" :key="item">
-            <Icon :class="[ns.e('icon')]" :icon="item"></Icon>
-          </li>
-          <li>
-            <el-color-picker
-              v-model="target.style.borderColor"
-            />
-          </li>
-        </ul>
-      </div>
-    </el-form-item>
-    <el-form-item size="default" :label="t('er.config.borderComponent.borderWidth')">
-      <el-input-number
-        :min="0"
-        v-model="target.style.borderWidth"
-        controls-position="right"
-      />
-    </el-form-item>
+    <el-row justify="space-between" align="middle">
+      <el-col :span="5">
+        <el-color-picker
+          v-model="target.style.borderColor"
+        />
+      </el-col>
+      <el-col :span="18">
+        <el-form-item size="default" :label="t('er.config.borderComponent.borderWidth')">
+          <el-input-number
+            style="width: 100%;"
+            :min="0"
+            v-model="target.style.borderWidth"
+            controls-position="right"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
+<!--    <el-form-item size="default" :label="t('er.config.borderComponent.borderLine')">-->
+<!--      <div style="width: 100%">-->
+<!--        <ul :class="ns.e('borderStyle')">-->
+<!--          <li :class="index === state.default && 'active'" :data-value="item" ref="elements" v-for="(item, index) in borderActions" :key="item">-->
+<!--            <Icon :class="[ns.e('icon')]" :icon="item"></Icon>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <el-color-picker-->
+<!--              v-model="target.style.borderColor"-->
+<!--            />-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </el-form-item>-->
+<!--    <el-form-item size="default" :label="t('er.config.borderComponent.borderWidth')">-->
+<!--      <el-input-number-->
+<!--        :min="0"-->
+<!--        v-model="target.style.borderWidth"-->
+<!--        controls-position="right"-->
+<!--      />-->
+<!--    </el-form-item>-->
   </div>
   <div v-else>
-    <el-form-item size="default" label="Border">
-      <div>
-        <el-row :gutter="14">
-          <el-col :span="12">
-            <div>{{t('er.public.width')}}</div>
-            <el-input-number
-              :step="10"
-              v-model="target.style.border.width"
-              controls-position="right"
-            />
-          </el-col>
-          <el-col :span="12">
-            <div>{{t('er.public.radius')}}</div>
-            <el-input-number
-              :step="10"
-              v-model="target.style.borderRadius"
-              controls-position="right"
-            />
-          </el-col>
-        </el-row>
-        <el-row :gutter="14">
-          <el-col :span="12">
-            <div>{{t('er.public.style')}}</div>
-            <el-select v-model="target.style.border.style" placeholder="Select" size="large">
-              <el-option
-                v-for="item in options0"
-                :key="item"
-                :label="item"
-                :value="item"
-              />
-            </el-select>
-          </el-col>
-          <el-col :span="12">
-            <div>{{t('er.public.color')}}</div>
-            <el-color-picker
-              v-model="target.style.border.color"
-            />
-          </el-col>
-        </el-row>
-      </div>
-    </el-form-item>
+    <el-row justify="space-between" align="middle">
+      <el-col :span="3">
+        <el-form-item >
+          <el-color-picker
+            v-model="target.style.border.color"
+          />
+        </el-form-item>
+      </el-col>
+      <el-col :span="10">
+        <el-form-item :label="t('er.public.width')">
+          <el-input-number
+            :step="1"
+            :min="0"
+            v-model="target.style.border.width"
+            controls-position="right"
+          />
+        </el-form-item>
+      </el-col>
+      <el-col :span="10">
+        <el-form-item :label="t('er.public.radius')">
+          <el-input-number
+            :step="1"
+            :min="0"
+            v-model="target.style.borderRadius"
+            controls-position="right"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
+<!--    <el-form-item size="default" label="Border">-->
+<!--      <div>-->
+<!--        <el-row :gutter="14">-->
+<!--          <el-col :span="12">-->
+<!--            <div>{{t('er.public.width')}}</div>-->
+<!--            <el-input-number-->
+<!--              :step="10"-->
+<!--              v-model="target.style.border.width"-->
+<!--              controls-position="right"-->
+<!--            />-->
+<!--          </el-col>-->
+<!--          <el-col :span="12">-->
+<!--            <div>{{t('er.public.radius')}}</div>-->
+<!--            <el-input-number-->
+<!--              :step="10"-->
+<!--              v-model="target.style.borderRadius"-->
+<!--              controls-position="right"-->
+<!--            />-->
+<!--          </el-col>-->
+<!--        </el-row>-->
+<!--        <el-row :gutter="14">-->
+<!--          <el-col :span="12">-->
+<!--            <div>{{t('er.public.style')}}</div>-->
+<!--            <el-select v-model="target.style.border.style" placeholder="Select" size="large">-->
+<!--              <el-option-->
+<!--                v-for="item in options0"-->
+<!--                :key="item"-->
+<!--                :label="item"-->
+<!--                :value="item"-->
+<!--              />-->
+<!--            </el-select>-->
+<!--          </el-col>-->
+<!--          <el-col :span="12">-->
+<!--            <div>{{t('er.public.color')}}</div>-->
+<!--            <el-color-picker-->
+<!--              v-model="target.style.border.color"-->
+<!--            />-->
+<!--          </el-col>-->
+<!--        </el-row>-->
+<!--      </div>-->
+<!--    </el-form-item>-->
   </div>
 </template>

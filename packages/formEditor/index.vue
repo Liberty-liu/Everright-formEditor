@@ -400,28 +400,38 @@ const onClickOutside = () => {
 <!--    <div>123123</div>-->
 <!--  </el-dialog>-->
   <el-container v-loading="loading" :class="[ns.b()]" direction="vertical">
-    <el-container :class="[ns.e('operation')]">
-      <el-aside width="300px"></el-aside>
-      <el-container>
-        <el-row align="middle" justify="space-between" style="width:100%;">
-          <el-col :span="6" :class="[ns.e('device')]">
-            <Icon :disabled="!canUndo" :class="[ns.e('icon')]" @click="undo()" icon="undo"></Icon>
-            <Icon :disabled="!canRedo" :class="[ns.e('icon')]" @click="redo()" icon="redo"></Icon>
-          </el-col>
-          <el-col :span="3">
-            <Icon @click="handleOperation(1)" :class="[ns.e('icon')]" icon="jurassic_import-form"></Icon>
-            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="CLEAR"></Icon>
-            <Icon @click="handleOperation(3)" :class="[ns.e('icon')]" icon="yulan"></Icon>
-            <Icon @click="handleOperation(4)" :class="[ns.e('icon'), 'getJson']" icon="json"></Icon>
-            <div></div>
-          </el-col>
-        </el-row>
+<!--    <el-container :class="[ns.e('operation')]">-->
+<!--      <el-aside width="300px"></el-aside>-->
+<!--      <el-container>-->
+<!--        <el-row align="middle" justify="space-between" style="width:100%;">-->
+<!--          <el-col :span="6" :class="[ns.e('device')]">-->
+<!--            <Icon :disabled="!canUndo" :class="[ns.e('icon')]" @click="undo()" icon="undo"></Icon>-->
+<!--            <Icon :disabled="!canRedo" :class="[ns.e('icon')]" @click="redo()" icon="redo"></Icon>-->
+<!--          </el-col>-->
+<!--          <el-col :span="3">-->
+<!--            <Icon @click="handleOperation(1)" :class="[ns.e('icon')]" icon="jurassic_import-form"></Icon>-->
+<!--            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="CLEAR"></Icon>-->
+<!--            <Icon @click="handleOperation(3)" :class="[ns.e('icon')]" icon="yulan"></Icon>-->
+<!--            <Icon @click="handleOperation(4)" :class="[ns.e('icon'), 'getJson']" icon="json"></Icon>-->
+<!--            <div></div>-->
+<!--          </el-col>-->
+<!--        </el-row>-->
+<!--      </el-container>-->
+<!--      <el-aside width="350px"></el-aside>-->
+<!--    </el-container>-->
+    <el-container>
+      <PanelsBlocks/>
+      <el-container :class="[ns.e('container')]">
+        <el-header :class="[ns.e('operation')]">
+          <div>
+            <Icon @click="handleOperation(4)" :class="[ns.e('icon'), 'getJson']" icon="save"></Icon>
+            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="clear0"></Icon>
+          </div>
+          <div>123</div>
+          <div>3</div>
+        </el-header>
+        <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
       </el-container>
-      <el-aside width="350px"></el-aside>
-    </el-container>
-    <el-container :class="[ns.e('container')]">
-      <PanelsBlocks></PanelsBlocks>
-      <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
       <PanelsConfig v-if="isShow && isShowConfig"></PanelsConfig>
     </el-container>
   </el-container>

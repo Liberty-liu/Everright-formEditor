@@ -34,7 +34,8 @@ export default {
     },
     blocks: {
       container: '容器',
-      field: '基础字段'
+      field: '基础字段',
+      defaultField: '预设字段'
     },
     layout: {
       tabsCol: '标签面板',
@@ -113,7 +114,7 @@ export default {
       },
       propsPanel: {
         title: '标题',
-        titleWidth: '标题宽度',
+        titleWidth: '宽度',
         id: '字段标识',
         defaultContent: '默认内容',
         placeholder: '提示文字',

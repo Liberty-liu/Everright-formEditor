@@ -1,0 +1,56 @@
+@include b(ConfigCollapseComponent) {
+  //padding: 16px;
+  //margin: 2px 0;
+  //@include e(open) {
+  //  background: #F9F9F9;
+  //  border-radius: 4px;
+  //}
+  .el-form-item__label {
+    padding: 0;
+  }
+  @include e(label) {
+    display: flex;
+    justify-content: space-between;
+    &>div{
+      display: flex;
+      align-items: baseline;
+      &>div:first-child{
+        margin-right: 8px;
+      }
+    }
+    //font-weight: bold;
+    //font-size: 14px;
+  }
+  .ER-icon {
+    cursor: pointer;
+  }
+  @include e(collapseWrap) {
+    .el-row {
+      margin-bottom: 0 !important;
+    }
+  }
+  @include e(collapseWrap-left) {
+    .el-form-item {
+      display: flex;
+      align-items: baseline;
+      .el-form-item__label {
+        padding-right: 4px;
+      }
+    }
+  }
+  .el-dropdown {
+    :focus {outline: 0;}
+  }
+  //@include e(customSelect) {
+  //  .el-input__wrapper,.el-input.is-focus .el-input__wrapper,.el-input__wrapper.is-focus {
+  //    box-shadow: none !important;
+  //  }
+  //  .el-input__inner {
+  //    height: auto;
+  //    width: auto !important;
+  //    display: inline-block;
+  //    line-height: 10px;
+  //  }
+  //  //padding-top: 10px;
+  //}
+}

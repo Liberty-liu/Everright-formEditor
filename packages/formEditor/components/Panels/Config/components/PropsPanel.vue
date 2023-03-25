@@ -1,8 +1,9 @@
 <script>
-import { ref, computed, reactive, watchEffect, watch, unref } from 'vue'
+import { ref, computed, reactive, watchEffect, watch, unref, provide } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import PanelsConfigComponentsCheckboxComponent from './CheckboxComponent.vue'
+import PanelsConfigComponentsCollapseComponent from './CollapseComponent.vue'
 import PanelsConfigComponentsBorderComponent from './BorderComponent.vue'
 import PanelsConfigComponentsLimitComponent from './LimitComponent.vue'
 import PanelsConfigComponentsGridLayoutComponent from './GridLayoutComponent.vue'
@@ -19,6 +20,7 @@ export default {
 }
 </script>
 <script setup>
+const ns = hooks.useNamespace('PropsPanel')
 const {
   t
 } = hooks.useI18n()
@@ -35,6 +37,10 @@ const {
   isPc
 } = hooks.useTarget()
 defineEmits(['changePanel'])
+const bgStatus = ref(false)
+provide('Everright-propsPanel', {
+  bgStatus
+})
 const dialogVisible = ref(false)
 const dataRef = ref()
 const options = [
@@ -131,6 +137,27 @@ const options1 = computed(() => {
     return result
   })
 })
+const options2 = [
+  'none',
+  'solid',
+  'dotted',
+  'dashed',
+  'double',
+  'groove',
+  'ridge',
+  'inset',
+  'outset'
+]
+const options3 = [
+  'jurassic_border-none',
+  'jurassic_border-all',
+  'border-outer',
+  'border-inner',
+  'border-left',
+  'border-right',
+  'border-top',
+  'border-bottom'
+]
 // const typeProps = computed(() => {
 //   return utils.bindProps(target.value, true)
 // })
@@ -199,38 +226,40 @@ const handleAction = (type, value) => {
 }
 </script>
 <template>
-<!--  <template v-if="isSelectField">-->
-<!--  </template>-->
-<!--  <el-form-item label="唯一标识" prop="id">-->
-<!--    <el-tag type="warning">-->
-<!--      {{target.id}}-->
-<!--    </el-tag>-->
-<!--  </el-form-item>-->
-  <PanelsConfigComponentsCheckboxComponent v-if="isSelectField" :label="t('er.config.propsPanel.title')" field="isShowLabel">
-    <el-row style="margin-bottom: 16px;" align="middle">
-      <el-col :span="10">{{ t('er.config.propsPanel.title') }}</el-col>
-      <el-col :span="14">
-        <el-input
-          v-model="target.label"
-        />
-      </el-col>
-    </el-row>
-    <el-row align="middle" v-if="isPc">
-      <el-col :span="10">{{ t('er.config.propsPanel.titleWidth') }}</el-col>
-      <el-col :span="14">
-        <el-input-number
-          style="width: 100%;"
-          controls-position="right"
-          v-model="target.options.labelWidth"
-        />
-      </el-col>
-    </el-row>
-  </PanelsConfigComponentsCheckboxComponent>
   <el-form-item v-if="isSelectField" :label="t('er.config.propsPanel.id')" prop="key">
     <el-input
       v-model="target.key"
     />
   </el-form-item>
+  <PanelsConfigComponentsCollapseComponent
+    v-if="isSelectField"
+    :label="t('er.config.propsPanel.title')"
+    operationKey="options"
+    field="isShowLabel">
+    <template v-slot:content>
+      <div :class="[ns.e('collapseWrap'), ns.e('collapseWrap-left')]">
+        <el-row justify="space-between" align="middle">
+          <el-col :span="11">
+            <el-form-item :label="'文本'">
+              <el-input
+                clearable
+                v-model="target.label"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12" v-if="isPc">
+            <el-form-item :label="t('er.config.propsPanel.titleWidth')">
+              <el-input-number
+                style="width: 100%;"
+                controls-position="right"
+                v-model="target.options.labelWidth"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </div>
+    </template>
+  </PanelsConfigComponentsCollapseComponent>
   <el-form-item :label="t('er.config.propsPanel.defaultContent')" v-if="checkTypeBySelected([
       'input',
       'textarea',
@@ -498,20 +527,97 @@ const handleAction = (type, value) => {
   <PanelsConfigComponentsTabsLayout
     v-if="isSelectTabs"
   />
-  <PanelsConfigComponentsAllsidesComponent
-    field="margin"
+  <PanelsConfigComponentsCollapseComponent
     v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"
-  />
-  <PanelsConfigComponentsAllsidesComponent
-    field="padding"
+    :label="t('er.public.margin')"
+    operationKey="style"
+    field="isShowMargin">
+    <template v-slot:content>
+      <PanelsConfigComponentsAllsidesComponent
+        field="margin"
+      />
+    </template>
+  </PanelsConfigComponentsCollapseComponent>
+
+  <PanelsConfigComponentsCollapseComponent
     v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'])"
-  />
-  <PanelsConfigComponentsBackgroundComponent
+    :label="t('er.public.padding')"
+    operationKey="style"
+    field="isShowPadding">
+    <template v-slot:content>
+      <PanelsConfigComponentsAllsidesComponent
+        field="padding"
+      />
+    </template>
+  </PanelsConfigComponentsCollapseComponent>
+<!--  <PanelsConfigComponentsAllsidesComponent-->
+<!--    field="margin"-->
+<!--    v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"-->
+<!--  />-->
+<!--  <PanelsConfigComponentsAllsidesComponent-->
+<!--    field="padding"-->
+<!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'])"-->
+<!--  />-->
+  <PanelsConfigComponentsCollapseComponent
     v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'])"
-  />
-  <PanelsConfigComponentsBorderComponent
+    :label="t('er.public.background')"
+    operationKey="style"
+    field="isShowBackground">
+    <template v-slot:subSelect>
+      <div :class="[ns.e('collapseSubSelect')]">
+        <el-dropdown
+          @command="(command) => { bgStatus = command }"
+        >
+        <span>
+          {{ bgStatus ? t('er.public.image') : t('er.public.color') }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+        </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item :command="0">{{t('er.public.color')}}</el-dropdown-item>
+              <el-dropdown-item :command="1">{{t('er.public.image')}}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </template>
+    <template v-slot:content>
+      <PanelsConfigComponentsBackgroundComponent/>
+    </template>
+  </PanelsConfigComponentsCollapseComponent>
+<!--  <PanelsConfigComponentsBackgroundComponent-->
+<!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'])"-->
+<!--  />-->
+  <PanelsConfigComponentsCollapseComponent
     v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'])"
-  />
+    :label="t('er.config.borderComponent.borderLine')"
+    operationKey="style"
+    field="isShowBorder">
+    <template v-slot:subSelect>
+      <div :class="[ns.e('collapseSubSelect')]">
+        <el-dropdown
+          @command="(command) => checkTypeBySelected(['table']) ? (target.style.borderType = options3.indexOf(command)) : (target.style.border.style = command)"
+        >
+        <span>
+          {{ checkTypeBySelected(['table']) ? options3[target.style.borderType]: target.style.border.style }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+        </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item :command="item" v-for="item in checkTypeBySelected(['table']) ? options3 : options2" :key="item">{{ item }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div :class="[ns.e('collapseWrap'), ns.e('collapseWrap-left')]">
+        <PanelsConfigComponentsBorderComponent
+        />
+      </div>
+    </template>
+  </PanelsConfigComponentsCollapseComponent>
+<!--  <PanelsConfigComponentsBorderComponent-->
+<!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'])"-->
+<!--  />-->
   <PanelsConfigComponentsCheckboxComponent v-if="isSelectCollapse" :label="t('er.config.propsPanel.accordion')" field="accordion">
   </PanelsConfigComponentsCheckboxComponent>
   <template v-if="isSelectField && !checkTypeBySelected(['divider'])">

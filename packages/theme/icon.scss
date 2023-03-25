@@ -1,190 +1,201 @@
-@font-face {
-  font-family: "Everright-icons"; /* Project id 3679877 */
-  src: url('./font/iconfont.woff2?t=1664429105421') format('woff2'),
-  url('./font/iconfont.woff?t=1664429105421') format('woff'),
-  url('./font/iconfont.ttf?t=1664429105421') format('truetype');
-}
-[class*=" ER-icon-"], [class^=ER-icon-] {
-  cursor: pointer;
-  font-family: Everright-icons!important;
-  speak: none;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  vertical-align: baseline;
-  display: inline-block;
-  padding: 5px;
-  color: $primary-color;
+.ER-icon {
+  font-size: 14px;
+  svg {
+    width: 1em;
+    height: 1em;
+  }
   &.is-disabled {
     color: $disabled-color;
     cursor: not-allowed;
   }
 }
-.ER-icon--charulie:before {
-  content: "\e6d1";
-}
-
-.ER-icon--charuhang:before {
-  content: "\e6d2";
-}
-.ER-icon-drag1:before {
-  content: "\e769";
-}
-
-.ER-icon-jurassic_border-none:before {
-  content: "\e6fe";
-}
-
-.ER-icon-jurassic_border-all:before {
-  content: "\e6fc";
-}
-
-.ER-icon-border-top:before {
-  content: "\eb00";
-}
-
-.ER-icon-border-outer:before {
-  content: "\eb01";
-}
-
-.ER-icon-border-left:before {
-  content: "\eb02";
-}
-
-.ER-icon-border-bottom:before {
-  content: "\eb03";
-}
-
-.ER-icon-border-inner:before {
-  content: "\eb04";
-}
-
-.ER-icon-border-right:before {
-  content: "\eb05";
-}
-
-.ER-icon-zuoyouyidong:before {
-  content: "\e6c9";
-}
-
-.ER-icon-redo:before {
-  content: "\e627";
-}
-
-.ER-icon-undo:before {
-  content: "\e633";
-}
-
-.ER-icon-pc:before {
-  content: "\e603";
-}
-
-.ER-icon-iphone:before {
-  content: "\e674";
-}
-
-.ER-icon-yulan:before {
-  content: "\e7b9";
-}
-
-.ER-icon-jurassic_import-form:before {
-  content: "\e6ca";
-}
-
-.ER-icon-json:before {
-  content: "\e60e";
-}
-
-.ER-icon-CLEAR:before {
-  content: "\e9f5";
-}
-
-.ER-icon-kuaijiecaidan:before {
-  content: "\e613";
-}
-
-.ER-icon-move:before {
-  content: "\e605";
-}
-
-.ER-icon-zengjia:before {
-  content: "\e6ea";
-}
-
-.ER-icon-time:before {
-  content: "\e65f";
-}
-
-.ER-icon-radiobox:before {
-  content: "\e75b";
-}
-
-.ER-icon-input:before {
-  content: "\e663";
-}
-
-.ER-icon-html:before {
-  content: "\e68c";
-}
-
-.ER-icon-date:before {
-  content: "\e658";
-}
-
-.ER-icon-color-filling:before {
-  content: "\e7cd";
-}
-
-.ER-icon-pingfen:before {
-  content: "\e610";
-}
-
-.ER-icon-biaodanzujian-xialakuang:before {
-  content: "\eb94";
-}
-
-.ER-icon-anniu:before {
-  content: "\e721";
-}
-
-.ER-icon-image-text:before {
-  content: "\e753";
-}
-
-.ER-icon-link:before {
-  content: "\e756";
-}
-
-.ER-icon-checkbox-checked:before {
-  content: "\e659";
-}
-
-.ER-icon-switch:before {
-  content: "\e626";
-}
-
-.ER-icon-number:before {
-  content: "\e639";
-}
-
-.ER-icon-cascader:before {
-  content: "\e624";
-}
-
-.ER-icon-textarea:before {
-  content: "\e632";
-}
-
-.ER-icon-slider:before {
-  content: "\e607";
-}
-
-.ER-icon-delete:before {
-  content: "\e60f";
-}
-
-.ER-icon-copy:before {
-  content: "\e614";
-}
+//@font-face {
+//  font-family: "Everright-icons"; /* Project id 3679877 */
+//  src: url('./font/iconfont.woff2?t=1664429105421') format('woff2'),
+//  url('./font/iconfont.woff?t=1664429105421') format('woff'),
+//  url('./font/iconfont.ttf?t=1664429105421') format('truetype');
+//}
+//[class*=" ER-icon-"], [class^=ER-icon-] {
+//  cursor: pointer;
+//  font-family: Everright-icons!important;
+//  speak: none;
+//  font-style: normal;
+//  font-weight: 400;
+//  font-variant: normal;
+//  text-transform: none;
+//  line-height: 1;
+//  vertical-align: baseline;
+//  display: inline-block;
+//  padding: 5px;
+//  color: $primary-color;
+//  &.is-disabled {
+//    color: $disabled-color;
+//    cursor: not-allowed;
+//  }
+//}
+//.ER-icon--charulie:before {
+//  content: "\e6d1";
+//}
+//
+//.ER-icon--charuhang:before {
+//  content: "\e6d2";
+//}
+//.ER-icon-drag1:before {
+//  content: "\e769";
+//}
+//
+//.ER-icon-jurassic_border-none:before {
+//  content: "\e6fe";
+//}
+//
+//.ER-icon-jurassic_border-all:before {
+//  content: "\e6fc";
+//}
+//
+//.ER-icon-border-top:before {
+//  content: "\eb00";
+//}
+//
+//.ER-icon-border-outer:before {
+//  content: "\eb01";
+//}
+//
+//.ER-icon-border-left:before {
+//  content: "\eb02";
+//}
+//
+//.ER-icon-border-bottom:before {
+//  content: "\eb03";
+//}
+//
+//.ER-icon-border-inner:before {
+//  content: "\eb04";
+//}
+//
+//.ER-icon-border-right:before {
+//  content: "\eb05";
+//}
+//
+//.ER-icon-zuoyouyidong:before {
+//  content: "\e6c9";
+//}
+//
+//.ER-icon-redo:before {
+//  content: "\e627";
+//}
+//
+//.ER-icon-undo:before {
+//  content: "\e633";
+//}
+//
+//.ER-icon-pc:before {
+//  content: "\e603";
+//}
+//
+//.ER-icon-iphone:before {
+//  content: "\e674";
+//}
+//
+//.ER-icon-yulan:before {
+//  content: "\e7b9";
+//}
+//
+//.ER-icon-jurassic_import-form:before {
+//  content: "\e6ca";
+//}
+//
+//.ER-icon-json:before {
+//  content: "\e60e";
+//}
+//
+//.ER-icon-CLEAR:before {
+//  content: "\e9f5";
+//}
+//
+//.ER-icon-kuaijiecaidan:before {
+//  content: "\e613";
+//}
+//
+//.ER-icon-move:before {
+//  content: "\e605";
+//}
+//
+//.ER-icon-zengjia:before {
+//  content: "\e6ea";
+//}
+//
+//.ER-icon-time:before {
+//  content: "\e65f";
+//}
+//
+//.ER-icon-radiobox:before {
+//  content: "\e75b";
+//}
+//
+//.ER-icon-input:before {
+//  content: "\e663";
+//}
+//
+//.ER-icon-html:before {
+//  content: "\e68c";
+//}
+//
+//.ER-icon-date:before {
+//  content: "\e658";
+//}
+//
+//.ER-icon-color-filling:before {
+//  content: "\e7cd";
+//}
+//
+//.ER-icon-pingfen:before {
+//  content: "\e610";
+//}
+//
+//.ER-icon-biaodanzujian-xialakuang:before {
+//  content: "\eb94";
+//}
+//
+//.ER-icon-anniu:before {
+//  content: "\e721";
+//}
+//
+//.ER-icon-image-text:before {
+//  content: "\e753";
+//}
+//
+//.ER-icon-link:before {
+//  content: "\e756";
+//}
+//
+//.ER-icon-checkbox-checked:before {
+//  content: "\e659";
+//}
+//
+//.ER-icon-switch:before {
+//  content: "\e626";
+//}
+//
+//.ER-icon-number:before {
+//  content: "\e639";
+//}
+//
+//.ER-icon-cascader:before {
+//  content: "\e624";
+//}
+//
+//.ER-icon-textarea:before {
+//  content: "\e632";
+//}
+//
+//.ER-icon-slider:before {
+//  content: "\e607";
+//}
+//
+//.ER-icon-delete:before {
+//  content: "\e60f";
+//}
+//
+//.ER-icon-copy:before {
+//  content: "\e614";
+//}

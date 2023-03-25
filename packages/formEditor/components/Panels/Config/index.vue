@@ -146,9 +146,6 @@ watch(target, () => {
 <template>
   <el-aside :class="[ns.b()]" :width="ER.props.configPanelWidth">
     <el-breadcrumb :class="[ns.e('breadcrumb')]" separator-icon="ArrowRight">
-<!--      <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>-->
-<!--      <el-breadcrumb-item>promotion list</el-breadcrumb-item>-->
-<!--      <el-breadcrumb-item>promotion detail</el-breadcrumb-item>-->
       <el-breadcrumb-item @click="index !== bars.length - 1 && handleBreadcrumbClick(item.node)" v-for="(item, index) in bars" :key="index">
         {{item.label}}
       </el-breadcrumb-item>
@@ -160,28 +157,40 @@ watch(target, () => {
       :rules="rules"
       label-width="120px"
       label-position="top">
-      <el-tabs
-        v-model="activeName0" type="border-card"
-        :class="[ns.e('wrap')]"
-        name="content">
-        <el-tab-pane
-          v-if="isSelectAnyElement"
-          name="props">
-          <el-scrollbar>
+      <el-scrollbar>
+        <div :class="[ns.e('wrap')]">
+          <div v-if="isSelectAnyElement">
             <PanelsConfigComponentsPropsPanel
               :key="target.id"
             />
-          </el-scrollbar>
-        </el-tab-pane>
-<!--        v-if="!checkTypeBySelected(['table', 'td', 'grid', 'col', 'tabsCol', 'collapseCol'])"-->
-        <el-tab-pane
-          v-if="isSelectRoot"
-          name="root">
-          <el-scrollbar>
+          </div>
+          <div v-if="isSelectRoot">
             <GlobalConfigPanel></GlobalConfigPanel>
-          </el-scrollbar>
-        </el-tab-pane>
-      </el-tabs>
+          </div>
+        </div>
+      </el-scrollbar>
+<!--      <el-tabs-->
+<!--        v-model="activeName0" type="border-card"-->
+<!--        :class="[ns.e('wrap')]"-->
+<!--        name="content">-->
+<!--        <el-tab-pane-->
+<!--          v-if="isSelectAnyElement"-->
+<!--          name="props">-->
+<!--          <el-scrollbar>-->
+<!--            <PanelsConfigComponentsPropsPanel-->
+<!--              :key="target.id"-->
+<!--            />-->
+<!--          </el-scrollbar>-->
+<!--        </el-tab-pane>-->
+<!--&lt;!&ndash;        v-if="!checkTypeBySelected(['table', 'td', 'grid', 'col', 'tabsCol', 'collapseCol'])"&ndash;&gt;-->
+<!--        <el-tab-pane-->
+<!--          v-if="isSelectRoot"-->
+<!--          name="root">-->
+<!--          <el-scrollbar>-->
+<!--            <GlobalConfigPanel></GlobalConfigPanel>-->
+<!--          </el-scrollbar>-->
+<!--        </el-tab-pane>-->
+<!--      </el-tabs>-->
     </el-form>
   </el-aside>
 </template>
