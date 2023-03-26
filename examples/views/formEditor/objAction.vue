@@ -8,42 +8,70 @@ const route = useRoute()
 const loading = ref(true)
 const lang = ref('en')
 const EReditorRef = ref(null)
+const isEdit = !!route.params.actionid
 const state = reactive({
   name: ''
 })
 window.lang = lang
 const getObjData = async () => {
   try {
+    // const {
+    //   data: {
+    //     content,
+    //     name
+    //   }
+    // } = await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
+    //   method: 'get'
+    // })
+    // state.name = name
+    // EReditorRef.value.setData(content)
+    const data = []
     const {
-      data: {
-        content,
-        name
-      }
+      data: data0
     } = await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
       method: 'get'
     })
-    state.name = name
-    EReditorRef.value.setData(content)
+    data.push(data0.content)
+    if (isEdit) {
+      const {
+        data: data1
+      } = await hooks.useFetch(`${uri.obj}/${route.params.objid}/action/${route.params.actionid}`, {
+        method: 'get'
+      })
+      data.push(data1.content)
+    }
+    EReditorRef.value.setData(...data)
   } finally {
     loading.value = false
   }
 }
 const handleListener = async ({ type, data }) => {
-  console.log(type)
   if (type === 'submit') {
     loading.value = true
     try {
       const postData = {
-        name: state.name,
         content: data
       }
-      await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
-        method: 'put',
+      await hooks.useFetch(`${uri.obj}/${route.params.objid}/action${isEdit ? `/${route.params.actionid}` : '/create'}`, {
+        method: isEdit ? 'put' : 'post',
         data: postData
       })
     } finally {
       loading.value = false
     }
+    // loading.value = true
+    // try {
+    //   const postData = {
+    //     name: state.name,
+    //     content: data
+    //   }
+    //   await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
+    //     method: 'put',
+    //     data: postData
+    //   })
+    // } finally {
+    //   loading.value = false
+    // }
   }
 }
 onMounted(() => {

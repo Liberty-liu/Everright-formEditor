@@ -1,0 +1,54 @@
+@include b(ConfigTypeComponent) {
+  @include e(content) {
+    display: flex;
+    width: 100%;
+    li {
+      flex: 1;
+      border: 1px solid #DDDDDD;
+      border-radius: 4px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .ER-icon {
+        //color: $primary-color;
+        path.secondary {
+          fill: #CCCCCC;
+        }
+      }
+      &:hover {
+        .ER-icon {
+          color: $primary-color;
+          path.secondary {
+            fill: #BAE3FF;
+          }
+        }
+      }
+      @include when(Selected) {
+        .ER-icon {
+          color: $primary-color;
+          //path.1{}
+          //path.primary {}
+          path.secondary {
+            fill: #BAE3FF;
+          }
+        }
+        border-color: $primary-color;
+      }
+      @include when(Disabled) {
+        background: #F2F2F2;
+        cursor: not-allowed;
+        .ER-icon {
+          color: #666;
+        }
+        //.ER-icon {
+        //  color: $primary-color;
+        //}
+        //border-color: $primary-color;
+      }
+    }
+    li:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}

@@ -12,9 +12,6 @@ export default {
 const {
   target
 } = hooks.useTarget()
-const {
-  t
-} = hooks.useI18n()
 const ns = hooks.useNamespace('ConfigCollapseComponent')
 const props = defineProps({
   field: {
@@ -33,28 +30,17 @@ const props = defineProps({
 </script>
 <template>
   <div :class="ns.b()">
-    <el-form-item :label="t('er.config.propsPanel.brushColor')">
+    <el-form-item>
       <template v-slot:label>
         <div :class="ns.e('label')">
           <div>
             <div>{{label}}</div>
             <slot name="subSelect" v-if="target[operationKey][field]"></slot>
           </div>
-          <Icon :icon="target[operationKey][field] ? 'del' : 'signature'" @click="target[operationKey][field] = !target[operationKey][field]"></Icon>
+          <Icon :icon="target[operationKey][field] ? 'minus' : 'plus'" @click="target[operationKey][field] = !target[operationKey][field]"></Icon>
         </div>
       </template>
       <slot name="content" v-if="target[operationKey][field]"></slot>
     </el-form-item>
   </div>
-<!--  <div :class="[ns.b(), target.options[field] && ns.e('open')]">-->
-<!--    <el-checkbox v-model="target.options[field]" @change="(newValue) => $emit('change', newValue)" :label="label" size="large"></el-checkbox>-->
-<!--    <template v-if="mode === 1">-->
-<!--      <template v-if="$slots.default">-->
-<!--        <div :class="[ns.e('slot')]" v-show="target.options[field]"><slot></slot></div>-->
-<!--      </template>-->
-<!--    </template>-->
-<!--    <template v-else>-->
-<!--      <div :class="[ns.e('slot')]"><slot></slot></div>-->
-<!--    </template>-->
-<!--  </div>-->
 </template>

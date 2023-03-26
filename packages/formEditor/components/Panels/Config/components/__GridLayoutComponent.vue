@@ -39,6 +39,11 @@ const options0 = computed(() => {
     }
   ]
 })
+// gridLayoutStart
+// gridLayoutEnd
+// gridLayoutCenter
+// gridLayoutSpacea
+// gridLayoutSpaceb
 // const options1 = [
 //   {
 //     label: '顶对齐',

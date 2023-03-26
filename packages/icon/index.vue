@@ -1,9 +1,8 @@
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import hooks from '@ER/hooks'
 import svg from './svg'
-// const Cellphone = svg.Cellphone
-// console.log(svg.Cellphone)
+import _ from 'lodash-es'
 export default {
   name: 'er-icon'
 }
@@ -17,7 +16,17 @@ const props = defineProps({
   icon: {
     type: String,
     required: true
+  },
+  fontSize: {
+    type: Number
   }
+})
+const style = computed(() => {
+  const result = {}
+  if (!_.isUndefined(props.fontSize)) {
+    result.fontSize = `${props.fontSize}px`
+  }
+  return result
 })
 const element = ref('')
 // defineExpose({
@@ -30,7 +39,9 @@ const element = ref('')
   // `ER-icon-${props.icon}`,
   props.disabled && 'is-disabled'
   // props.disabled && ns.e('disabled')
-  ]">
+  ]"
+   :style="style"
+>
   <component :is="svg[props.icon]"></component>
 </i>
 </template>

@@ -24,6 +24,7 @@ export default defineComponent({
     })
     watch(() => props.data.columns.length, (newVal, oldVal) => {
       if (newVal !== oldVal) {
+        console.log(123123)
         utils.syncWidthByPlatform(props.data.columns, state.platform)
       }
       //   const averageWidths = utils.calculateAverage(newVal)

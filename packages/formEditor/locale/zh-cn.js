@@ -21,7 +21,7 @@ export default {
       rate: '评分',
       switch: '开关',
       slider: '滑块',
-      html: '富文本编辑器',
+      html: '富文本',
       cascader: '级联框',
       uploadfile: '上传文件',
       signature: '签名',

@@ -1,5 +1,6 @@
 <script>
-import { reactive, ref, onMounted, inject, watch } from 'vue'
+import { reactive, ref, onMounted, inject, watch, computed, nextTick } from 'vue'
+import { ElMessage } from 'element-plus'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 export default {
@@ -18,6 +19,7 @@ const {
 } = hooks.useTarget()
 const nums = reactive([0, 0, 0, 0])
 const ns = hooks.useNamespace('ConfigBackground')
+const fileList = ref([])
 const element = ref()
 const state = reactive({
   visible: false,
@@ -31,70 +33,28 @@ watch(ERp.bgStatus, (newVal) => {
 }, {
   immediate: true
 })
-// const quickColors = [
-//   [
-//     'rgb(255, 255, 255)',
-//     'rgb(232, 234, 236)',
-//     'rgb(28, 28, 28)'
-//   ],
-//   [
-//     'rgb(242, 242, 242)',
-//     'rgb(204, 204, 204)',
-//     'rgb(153, 153, 153)',
-//     'rgb(102, 102, 102)',
-//     'rgb(51, 51, 51)'
-//   ],
-//   [
-//     'rgb(250, 140, 151)',
-//     'rgb(254, 201, 121)',
-//     'rgb(160, 210, 109)',
-//     'rgb(116, 207, 226)',
-//     'rgb(145, 138, 231)'
-//   ],
-//   [
-//     'rgb(119, 121, 122)',
-//     'rgb(167, 186, 193)',
-//     'rgb(214, 209, 187)',
-//     'rgb(189, 198, 188)',
-//     'rgb(193, 167, 167)'
-//   ]
-// ]
 const quickColors = [
-  'rgb(255, 255, 255)',
-  'rgb(232, 234, 236)',
-  'rgb(242, 242, 242)',
-  'rgb(204, 204, 204)',
-  'rgb(153, 153, 153)',
-  'rgb(102, 102, 102)',
-  'rgb(250, 140, 151)',
-  'rgb(254, 201, 121)',
-  'rgb(160, 210, 109)'
-  // 'rgb(116, 207, 226)',
-  // 'rgb(145, 138, 231)',
-  // 'rgb(119, 121, 122)',
-  // 'rgb(167, 186, 193)',
-  // 'rgb(214, 209, 187)',
-  // 'rgb(189, 198, 188)',
-  // 'rgb(193, 167, 167)'
+  'rgba(255, 255, 255, 1)',
+  'rgba(249, 249, 249, 1)',
+  'rgba(233, 233, 233, 1)',
+  'rgba(254, 249, 210, 1)',
+  'rgba(253, 246, 236, 1)',
+  'rgba(254, 241, 241, 1)',
+  'rgba(236, 246, 255, 1)',
+  'rgba(235, 242, 244, 1)',
+  'rgba(240, 249, 236, 1)'
 ]
-// const quickImages = [
-//   [
-//     '/public/images/CNoecellRCM.jpg',
-//     '/public/images/eT4eTi_ku1s.jpg',
-//     '/public/images/4EZMZRHJugA.jpg'
-//   ],
-//   [
-//     '/public/images/7e_gFC2Ce04.jpg',
-//     '/public/images/b1h8HsWhShM.jpg',
-//     '/public/images/fD7cXIFurSQ.jpg'
-//   ]
-// ]
-const quickImages = [
+const quickImages = ref([
   '/uploads/bo3G_S0x3pbJKnXh98X6II3p.png',
   '/uploads/C0cV54ToEDe_RN1yK0pTLPIB.png',
-  '/uploads/Eu7Yr3EmnahcCXwkLSXDffyJ.png',
+  '/uploads/ygDk80xpYvqnniTM1WIEjCul.png',
   '/uploads/oByh9bK9siHI-LeVM4PX05Bf.jpg'
-]
+])
+watch(quickImages.value, (newVal) => {
+  if (newVal.length >= 5) {
+    quickImages.value.pop()
+  }
+})
 const options0 = [
   [
     'repeat',
@@ -130,19 +90,14 @@ if (!(!target.value.style.background.color && !target.value.style.background.ima
     state.defaultBackground.backgroundColor = target.value.style.background.color
   } else {
     // eslint-disable-next-line vue/no-setup-props-destructure
-    state.defaultBackground.backgrounImage = target.value.style.background.image
+    state.defaultBackground.backgroundImage = target.value.style.background.image
   }
-  if (target.value.style.isCustomBackground) {
-    // eslint-disable-next-line vue/no-setup-props-destructure
-    state.color = target.value.style.background.color
-  }
+  // if (target.value.style.isCustomBackground) {
+  //   // eslint-disable-next-line vue/no-setup-props-destructure
+  //   state.color = target.value.style.background.color
+  // }
   ERp.bgStatus.value = !target.value.style.background.color
 }
-// watch(() => target.value.style, (newVal) => {
-//   console.log(newVal.)
-// }, {
-//   immediate: true
-// })
 const modifyBackBackground = (key, value) => {
   const keys = ['color', 'image']
   let i = 0
@@ -161,25 +116,29 @@ onMounted(() => {
   element.value.addEventListener('click', (e) => {
     if (/[LI, IMG]/.test(e.target.tagName)) {
       if (state.value0) {
-        modifyBackBackground('image', e.target.dataset.value)
-        state.defaultBackground = {
-          backgroundImage: e.target.dataset.value
+        if (e.target.dataset.value) {
+          modifyBackBackground('image', e.target.dataset.value)
+          state.defaultBackground = {
+            backgroundImage: e.target.dataset.value
+          }
         }
       } else {
         modifyBackBackground('color', e.target.dataset.value)
         state.defaultBackground = {
           backgroundColor: e.target.dataset.value
         }
-        target.value.style.isCustomBackground = false
+        // target.value.style.isCustomBackground = false
       }
     }
   })
   element.value.addEventListener('mousemove', (e) => {
     if (/[LI, IMG]/.test(e.target.tagName)) {
-      if (state.value0) {
-        modifyBackBackground('image', e.target.dataset.value)
-      } else {
-        modifyBackBackground('color', e.target.dataset.value)
+      if (e.target.dataset.value) {
+        if (state.value0) {
+          modifyBackBackground('image', e.target.dataset.value)
+        } else {
+          modifyBackBackground('color', e.target.dataset.value)
+        }
       }
     }
   })
@@ -191,40 +150,8 @@ onMounted(() => {
     }
   })
 })
-// useEventListener(element, 'click', (e) => {
-//   if (/[LI, IMG]/.test(e.target.tagName)) {
-//     if (state.value0) {
-//       modifyBackBackground('image', e.target.dataset.value)
-//       state.defaultBackground = {
-//         backgroundImage: e.target.dataset.value
-//       }
-//     } else {
-//       modifyBackBackground('color', e.target.dataset.value)
-//       state.defaultBackground = {
-//         backgroundColor: e.target.dataset.value
-//       }
-//       target.value.style.isCustomBackground = false
-//     }
-//   }
-// })
-// useEventListener(element, 'mousemove', (e) => {
-//   if (/[LI, IMG]/.test(e.target.tagName)) {
-//     if (state.value0) {
-//       modifyBackBackground('image', e.target.dataset.value)
-//     } else {
-//       modifyBackBackground('color', e.target.dataset.value)
-//     }
-//   }
-// })
-// useEventListener(element, 'mouseleave', (e) => {
-//   if (state.defaultBackground.backgroundColor) {
-//     modifyBackBackground('color', state.defaultBackground.backgroundColor)
-//   } else {
-//     modifyBackBackground('image', state.defaultBackground.backgroundImage)
-//   }
-// })
 const handleActiveChange = (value) => {
-  target.value.style.isCustomBackground = !!value
+  // target.value.style.isCustomBackground = !!value
   target.value.style.background.color = value
   if (!value) {
     if (state.defaultBackground.backgroundColor) {
@@ -255,30 +182,67 @@ const handleClick = (type) => {
     default:
   }
 }
+const checkIsSelected = (key) => {
+  const curVal = state.value0 ? state.defaultBackground.backgroundImage : state.defaultBackground.backgroundColor
+  return key === curVal
+}
+const beforeAvatarUpload = (rawFile) => {
+  if (rawFile.size > 2 * 1024 * 1024) {
+    ElMessage({
+      message: t('er.validateMsg.fileSize', { size: 2 }),
+      type: 'warning'
+    })
+    return false
+  }
+  return true
+}
+const handleError = (error) => {
+  ElMessage.error(error.toString())
+}
+const handleSuccess = (response, uploadFile) => {
+  quickImages.value.unshift(response.data[0].url)
+  nextTick(() => {
+    element.value.children[1].click()
+  })
+}
 </script>
 <template>
   <div style="width: 100%">
     <div :class="[ns.e('background')]">
-      <el-color-picker v-if="!state.value0" @active-change="handleActiveChange" @change="handleChange" v-model="state.color" show-alpha />
+<!--      <div v-if="!state.value0" :class="[target.style.isCustomBackground && ns.e('selecteColor')]">-->
+      <div v-if="!state.value0">
+        <el-color-picker
+          @active-change="handleActiveChange"
+          @change="handleChange"
+          v-model="target.style.background.color"
+          show-alpha
+        />
+      </div>
       <ul :class="[!state.value0 ? ns.e('quickColor') : ns.e('quickImage')]" ref="element">
-        <li v-for="(item0, index0) in state.value0 ? quickImages : quickColors" :key="index0" :data-value="item0" :style="!state.value0 && { backgroundColor: item0 }">
+        <li v-if="state.value0" :class="ns.e('uploadFile')">
+          <el-upload
+            accept=".png,.jpg"
+            action="http://192.168.31.181:8001/Everright-api/lowCode/uploads"
+            list-type="picture-card"
+            ref="element"
+            :show-file-list="false"
+            :before-upload="beforeAvatarUpload"
+            :on-success="handleSuccess"
+            :on-error="handleError"
+          >
+            <el-icon><Plus /></el-icon>
+          </el-upload>
+        </li>
+        <li
+          v-for="(item0, index0) in state.value0 ? quickImages : quickColors"
+          :key="index0"
+          :data-value="item0"
+          :style="!state.value0 && { backgroundColor: item0 }"
+          :class="[checkIsSelected(item0) && 'selectedBg', 'selectColorFirst']"
+        >
           <el-image v-if="state.value0" :data-value="item0" :src="item0" lazy />
-          <!--            <ul>-->
-          <!--              <li v-for="(item1, index1) in item0" :data-value="item1" :key="index1" :style="!state.value0 && { backgroundColor: item1 }">-->
-          <!--                <el-image v-if="state.value0" :data-value="item1" :src="item1" lazy />-->
-          <!--              </li>-->
-          <!--            </ul>-->
         </li>
       </ul>
-      <!--        <ul :class="[ns.e('quickBackground')]" ref="element">-->
-      <!--          <li v-for="(item0, index0) in state.value0 ? quickImages : quickColors" :key="index0">-->
-      <!--            <ul>-->
-      <!--              <li v-for="(item1, index1) in item0" :data-value="item1" :key="index1" :style="!state.value0 && { backgroundColor: item1 }">-->
-      <!--                <el-image v-if="state.value0" :data-value="item1" :src="item1" lazy />-->
-      <!--              </li>-->
-      <!--            </ul>-->
-      <!--          </li>-->
-      <!--        </ul>-->
     </div>
     <div v-if="state.defaultBackground.backgroundImage">
       <el-row :gutter="14">
@@ -330,13 +294,5 @@ const handleClick = (type) => {
         </el-col>
       </el-row>
     </div>
-<!--    <el-row :class="ns.e('clear')">-->
-<!--      <el-col :span="24">-->
-<!--        <el-button style="width: 100%;" v-if="state.defaultBackground.backgroundColor || state.defaultBackground.backgroundImage" @click="() => handleClick(1)">{{t('er.public.remove')}}</el-button>-->
-<!--      </el-col>-->
-<!--      &lt;!&ndash;        <el-col>&ndash;&gt;-->
-<!--      &lt;!&ndash;          <el-button style="width: 100%;" type="primary" @click="() => handleClick(2)">保存</el-button>&ndash;&gt;-->
-<!--      &lt;!&ndash;        </el-col>&ndash;&gt;-->
-<!--    </el-row>-->
   </div>
 </template>

@@ -1,7 +1,6 @@
 @include b(ConfigBorder) {
-  @include e(icon) {
-    color: $primary-color;
-    font-size: 20px;
+  .#{$namespace}-ConfigTypeComponent{
+    padding: 0 0 10px;
   }
   @include e(borderStyle) {
     display: flex;

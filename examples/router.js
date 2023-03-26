@@ -40,7 +40,7 @@ const routes = [
       },
       {
         name: 'objAction',
-        path: 'objAction/:objid?',
+        path: 'objAction/:objid?/:actionid?',
         component: FormEditorObjActionView
       }
     ]

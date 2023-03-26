@@ -4,10 +4,11 @@ import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import PanelsConfigComponentsCheckboxComponent from './CheckboxComponent.vue'
 import PanelsConfigComponentsCollapseComponent from './CollapseComponent.vue'
+import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
 import PanelsConfigComponentsBorderComponent from './BorderComponent.vue'
 import PanelsConfigComponentsLimitComponent from './LimitComponent.vue'
-import PanelsConfigComponentsGridLayoutComponent from './GridLayoutComponent.vue'
-import PanelsConfigComponentsTabsLayout from './TabsLayout.vue'
+// import PanelsConfigComponentsGridLayoutComponent from './GridLayoutComponent.vue'
+// import PanelsConfigComponentsTabsLayout from './TabsLayout.vue'
 import PanelsConfigComponentsAllsidesComponent from './AllsidesComponent.vue'
 import PanelsConfigComponentsBackgroundComponent from './BackgroundComponent.vue'
 import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
@@ -120,10 +121,11 @@ const options0 = computed(() => {
 })
 const widthOptions = ['1/4', '1/3', '1/2', '2/3', '3/4', '1']
 const options1 = computed(() => {
-  return widthOptions.map(e => {
+  return widthOptions.map((e, index) => {
     const result = {
       value: e,
-      disabled: false
+      disabled: false,
+      icon: `widthRatioP${index + 1}`
     }
     const otherNodes = target.value.context.parent.columns
     switch (otherNodes.length) {
@@ -148,16 +150,78 @@ const options2 = [
   'inset',
   'outset'
 ]
-const options3 = [
-  'jurassic_border-none',
-  'jurassic_border-all',
-  'border-outer',
-  'border-inner',
-  'border-left',
-  'border-right',
-  'border-top',
-  'border-bottom'
-]
+const options4 = computed(() => {
+  return [
+    {
+      label: t('er.config.tabsLayout.style.options[0]'),
+      value: '',
+      icon: 'tabStyleP1'
+    },
+    {
+      label: t('er.config.tabsLayout.style.options[1]'),
+      value: 'card',
+      icon: 'tabStyleP2'
+    },
+    {
+      label: t('er.config.tabsLayout.style.options[2]'),
+      value: 'border-card',
+      icon: 'tabStyleP3'
+    }
+  ]
+})
+const options5 = computed(() => {
+  return [
+    {
+      label: t('er.config.tabsLayout.tabPosition.options[0]'),
+      value: 'top',
+      icon: 'tabsLocationP1'
+    },
+    {
+      label: t('er.config.tabsLayout.tabPosition.options[1]'),
+      value: 'bottom',
+      icon: 'tabsLocationP2'
+    },
+    {
+      label: t('er.config.tabsLayout.tabPosition.options[2]'),
+      value: 'left',
+      icon: 'tabsLocationP3'
+    },
+    {
+      label: t('er.config.tabsLayout.tabPosition.options[3]'),
+      value: 'right',
+      icon: 'tabsLocationP4'
+    }
+  ]
+})
+const options6 = computed(() => {
+  return [
+    {
+      label: t('er.config.gridLayout.justify.options[0]'),
+      value: 'start',
+      icon: 'horizontalLayoutP1'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[1]'),
+      value: 'end',
+      icon: 'horizontalLayoutP2'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[2]'),
+      value: 'center',
+      icon: 'horizontalLayoutP3'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[3]'),
+      value: 'space-around',
+      icon: 'horizontalLayoutP4'
+    },
+    {
+      label: t('er.config.gridLayout.justify.options[4]'),
+      value: 'space-between',
+      icon: 'horizontalLayoutP5'
+    }
+  ]
+})
 // const typeProps = computed(() => {
 //   return utils.bindProps(target.value, true)
 // })
@@ -216,11 +280,23 @@ const handleAction = (type, value) => {
     case 2:
       dialogVisible.value = false
       break
-    case 3:
-      // console.log(eval(value) * 100)
+  }
+}
+const handleTypeListener = ({ property, data }) => {
+  switch (property) {
+    case 'width':
       // eslint-disable-next-line
-      const val = eval(value) * 100
+      const val = eval(data.value) * 100
       utils.syncWidthByPlatform(target.value, state.platform, val)
+      break
+    case 'type':
+      target.value.options.type = data.value
+      break
+    case 'tabPosition':
+      target.value.options.tabPosition = data.value
+      break
+    case 'justify':
+      target.value.options.justify = data.value
       break
   }
 }
@@ -250,7 +326,6 @@ const handleAction = (type, value) => {
           <el-col :span="12" v-if="isPc">
             <el-form-item :label="t('er.config.propsPanel.titleWidth')">
               <el-input-number
-                style="width: 100%;"
                 controls-position="right"
                 v-model="target.options.labelWidth"
               />
@@ -486,11 +561,15 @@ const handleAction = (type, value) => {
       <el-radio-button :label="3">{{ t('er.config.propsPanel.region.options[2]') }}</el-radio-button>
     </el-radio-group>
   </el-form-item>
-  <el-form-item v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4" :label="t('er.public.width')">
-    <el-button-group>
-      <el-button @click="() => handleAction(3, item.value)" v-for="item in options1" :disabled="item.disabled" :key="item.value" size="small">{{ item.value }}</el-button>
-    </el-button-group>
-  </el-form-item>
+  <PanelsConfigComponentsTypeComponent
+    v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4"
+    @listener="handleTypeListener"
+    property="width"
+    :label="t('er.public.width')"
+    :height="40"
+    :fontSize="28"
+    :nodes="options1"
+  />
   <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'])" :label="t('er.config.propsPanel.trim')" field="isShowTrim"/>
   <PanelsConfigComponentsCheckboxComponent v-if="(checkTypeBySelected(['input']) && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'])" :label="t('er.config.propsPanel.wordLimit')" field="isShowWordLimit">
     <el-row align="middle" :gutter="8">
@@ -518,15 +597,45 @@ const handleAction = (type, value) => {
     <PanelsConfigComponentsLimitComponent/>
   </PanelsConfigComponentsCheckboxComponent>
   <PanelsConfigComponentsCheckboxComponent v-if="isSelectField && !checkTypeBySelected(['rate', 'switch', 'slider', 'divider'])" :label="t('er.validateMsg.required')" field="required"/>
-  <PanelsConfigComponentsGridLayoutComponent
+  <PanelsConfigComponentsTypeComponent
     v-if="isSelectGrid"
+    @listener="handleTypeListener"
+    property="justify"
+    :label="t('er.config.gridLayout.justify.label')"
+    :height="40"
+    :fontSize="40"
+    :val="target.options.justify"
+    :nodes="options6"
   />
+<!--  <PanelsConfigComponentsGridLayoutComponent-->
+<!--    v-if="isSelectGrid"-->
+<!--  />-->
   <PanelsConfigComponentsDataComponent3
     v-if="checkTypeBySelected(['collapse', 'tabs'])"
   />
-  <PanelsConfigComponentsTabsLayout
+  <PanelsConfigComponentsTypeComponent
     v-if="isSelectTabs"
+    @listener="handleTypeListener"
+    property="type"
+    :label="t('er.config.tabsLayout.style.label')"
+    :height="66"
+    :fontSize="70"
+    :val="target.options.type"
+    :nodes="options4"
   />
+  <PanelsConfigComponentsTypeComponent
+    v-if="isSelectTabs"
+    @listener="handleTypeListener"
+    property="tabPosition"
+    :label="t('er.config.tabsLayout.tabPosition.label')"
+    :height="40"
+    :fontSize="66"
+    :val="target.options.tabPosition"
+    :nodes="options5"
+  />
+<!--  <PanelsConfigComponentsTabsLayout-->
+<!--    v-if="isSelectTabs"-->
+<!--  />-->
   <PanelsConfigComponentsCollapseComponent
     v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"
     :label="t('er.public.margin')"
@@ -592,17 +701,17 @@ const handleAction = (type, value) => {
     :label="t('er.config.borderComponent.borderLine')"
     operationKey="style"
     field="isShowBorder">
-    <template v-slot:subSelect>
+    <template v-if="!checkTypeBySelected(['table'])" v-slot:subSelect>
       <div :class="[ns.e('collapseSubSelect')]">
         <el-dropdown
-          @command="(command) => checkTypeBySelected(['table']) ? (target.style.borderType = options3.indexOf(command)) : (target.style.border.style = command)"
+          @command="(command) => target.style.border.style = command"
         >
         <span>
-          {{ checkTypeBySelected(['table']) ? options3[target.style.borderType]: target.style.border.style }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          {{ target.style.border.style }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
         </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item :command="item" v-for="item in checkTypeBySelected(['table']) ? options3 : options2" :key="item">{{ item }}</el-dropdown-item>
+              <el-dropdown-item :command="item" v-for="item in options2" :key="item">{{ item }}</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>

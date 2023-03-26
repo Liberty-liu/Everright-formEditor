@@ -9,12 +9,10 @@
     padding-top: 10px;
   }
   @include e(background) {
-    //padding: 10px;
     display: flex;
     .el-color-picker {
-      //margin-right: 10px;
       .el-color-picker__trigger {
-        border-right: none;
+        border-right: none !important;
         border-radius: 4px 0px 0px 4px;
       }
     }
@@ -22,9 +20,7 @@
       width: 100%;
       display: flex;
       li{
-        //flex: 1;
-        //margin-right: 1px;
-        //margin-bottom: 1px;
+        height: 38px;
         cursor: pointer;
         .el-image {
           width: 100%;
@@ -33,32 +29,62 @@
       }
     }
   }
+  @include e(selecteColor) {
+    .el-color-picker {
+      .el-color-picker__trigger {
+        border-color: $primary-color;
+      }
+    }
+  }
   @include e(quickColor) {
-    border-radius: 0px 4px 4px 0px;
     overflow: hidden;
-    border: 1px solid #DCDFE6;
     li:not(:last-child) {
-      border-right: 1px solid #DCDFE6;
+      border-right: none;
+    }
+    li:last-child {
+      border-radius: 0px 4px 4px 0px;
+    }
+    li:not(:first-child) {
+      //border-left: none;
     }
     li {
+      border: 1px solid #DCDFE6;
       flex: 1;
+    }
+    //li:first-child.selectColorFirst {
+    //  border-left-color: $primary-color;
+    //}
+    li.selectedBg {
+      border-color: $primary-color;
+      &+li{
+        border-left-color: $primary-color;
+      }
     }
   }
   @include e(quickImage) {
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
     li{
-      width: 33%;
-      //margin-right: 1px;
+      width: 30%;
+      border: 1px solid #DDDDDD;
+      border-radius: 4px;
       flex-shrink:0;
-      margin-bottom: 2px;
+      margin-bottom: 8px;
       height: 30px;
+      margin-right: 11px;
+      &:nth-child(3n) {
+        margin-right: 0px;
+      }
+      &.selectedBg {
+        border-color: $primary-color;
+      }
     }
-    //border-radius: 4px;
-    //overflow: hidden;
-    //border: 1px solid #DCDFE6;
-    //li:not(:last-child) {
-    //  border-right: 1px solid #DCDFE6;
-    //}
+  }
+  @include e(uploadFile) {
+    border-color: transparent !important;
+    &>*,.el-upload-list,.el-upload {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

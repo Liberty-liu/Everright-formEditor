@@ -57,7 +57,7 @@ export const useTarget = () => {
   }
   const isSelectGrid = computed({
     get () {
-      return checkTypeBySelected(['grid', 'col'])
+      return checkTypeBySelected(['grid'])
     }
   })
   const isSelectTabs = computed({

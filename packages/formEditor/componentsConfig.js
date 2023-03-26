@@ -161,7 +161,7 @@ export const fieldConfig = [
       {
         type: 'number',
         label: '数字',
-        icon: 'number',
+        icon: 'numbers',
         key: '',
         id: '',
         options: {
@@ -535,7 +535,7 @@ export const fieldConfig = [
       {
         type: 'tabs',
         label: '标签页',
-        icon: '',
+        icon: 'label',
         id: '',
         columns: [
         ],
@@ -549,7 +549,7 @@ export const fieldConfig = [
       {
         type: 'collapse',
         label: '折叠面板',
-        icon: '',
+        icon: 'collapse',
         id: '',
         columns: [],
         options: {
