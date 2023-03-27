@@ -29,20 +29,25 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
-  if (type === 'getData') {
-    loading.value = true
-    try {
-      const postData = {
-        name: state.name,
-        content: data
+  switch (type) {
+    case 'lang':
+      lang.value = data
+      break
+    case 'getData':
+      loading.value = true
+      try {
+        const postData = {
+          name: state.name,
+          content: data
+        }
+        await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
+          method: 'put',
+          data: postData
+        })
+      } finally {
+        loading.value = false
       }
-      await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
-        method: 'put',
-        data: postData
-      })
-    } finally {
-      loading.value = false
-    }
+      break
   }
 }
 onMounted(() => {

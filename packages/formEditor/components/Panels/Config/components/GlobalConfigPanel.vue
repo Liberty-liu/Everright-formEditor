@@ -100,7 +100,7 @@ const handleClick = (type) => {
         </el-button>
       </div>
     </el-popover>
-    <DeviceSwitch justify-content="center"></DeviceSwitch>
+<!--    <DeviceSwitch justify-content="center"></DeviceSwitch>-->
     <el-form-item :label="t('er.config.globalConfig.sync.label')" label-position="left">
       <el-switch
         ref="buttonRef"

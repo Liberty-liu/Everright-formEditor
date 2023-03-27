@@ -7,12 +7,12 @@ export default {
 }
 </script>
 <script setup>
-const props = defineProps({
-  justifyContent: {
-    type: String,
-    required: true
-  }
-})
+// const props = defineProps({
+//   justifyContent: {
+//     type: String,
+//     required: true
+//   }
+// })
 const ER = inject('Everright')
 const ns = hooks.useNamespace('DeviceSwitch')
 const {
@@ -24,11 +24,9 @@ const element = ref('')
 // })
 </script>
 <template>
-  <div :class="[ns.b()]" :style="{ justifyContent: justifyContent}">
-    <div>
-      <Icon @click="() => ER.switchPlatform('pc')" icon="pc" :class="[ns.e('icon'), state.platform === 'pc' && 'active']"></Icon>
-      <Icon @click="() => ER.switchPlatform('mobile')" icon="iphone" :class="[ns.e('icon'), state.platform === 'mobile' && 'active']"></Icon>
-    </div>
+  <div :class="[ns.b()]">
+    <Icon @click="() => ER.switchPlatform('pc')" icon="PC" :class="[ns.e('icon'), state.platform === 'pc' && 'active']"></Icon>
+    <Icon @click="() => ER.switchPlatform('mobile')" icon="cellphone" :class="[ns.e('icon'), state.platform === 'mobile' && 'active']"></Icon>
   </div>
 </template>
 

@@ -4,6 +4,7 @@ import { defineProps, ref, reactive, computed, provide, getCurrentInstance, next
 import PanelsBlocks from '@ER/formEditor/components/Panels/Blocks'
 import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
 import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
+import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import Icon from '@ER/icon'
 import ClipboardJS from 'clipboard'
 import hooks from '@ER/hooks'
@@ -147,30 +148,6 @@ const addFieldData = (node) => {
   }
 }
 const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true) => {
-  // console.log(generatorData)
-  // const newEl = isWrap
-  //   ? {
-  //       type: 'inline',
-  //       columns: [
-  //         el
-  //       ]
-  //     }
-  //   : el
-  // if (sourceBlock) {
-  //   el.label = utils.fieldLabel(t, el)
-  // }
-  // const node = sourceBlock
-  //   ? utils.wrapElement(newEl, (node) => {
-  //     addFieldData(node)
-  //     addField(node)
-  //   })
-  //   : newEl
-  // if (isSetSector) {
-  //   nextTick(() => {
-  //     setSector(node)
-  //   })
-  // }
-  // return node
   const node = sourceBlock
     ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
       addFieldData(node)
@@ -424,11 +401,27 @@ const onClickOutside = () => {
       <el-container :class="[ns.e('container')]">
         <el-header :class="[ns.e('operation')]">
           <div>
-            <Icon @click="handleOperation(4)" :class="[ns.e('icon'), 'getJson']" icon="save"></Icon>
+            <Icon @click="handleOperation(4)" :class="[ns.e('icon')]" icon="save"></Icon>
             <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="clear0"></Icon>
           </div>
-          <div>123</div>
-          <div>3</div>
+          <div>
+            <DeviceSwitch></DeviceSwitch>
+          </div>
+          <div>
+            <el-dropdown @command="(command) => emit('listener', {
+              type: 'lang',
+              data: command
+            })">
+              <Icon :class="[ns.e('icon')]" icon="language"></Icon>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="zh-cn" :disabled="lang === 'zh-cn'">中文</el-dropdown-item>
+                  <el-dropdown-item command="en" :disabled="lang === 'en'">English</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="preview"></Icon>
+          </div>
         </el-header>
         <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
       </el-container>

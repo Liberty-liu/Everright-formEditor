@@ -149,9 +149,9 @@ export default {
         region: {
           label: 'select range',
           options: [
-            'Province',
-            'Province/City',
-            'Province/City/County'
+            'Prov',
+            'City/Prov',
+            'County/City/Prov'
           ]
         },
         trim: 'Trim',

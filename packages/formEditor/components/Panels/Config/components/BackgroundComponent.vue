@@ -212,6 +212,7 @@ const handleSuccess = (response, uploadFile) => {
 <!--      <div v-if="!state.value0" :class="[target.style.isCustomBackground && ns.e('selecteColor')]">-->
       <div v-if="!state.value0">
         <el-color-picker
+          size="large"
           @active-change="handleActiveChange"
           @change="handleChange"
           v-model="target.style.background.color"

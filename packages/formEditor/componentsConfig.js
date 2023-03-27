@@ -44,7 +44,7 @@ export const fieldConfig = [
       {
         type: 'input',
         label: '手机号',
-        icon: 'Cellphone',
+        icon: 'cellphone',
         key: '',
         id: '',
         options: {
@@ -473,7 +473,7 @@ export const fieldConfig = [
       {
         type: 'table',
         label: '表格布局',
-        icon: 'table',
+        icon: 'tableStokeP2',
         id: '',
         rows: [
           {

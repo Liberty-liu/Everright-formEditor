@@ -151,7 +151,6 @@ watch(target, () => {
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-form
-      size="large"
       ref="form"
       :model="target"
       :rules="rules"

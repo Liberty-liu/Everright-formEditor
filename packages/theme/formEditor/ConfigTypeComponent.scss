@@ -17,6 +17,7 @@
         }
       }
       &:hover {
+        border-color: $primary-color;
         .ER-icon {
           color: $primary-color;
           path.secondary {
@@ -49,6 +50,21 @@
     }
     li:not(:last-child) {
       margin-right: 8px;
+    }
+  }
+  .el-form-item__label {
+    padding-right: 0;
+  }
+  @include e(label) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @include e(slot) {
+    width: 100%;
+    &>*{
+      width: 100%;
+      box-sizing: border-box;
     }
   }
 }

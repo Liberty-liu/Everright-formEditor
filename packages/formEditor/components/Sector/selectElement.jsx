@@ -298,20 +298,21 @@ export default {
         >
           {slots.default()}
           <span></span>
-          {
-            unref(isEditModel) && (
-              <div class={[ns.e('topLeft')]}>
-                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="drag1"></Icon>)}
-              </div>
-            )
-          }
+          {/* { */}
+          {/*  unref(isEditModel) && ( */}
+          {/*    <div class={[ns.e('topLeft')]}> */}
+          {/*      {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)} */}
+          {/*    </div> */}
+          {/*  ) */}
+          {/* } */}
           {
             unref(isEditModel) && (
               <div class={[ns.e('bottomRight')]}>
+                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)}
                 {props.hasDel && (
                   <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
                     handleAction(1)
-                  }, ['stop'])} icon="del"></Icon>
+                  }, ['stop'])} icon="delete"></Icon>
                 )}
                 {
                   props.hasInserColumn && (<Icon class={[ns.e('charulieIcon')]} onClick={withModifiers((e) => {
@@ -329,7 +330,7 @@ export default {
                   }, ['stop'])} icon="copy"></Icon>)
                 }
                 {props.hasWidthScale && (
-                  <div ref={widthScaleElement}><Icon class={[ns.e('widthScale')]} icon="zuoyouyidong"></Icon></div>)}
+                  <div ref={widthScaleElement}><Icon class={[ns.e('widthScale')]} icon="dragWidth"></Icon></div>)}
                 {props.hasTableCellOperator && renderTableCellOperator()}
               </div>
             )

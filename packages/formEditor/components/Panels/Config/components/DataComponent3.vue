@@ -53,7 +53,7 @@ const handleAction = (type) => {
               v-model="element.label"/>
             <div :class="ns.e('operate')">
               <Icon :class="[ns.e('icon')]" @click="target.columns.splice(index, 1)" icon="delete"></Icon>
-              <Icon :class="[ns.e('icon'), 'handle']" icon="move"></Icon>
+              <Icon :class="[ns.e('icon'), 'handle']" icon="Rank"></Icon>
             </div>
           </li>
         </template>

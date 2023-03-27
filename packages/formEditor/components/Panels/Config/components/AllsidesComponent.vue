@@ -28,14 +28,12 @@ const props = defineProps({
 </script>
 <template>
   <div>
-<!--    <span class="subhead">{{t('er.public.unit')}}：px</span>-->
     <div :class="[ns.b()]">
       <el-row :gutter="14" justify="center">
         <el-col :span="12">
           <el-input-number
             :step="10"
             :min="props.min"
-            size="large"
             v-model="target.style[props.field].left"
             controls-position="right"
           />
@@ -44,7 +42,6 @@ const props = defineProps({
           <el-input-number
             :step="10"
             :min="props.min"
-            size="large"
             v-model="target.style[props.field].top"
             controls-position="right"
           />
@@ -55,7 +52,6 @@ const props = defineProps({
           <el-input-number
             :step="10"
             :min="props.min"
-            size="large"
             v-model="target.style[props.field].right"
             controls-position="right"
           />
@@ -64,7 +60,6 @@ const props = defineProps({
           <el-input-number
             :step="10"
             :min="props.min"
-            size="large"
             v-model="target.style[props.field].bottom"
             controls-position="right"
           />
@@ -72,49 +67,4 @@ const props = defineProps({
       </el-row>
     </div>
   </div>
-<!--  <el-form-item size="default" :label="t(`er.public.${props.field}`)">-->
-<!--    <span class="subhead">{{t('er.public.unit')}}：px</span>-->
-<!--    <div :class="[ns.b()]">-->
-<!--      <el-row :gutter="14" justify="center">-->
-<!--        <el-col :span="12">-->
-<!--          <el-input-number-->
-<!--            :step="10"-->
-<!--            :min="props.min"-->
-<!--            size="large"-->
-<!--            v-model="target.style[props.field].left"-->
-<!--            controls-position="right"-->
-<!--          />-->
-<!--        </el-col>-->
-<!--        <el-col :span="12">-->
-<!--          <el-input-number-->
-<!--            :step="10"-->
-<!--            :min="props.min"-->
-<!--            size="large"-->
-<!--            v-model="target.style[props.field].top"-->
-<!--            controls-position="right"-->
-<!--          />-->
-<!--        </el-col>-->
-<!--      </el-row>-->
-<!--      <el-row :gutter="14" justify="center">-->
-<!--        <el-col :span="12">-->
-<!--          <el-input-number-->
-<!--            :step="10"-->
-<!--            :min="props.min"-->
-<!--            size="large"-->
-<!--            v-model="target.style[props.field].right"-->
-<!--            controls-position="right"-->
-<!--          />-->
-<!--        </el-col>-->
-<!--        <el-col :span="12">-->
-<!--          <el-input-number-->
-<!--            :step="10"-->
-<!--            :min="props.min"-->
-<!--            size="large"-->
-<!--            v-model="target.style[props.field].bottom"-->
-<!--            controls-position="right"-->
-<!--          />-->
-<!--        </el-col>-->
-<!--      </el-row>-->
-<!--    </div>-->
-<!--  </el-form-item>-->
 </template>

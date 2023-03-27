@@ -69,8 +69,8 @@ const wrapElement = (element, fn) => {
     }
     if (/^(table)$/.test(node.type)) {
       Object.assign(node.style, {
-        isShowBackground: true,
-        isShowBorder: true,
+        // isShowBackground: true,
+        // isShowBorder: true,
         borderColor: '#000',
         borderType: 1,
         borderWidth: 1,

@@ -4,7 +4,6 @@ import { dragGableWrap } from '@ER/formEditor/components/Layout/DragGable.jsx'
 import { inject, ref, reactive, nextTick } from 'vue'
 import _ from 'lodash-es'
 import Icon from '@ER/icon'
-import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import ControlInsertionPlugin from '../../Layout/ControlInsertionPlugin.js'
 import { nanoid } from 'nanoid'
 export default {

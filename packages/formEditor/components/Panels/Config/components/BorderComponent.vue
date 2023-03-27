@@ -117,7 +117,10 @@ const handleTypeListener = ({ property, data }) => {
           </el-form-item>
         </el-col>
         <el-col :span="10">
-          <el-form-item :label="t('er.public.width')">
+          <el-form-item>
+            <template v-slot:label>
+              <Icon icon="lineThickness"/>
+            </template>
             <el-input-number
               :step="1"
               :min="0"
@@ -127,7 +130,10 @@ const handleTypeListener = ({ property, data }) => {
           </el-form-item>
         </el-col>
         <el-col :span="10">
-          <el-form-item :label="t('er.public.radius')">
+          <el-form-item>
+            <template v-slot:label>
+              <Icon icon="radius"/>
+            </template>
             <el-input-number
               :step="1"
               :min="0"

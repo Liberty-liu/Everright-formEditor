@@ -37,16 +37,19 @@
     color: #000000;
     padding: 0;
   }
-  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon)) {
-    border-radius: 24px;
-    box-shadow: 0 2px 6px #00000040;
-    background: #fff;
+  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon, dragIcon)) {
+    border-radius: 4px;
+    //box-shadow: 0 2px 6px #00000040;
+    background: $primary-color;
     width: 24px;
     height: 24px;
-    color: #000000;
+    color: #fff;
     padding: 0;
-    text-align: center;
-    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //text-align: center;
+    //line-height: 24px;
     margin: 0 4px;
   }
   @include e(widthScale) {

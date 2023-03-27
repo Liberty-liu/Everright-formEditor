@@ -1,4 +1,5 @@
 <script>
+import { resolveComponent } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import Icon from '@ER/icon'
@@ -20,22 +21,23 @@ const props = defineProps({
     type: String
   },
   nodes: {
-    type: Array,
-    required: true
+    type: Array
   },
   height: {
-    type: Number,
-    required: true
+    type: Number
   },
   property: {
-    type: String,
-    required: true
+    type: String
   },
   val: {
     type: [String, Number]
   },
   fontSize: {
     type: Number
+  },
+  layoutType: {
+    type: Number,
+    default: 1
   }
 })
 const fireEvent = (property, item) => {
@@ -53,9 +55,14 @@ const fireEvent = (property, item) => {
           <div>
             <div>{{label}}</div>
           </div>
+          <template v-if="layoutType === 2">
+            <el-radio-group :modelValue="val" @change="(curVal) => fireEvent(property, { value: curVal })">
+              <el-radio-button v-for="item in nodes" :label="item.value" :key="item.value">{{ item.label }}</el-radio-button>
+            </el-radio-group>
+          </template>
         </div>
       </template>
-      <ul ref="elements" :class="[ns.e('content')]" :style="{ height: height + 2 + 'px'}">
+      <ul v-if="layoutType === 1" ref="elements" :class="[ns.e('content')]" :style="{ height: height + 2 + 'px'}">
         <li
           @click="() => fireEvent(property, item)"
           v-for="item in nodes"
@@ -71,6 +78,9 @@ const fireEvent = (property, item) => {
           />
         </li>
       </ul>
+      <div :class="[ns.e('slot')]">
+        <slot v-if="layoutType === 0"></slot>
+      </div>
     </el-form-item>
   </div>
 </template>

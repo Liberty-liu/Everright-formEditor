@@ -15,18 +15,9 @@
   @include e(container) {
     height: 100%;
     box-sizing: content-box;
-    //height: calc(100% - 20px);
-    .el-scrollbar__view,.el-scrollbar__view>div{
-      //min-height: 100%;
-    }
-    .el-form,.van-form {
-      //height: 100%;
-    }
   }
   @include e(subject) {
     margin: 0 28px 0;
-    //height: calc(100vh - 40px);
-    //min-height: calc(100vh - 52px);
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
   }
   @include e(wrap) {
