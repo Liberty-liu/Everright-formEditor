@@ -27,9 +27,9 @@ layoutNodes.forEach((node, index) => {
   }
 })
 const all = [...store.fields, ...store.layouts]
-// const value0 = ref('root')
+const value0 = ref('root')
 // const value0 = ref(store.layouts[0].id)
-const value0 = ref(store.fields[5].id)
+// const value0 = ref(store.fields[5].id)
 const sector = computed(() => {
   let result = ''
   if (value0.value === 'root') {

@@ -24,20 +24,20 @@
   .ER-icon {
     cursor: pointer;
   }
-  @include e(collapseWrap) {
-    .el-row {
-      margin-bottom: 0 !important;
-    }
-  }
-  @include e(collapseWrap-left) {
-    .el-form-item {
-      display: flex;
-      align-items: baseline;
-      .el-form-item__label {
-        padding-right: 4px;
-      }
-    }
-  }
+  //@include e(collapseWrap) {
+  //  .el-row {
+  //    margin-bottom: 0 !important;
+  //  }
+  //}
+  //@include e(collapseWrap-left) {
+  //  .el-form-item {
+  //    display: flex;
+  //    align-items: baseline;
+  //    .el-form-item__label {
+  //      padding-right: 4px;
+  //    }
+  //  }
+  //}
   .el-dropdown {
     :focus {outline: 0;}
   }

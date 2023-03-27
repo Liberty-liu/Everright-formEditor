@@ -1,5 +1,7 @@
 @include b(Blocks) {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 3;
   .el-sub-menu__title {
     height: 40px;
     font-weight: 600;
@@ -21,13 +23,13 @@
     li {
       overflow: hidden;
       border-radius: 4px;
-      margin: 2px;
+      margin: 4px;
       background: #F9F9F9;
       font-size: 12px;
       cursor: grab;
       height: 34px;
       color: #333333;
-      width: 48%;
+      width: 46%;
       align-items: center;
       box-sizing: border-box;
       border: 1px solid transparent;

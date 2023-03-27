@@ -56,7 +56,7 @@ export default {
           warning: '数据存在不一致，根据你的选择进行同步'
         },
         componentSize: {
-          label: '组件尺寸',
+          label: '字段大小',
           large: '大',
           default: '中',
           small: '小'
@@ -124,8 +124,8 @@ export default {
         layout: {
           label: '布局方式',
           options: [
-            '块级',
-            '行级'
+            '纵向',
+            '横向'
           ]
         },
         contentPosition: {

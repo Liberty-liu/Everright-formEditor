@@ -49,6 +49,10 @@ const state = reactive({
   fields: [],
   Namespace: 'formEditor'
 })
+const isFoldBlocks = ref(true)
+const isFoldConfig = ref(true)
+window.isFoldBlocks = isFoldBlocks
+window.isFoldConfig = isFoldConfig
 state.validator = (target, fn) => {
   if (target) {
     const count = _.countBy(state.validateStates, 'data.key')
@@ -348,6 +352,12 @@ const handleOperation = (type) => {
         data: getData()
       })
       break
+    case 5:
+      isFoldBlocks.value = !isFoldBlocks.value
+      break
+    case 6:
+      isFoldConfig.value = !isFoldConfig.value
+      break
   }
 }
 watch(() => state.sector, (newVal) => {
@@ -397,7 +407,7 @@ const onClickOutside = () => {
 <!--      <el-aside width="350px"></el-aside>-->
 <!--    </el-container>-->
     <el-container>
-      <PanelsBlocks/>
+      <PanelsBlocks v-show="isFoldBlocks"/>
       <el-container :class="[ns.e('container')]">
         <el-header :class="[ns.e('operation')]">
           <div>
@@ -424,8 +434,10 @@ const onClickOutside = () => {
           </div>
         </el-header>
         <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
+        <Icon @click="handleOperation(5)" :class="[ns.e('arrowLeft'), !isFoldBlocks && ns.is('close')]" icon="arrowLeft"></Icon>
+        <Icon @click="handleOperation(6)" :class="[ns.e('arrowRight'), !isFoldConfig && ns.is('close')]" icon="arrowRight"></Icon>
       </el-container>
-      <PanelsConfig v-if="isShow && isShowConfig"></PanelsConfig>
+      <PanelsConfig v-show="isFoldConfig" v-if="isShow && isShowConfig"></PanelsConfig>
     </el-container>
   </el-container>
 </template>

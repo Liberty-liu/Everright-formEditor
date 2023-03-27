@@ -1,5 +1,7 @@
 @include b(Config) {
-  overflow-y: hidden;
+  //overflow-y: hidden;
+  position: relative;
+  z-index: 3;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   //border-left: 1px solid #ccc;
   //padding: 16px;

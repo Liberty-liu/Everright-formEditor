@@ -55,7 +55,7 @@ export default {
           warning: 'Data inconsistency, according to your choice of configuration'
         },
         componentSize: {
-          label: 'Size of components',
+          label: 'Size of Fields',
           large: 'Large',
           default: 'Default',
           small: 'Small'
@@ -123,8 +123,8 @@ export default {
         layout: {
           label: 'Layout',
           options: [
-            'Block',
-            'Inline'
+            'vertical',
+            'horizontal'
           ]
         },
         contentPosition: {

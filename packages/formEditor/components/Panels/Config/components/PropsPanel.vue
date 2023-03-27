@@ -351,7 +351,7 @@ const handleTypeListener = ({ property, data }) => {
     <template v-slot:content>
       <div :class="[ns.e('collapseWrap'), ns.e('collapseWrap-left')]">
         <el-row justify="space-between" align="middle">
-          <el-col :span="11">
+          <el-col :span="isPc ? 11 : 24">
             <el-form-item>
               <template v-slot:label>
                 <Icon icon="title"/>
@@ -601,6 +601,7 @@ const handleTypeListener = ({ property, data }) => {
     <el-col :span="type !== 'slider' ? 12 : 24">
       <el-form-item :label="t('er.config.propsPanel.step')">
         <el-input-number
+          :min="0"
           style="width: 100%;"
           controls-position="right" v-model="target.options.step" />
       </el-form-item>
@@ -608,6 +609,7 @@ const handleTypeListener = ({ property, data }) => {
     <el-col :span="12">
       <el-form-item v-if="type !== 'slider'" :label="t('er.config.propsPanel.precision')">
         <el-input-number
+          :min="0"
           controls-position="right" v-model="target.options.precision" />
       </el-form-item>
     </el-col>

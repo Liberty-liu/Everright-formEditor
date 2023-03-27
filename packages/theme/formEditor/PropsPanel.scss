@@ -1,5 +1,6 @@
 @include b(PropsPanel) {
   @include e(collapseWrap) {
+    width: 100%;
     .el-row {
       margin-bottom: 0 !important;
     }

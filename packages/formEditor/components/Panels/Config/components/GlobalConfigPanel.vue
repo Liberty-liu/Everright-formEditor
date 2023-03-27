@@ -6,6 +6,7 @@ import _ from 'lodash-es'
 import { ref, unref, computed } from 'vue'
 import { ClickOutside as vClickOutside } from 'element-plus'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
+import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
 export default {
   name: 'GlobalConfigPanel',
   inheritAttrs: false,
@@ -64,6 +65,55 @@ const handleClick = (type) => {
       break
   }
 }
+const options0 = computed(() => {
+  return [
+    {
+      label: t('er.config.globalConfig.labelPosition.top'),
+      value: 'top',
+      icon: 'labelStructureP1'
+    },
+    {
+      label: t('er.config.globalConfig.labelPosition.left'),
+      value: 'left',
+      icon: 'labelStructureP2'
+    },
+    {
+      label: t('er.config.globalConfig.labelPosition.right'),
+      value: 'right',
+      icon: 'labelStructureP3'
+    }
+  ]
+})
+
+//   <el-radio-button label="large">{{t('er.config.globalConfig.componentSize.large')}}</el-radio-button>
+// <el-radio-button label="default" >{{t('er.config.globalConfig.componentSize.default')}}</el-radio-button>
+// <el-radio-button label="small" >{{t('er.config.globalConfig.componentSize.small')}}</el-radio-button>
+const options1 = computed(() => {
+  return [
+    {
+      label: t('er.config.globalConfig.componentSize.large'),
+      value: 'large'
+    },
+    {
+      label: t('er.config.globalConfig.componentSize.default'),
+      value: 'default'
+    },
+    {
+      label: t('er.config.globalConfig.componentSize.small'),
+      value: 'small'
+    }
+  ]
+})
+const handleTypeListener = ({ property, data }) => {
+  switch (property) {
+    case 'labelPosition':
+      handleModelValue('labelPosition', data.value)
+      break
+    case 'size':
+      target.value[state.platform].size = data.value
+      break
+  }
+}
 </script>
 <template>
   <div>
@@ -108,23 +158,26 @@ const handleClick = (type) => {
         :before-change="handleBeforeChange"
         v-model="target.isSync"/>
     </el-form-item>
-    <el-form-item :label="t('er.config.globalConfig.componentSize.label')" v-if="isPc">
-      <el-radio-group v-model="target[state.platform].size" size="large">
-        <el-radio-button label="large">{{t('er.config.globalConfig.componentSize.large')}}</el-radio-button>
-        <el-radio-button label="default" >{{t('er.config.globalConfig.componentSize.default')}}</el-radio-button>
-        <el-radio-button label="small" >{{t('er.config.globalConfig.componentSize.small')}}</el-radio-button>
-      </el-radio-group>
-    </el-form-item>
-    <el-form-item :label="t('er.config.globalConfig.labelPosition.label')">
-<!--      <el-radio-group v-model="target[state.platform].labelPosition" size="large">-->
-      <el-radio-group :model-value="target[state.platform].labelPosition" @update:modelValue="(e) => handleModelValue('labelPosition', e)" size="large">
-        <el-radio-button name="left" label="left">{{t('er.config.globalConfig.labelPosition.left')}}</el-radio-button>
-        <el-radio-button name="top" label="top">{{t('er.config.globalConfig.labelPosition.top')}}</el-radio-button>
-        <el-radio-button name="right" label="right">{{t('er.config.globalConfig.labelPosition.right')}}</el-radio-button>
-      </el-radio-group>
-    </el-form-item>
+    <PanelsConfigComponentsTypeComponent
+      v-if="isPc"
+      @listener="handleTypeListener"
+      property="size"
+      :layoutType="2"
+      :label="t('er.config.globalConfig.componentSize.label')"
+      :val="target[state.platform].size"
+      :nodes="options1"
+    />
+    <PanelsConfigComponentsTypeComponent
+      @listener="handleTypeListener"
+      property="labelPosition"
+      :label="t('er.config.globalConfig.labelPosition.label')"
+      :height="66"
+      :fontSize="80"
+      :val="target[state.platform].labelPosition"
+      :nodes="options0"
+    />
     <el-form-item :label="t('er.public.button')">
-      <div>
+      <div style="width: 100%;">
         <div>
           <CompleteButton mode="preview"/>
         </div>
@@ -141,7 +194,7 @@ const handleClick = (type) => {
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row :gutter="8">
+          <el-row :gutter="8" style="margin-top: 20px;">
             <el-col :span="12">
               <el-form-item :label="t('er.public.color')">
                 <el-color-picker

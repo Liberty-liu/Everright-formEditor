@@ -29,7 +29,7 @@ const props = defineProps({
 </script>
 <template>
   <div :class="[ns.b(), target.options[field] && ns.e('open')]">
-    <el-checkbox v-model="target.options[field]" @change="(newValue) => $emit('change', newValue)" :label="label" size="large"></el-checkbox>
+    <el-checkbox v-model="target.options[field]" @change="(newValue) => $emit('change', newValue)" :label="label" ></el-checkbox>
     <template v-if="$slots.default">
       <div :class="[ns.e('slot')]" v-show="target.options[field]"><slot></slot></div>
     </template>
