@@ -30,7 +30,7 @@ const props = defineProps({
     type: String
   },
   val: {
-    type: [String, Number]
+    type: [String, Number, Boolean]
   },
   fontSize: {
     type: Number
@@ -64,7 +64,7 @@ const fireEvent = (property, item) => {
       </template>
       <ul v-if="layoutType === 1" ref="elements" :class="[ns.e('content')]" :style="{ height: height + 2 + 'px'}">
         <li
-          @click="() => fireEvent(property, item)"
+          @click="() => !item.disabled && fireEvent(property, item)"
           v-for="item in nodes"
           :key="item.value"
           :class="[

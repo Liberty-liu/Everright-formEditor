@@ -2,6 +2,9 @@
   //width: 100%;
   //table-layout: fixed;
   //border-collapse: collapse;
+  .el-tabs__content {
+    overflow: inherit;
+  }
   @include e(area) {
     outline: 1px dashed #ddd;
   }

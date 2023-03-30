@@ -276,7 +276,7 @@ export const fieldConfig = [
         key: '',
         id: '',
         options: {
-          max: 5,
+          max: 50,
           allowHalf: false,
           defaultValue: 0,
           labelWidth: 100,

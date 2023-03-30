@@ -3,10 +3,10 @@
   .el-container {
     height: 100%;
   }
-  @include e(icon) {
-    color: $primary-color;
-    cursor: pointer;
-  }
+  //@include e(icon) {
+  //  color: $primary-color;
+  //  cursor: pointer;
+  //}
   @include e(operation) {
     height: 40px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
@@ -17,6 +17,7 @@
     z-index: 3;
     .ER-icon {
       &:hover {
+        color: $primary-color;
         background: #ECF6FF;
       }
       border-radius: 4px;
@@ -56,6 +57,10 @@
     width: 16px;
     z-index: 2;
     background: #FFFFFF;
+    transition: .3s;
+    &:hover {
+      color: $primary-color;
+    }
     svg {
       transition: .3s;
     }
@@ -63,6 +68,36 @@
       svg {
         transform: rotate(180deg);
       }
+    }
+  }
+  @include e(previewDialog) {
+    .el-dialog__header {
+      display: flex;
+      justify-content: center;
+      height: 40px;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+      margin-right: 0;
+      position: relative;
+      z-index: 2;
+      padding: 0;
+      align-items: center;
+      .el-dialog__headerbtn {
+        top: 0;
+        height: 40px;
+        width: 40px;
+      }
+    }
+    .el-dialog__body {
+      padding-top: 0;
+      height: calc(100% - 70px);
+    }
+  }
+  @include e(previewDialogWrap) {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 10px 40px;
+    @include when(mobilePreview) {
+      width: 400px;
+      margin: 0 auto;
     }
   }
 }

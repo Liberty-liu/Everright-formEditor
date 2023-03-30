@@ -83,7 +83,8 @@ export default {
       target,
       setSector,
       state,
-      isEditModel
+      isEditModel,
+      isSelectRoot
     } = hooks.useTarget()
     const id = hooks.useCss(props.data, state.platform)
     const visible = ref(false)
@@ -148,12 +149,12 @@ export default {
             }
           }}
           v-slots={slots}>
-          <Icon class={[ns.e('tableOperator')]} icon="kuaijiecaidan"></Icon>
+          <Icon class={[ns.e('tableOperator')]} icon="tableOperation"></Icon>
         </el-dropdown>
       )
     }
     const handleAction = (type) => {
-      const index = props.parent.indexOf(props.data)
+      const index = type !== 5 && props.parent.indexOf(props.data)
       switch (type) {
         case 1:
           props.data.context.delete()
@@ -197,6 +198,15 @@ export default {
           break
         case 4:
           _.last(props.data.context.columns)[0].context.insert('right')
+          break
+        case 5:
+          let parent = props.data.context.parent
+          if (/^(inline)$/.test(parent.type)) {
+            parent = parent.context.parent
+          } else if (/^(tr)$/.test(parent.type)) {
+            parent = parent.context.parent.context.parent
+          }
+          setSector(Array.isArray(parent) ? 'root' : parent)
           break
       }
     }
@@ -280,6 +290,9 @@ export default {
       )
     }
     const isShowCopy = computed(() => isInlineChildren ? props.hasCopy && props.data.context.parent.columns.length < 4 : props.hasCopy)
+    // const isShowSelectParent = computed(() => {
+    //   return !isSelectRoot.value
+    // })
     return () => {
       return (
         <TagComponent
@@ -298,17 +311,20 @@ export default {
         >
           {slots.default()}
           <span></span>
-          {/* { */}
-          {/*  unref(isEditModel) && ( */}
-          {/*    <div class={[ns.e('topLeft')]}> */}
-          {/*      {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)} */}
-          {/*    </div> */}
-          {/*  ) */}
-          {/* } */}
+           {
+            unref(isEditModel) && (
+              <div class={[ns.e('topLeft')]}>
+                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="move1"></Icon>)}
+              </div>
+            )
+           }
           {
             unref(isEditModel) && (
               <div class={[ns.e('bottomRight')]}>
-                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)}
+                {/* {isShowSelectParent.value && (<Icon class={['handle', ns.e('selectParent')]} icon="top"></Icon>)} */}
+                <Icon class={['handle', ns.e('selectParent')]} onClick={withModifiers((e) => {
+                  handleAction(5)
+                }, ['stop'])} icon="top"></Icon>
                 {props.hasDel && (
                   <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
                     handleAction(1)
@@ -317,12 +333,12 @@ export default {
                 {
                   props.hasInserColumn && (<Icon class={[ns.e('charulieIcon')]} onClick={withModifiers((e) => {
                     handleAction(4)
-                  }, ['stop'])} icon="-charulie"></Icon>)
+                  }, ['stop'])} icon="tableInsertCol"></Icon>)
                 }
                 {
                   props.hasInserRow && (<Icon class={[ns.e('charuhangIcon')]} onClick={withModifiers((e) => {
                     handleAction(3)
-                  }, ['stop'])} icon="-charuhang"></Icon>)
+                  }, ['stop'])} icon="tableInsertRow"></Icon>)
                 }
                 {
                   isShowCopy.value && (<Icon class={[ns.e('copyIcon')]} onClick={withModifiers((e) => {

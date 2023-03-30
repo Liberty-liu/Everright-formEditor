@@ -45,10 +45,10 @@ const wrapElement = (element, fn) => {
           left: 0
         },
         padding: {
-          top: 8,
-          right: 8,
-          bottom: 8,
-          left: 8
+          top: 16,
+          right: 16,
+          bottom: 16,
+          left: 16
         },
         background: {
           color: '',
@@ -110,10 +110,10 @@ const wrapElement = (element, fn) => {
     if (/^(td)$/.test(node.type)) {
       node.style = {
         padding: {
-          top: 8,
-          right: 8,
-          bottom: 8,
-          left: 8
+          top: 16,
+          right: 16,
+          bottom: 16,
+          left: 16
         },
         background: {
           color: '',
@@ -135,7 +135,8 @@ const renderFieldData = (type) => {
     id: nanoid(),
     type,
     label: '',
-    list: []
+    list: [],
+    style: {}
   }
   // switch (type) {
   //   case 'tabsCol':
@@ -222,28 +223,54 @@ const combinationData2 = (list, fields) => {
     const cur = _.find(fields, { id: node })
     if (!_.isEmpty(cur)) {
       nodes[currentIndex] = cur
-    } else {
-      nodes.splice(currentIndex, 1)
     }
+    // if (!_.isEmpty(cur)) {
+    //   nodes[currentIndex] = cur
+    // } else {
+    //   nodes.splice(currentIndex, 1)
+    // }
   })
-  flatNodes(list, excludes, null, (nodes, node, currentIndex) => {
-    if (node.type === 'inline') {
-      if (!node.columns.length) {
+  // const temporary = []
+  // flatNodes(list, excludes, null, (nodes, node, currentIndex) => {
+  //   if (node.type === 'inline') {
+  //     if (!node.columns.length) {
+  //       temporary.unshift({
+  //         nodes,
+  //         currentIndex
+  //       })
+  //     }
+  //   }
+  // })
+  // temporary.forEach(e => {
+  //   e.nodes.splice(e.currentIndex, 1)
+  // })
+}
+const repairLayout = (layout, fields) => {
+  flatNodes(layout, excludes, (nodes, node, currentIndex) => {
+    if (_.isString(node)) {
+      if (!_.isEmpty(_.find(fields, { id: node }))) {
         nodes.splice(currentIndex, 1)
       }
     }
   })
-  // list.forEach(e => {
-  //   deepTraversal(e, (node) => {
-  //     if (node.type === 'inline') {
-  //       console.log(node)
-  //     }
-  //   })
-  // })
+  const temporary = []
+  flatNodes(layout, excludes, null, (nodes, node, currentIndex) => {
+    if (node.type === 'inline') {
+      if (!node.columns.length) {
+        temporary.unshift({
+          nodes,
+          currentIndex
+        })
+      }
+    }
+  })
+  temporary.forEach(e => {
+    e.nodes.splice(e.currentIndex, 1)
+  })
 }
 const disassemblyData2 = (list) => {
   flatNodes(list, excludes, (nodes, node, currentIndex) => {
-    nodes[currentIndex] = node.id
+    nodes[currentIndex] = node.id && node.id
   })
   // const result = {
   //   list: data.list,
@@ -257,16 +284,26 @@ const disassemblyData2 = (list) => {
 }
 const checkIslineChildren = (node) => node.context.parent.type === 'inline'
 const checkIsField = (type) => fieldsRe.test(type)
+// const calculateAverage = (count, total = 100) => {
+//   const base = Math.floor(total / count)
+//   const rest = total % count
+//   const result = []
+//   for (let i = 0; i < count; i++) {
+//     result.push(base + (i < rest ? 1 : 0))
+//   }
+//   return result
+// }
 const calculateAverage = (count, total = 100) => {
-  const base = Math.floor(total / count)
-  const rest = total % count
+  const base = total / count
   const result = []
   for (let i = 0; i < count; i++) {
-    result.push(base + (i < rest ? 1 : 0))
+    // result.push(base + (i < rest ? 1 : 0))
+    result.push(Number(base.toFixed(2)))
   }
   return result
 }
 const syncWidthByPlatform = (node, platform, value) => {
+  // debugger
   const isArray = _.isArray(node)
   if (!isArray) {
     if (_.isObject(node.style.width)) {
@@ -277,6 +314,7 @@ const syncWidthByPlatform = (node, platform, value) => {
   }
   const otherNodes = isArray ? node : node.context.parent.columns.filter(e => e !== node)
   const averageWidths = calculateAverage(otherNodes.length, isArray ? 100 : 100 - value)
+  window.otherNodes = otherNodes
   otherNodes.forEach((node, index) => {
     const isFieldWidth = _.isObject(node.style.width)
     if (isFieldWidth) {
@@ -314,5 +352,6 @@ export {
   fieldLabel,
   transferData,
   transferLabelPath,
-  isNull
+  isNull,
+  repairLayout
 }

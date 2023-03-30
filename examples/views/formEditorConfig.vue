@@ -4,9 +4,9 @@ import { ref, onMounted, getCurrentInstance, reactive, computed } from 'vue'
 import { erFormConfig, erGeneratorData, erComponentsConfig, utils } from '@ER/formEditor'
 
 const EReditorRef = ref(null)
-const layoutNodes = erComponentsConfig.fieldConfig[2].list.map(e => erGeneratorData(e, true, 'zh-cn'))
+const layoutNodes = erComponentsConfig.fieldConfig[2].list.map(e => erGeneratorData(e, true, 'en'))
 const store = reactive({
-  fields: [...erComponentsConfig.fieldConfig[0].list, ...erComponentsConfig.fieldConfig[1].list].map(e => erGeneratorData(e, true, 'zh-cn')),
+  fields: [...erComponentsConfig.fieldConfig[0].list, ...erComponentsConfig.fieldConfig[1].list].map(e => erGeneratorData(e, true, 'en')),
   layouts: []
 })
 const fieldData = ref({})
@@ -27,15 +27,14 @@ layoutNodes.forEach((node, index) => {
   }
 })
 const all = [...store.fields, ...store.layouts]
-const value0 = ref('root')
-// const value0 = ref(store.layouts[0].id)
-// const value0 = ref(store.fields[5].id)
+// const value0 = ref('root')
+// const value0 = ref(store.layouts[8].id)
+const value0 = ref(store.fields[13].id)
 const sector = computed(() => {
   let result = ''
   if (value0.value === 'root') {
     result = 'root'
   } else {
-    console.log(value0.value)
     result = _.find(all, { id: value0.value })
   }
   return result
@@ -72,6 +71,7 @@ const handleListener = async ({ type, data }) => {
       <el-aside width="340px">
         <div class="customConfig">
           <er-form-config
+            lang="en"
             @listener="handleListener"
             :field="sector"
             ref="EReditorRef"/>

@@ -23,7 +23,9 @@ const handleAction = (type) => {
       const type = `${target.value.type}Col`
       const data = utils.renderFieldData(type)
       data.label = `Tab ${unref(target).columns.length + 1}`
+      // console.log(unref(target))
       unref(target).columns.push(data)
+      utils.addContext(data, target.value)
       break
     case 2:
       break

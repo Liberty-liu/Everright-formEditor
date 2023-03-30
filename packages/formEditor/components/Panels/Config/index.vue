@@ -99,14 +99,25 @@ const rules = reactive({
   ]
 })
 const bars = computed(() => {
-  let result = ['root']
+  let nodes = ['root']
+  let result = []
   // if (!_.isEmpty(target.value)) {
   //   result = result.concat(target.value.context.parents)
   // }
   if (!isSelectRoot.value) {
-    result = result.concat(target.value.context.parents.filter(e => !/^(inline|tr)$/.test(e.type)))
+    nodes = nodes.concat(target.value.context.parents.filter(e => !/^(inline|tr)$/.test(e.type)))
   }
-  // console.log(result)
+  if (nodes.length > 4) {
+    result.push(nodes[0])
+    result.push({
+      value: 'placeholder'
+    })
+    result.push(nodes[nodes.length - 2])
+    result.push(nodes[nodes.length - 1])
+  } else {
+    result = nodes
+  }
+  console.log(result)
   return result.map(node => {
     const result = {
       // eslint-disable-next-line
@@ -115,11 +126,10 @@ const bars = computed(() => {
     }
     if (node === 'root') {
       result.label = t('er.panels.config')
-    } else {
+    } else if (node.value !== 'placeholder') {
       if (/^(col|collapseCol|tabsCol|td)$/.test(node.type)) {
         result.label = t(`er.layout.${node.type}`)
       } else {
-        // result.label = t(`er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`)
         result.label = utils.fieldLabel(t, node)
       }
     }
@@ -146,8 +156,8 @@ watch(target, () => {
 <template>
   <el-aside :class="[ns.b()]" :width="ER.props.configPanelWidth">
     <el-breadcrumb :class="[ns.e('breadcrumb')]" separator-icon="ArrowRight">
-      <el-breadcrumb-item @click="index !== bars.length - 1 && handleBreadcrumbClick(item.node)" v-for="(item, index) in bars" :key="index">
-        {{item.label}}
+      <el-breadcrumb-item @click="(index !== bars.length - 1 && item.node.value !== 'placeholder') && handleBreadcrumbClick(item.node)" v-for="(item, index) in bars" :key="index">
+        {{item.node.value === 'placeholder' ? '...' : item.label}}
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-form

@@ -55,10 +55,13 @@ onMounted(() => {
 })
 </script>
 <template>
-  <er-form-editor
-    :lang="lang"
-    @listener="handleListener"
+  <div
     v-loading="loading"
-    :fileUploadURI="uri.uploadFile"
-    ref="EReditorRef"/>
+  >
+    <er-form-editor
+      :lang="lang"
+      @listener="handleListener"
+      :fileUploadURI="uri.uploadFile"
+      ref="EReditorRef"/>
+  </div>
 </template>

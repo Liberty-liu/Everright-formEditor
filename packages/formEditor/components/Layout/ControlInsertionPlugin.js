@@ -1,5 +1,6 @@
 import _ from 'lodash-es'
 import utils from '@ER/utils'
+import { nextTick } from 'vue'
 let prevEl = ''
 let prevSortable = ''
 let inserRowIndex = ''
@@ -254,10 +255,21 @@ function ControlInsertionPlugin (ER) {
   function ControlInsertion (sortable) {
   }
   ControlInsertion.prototype = {
+    dragStart (e) {
+      // const {
+      //   rootEl,
+      //   target
+      // } = e
+      // const isBlock = _.get(e, 'sortable.options.dataSource', false) === 'block'
+      // if (isBlock) return false
+      // const targetContainer = rootEl.parentNode
+      // targetContainer.style.zIndex = 2
+    },
     drop (e) {
       if (!prevEl || !e.activeSortable) {
         return false
       }
+      // e.sortable.el.parentNode.removeAttribute('style')
       const isBlock = _.get(e, 'activeSortable.options.dataSource', false) === 'block'
       const {
         dragEl,
@@ -265,8 +277,18 @@ function ControlInsertionPlugin (ER) {
       } = e
       const oldEl = getDragElement(dragEl)
       const newElement = ER.wrapElement(_.cloneDeep(oldEl), inserRowIndex !== '', true, isBlock)
+      if (!isBlock) {
+        if (oldEl.context) {
+          oldEl.context.delete()
+          utils.deepTraversal(oldEl, (node) => {
+            if (utils.checkIsField(node.type)) {
+              ER.delField(node)
+            }
+          })
+        }
+      }
       if (inserRowIndex !== '') {
-        const store = getNodes(prevSortable.options.parent)
+        const store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
         store.splice(inserRowIndex, 0, newElement)
         utils.addContext(store[inserRowIndex], prevSortable.options.parent)
       }
@@ -283,12 +305,19 @@ function ControlInsertionPlugin (ER) {
           }
         } = prevSortable
         list.splice(inserColIndex, 0, newElement)
-        utils.addContext(list[inserColIndex], ER.state.store[sortableUtils.index(prevSortable.el.parentNode)])
+        utils.addContext(list[inserColIndex], prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)])
+      }
+      if (inserColIndex !== '' || inserRowIndex !== '') {
+        utils.deepTraversal(newElement, (node) => {
+          if (utils.checkIsField(node.type)) {
+            ER.addField(node)
+          }
+        })
+        nextTick(() => {
+          ER.setSector(newElement)
+        })
       }
       resetStates()
-      if (!isBlock) {
-        oldEl.context && oldEl.context.delete()
-      }
     },
     dragOver (e) {
       // e.originalEvent && e.originalEvent.stopPropagation()
@@ -333,8 +362,7 @@ function ControlInsertionPlugin (ER) {
       const targetContainer = el.parentNode
       const targetOnlyOne = targetList.length === 1
       let newTarget = utils.closest(target, this.options.draggable, sortable.el)
-      // console.log(ER.state.store.length)
-      // if (ER.state.store.length > 0 && (/^(root)$/.test(target.dataset.layoutType))) {
+      // if (dragEl.contains(e.target)) {
       //   return false
       // }
       if (/^(grid-col|tabs-col|td|collapse-col|root|inline)$/.test(target.dataset.layoutType)) {

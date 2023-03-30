@@ -5,6 +5,7 @@ import PanelsBlocks from '@ER/formEditor/components/Panels/Blocks'
 import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
 import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
+import erFormPreview from './preview.vue'
 import Icon from '@ER/icon'
 import ClipboardJS from 'clipboard'
 import hooks from '@ER/hooks'
@@ -34,6 +35,9 @@ const layout = {
   pc: [],
   mobile: []
 }
+window.layout = layout
+const previewPlatform = ref('pc')
+const previewLoading = ref(true)
 const state = reactive({
   blocks: fieldConfig,
   store: [],
@@ -91,11 +95,9 @@ const {
   t,
   lang
 } = hooks.useI18n(props)
-const element = ref('')
-const copyElement = ref(null)
+const EReditorPreviewRef = ref('')
 const isShow = ref(true)
 const isShowConfig = ref(true)
-const loading = ref(false)
 const setSector = (node) => {
   let result = ''
   if (node === 'root') {
@@ -151,7 +153,7 @@ const addFieldData = (node) => {
     node.options.action = props.fileUploadURI
   }
 }
-const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true) => {
+const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true, resetWidth = true) => {
   const node = sourceBlock
     ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
       addFieldData(node)
@@ -165,10 +167,25 @@ const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true) 
           ]
         }
       : el
+  if (!sourceBlock && resetWidth) {
+    if (utils.checkIsField(el.type)) {
+      if (state.platform === 'pc') {
+        el.style.width.pc = '100%'
+      } else {
+        el.style.width.mobile = '100%'
+      }
+      // el.style.width = {
+      //   pc: '100%',
+      //   mobile: '100%'
+      // }
+    } else {
+      el.style.width = '100%'
+    }
+  }
   if (isSetSector) {
-    nextTick(() => {
-      setSector(node)
-    })
+    // nextTick(() => {
+    //   setSector(node)
+    // })
   }
   return node
 }
@@ -179,9 +196,10 @@ const syncLayout = (platform, fn) => {
   layout[isPc ? 'mobile' : 'pc'] = original
   if (_.isEmpty(isPc ? layout.pc : layout.mobile)) {
     // const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false)))
-    const newData = state.fields.map(e => wrapElement(e, true, false))
+    const newData = state.fields.map(e => wrapElement(e, true, false, false, false))
     fn && fn(newData)
   } else {
+    // debugger
     const layoutFields = utils.pickfields(isPc ? layout.pc : layout.mobile).map(e => {
       return {
         id: e
@@ -189,8 +207,13 @@ const syncLayout = (platform, fn) => {
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
     const addFields = _.differenceBy(state.fields, layoutFields, 'id')
+    const delFields = _.differenceBy(layoutFields, state.fields, 'id')
+    utils.repairLayout(copyData, delFields)
+    // console.log(JSON.stringify(copyData, '', 2))
     utils.combinationData2(copyData, state.fields)
-    copyData.push(...addFields.map(e => wrapElement(e, true, false)))
+    // console.log(JSON.stringify(copyData, '', 2))
+    copyData.push(...addFields.map(e => wrapElement(e, true, false, false, false)))
+    // copyData.push(...addFields)
     fn && fn(copyData)
   }
 }
@@ -202,13 +225,12 @@ const getLayoutDataByplatform = (platform) => {
       utils.disassemblyData2(original)
       return original
     } else {
-      const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false)))
+      const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false, false, false)))
       utils.disassemblyData2(newData)
       return newData
     }
   } else {
     if (platform === state.platform) {
-      const isPc = platform === 'pc'
       const original = _.cloneDeep(state.store)
       utils.disassemblyData2(original)
       layout[isPc ? 'pc' : 'mobile'] = original
@@ -219,25 +241,30 @@ const getLayoutDataByplatform = (platform) => {
       }
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
-    const addFields = _.differenceBy(state.fields, layoutFields, 'id')
-    utils.combinationData2(copyData, state.fields)
-    copyData.push(...addFields.map(e => wrapElement(e, true, false)))
-    utils.disassemblyData2(copyData)
+    const addFields = _.cloneDeep(_.differenceBy(state.fields, layoutFields, 'id').map(e => wrapElement(e, true, false, false, false)))
+    const delFields = _.differenceBy(layoutFields, state.fields, 'id')
+    utils.repairLayout(copyData, delFields)
+    utils.disassemblyData2(addFields)
+    copyData.push(...addFields)
     return copyData
   }
 }
 window.layout = layout
 const switchPlatform = (platform) => {
+  if (state.platform === platform) {
+    return false
+  }
   if (props.layoutType === 2) {
     syncLayout(platform, (newData) => {
       state.store = newData
+      // console.log(JSON.stringify(newData, '', 2))
       state.store.forEach((e) => {
         utils.addContext(e, state.store)
       })
     })
   }
   state.platform = platform
-  setSector('root')
+  // setSector('root')
 }
 const canvesScrollRef = ref('')
 provide('Everright', {
@@ -261,6 +288,7 @@ const getData1 = () => {
   }))
 }
 const getData2 = () => {
+  // debugger
   layout.pc = getLayoutDataByplatform('pc')
   layout.mobile = getLayoutDataByplatform('mobile')
   return _.cloneDeep({
@@ -328,7 +356,7 @@ defineExpose({
   setData,
   getData
 })
-const handleOperation = (type) => {
+const handleOperation = (type, val) => {
   switch (type) {
     case 1:
       break
@@ -342,8 +370,12 @@ const handleOperation = (type) => {
       break
     case 3:
       state.previewVisible = true
+      previewLoading.value = true
       nextTick(() => {
-        element.value.setData(getData())
+        EReditorPreviewRef.value.setData(getData())
+        nextTick(() => {
+          previewLoading.value = false
+        })
       })
       break
     case 4:
@@ -357,6 +389,17 @@ const handleOperation = (type) => {
       break
     case 6:
       isFoldConfig.value = !isFoldConfig.value
+      break
+    case 7:
+      previewLoading.value = true
+      previewPlatform.value = val
+      EReditorPreviewRef.value.switchPlatform(val)
+      EReditorPreviewRef.value.setData(getData())
+      nextTick(() => {
+        nextTick(() => {
+          previewLoading.value = false
+        })
+      })
       break
   }
 }
@@ -374,38 +417,24 @@ const onClickOutside = () => {
 }
 </script>
 <template>
-<!--  <el-dialog destroy-on-close :class="[ns.e('previewDialog')]" fullscreen v-model="state.previewVisible">-->
-<!--    <el-scrollbar>-->
-<!--      <div :class="[ns.e('device')]">-->
-<!--        <div>-->
-<!--          <Icon @click="element.swtchPlatform('pc')" icon="pc" :class="[ns.e('icon'), element && element.state.platform === 'pc' && 'active']"></Icon>-->
-<!--          <Icon @click="element.swtchPlatform('mobile')" icon="iphone" :class="[ns.e('icon'), element && element.state.platform === 'mobile' && 'active']"></Icon>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <current ref="element" mode="preview"></current>-->
-<!--    </el-scrollbar>-->
-<!--    <div>123123</div>-->
-<!--  </el-dialog>-->
-  <el-container v-loading="loading" :class="[ns.b()]" direction="vertical">
-<!--    <el-container :class="[ns.e('operation')]">-->
-<!--      <el-aside width="300px"></el-aside>-->
-<!--      <el-container>-->
-<!--        <el-row align="middle" justify="space-between" style="width:100%;">-->
-<!--          <el-col :span="6" :class="[ns.e('device')]">-->
-<!--            <Icon :disabled="!canUndo" :class="[ns.e('icon')]" @click="undo()" icon="undo"></Icon>-->
-<!--            <Icon :disabled="!canRedo" :class="[ns.e('icon')]" @click="redo()" icon="redo"></Icon>-->
-<!--          </el-col>-->
-<!--          <el-col :span="3">-->
-<!--            <Icon @click="handleOperation(1)" :class="[ns.e('icon')]" icon="jurassic_import-form"></Icon>-->
-<!--            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="CLEAR"></Icon>-->
-<!--            <Icon @click="handleOperation(3)" :class="[ns.e('icon')]" icon="yulan"></Icon>-->
-<!--            <Icon @click="handleOperation(4)" :class="[ns.e('icon'), 'getJson']" icon="json"></Icon>-->
-<!--            <div></div>-->
-<!--          </el-col>-->
-<!--        </el-row>-->
-<!--      </el-container>-->
-<!--      <el-aside width="350px"></el-aside>-->
-<!--    </el-container>-->
+  <el-dialog
+    destroy-on-close
+    fullscreen
+    :class="[ns.e('previewDialog')]"
+    @closed="previewPlatform = pc"
+    v-model="state.previewVisible">
+    <template v-slot:header>
+      <DeviceSwitch :modelValue="previewPlatform" @update:modelValue="(val) => handleOperation(7, val)"></DeviceSwitch>
+    </template>
+    <el-scrollbar>
+      <div v-loading="previewLoading" :class="[ns.e('previewDialogWrap'), previewPlatform === 'mobile' && ns.is('mobilePreview')]">
+        <er-form-preview
+          ref="EReditorPreviewRef"
+        />
+      </div>
+    </el-scrollbar>
+  </el-dialog>
+  <el-container :class="[ns.b()]" direction="vertical">
     <el-container>
       <PanelsBlocks v-show="isFoldBlocks"/>
       <el-container :class="[ns.e('container')]">
@@ -415,7 +444,7 @@ const onClickOutside = () => {
             <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="clear0"></Icon>
           </div>
           <div>
-            <DeviceSwitch></DeviceSwitch>
+            <DeviceSwitch :modelValue="state.platform" @update:modelValue="(val) => switchPlatform(val)"></DeviceSwitch>
           </div>
           <div>
             <el-dropdown @command="(command) => emit('listener', {
@@ -430,7 +459,7 @@ const onClickOutside = () => {
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
-            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="preview"></Icon>
+            <Icon @click="handleOperation(3)" :class="[ns.e('icon')]" icon="preview"></Icon>
           </div>
         </el-header>
         <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>

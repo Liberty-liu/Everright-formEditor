@@ -160,11 +160,15 @@ export default defineComponent({
               if (unref(isPc)) {
                 node = (
                   <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
-                    <el-form-item
-                      {...typeProps.value}
-                    >
-                      <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                    </el-form-item>
+                    {
+                      element.type !== 'divider'
+                        ? (<el-form-item
+                        {...typeProps.value}
+                      >
+                        <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                      </el-form-item>)
+                        : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                    }
                   </SectorSelectElement>
                 )
               } else {

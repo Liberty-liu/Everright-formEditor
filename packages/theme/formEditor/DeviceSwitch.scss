@@ -1,6 +1,12 @@
 @include b(DeviceSwitch) {
   @include e(icon) {
     border: 1px solid #DDDDDD;
+    font-size: 14px;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     &:first-child{
       border-right: 0;
       border-radius: 4px 0px 0px 4px;

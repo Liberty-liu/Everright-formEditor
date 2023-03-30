@@ -13,25 +13,25 @@ export default defineComponent({
   setup (props) {
     const ER = inject('Everright')
     const ns = hooks.useNamespace('InlineLayout')
-    watch(() => props.data.columns, (newVal) => {
-      if (!newVal.length) {
-        nextTick(() => {
-          props.data.context.delete()
-        })
-      }
-    }, {
-      deep: true
-    })
+    // watch(() => props.data.columns, (newVal) => {
+    //   if (!newVal.length) {
+    //     props.data.context.delete()
+    //   }
+    // }, {
+    //   deep: true
+    // })
     watch(() => props.data.columns.length, (newVal, oldVal) => {
-      if (newVal !== oldVal) {
-        console.log(123123)
-        utils.syncWidthByPlatform(props.data.columns, state.platform)
+      if (!newVal) {
+        props.data.context.delete()
       }
-      //   const averageWidths = utils.calculateAverage(newVal)
-      //   props.data.columns.forEach((node, index) => {
-      //     node.style.width = averageWidths[index] + '%'
-      //   })
-      // }
+      if (newVal !== oldVal) {
+        utils.syncWidthByPlatform(props.data.columns, state.platform)
+        // nextTick(() => {
+        //   // window.columns = props.data.columns
+        //   // console.log(props.data.columns)
+        //   utils.syncWidthByPlatform(props.data.columns, state.platform)
+        // })
+      }
     })
     const dragOptions = {
       direction: 'horizontal'
@@ -47,6 +47,7 @@ export default defineComponent({
             {...dragOptions}
             data={props.data.columns}
             parent={props.parent}/>
+            {/* parent={props.data}/> */}
         </div>
       )
     }
