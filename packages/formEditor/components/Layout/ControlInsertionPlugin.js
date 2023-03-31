@@ -104,7 +104,21 @@ function lastChild (el, selector) {
 
   return last || null
 }
-const getDirection = (target, originalEvent) => {
+const disableBothSides = (ER) => ER.props.layoutType === 1 && ER.state.platform === 'mobile'
+const getDirection1 = (target, originalEvent) => {
+  let direction = ''
+  const Y = getOffset(target, 'offsetTop')
+  const scrollEl = getParentAutoScrollElement(target, true)
+  const clientY = originalEvent.clientY + scrollEl.scrollTop
+  const h = target.offsetHeight
+  if (clientY > Y && clientY < Y + (h / 2)) {
+    direction = 5
+  } else {
+    direction = 6
+  }
+  return direction
+}
+const getDirection0 = (target, originalEvent) => {
   let direction = ''
   const X = getOffset(target, 'offsetLeft')
   const Y = getOffset(target, 'offsetTop')
@@ -182,9 +196,13 @@ const setStates = (newTarget, ev, ER) => {
     sortable
   } = ev
   const targetContainer = el.parentNode
-  const direction = getDirection(newTarget, originalEvent)
+  const direction = disableBothSides(ER) ? getDirection1(newTarget, originalEvent) : getDirection0(newTarget, originalEvent)
   const cols = newTarget.parentNode.children
   const colIndex = utils.index(newTarget)
+  const rows = targetContainer.parentNode.children
+  const rowIndex = utils.index(targetContainer)
+  // console.log(ER.props.layoutType === 1)
+  // console.log(targetContainer)
   if (/^(2|4)$/.test(direction)) {
     if (targetList.length === 4 && !el.contains(dragEl)) {
       return false
@@ -197,6 +215,10 @@ const setStates = (newTarget, ev, ER) => {
   }
   switch (direction) {
     case 1:
+      if (list.length === 1 && rows[rowIndex - 1] && rows[rowIndex - 1].contains(dragEl)) {
+        prevEl = ''
+        return false
+      }
       prevSortable = sortable
       prevEl = targetContainer
       inserRowIndex = utils.index(prevEl)
@@ -218,15 +240,16 @@ const setStates = (newTarget, ev, ER) => {
       }
       break
     case 3:
-      const rows = targetContainer.parentNode.children
-      const rowIndex = utils.index(targetContainer)
-      const el = ''
       prevSortable = sortable
       if (rowIndex === rows.length - 1) {
         prevEl = targetContainer
         setBorder(prevEl, 'drag-line-bottom')
       } else {
         prevEl = rows[rowIndex + 1]
+        if (list.length === 1 && rows[rowIndex + 1].contains(dragEl)) {
+          prevEl = ''
+          return false
+        }
         setBorder(prevEl, 'drag-line-top')
       }
       inserRowIndex = utils.index(targetContainer) + 1
@@ -237,6 +260,37 @@ const setStates = (newTarget, ev, ER) => {
         prevSortable = sortable
         inserColIndex = utils.index(prevEl)
         setBorder(prevEl, 'drag-line-left')
+      }
+      break
+    case 5:
+      // console.log('上')
+      if (targetList.length === 4 && !el.contains(dragEl)) {
+        return false
+      }
+      if (cols[utils.index(target) - 1] !== dragEl) {
+        prevEl = newTarget
+        prevSortable = sortable
+        inserColIndex = utils.index(prevEl)
+        setBorder(prevEl, 'drag-line-top')
+      }
+      break
+    case 6:
+      // console.log('下')
+      if (targetList.length === 4 && !el.contains(dragEl)) {
+        return false
+      }
+      if (cols[utils.index(target) + 1] !== dragEl) {
+        if (colIndex === targetList.length - 1) {
+          prevEl = newTarget
+          prevSortable = sortable
+          inserColIndex = utils.index(prevEl) + 1
+          setBorder(prevEl, 'drag-line-bottom')
+        } else {
+          prevSortable = sortable
+          prevEl = cols[colIndex + 1]
+          inserColIndex = utils.index(prevEl)
+          setBorder(prevEl, 'drag-line-top')
+        }
       }
       break
   }
@@ -305,7 +359,7 @@ function ControlInsertionPlugin (ER) {
           }
         } = prevSortable
         list.splice(inserColIndex, 0, newElement)
-        utils.addContext(list[inserColIndex], prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)])
+        utils.addContext(newElement, prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)])
       }
       if (inserColIndex !== '' || inserRowIndex !== '') {
         utils.deepTraversal(newElement, (node) => {
@@ -362,31 +416,37 @@ function ControlInsertionPlugin (ER) {
       const targetContainer = el.parentNode
       const targetOnlyOne = targetList.length === 1
       let newTarget = utils.closest(target, this.options.draggable, sortable.el)
-      // if (dragEl.contains(e.target)) {
-      //   return false
-      // }
+      if (dragEl.contains(newTarget)) {
+        return false
+      }
       if (/^(grid-col|tabs-col|td|collapse-col|root|inline)$/.test(target.dataset.layoutType)) {
         newTarget = target
         const state = (newTarget.__draggable_component__ || newTarget.children[0].__draggable_component__)
-        const {
-          list
-        } = state
-        if (!list.length) {
+        if (!state.list.length) {
           prevEl = target.dataset.layoutType === 'root' ? target : newTarget.__draggable_component__ ? newTarget.children[0] : newTarget.parentNode
           prevSortable = state._sortable
           inserRowIndex = 0
           setBorder(prevEl, 'drag-line-top')
         } else {
-          if (target.dataset.layoutType === 'root') {
+          if (/^(root|grid-col)$/.test(target.dataset.layoutType)) {
             const rows = el.children
             prevEl = lastChild(el)
+            if (prevEl.contains(dragEl) && list.length === 1) {
+              prevEl = ''
+              return false
+            }
             setBorder(prevEl, 'drag-line-bottom')
             inserRowIndex = rows.length
             prevSortable = state._sortable
           }
           if (target.dataset.layoutType === 'inline') {
+            if (disableBothSides(ER)) return false
             const cols = el.children
             prevEl = lastChild(el)
+            if (prevEl.contains(dragEl) && list.length === 1) {
+              prevEl = ''
+              return false
+            }
             inserColIndex = cols.length
             prevSortable = state._sortable
             setBorder(prevEl, 'drag-line-right')

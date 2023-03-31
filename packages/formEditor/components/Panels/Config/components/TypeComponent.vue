@@ -56,7 +56,7 @@ const fireEvent = (property, item) => {
             <div>{{label}}</div>
           </div>
           <template v-if="layoutType === 2">
-            <el-radio-group :modelValue="val" @change="(curVal) => fireEvent(property, { value: curVal })">
+            <el-radio-group size="small" :modelValue="val" @change="(curVal) => fireEvent(property, { value: curVal })">
               <el-radio-button v-for="item in nodes" :label="item.value" :key="item.value">{{ item.label }}</el-radio-button>
             </el-radio-group>
           </template>

@@ -117,7 +117,6 @@ const bars = computed(() => {
   } else {
     result = nodes
   }
-  console.log(result)
   return result.map(node => {
     const result = {
       // eslint-disable-next-line

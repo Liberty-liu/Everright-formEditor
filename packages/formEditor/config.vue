@@ -34,7 +34,7 @@ const state = reactive({
   fields: []
 })
 const element = ref('')
-const ns = hooks.useNamespace('EverrightEditor', state.Namespace)
+const ns = hooks.useNamespace('Main', state.Namespace)
 const loading = ref(false)
 const setSector = (node) => {
   let result = ''

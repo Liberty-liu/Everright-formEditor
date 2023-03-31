@@ -1,7 +1,7 @@
 export default {
   er: {
     panels: {
-      config: '全局配置'
+      config: '表单属性'
     },
     fields: {
       input: [

@@ -25,12 +25,7 @@ export default defineComponent({
         props.data.context.delete()
       }
       if (newVal !== oldVal) {
-        utils.syncWidthByPlatform(props.data.columns, state.platform)
-        // nextTick(() => {
-        //   // window.columns = props.data.columns
-        //   // console.log(props.data.columns)
-        //   utils.syncWidthByPlatform(props.data.columns, state.platform)
-        // })
+        utils.syncWidthByPlatform(props.data.columns, state.platform, ER.props.layoutType === 1)
       }
     })
     const dragOptions = {

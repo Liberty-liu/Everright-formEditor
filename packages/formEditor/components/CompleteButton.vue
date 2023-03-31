@@ -33,6 +33,7 @@ const handleClick = async (type) => {
     })
     // console.log(JSON.stringify(_.cloneDeep(result)))
   } catch (e) {
+    console.log(e)
   }
   // unref(props.handle).validate().then(() => {
   //   const result = {}

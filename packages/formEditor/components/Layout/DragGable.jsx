@@ -188,7 +188,9 @@ export default defineComponent({
         if (_.isEmpty(props.data)) {
           if (!props.isRoot) {
             node = (
-              <div class={ns.e('dropHere')}></div>
+              <div class={ns.e('dropHere')}>
+                Drop here
+              </div>
             )
           }
         }

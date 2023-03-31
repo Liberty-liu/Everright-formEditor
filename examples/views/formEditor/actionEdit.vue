@@ -1,30 +1,22 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, inject } from 'vue'
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import hooks from '@ER/hooks'
 import { erFormPreview } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 const route = useRoute()
 const loading = ref(true)
-const lang = ref('en')
+const {
+  lang
+} = inject('globalConfig')
 const EReditorRef = ref(null)
 const isEdit = !!route.params.actionid
 const state = reactive({
   name: ''
 })
-window.lang = lang
 const getObjData = async () => {
   try {
-    // const {
-    //   data: {
-    //     content,
-    //     name
-    //   }
-    // } = await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
-    //   method: 'get'
-    // })
-    // state.name = name
-    // EReditorRef.value.setData(content)
     const data = []
     const {
       data: data0
@@ -56,22 +48,13 @@ const handleListener = async ({ type, data }) => {
         method: isEdit ? 'put' : 'post',
         data: postData
       })
+      ElMessage({
+        message: 'save successfully.',
+        type: 'success'
+      })
     } finally {
       loading.value = false
     }
-    // loading.value = true
-    // try {
-    //   const postData = {
-    //     name: state.name,
-    //     content: data
-    //   }
-    //   await hooks.useFetch(`${uri.obj}/${route.params.objid}`, {
-    //     method: 'put',
-    //     data: postData
-    //   })
-    // } finally {
-    //   loading.value = false
-    // }
   }
 }
 onMounted(() => {

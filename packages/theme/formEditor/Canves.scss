@@ -1,17 +1,27 @@
 @include b(Canves) {
   padding: 0;
-  height: calc(100% - 40px);
-  //&>form, &>form>.el-scrollbar {
-  //.el-form,.el-scrollbar__view,.el-scrollbar__view>div {
-  //  height: 100%;
-  //}
-  //.el-scrollbar {
-  //  box-sizing: content-box;
-  //  //height: calc(100% - 12px);
-  //  height: 100%;
-  //  margin: 0 32px 0;
-  //  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-  //}
+  @include e(editModel) {
+    height: calc(100% - 40px);
+    .#{$namespace}-GridLayout__area {
+      outline: 1px dashed #ddd;
+    }
+    &.#{$namespace}-Canves__mobile {
+      .el-scrollbar {
+        width: 400px;
+        margin: 0 auto;
+      }
+      .Everright-editor-Canves__container {
+        width: 750px;
+        margin: 0 auto;
+      }
+      .van-cell-group {
+        border-radius: 8px;
+        //&>.#{$namespace}-selectElement{
+        //  padding: 0;
+        //}
+      }
+    }
+  }
   @include e(container) {
     height: 100%;
     box-sizing: content-box;
@@ -27,54 +37,25 @@
     box-sizing: border-box;
     //height: 100%;
   }
-  @include e(mobile) {
-    .el-scrollbar {
-      width: 400px;
-      margin: 0 auto;
+  //@include e(mobile) {
+  //}
+  @include e(mobile_layoutType1) {
+    //[data-layout-type="grid"] {}
+    .#{$namespace}-GridLayout {
+      width: 100%;
+      .el-col {
+        width: 100% !important;
+        max-width: inherit;
+        flex: 0 0 auto;
+      }
     }
-    .Everright-editor-Canves__container {
-      width: 750px;
-      margin: 0 auto;
-    }
-    .van-cell-group {
-      border-radius: 8px;
-      //&>.#{$namespace}-selectElement{
-      //  padding: 0;
-      //}
+    .#{$namespace}-InlineLayout>div {
+      flex-wrap: wrap;
+      &>* {
+        width: 100%;
+      }
     }
   }
-  //.el-row>.ghost {
-  //  height: 100% !important;
-  //  width: 2px;
-  //  background: #000;
-  //  position: absolute;
-  //}
-  //.ghost,.inlineGhost {
-  //  background: #F56C6C;
-  //  border: 2px solid #F56C6C;
-  //  position: relative;
-  //  overflow: hidden;
-  //  padding: 0;
-  //  &::after{
-  //    background: #F56C6C;
-  //    position: absolute;
-  //    top: 0;
-  //    left: 0;
-  //    bottom: 0;
-  //    right: 0;
-  //    z-index: 9999;
-  //    content: '';
-  //    outline: none;
-  //  }
-  //}
-  //.ghost {
-  //  height: 0px;
-  //  width: 100%;
-  //}
-  //.inlineGhost {
-  //  //height: 100%;
-  //  width: 0px;
-  //}
 }
 .Everright-editor-Canves-DropHere {
   display: flex;

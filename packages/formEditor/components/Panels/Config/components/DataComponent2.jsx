@@ -48,7 +48,11 @@ export default defineComponent({
       state,
       target
     } = hooks.useTarget()
-    this.data[0] = _.cloneDeep(state.data[target.value.options.dataKey].list)
+    if (state.mode === 'config') {
+      this.data[0] = target.value.options.data = target.value.options.data || [...utils.generateOptions(3)]
+    } else {
+      this.data[0] = _.cloneDeep(state.data[target.value.options.dataKey].list)
+    }
     // this.data[0].forEach(e => {
     //   utils.deepTraversal(e, (node) => {
     //     Object.defineProperty(node, 'Selected', {

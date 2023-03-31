@@ -198,7 +198,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
             result['controls-position'] = options.controlsPosition ? 'right' : ''
           }
         } else {
-          result.inputWidth = '100px'
+          // result.inputWidth = '100px'
           result.defaultValue = null
           result.allowEmpty = true
         }

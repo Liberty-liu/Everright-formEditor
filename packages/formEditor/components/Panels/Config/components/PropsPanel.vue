@@ -1,5 +1,5 @@
 <script>
-import { ref, computed, reactive, watchEffect, watch, unref, provide, onMounted } from 'vue'
+import { ref, computed, reactive, watchEffect, watch, unref, provide, onMounted, inject } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import PanelsConfigComponentsCheckboxComponent from './CheckboxComponent.vue'
@@ -22,6 +22,7 @@ export default {
 }
 </script>
 <script setup>
+const ER = inject('Everright')
 const ns = hooks.useNamespace('PropsPanel')
 const {
   t
@@ -344,8 +345,8 @@ const handleTypeListener = ({ property, data }) => {
   switch (property) {
     case 'width':
       // eslint-disable-next-line
-      const val = eval(data.value) * 100
-      utils.syncWidthByPlatform(target.value, state.platform, val)
+      const val = Number((eval(data.value) * 100).toFixed(2))
+      utils.syncWidthByPlatform(target.value, state.platform, false, val)
       break
     case 'type':
       target.value.options.type = data.value
@@ -377,11 +378,11 @@ onMounted(() => {
 </script>
 <template>
   <div :class="ns.b()">
-    <el-form-item label="唯一标识" prop="id">
-      <el-tag type="warning">
-        {{target.id}}
-      </el-tag>
-    </el-form-item>
+<!--    <el-form-item label="唯一标识" prop="id">-->
+<!--      <el-tag type="warning">-->
+<!--        {{target.id}}-->
+<!--      </el-tag>-->
+<!--    </el-form-item>-->
     <el-form-item v-if="isSelectField" :label="t('er.config.propsPanel.id')" prop="key">
       <el-input
         v-model="target.key"
@@ -696,7 +697,7 @@ onMounted(() => {
       </el-select>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
-      v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4"
+      v-if="utils.checkIslineChildren(target) && target.context.parent.columns.length !== 4 && !(ER.props.layoutType === 1 && !isPc)"
       @listener="handleTypeListener"
       property="width"
       :label="t('er.public.width')"

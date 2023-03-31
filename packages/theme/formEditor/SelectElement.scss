@@ -17,17 +17,24 @@
     z-index: 1;
     //height: calc(100vh - 124px);
   }
-  @include e((hover,isScale)){
+  &.sortable-ghost,&.sortable-drag {
     background: #F2F8FF !important;
-    &>.#{$namespace}-selectElement__topLeft,&>.#{$namespace}-selectElement__topRight,&>.#{$namespace}-selectElement__bottomRight {
-      opacity: 1;
-    }
+  }
+  @include e((hover,isScale)){
+    outline: 1px dashed $primary-color !important;
+    //background: #F2F8FF !important;
+    //&>.#{$namespace}-selectElement__topLeft,&>.#{$namespace}-selectElement__topRight,&>.#{$namespace}-selectElement__bottomRight {
+    //  opacity: 1;
+    //}
+  }
+  @include when(borderless) {
+    padding: 0;
   }
   @include when(Selected) {
     outline: 1px solid $primary-color;
     //background: none !important;
     &>.#{$namespace}-selectElement__topLeft,&>.#{$namespace}-selectElement__topRight,&>.#{$namespace}-selectElement__bottomRight {
-      opacity: 1;
+      display: flex;
     }
   }
   @include when(Warning) {
@@ -36,8 +43,9 @@
   @include e(dragIcon) {
     padding: 0;
     font-size: 20px;
+    margin: 0 !important;
   }
-  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon, selectParent)) {
+  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon, selectParent, dragIcon)) {
     border-radius: 4px;
     //box-shadow: 0 2px 6px #00000040;
     background: $primary-color;
@@ -59,15 +67,17 @@
     position: absolute;
     bottom: 0;
     height: 30px;
-    display: flex;
-    opacity: 0;
+    display: none;
+    //display: flex;
+    //opacity: 0;
     align-items: center;
     z-index: 2;
   }
   @include e((topLeft)) {
-    left: 0;
-    top: 0px;
-    height: 100%;
+    left: 1px;
+    top: 1px;
+    height: 24px;
+    //height: 100%;
   }
   @include e(topRight) {
     right: 0;

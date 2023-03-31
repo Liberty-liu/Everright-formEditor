@@ -20,11 +20,15 @@
   //  width: 300px;
   //}
   @include e(icon) {
-    color: $primary-color;
-    font-size: 14px;
+    font-size: 16px;
+    &:hover {
+      color: $primary-color;
+    }
   }
   @include e(operate) {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   @include e(tableThead) {
     width: 100%;
@@ -46,6 +50,7 @@
     border-collapse: collapse;
     td {
       padding: 10px;
+      vertical-align: baseline;
     }
     tr td:first-child {
       text-align: center;

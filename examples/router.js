@@ -4,7 +4,8 @@ import FormEditorView from './views/formEditor.vue'
 import FormEditorConfigView from './views/formEditorConfig.vue'
 import FormEditorObjListView from './views/formEditor/objList.vue'
 import FormEditorObjEditView from './views/formEditor/objEdit.vue'
-import FormEditorObjActionView from './views/formEditor/objAction.vue'
+import FormEditorActionEditView from './views/formEditor/actionEdit.vue'
+import FormEditorActionListView from './views/formEditor/actionList.vue'
 const routes = [
   {
     path: '/',
@@ -39,10 +40,20 @@ const routes = [
         component: FormEditorObjEditView
       },
       {
-        name: 'objAction',
-        path: 'objAction/:objid?/:actionid?',
-        component: FormEditorObjActionView
+        name: 'actionList',
+        path: ':objid?/actionList',
+        component: FormEditorActionListView
+      },
+      {
+        name: 'actionEdit',
+        path: ':objid?/actionEdit/:actionid?',
+        component: FormEditorActionEditView
       }
+      // {
+      //   name: 'objAction',
+      //   path: 'objAction/:objid?/:actionid?',
+      //   component: FormEditorObjActionView
+      // }
     ]
   }
 ]

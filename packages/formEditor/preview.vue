@@ -27,7 +27,7 @@ const state = reactive({
   data: {},
   fields: []
 })
-const ns = hooks.useNamespace('EverrightEditor', state.Namespace)
+const ns = hooks.useNamespace('Main', state.Namespace)
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
@@ -41,7 +41,7 @@ provide('Everright', {
   getData,
   props
 })
-const setData = (data, value) => {
+const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
   layout.pc = newData.layout.pc
   layout.mobile = newData.layout.mobile
@@ -63,6 +63,26 @@ const setData = (data, value) => {
     })
   }
 }
+const setData1 = (data, value) => {
+  if (_.isEmpty(data)) return false
+  const newData = utils.combinationData1(_.cloneDeep(data))
+  console.log(newData)
+  state.store = newData.list
+  state.config = newData.config
+  state.data = newData.data
+  state.fields = newData.fields
+  state.store.forEach((e) => {
+    utils.addContext(e, state.store)
+  })
+  if (!_.isEmpty(value)) {
+    state.fields.forEach((e) => {
+      if (value[e.key]) {
+        e.options.defaultValue = value[e.key]
+      }
+    })
+  }
+}
+const setData = props.layoutType === 1 ? setData1 : setData2
 defineExpose({
   state,
   switchPlatform (platform) {

@@ -7,7 +7,6 @@ import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import erFormPreview from './preview.vue'
 import Icon from '@ER/icon'
-import ClipboardJS from 'clipboard'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import { fieldConfig, globalConfig } from './componentsConfig'
@@ -55,8 +54,6 @@ const state = reactive({
 })
 const isFoldBlocks = ref(true)
 const isFoldConfig = ref(true)
-window.isFoldBlocks = isFoldBlocks
-window.isFoldConfig = isFoldConfig
 state.validator = (target, fn) => {
   if (target) {
     const count = _.countBy(state.validateStates, 'data.key')
@@ -136,16 +133,21 @@ const delField = (node) => {
     state.fields.splice(fieldIndex, 1)
   }
 }
-const addFieldData = (node) => {
+const addFieldData = (node, isCopy = false) => {
   if (/^(radio|cascader|checkbox|select)$/.test(node.type)) {
-    if (!state.data[node.id]) {
+    if (isCopy) {
+      state.data[node.id] = _.cloneDeep(state.data[node.options.dataKey])
       node.options.dataKey = node.id
-      state.data[node.id] = {
-        type: node.type,
-        list: utils.generateOptions(3).map((e, i) => {
-          e.label += i + 1
-          return e
-        })
+    } else {
+      if (!state.data[node.id]) {
+        node.options.dataKey = node.id
+        state.data[node.id] = {
+          type: node.type,
+          list: utils.generateOptions(3).map((e, i) => {
+            e.label += i + 1
+            return e
+          })
+        }
       }
     }
   }
@@ -288,7 +290,6 @@ const getData1 = () => {
   }))
 }
 const getData2 = () => {
-  // debugger
   layout.pc = getLayoutDataByplatform('pc')
   layout.mobile = getLayoutDataByplatform('mobile')
   return _.cloneDeep({
@@ -301,7 +302,7 @@ const getData2 = () => {
 const setData1 = (data) => {
   if (_.isEmpty(data)) return false
   // stop()
-  const newData = utils.combinationData1(data)
+  const newData = utils.combinationData1(_.cloneDeep(data))
   isShow.value = false
   // console.log(data.list.slice(data.list.length - 1))
   state.store = newData.list
@@ -429,6 +430,7 @@ const onClickOutside = () => {
     <el-scrollbar>
       <div v-loading="previewLoading" :class="[ns.e('previewDialogWrap'), previewPlatform === 'mobile' && ns.is('mobilePreview')]">
         <er-form-preview
+          :lang="props.lang"
           ref="EReditorPreviewRef"
         />
       </div>

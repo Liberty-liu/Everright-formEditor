@@ -15,10 +15,15 @@ const rules = reactive({
   name: [
     { required: true, message: 'Please input name', trigger: 'blur' },
     { min: 1, max: 100, message: 'Length should be 1 to 100', trigger: 'blur' }
+  ],
+  layoutType: [
+    { required: true, message: 'Please input name', trigger: 'blur' },
+    { min: 1, max: 100, message: 'Length should be 1 to 100', trigger: 'blur' }
   ]
 })
 const ruleForm = reactive({
-  name: ''
+  name: '',
+  layoutType: 1
 })
 const isCollapse = ref(false)
 const isEdit = computed(() => !_.isEmpty(oldData.value))
@@ -61,7 +66,11 @@ const handleEvent = async (type) => {
     try {
       const data = {
         name: ruleForm.name,
-        content: isEdit.value ? oldData.value.content : {}
+        content: isEdit.value
+          ? oldData.value.content
+          : {
+              layoutType: ruleForm.layoutType
+            }
       }
       if (isEdit.value) {
         const {
@@ -118,12 +127,13 @@ onMounted(() => {
             <el-button @click="() => changeName(scope.row)">Click Me to change the name</el-button
             >
             <template #reference>
-              <span>{{ scope.row.name }}</span>
-<!--              <router-link :to="{ name: 'dataList', params: { objid: scope.row.id}}">{{ scope.row.name }}</router-link>-->
+<!--              <span>{{ scope.row.name }}</span>-->
+              <router-link :to="{ name: 'actionList', params: { objid: scope.row.id}}">{{ scope.row.name }}</router-link>
             </template>
           </el-popover>
         </template>
       </el-table-column>
+      <el-table-column prop="content.layoutType" label="layoutType" />
       <el-table-column prop="create_timestamp" label="Create time" />
       <el-table-column prop="update_timestamp" label="Update time" />
       <el-table-column fixed="right" label="Operations" width="120">
@@ -149,10 +159,17 @@ onMounted(() => {
     <el-form
       @submit.prevent
       ref="ruleFormRef"
+      label-width="100px"
       :model="ruleForm"
       :rules="rules">
       <el-form-item label="Name" prop="name">
         <el-input v-model="ruleForm.name" />
+      </el-form-item>
+      <el-form-item v-if="!isEdit" label="编辑器类型" prop="layoutType">
+        <el-radio-group v-model="ruleForm.layoutType" class="ml-4">
+          <el-radio :label="1" size="large">分离布局与字段</el-radio>
+          <el-radio :label="2" size="large">不分离布局与字段</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <template #footer>

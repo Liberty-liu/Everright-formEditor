@@ -1,7 +1,7 @@
 export default {
   er: {
     panels: {
-      config: 'Global'
+      config: 'Form Attribute'
     },
     fields: {
       input: [

@@ -120,18 +120,18 @@ export default defineComponent({
             </td>
             <td>
               <el-form-item prop={`${index}.value`} rules={{ validator }}>
-                <el-input vModel={element.value}></el-input>
+                <el-input clearable vModel={element.value}></el-input>
               </el-form-item>
             </td>
             <td>
               <el-form-item prop={`${index}.label`} rules={{ validator }}>
-                <el-input vModel={element.label}></el-input>
+                <el-input clearable vModel={element.label}></el-input>
               </el-form-item>
             </td>
             <td>
               <div class={ns.e('operate')}>
                 <Icon class={[ns.e('icon')]} onClick={() => this.data.splice(index, 1)} icon="delete"></Icon>
-                <Icon class={[ns.e('icon'), 'handle']} icon="move"></Icon>
+                <Icon class={[ns.e('icon'), 'handle']} icon="move1"></Icon>
               </div>
             </td>
           </tr>

@@ -52,6 +52,7 @@ const handleAction = (type) => {
           <li>
             <el-input
               size="default"
+              clearable
               v-model="element.label"/>
             <div :class="ns.e('operate')">
               <Icon :class="[ns.e('icon')]" @click="target.columns.splice(index, 1)" icon="delete"></Icon>

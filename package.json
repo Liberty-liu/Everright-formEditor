@@ -64,7 +64,6 @@
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "@vue/compiler-sfc": "^3.2.47",
     "better-sqlite3": "^8.2.0",
-    "clipboard": "^2.0.11",
     "connect-multiparty": "^2.2.0",
     "cz-git": "^1.5.3",
     "eslint": "^8.32.0",

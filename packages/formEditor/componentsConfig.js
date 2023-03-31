@@ -276,7 +276,7 @@ export const fieldConfig = [
         key: '',
         id: '',
         options: {
-          max: 50,
+          max: 5,
           allowHalf: false,
           defaultValue: 0,
           labelWidth: 100,
@@ -344,7 +344,7 @@ export const fieldConfig = [
         options: {
           defaultValue: '',
           placeholder: ' ',
-          action: '/dev-api/uploads',
+          action: '',
           size: 1,
           labelWidth: 100,
           isShowLabel: true,
@@ -382,7 +382,7 @@ export const fieldConfig = [
           labelWidth: 100,
           defaultValue: [],
           multiple: false,
-          action: '/dev-api/uploads',
+          action: '',
           limit: 1,
           size: 5,
           accept: '.png,.jpg',
@@ -402,7 +402,7 @@ export const fieldConfig = [
           labelWidth: 100,
           defaultValue: '',
           penColor: 'rgb(0, 0, 0)',
-          action: '/dev-api/uploads',
+          action: '',
           disabled: false
         }
       }
@@ -421,10 +421,7 @@ export const fieldConfig = [
           {
             id: '',
             options: {
-              span: {
-                pc: 6,
-                mobile: 6
-              },
+              span: 6,
               offset: 0,
               pull: 0,
               push: 0
@@ -436,10 +433,7 @@ export const fieldConfig = [
           {
             id: '',
             options: {
-              span: {
-                pc: 6,
-                mobile: 6
-              },
+              span: 6,
               offset: 0,
               pull: 0,
               push: 0
@@ -451,10 +445,7 @@ export const fieldConfig = [
           {
             id: '',
             options: {
-              span: {
-                pc: 6,
-                mobile: 6
-              },
+              span: 6,
               offset: 0,
               pull: 0,
               push: 0

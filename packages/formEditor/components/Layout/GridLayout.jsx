@@ -29,7 +29,8 @@ export default defineComponent({
       } = evt
       return type === 'col'
     }
-    const tag = resolveComponent(unref(isPc) ? 'el-row' : 'van-cell-group')
+    // const tag = resolveComponent(unref(isPc) ? 'el-row' : 'van-cell-group')
+    const tag = resolveComponent('el-row')
     return () => {
       const node = (
         <SectorSelectElement {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasDiscolor data={props.data} parent={props.parent}>
@@ -38,7 +39,7 @@ export default defineComponent({
             justify: props.data.options.justify,
             align: props.data.options.align
             // inset: !state.isPc
-          }}>
+          }} class={[ns.b()]}>
             {
               props.data.columns.map((element, index) => {
                 return (
@@ -47,12 +48,12 @@ export default defineComponent({
                     hasCopy
                     hasDel={props.data.columns.length > 1}
                     hasDiscolor
-                    hasWidthScale={unref(isPc)}
+                    hasWidthScale
                     // hasAddContainer
                     data-layout-type={'grid-col'}
                     tag={'el-col'}
                     class={[ns.e('area')]}
-                    span={element.options.span[state.platform]}
+                    span={element.options.span}
                     offset={element.options.offset}
                     pull={element.options.pull}
                     push={element.options.push}

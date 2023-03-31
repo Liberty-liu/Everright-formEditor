@@ -208,7 +208,8 @@ const combinationData1 = (data) => {
   const result = {
     list: data.list,
     config: data.config,
-    data: data.data
+    data: data.data,
+    fields: data.fields
   }
   flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
     const cur = _.find(data.fields, { id: node })
@@ -294,31 +295,38 @@ const checkIsField = (type) => fieldsRe.test(type)
 //   return result
 // }
 const calculateAverage = (count, total = 100) => {
-  const base = total / count
+  const base = Number((total / count).toFixed(2))
   const result = []
   for (let i = 0; i < count; i++) {
     // result.push(base + (i < rest ? 1 : 0))
-    result.push(Number(base.toFixed(2)))
+    result.push(base)
   }
   return result
 }
-const syncWidthByPlatform = (node, platform, value) => {
+const syncWidthByPlatform = (node, platform, syncFullplatform = false, value) => {
   // debugger
   const isArray = _.isArray(node)
   if (!isArray) {
     if (_.isObject(node.style.width)) {
-      node.style.width[platform] = value + '%'
+      if (syncFullplatform) {
+        node.style.width.pc = node.style.width.mobile = value + '%'
+      } else {
+        node.style.width[platform] = value + '%'
+      }
     } else {
       node.style.width = value + '%'
     }
   }
   const otherNodes = isArray ? node : node.context.parent.columns.filter(e => e !== node)
   const averageWidths = calculateAverage(otherNodes.length, isArray ? 100 : 100 - value)
-  window.otherNodes = otherNodes
   otherNodes.forEach((node, index) => {
     const isFieldWidth = _.isObject(node.style.width)
     if (isFieldWidth) {
-      node.style.width[platform] = averageWidths[index] + '%'
+      if (syncFullplatform) {
+        node.style.width.pc = node.style.width.mobile = averageWidths[index] + '%'
+      } else {
+        node.style.width[platform] = averageWidths[index] + '%'
+      }
     } else {
       node.style.width = averageWidths[index] + '%'
     }

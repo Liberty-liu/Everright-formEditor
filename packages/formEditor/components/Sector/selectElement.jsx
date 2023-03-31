@@ -84,16 +84,18 @@ export default {
       setSector,
       state,
       isEditModel,
-      isSelectRoot
+      isSelectRoot,
+      isPc
     } = hooks.useTarget()
     const id = hooks.useCss(props.data, state.platform)
     const visible = ref(false)
     const slots = useSlots()
     const isWarning = ref(false)
+    const isField = utils.checkIsField(props.data.type)
     const handleClick = (e) => {
       setSector(props.data)
     }
-    if (props.data.type && utils.checkIsField(props.data.type)) {
+    if (props.data.type && isField) {
       state.validateStates.push({
         data: props.data,
         isWarning
@@ -184,7 +186,7 @@ export default {
           const copyData = props.parent[index + 1]
           setSector(copyData)
           utils.deepTraversal(copyData, (node) => {
-            ER.addFieldData(node)
+            ER.addFieldData(node, true)
             if (utils.checkIsField(node.type)) {
               ER.addField(node)
             }
@@ -213,6 +215,7 @@ export default {
     const elementRef = ref()
     const widthScaleElement = ref()
     const isScale = ref(false)
+    const isShowWidthScale = computed(() => props.hasWidthScale && !(ER.props.layoutType === 1 && !isPc.value))
     onMounted(() => {
       if (!unref(isEditModel)) return false
       const hoverEl = elementRef.value.$el || elementRef.value
@@ -229,7 +232,7 @@ export default {
         isHover.value = false
         e.stopPropagation()
       })
-      if (props.hasWidthScale) {
+      if (isShowWidthScale.value) {
         // if (!hoverEl.offsetParent) return false
         widthScaleEl.addEventListener('mousedown', (e) => {
           const columnWidth = hoverEl.offsetParent.offsetWidth / 24
@@ -250,7 +253,7 @@ export default {
               if (offset <= 6) {
                 offset = 6
               }
-              props.data.options.span[state.platform] = offset
+              props.data.options.span = offset
             } else {
               // const isFieldWidth = _.isObject(props.data.style.width)
               const curNewWidth = oldWidth + e.clientX - oldX
@@ -258,7 +261,7 @@ export default {
               if (curWidth <= 25) {
                 curWidth = 25
               }
-              utils.syncWidthByPlatform(props.data, state.platform, curWidth)
+              utils.syncWidthByPlatform(props.data, state.platform, false, curWidth)
             }
           }
         })
@@ -300,6 +303,7 @@ export default {
           {...useAttrs()}
           class={[
             ns.b(),
+            !isField && ns.is('borderless'),
             unref(isEditModel) && ns.e('editor'),
             Selected.value,
             isSite && ns.e('site'),
@@ -314,7 +318,7 @@ export default {
            {
             unref(isEditModel) && (
               <div class={[ns.e('topLeft')]}>
-                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="move1"></Icon>)}
+                {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)}
               </div>
             )
            }
@@ -345,7 +349,7 @@ export default {
                     handleAction(2)
                   }, ['stop'])} icon="copy"></Icon>)
                 }
-                {props.hasWidthScale && (
+                {isShowWidthScale.value && (
                   <div ref={widthScaleElement}><Icon class={[ns.e('widthScale')]} icon="dragWidth"></Icon></div>)}
                 {props.hasTableCellOperator && renderTableCellOperator()}
               </div>

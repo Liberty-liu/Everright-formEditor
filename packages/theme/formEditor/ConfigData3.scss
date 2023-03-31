@@ -20,6 +20,9 @@
     }
   }
   @include e(icon) {
+    &:hover {
+      color: $primary-color;
+    }
     //color: $primary-color;
     //font-size: 14px;
     //margin: 0 8px;
