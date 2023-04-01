@@ -150,6 +150,7 @@ export default {
       const index = type !== 5 && props.parent.indexOf(props.data)
       switch (type) {
         case 1:
+          if (ER.props.delHandle(props.data) === false) return false
           props.data.context.delete()
           utils.deepTraversal(props.data, (node) => {
             if (utils.checkIsField(node)) {

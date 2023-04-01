@@ -84,6 +84,7 @@ const quickImages = ref([
   '/public/Everright-logo.svg',
   '/public/Everright-logo.svg'
 ])
+
 </script>
 <template>
   <div

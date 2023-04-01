@@ -59,7 +59,6 @@ export default defineConfig({
   define: { 'process.env.NODE_ENV': '"production"' },
   build: {
     lib: {
-      // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'packages/formEditor/index.js'),
       name: 'Everright-formEditor',
       formats: ['es', 'umd'],
@@ -83,10 +82,6 @@ export default defineConfig({
         find: 'vuedraggable',
         replacement: isProduction ? 'vuedraggable/src/vuedraggable' : 'vuedraggable'
       },
-      // {
-      //   find: 'editor',
-      //   replacement: resolve(__dirname, 'packages/formEditor')
-      // },
       {
         find: '@ER',
         replacement: resolve(__dirname, 'packages')
@@ -95,22 +90,9 @@ export default defineConfig({
         find: '@ER-examples',
         replacement: resolve(__dirname, 'examples')
       }
-      // {
-      //   find: '@ER-FILTER',
-      //   replacement: resolve(__dirname, 'packages', 'filter')
-      // },
-      // {
-      //   find: '@ER-REGION',
-      //   replacement: resolve(__dirname, 'packages', 'region')
-      // },
-      // {
-      //   find: '@ER-ICON',
-      //   replacement: resolve(__dirname, 'packages', 'icon')
-      // }
     ]
   },
   plugins: [
-    // backend,
     examplePlugin(),
     svgLoader(),
     vue(),
@@ -118,19 +100,10 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
     }),
     vueJsx({
-      // options are passed on to @vue/babel-plugin-jsx
     })
   ],
   css: {
     preprocessorOptions: {
-      // scss: {
-      //   additionalData: `
-      //   @use 'sass:math';
-      //   @use 'sass:map';
-      //   @use '/packages/theme/base.scss' as *;
-      //   @use '/packages/theme/icon';
-      //   `
-      // }
       scss: {
         additionalData: `
         @use 'sass:math';

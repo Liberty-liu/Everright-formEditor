@@ -28,6 +28,10 @@ const props = defineProps(_.merge({
   blockPanelDefaultOpeneds: {
     type: Array,
     default: () => ['defaultField', 'field', 'container']
+  },
+  delHandle: {
+    type: Function,
+    default: () => {}
   }
 }, defaultProps))
 const layout = {
