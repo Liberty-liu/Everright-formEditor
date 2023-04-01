@@ -335,7 +335,7 @@ function ControlInsertionPlugin (ER) {
         if (oldEl.context) {
           oldEl.context.delete()
           utils.deepTraversal(oldEl, (node) => {
-            if (utils.checkIsField(node.type)) {
+            if (utils.checkIsField(node)) {
               ER.delField(node)
             }
           })
@@ -363,7 +363,7 @@ function ControlInsertionPlugin (ER) {
       }
       if (inserColIndex !== '' || inserRowIndex !== '') {
         utils.deepTraversal(newElement, (node) => {
-          if (utils.checkIsField(node.type)) {
+          if (utils.checkIsField(node)) {
             ER.addField(node)
           }
         })

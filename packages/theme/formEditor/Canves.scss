@@ -1,5 +1,12 @@
 @include b(Canves) {
   padding: 0;
+  .el-form-item__label {
+    word-break: break-all;
+    height: auto;
+  }
+  .el-form-item {
+    align-items: start;
+  }
   @include e(editModel) {
     height: calc(100% - 40px);
     .#{$namespace}-GridLayout__area {

@@ -34,7 +34,8 @@ export default {
     },
     blocks: {
       container: 'Container',
-      field: 'Basic field'
+      field: 'Basic field',
+      defaultField: 'Default field'
     },
     layout: {
       tabsCol: 'Tab panel',
@@ -147,7 +148,7 @@ export default {
         step: 'Step',
         precision: 'Precision',
         region: {
-          label: 'select range',
+          label: 'Select range',
           options: [
             'Prov',
             'City/Prov',
@@ -172,7 +173,8 @@ export default {
         allowHalf: 'Allow half',
         alpha: 'Alpha',
         anyNode: 'Select any node',
-        clearable: 'clearable'
+        clearable: 'clearable',
+        star: 'Star'
       }
     },
     public: {
@@ -209,7 +211,9 @@ export default {
       phone: 'Please enter the valid Phone number',
       http: 'Please enter the valid Url',
       fileSize: 'File size cannot exceed <%= size %> MB',
-      idUnique: 'ID must be unique'
+      idUnique: 'ID must be unique',
+      placeholder1: 'Please enter',
+      placeholder2: 'Please select'
     },
     form: {
       selectDate: 'Select date',

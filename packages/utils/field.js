@@ -9,9 +9,11 @@ const deepTraversal = (node, fn) => {
   })
 }
 const wrapElement = (element, fn) => {
-  // const result = _.cloneDeep(element)
   const result = element
   deepTraversal(result, (node) => {
+    if (!node.style) {
+      node.style = {}
+    }
     if (!node.id) {
       node.id = nanoid()
     }
@@ -23,73 +25,13 @@ const wrapElement = (element, fn) => {
         width: '100%'
       }
     }
-    if (checkIsField(node.type)) {
+    if (checkIsField(node)) {
       node.style = {
         width: {
           pc: '100%',
           mobile: '100%'
         }
       }
-    }
-    if (/^(grid|col|collapse|collapseCol|tabs|tabsCol)$/.test(node.type)) {
-      if (!node.style) {
-        node.style = {}
-      }
-      Object.assign(node.style, {
-        // isShowMargin: false,
-        // isShowBorder: true,
-        margin: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0
-        },
-        padding: {
-          top: 16,
-          right: 16,
-          bottom: 16,
-          left: 16
-        },
-        background: {
-          color: '',
-          image: '',
-          repeat: 'repeat',
-          position: 'center center',
-          attachment: 'scroll',
-          size: 'auto'
-        },
-        isCustomBackground: false,
-        border: {
-          width: 1,
-          style: 'solid',
-          color: '#4285f4'
-        },
-        borderRadius: 0
-      })
-    }
-    if (/^(table)$/.test(node.type)) {
-      Object.assign(node.style, {
-        // isShowBackground: true,
-        // isShowBorder: true,
-        borderColor: '#000',
-        borderType: 1,
-        borderWidth: 1,
-        background: {
-          color: '',
-          image: '',
-          repeat: 'repeat',
-          position: 'center center',
-          attachment: 'scroll',
-          size: 'auto'
-        },
-        isCustomBackground: false,
-        margin: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0
-        }
-      })
     }
     if (/^(tabs)$/.test(node.type)) {
       node.columns = new Array(3).fill('').map((e, index) => {
@@ -107,25 +49,6 @@ const wrapElement = (element, fn) => {
         return data
       })
     }
-    if (/^(td)$/.test(node.type)) {
-      node.style = {
-        padding: {
-          top: 16,
-          right: 16,
-          bottom: 16,
-          left: 16
-        },
-        background: {
-          color: '',
-          image: '',
-          repeat: 'repeat',
-          position: 'center center',
-          attachment: 'scroll',
-          size: 'auto'
-        },
-        isCustomBackground: false
-      }
-    }
     fn && fn(node)
   })
   return result
@@ -138,29 +61,8 @@ const renderFieldData = (type) => {
     list: [],
     style: {}
   }
-  // switch (type) {
-  //   case 'tabsCol':
-  //   // {
-  //   //   label: 'Tab 1',
-  //   //     type: 'tabsCol',
-  //   //   id: 'Tab 1',
-  //   //   list: []
-  //   // }
-  //     break
-  // }
   return result
 }
-// const flatNodes = (nodes, leafOnly = false) => {
-//   return nodes.reduce((res, node) => {
-//     if (node.isLeaf) {
-//       res.push(node)
-//     } else {
-//       !leafOnly && res.push(node)
-//       res = res.concat(flatNodes(node.children, leafOnly))
-//     }
-//     return res
-//   }, [])
-// }
 const excludes = ['grid', 'col', 'table', 'tr', 'td', 'tabs', 'tabsCol', 'collapse', 'collapseCol', 'divider', 'inline']
 const flatNodes = (nodes, excludes, fn, excludesFn) => {
   return nodes.reduce((res, node, currentIndex) => {
@@ -179,20 +81,6 @@ const getAllFields = (store) => flatNodes(store, excludes)
 const pickfields = (list) => {
   return flatNodes(list, excludes)
 }
-// const combinationData = (data) => {
-//   const result = {
-//     list: data.list,
-//     config: data.config,
-//     data: data.data
-//   }
-//   flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
-//     const cur = _.find(data.fields, { key: node })
-//     if (!_.isEmpty(cur)) {
-//       nodes[currentIndex] = cur
-//     }
-//   })
-//   return result
-// }
 const disassemblyData1 = (data) => {
   const result = {
     list: data.list,
@@ -225,26 +113,7 @@ const combinationData2 = (list, fields) => {
     if (!_.isEmpty(cur)) {
       nodes[currentIndex] = cur
     }
-    // if (!_.isEmpty(cur)) {
-    //   nodes[currentIndex] = cur
-    // } else {
-    //   nodes.splice(currentIndex, 1)
-    // }
   })
-  // const temporary = []
-  // flatNodes(list, excludes, null, (nodes, node, currentIndex) => {
-  //   if (node.type === 'inline') {
-  //     if (!node.columns.length) {
-  //       temporary.unshift({
-  //         nodes,
-  //         currentIndex
-  //       })
-  //     }
-  //   }
-  // })
-  // temporary.forEach(e => {
-  //   e.nodes.splice(e.currentIndex, 1)
-  // })
 }
 const repairLayout = (layout, fields) => {
   flatNodes(layout, excludes, (nodes, node, currentIndex) => {
@@ -273,27 +142,9 @@ const disassemblyData2 = (list) => {
   flatNodes(list, excludes, (nodes, node, currentIndex) => {
     nodes[currentIndex] = node.id && node.id
   })
-  // const result = {
-  //   list: data.list,
-  //   config: data.config,
-  //   fields: flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
-  //     nodes[currentIndex] = node.key
-  //   }),
-  //   data: data.data
-  // }
-  // return result
 }
 const checkIslineChildren = (node) => node.context.parent.type === 'inline'
-const checkIsField = (type) => fieldsRe.test(type)
-// const calculateAverage = (count, total = 100) => {
-//   const base = Math.floor(total / count)
-//   const rest = total % count
-//   const result = []
-//   for (let i = 0; i < count; i++) {
-//     result.push(base + (i < rest ? 1 : 0))
-//   }
-//   return result
-// }
+const checkIsField = (node) => fieldsRe.test(node.type)
 const calculateAverage = (count, total = 100) => {
   const base = Number((total / count).toFixed(2))
   const result = []

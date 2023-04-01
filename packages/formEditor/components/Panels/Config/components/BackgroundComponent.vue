@@ -27,31 +27,17 @@ const state = reactive({
   color: '',
   defaultBackground: {}
 })
+const ER = inject('Everright')
 const ERp = inject('Everright-propsPanel')
 watch(ERp.bgStatus, (newVal) => {
   state.value0 = newVal
 }, {
   immediate: true
 })
-const quickColors = [
-  'rgba(255, 255, 255, 1)',
-  'rgba(249, 249, 249, 1)',
-  'rgba(233, 233, 233, 1)',
-  'rgba(254, 249, 210, 1)',
-  'rgba(253, 246, 236, 1)',
-  'rgba(254, 241, 241, 1)',
-  'rgba(236, 246, 255, 1)',
-  'rgba(235, 242, 244, 1)',
-  'rgba(240, 249, 236, 1)'
-]
-const quickImages = ref([
-  '/uploads/bo3G_S0x3pbJKnXh98X6II3p.png',
-  '/uploads/C0cV54ToEDe_RN1yK0pTLPIB.png',
-  '/uploads/ygDk80xpYvqnniTM1WIEjCul.png',
-  '/uploads/oByh9bK9siHI-LeVM4PX05Bf.jpg'
-])
+const quickColors = ER.props.quickColors
+const quickImages = ref(ER.props.quickImages)
 watch(quickImages.value, (newVal) => {
-  if (newVal.length >= 5) {
+  if (newVal.length >= ER.props.quickImageLimit) {
     quickImages.value.pop()
   }
 })
@@ -84,6 +70,16 @@ const options0 = [
     'contain'
   ]
 ]
+if (!target.value.style.background) {
+  target.value.style.background = {
+    color: '',
+    image: '',
+    repeat: 'repeat',
+    position: 'center center',
+    attachment: 'scroll',
+    size: 'auto'
+  }
+}
 if (!(!target.value.style.background.color && !target.value.style.background.image)) {
   if (target.value.style.background.color) {
     // eslint-disable-next-line vue/no-setup-props-destructure

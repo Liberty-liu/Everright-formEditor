@@ -44,7 +44,7 @@ export default defineComponent({
         }
       }
       return (
-        <SectorSelectElement class={ns.b()} {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasDiscolor hasInserColumn hasInserRow data={props.data} parent={props.parent}>
+        <SectorSelectElement class={ns.b()} {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasInserColumn hasInserRow data={props.data} parent={props.parent}>
           <table>
             <tbody>
             {
@@ -61,7 +61,6 @@ export default defineComponent({
                             data={element1}
                             parent={element}
                             hasTableCellOperator
-                            hasDiscolor
                             colspan={element1.options.colspan}
                             rowspan={element1.options.rowspan}
                             onMousedown={(e) => !index0 && unref(isEditModel) && handleMousedown(e, element1)}

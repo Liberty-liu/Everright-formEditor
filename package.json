@@ -26,7 +26,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx,.vue",
     "lint-fix": "eslint --fix . --ext .js,.jsx,.vue",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "init": "node ./server/db/generateDatabase.js && mkdir uploads"
   },
   "dependencies": {
     "@vant/area-data": "^1.4.0",

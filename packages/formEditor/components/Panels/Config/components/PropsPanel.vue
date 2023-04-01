@@ -440,8 +440,8 @@ onMounted(() => {
       'divider',
       'cascader',
       'region'
-    ])">
-      <template v-if="checkTypeBySelected(['cascader', 'region'])">
+    ], 'defaultValue')">
+      <template v-if="checkTypeBySelected(['cascader', 'region'], 'defaultValue')">
         <el-cascader
           v-model="target.options.defaultValue"
           v-bind="typeProps"
@@ -449,27 +449,27 @@ onMounted(() => {
           style="width: 100%;"
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['textarea'])">
+      <template v-else-if="checkTypeBySelected(['textarea'], 'defaultValue')">
         <el-input
           type="textarea"
           rows="4"
           v-model="target.options.defaultValue"
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['input', 'divider'])">
+      <template v-else-if="checkTypeBySelected(['input', 'divider'], 'defaultValue')">
         <el-input
           v-model="target.options.defaultValue"
           clearable
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['number'])">
+      <template v-else-if="checkTypeBySelected(['number'], 'defaultValue')">
         <el-input-number
           style="width: 100%;"
           v-bind="typeProps"
           v-model="target.options.defaultValue"
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['time'])">
+      <template v-else-if="checkTypeBySelected(['time'], 'defaultValue')">
         <el-time-picker
           v-bind="typeProps"
           style="width: 100%"
@@ -477,7 +477,7 @@ onMounted(() => {
           v-model="target.options.defaultValue"
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['date'])">
+      <template v-else-if="checkTypeBySelected(['date'], 'defaultValue')">
         <el-date-picker
           v-bind="typeProps"
           style="width: 100%"
@@ -485,20 +485,20 @@ onMounted(() => {
           clearable
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['rate'])">
+      <template v-else-if="checkTypeBySelected(['rate'], 'defaultValue')">
         <el-rate
           v-bind="typeProps"
           v-model="target.options.defaultValue"
         />
         <el-button v-if="target.options.defaultValue > 0" link @click="target.options.defaultValue = 0">{{t('er.public.clear')}}</el-button>
       </template>
-      <template v-else-if="checkTypeBySelected(['switch'])">
+      <template v-else-if="checkTypeBySelected(['switch'], 'defaultValue')">
         <el-switch
           v-bind="typeProps"
           v-model="target.options.defaultValue"
         />
       </template>
-      <template v-else-if="checkTypeBySelected(['slider'])">
+      <template v-else-if="checkTypeBySelected(['slider'], 'defaultValue')">
         <el-slider
           v-bind="typeProps"
           v-model="target.options.defaultValue"
@@ -509,13 +509,13 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent
       :label="t('er.public.Data')"
       :layoutType="0"
-      v-if="checkTypeBySelected(['select', 'radio', 'checkbox', 'cascader'])">
+      v-if="checkTypeBySelected(['select', 'radio', 'checkbox', 'cascader'], 'dataEntry')">
       <el-button style="width: 100%;" type="primary" @click="dialogVisible = true">{{t('er.public.dataEntry')}}</el-button>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
-      :label="'星星数'"
+      :label="t('er.config.propsPanel.star')"
       :layoutType="0"
-      v-if="checkTypeBySelected(['rate'])">
+      v-if="checkTypeBySelected(['rate'], 'star')">
       <el-input-number
         :min="1"
         controls-position="right"
@@ -534,14 +534,14 @@ onMounted(() => {
       'date',
       'html',
       'region'
-    ])">
+    ], 'placeholder')">
       <el-input
-        v-if="checkTypeBySelected(['input', 'select', 'cascader', 'time', 'date', 'html', 'region'])"
+        v-if="checkTypeBySelected(['input', 'select', 'cascader', 'time', 'date', 'html', 'region'], 'placeholder')"
         v-model="target.options.placeholder"
         clearable
       />
       <el-input
-        v-else-if="checkTypeBySelected(['textarea'])"
+        v-else-if="checkTypeBySelected(['textarea'], 'placeholder')"
         type="textarea"
         v-model="target.options.placeholder"
         clearable
@@ -549,7 +549,7 @@ onMounted(() => {
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
       :layoutType="0"
-      v-if="checkTypeBySelected(['signature'])"
+      v-if="checkTypeBySelected(['signature'], 'brushColor')"
       :label="t('er.config.propsPanel.brushColor')">
       <el-color-picker
         color-format="rgb"
@@ -557,10 +557,10 @@ onMounted(() => {
       />
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
-      v-if="checkTypeBySelected(['time', 'date'])"
+      v-if="checkTypeBySelected(['time', 'date'], 'format')"
       :layoutType="0"
       :label="t('er.config.propsPanel.format')">
-      <el-select v-model="target.options.format" placeholder="Select" style="width: 100%">
+      <el-select v-model="target.options.format" style="width: 100%">
         <el-option
           v-for="item in options0"
           :key="item.value"
@@ -570,7 +570,7 @@ onMounted(() => {
       </el-select>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
-      v-if="checkTypeBySelected(['date'])"
+      v-if="checkTypeBySelected(['date'], 'dateType')"
       :layoutType="0"
       :label="t('er.config.propsPanel.dateType')">
       <el-select v-model="target.options.type" @change="handleChange0" style="width: 100%">
@@ -583,7 +583,7 @@ onMounted(() => {
       </el-select>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
-      v-if="checkTypeBySelected(['radio', 'checkbox'])"
+      v-if="checkTypeBySelected(['radio', 'checkbox'], 'displayStyle')"
       @listener="handleTypeListener"
       property="displayStyle"
       :label="t('er.config.propsPanel.layout.label')"
@@ -592,7 +592,7 @@ onMounted(() => {
       :layoutType="2"
     />
     <PanelsConfigComponentsTypeComponent
-      v-if="checkTypeBySelected(['divider'])"
+      v-if="checkTypeBySelected(['divider'], 'contentPosition')"
       :label="t('er.config.propsPanel.contentPosition.label')"
       @listener="handleTypeListener"
       property="contentPosition"
@@ -602,11 +602,11 @@ onMounted(() => {
       :val="target.options.contentPosition"/>
     <PanelsConfigComponentsTypeComponent
       :layoutType="0"
-      v-if="checkTypeBySelected(['textarea'])"
+      v-if="checkTypeBySelected(['textarea'], 'textareaHeight')"
       :label="t('er.config.propsPanel.textareaHeight')">
       <el-slider v-model="target.options.rows" :max="10" show-input />
     </PanelsConfigComponentsTypeComponent>
-    <div v-if="checkTypeBySelected(['uploadfile'])">
+    <div v-if="checkTypeBySelected(['uploadfile'], 'uploadfile')">
       <el-form-item :label="t('er.config.propsPanel.uploadfile.fileType')">
         <el-input
           v-model="target.options.accept"
@@ -634,7 +634,7 @@ onMounted(() => {
         </el-col>
       </el-row>
     </div>
-    <el-row v-if="checkTypeBySelected(['input']) && target.options.renderType === 1 && isPc" :gutter="8">
+    <el-row v-if="checkTypeBySelected(['input'], 'affix') && target.options.renderType === 1 && isPc" :gutter="8">
       <el-col :span="12">
         <el-form-item :label="t('er.config.propsPanel.prepend')">
           <el-input
@@ -651,7 +651,7 @@ onMounted(() => {
         </el-form-item>
       </el-col>
     </el-row>
-    <el-row :gutter="8" v-if="checkTypeBySelected(['number', 'slider'])">
+    <el-row :gutter="8" v-if="checkTypeBySelected(['number', 'slider'], 'step')">
       <el-col :span="type !== 'slider' ? 12 : 24">
         <el-form-item :label="t('er.config.propsPanel.step')">
           <el-input-number
@@ -668,7 +668,7 @@ onMounted(() => {
         </el-form-item>
       </el-col>
     </el-row>
-    <el-row :gutter="8" v-if="checkTypeBySelected(['slider'])">
+    <el-row :gutter="8" v-if="checkTypeBySelected(['slider'], 'sliderCount')">
       <el-col :span="12">
         <el-form-item :label="t('er.public.max')">
           <el-input-number
@@ -684,7 +684,7 @@ onMounted(() => {
       </el-col>
     </el-row>
     <PanelsConfigComponentsTypeComponent
-      v-if="checkTypeBySelected(['region'])"
+      v-if="checkTypeBySelected(['region'], 'regionType')"
       :label="t('er.config.propsPanel.region.label')"
       :layoutType="0">
       <el-select v-model="target.options.selectType" @change="target.options.defaultValue = ''">
@@ -705,8 +705,10 @@ onMounted(() => {
       :fontSize="28"
       :nodes="options1"
     />
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'])" :label="t('er.config.propsPanel.trim')" field="isShowTrim"/>
-    <PanelsConfigComponentsCheckboxComponent v-if="(checkTypeBySelected(['input']) && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'])" :label="t('er.config.propsPanel.wordLimit')" field="isShowWordLimit">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'textarea'], 'isShowTrim')" :label="t('er.config.propsPanel.trim')" field="isShowTrim"/>
+    <PanelsConfigComponentsCheckboxComponent
+      v-if="(checkTypeBySelected(['input'], 'wordLimit') && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'], 'wordLimit')"
+      :label="t('er.config.propsPanel.wordLimit')" field="isShowWordLimit">
       <el-row align="middle" :gutter="8">
         <el-col :span="11">
           <el-form-item :label="t('er.public.min')">
@@ -728,10 +730,11 @@ onMounted(() => {
         </el-col>
       </el-row>
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['date'])" :label="t('er.config.propsPanel.dateRange')" field="isShowWordLimit">
+    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['date'], 'dateRange')" :label="t('er.config.propsPanel.dateRange')" field="isShowWordLimit">
       <PanelsConfigComponentsLimitComponent/>
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="isSelectField && !checkTypeBySelected(['rate', 'switch', 'slider', 'divider'])" :label="t('er.validateMsg.required')" field="required"/>
+    <PanelsConfigComponentsCheckboxComponent
+      v-if="isSelectField && !checkTypeBySelected(['rate', 'switch', 'slider', 'divider'], 'required')" :label="t('er.validateMsg.required')" field="required"/>
     <PanelsConfigComponentsTypeComponent
       v-if="isSelectGrid"
       @listener="handleTypeListener"
@@ -746,7 +749,7 @@ onMounted(() => {
     <!--    v-if="isSelectGrid"-->
     <!--  />-->
     <PanelsConfigComponentsDataComponent3
-      v-if="checkTypeBySelected(['collapse', 'tabs'])"
+      v-if="checkTypeBySelected(['collapse', 'tabs'], 'Data3')"
     />
     <PanelsConfigComponentsTypeComponent
       v-if="isSelectTabs"
@@ -772,7 +775,7 @@ onMounted(() => {
     <!--    v-if="isSelectTabs"-->
     <!--  />-->
     <PanelsConfigComponentsCollapseComponent
-      v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"
+      v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'], 'margin')"
       :label="t('er.public.margin')"
       operationKey="style"
       field="isShowMargin">
@@ -784,7 +787,7 @@ onMounted(() => {
     </PanelsConfigComponentsCollapseComponent>
 
     <PanelsConfigComponentsCollapseComponent
-      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'])"
+      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'], 'padding')"
       :label="t('er.public.padding')"
       operationKey="style"
       field="isShowPadding">
@@ -803,7 +806,7 @@ onMounted(() => {
     <!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'])"-->
     <!--  />-->
     <PanelsConfigComponentsCollapseComponent
-      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'])"
+      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'], 'background')"
       :label="t('er.public.background')"
       operationKey="style"
       field="isShowBackground">
@@ -832,17 +835,17 @@ onMounted(() => {
     <!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'])"-->
     <!--  />-->
     <PanelsConfigComponentsCollapseComponent
-      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'])"
+      v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'], 'borderLine')"
       :label="t('er.config.borderComponent.borderLine')"
       operationKey="style"
       field="isShowBorder">
-      <template v-if="!checkTypeBySelected(['table'])" v-slot:subSelect>
+      <template v-if="!checkTypeBySelected(['table', 'borderLine'])" v-slot:subSelect>
         <div :class="[ns.e('collapseSubSelect')]">
           <el-dropdown
             @command="(command) => target.style.border.style = command"
           >
         <span>
-          {{ target.style.border.style }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          {{ target.style.border && target.style.border.style }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
         </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -867,13 +870,13 @@ onMounted(() => {
     <template v-if="isSelectField && !checkTypeBySelected(['divider'])">
       <PanelsConfigComponentsCheckboxComponent :label="t('er.public.disabled')" field="disabled">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input']) && target.options.renderType === 1" :label="t('er.config.propsPanel.showPassword')" field="showPassword">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input'], 'showPassword') && target.options.renderType === 1" :label="t('er.config.propsPanel.showPassword')" field="showPassword">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'])" :label="t('er.config.propsPanel.multiple')" @change="handleMultipleChange" field="multiple">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'], 'multiple')" :label="t('er.config.propsPanel.multiple')" @change="handleMultipleChange" field="multiple">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'])" :label="t('er.config.propsPanel.filterable')" field="filterable">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'], 'filterable')" :label="t('er.config.propsPanel.filterable')" field="filterable">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'])" :label="t('er.config.propsPanel.numberControls.label')" field="controls">
+      <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'], 'controls')" :label="t('er.config.propsPanel.numberControls.label')" field="controls">
         <PanelsConfigComponentsTypeComponent
           @listener="handleTypeListener"
           property="controlsPosition"
@@ -892,13 +895,13 @@ onMounted(() => {
         <!--        </el-col>-->
         <!--      </el-row>-->
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['rate'])" :label="t('er.config.propsPanel.allowHalf')" field="allowHalf">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['rate'], 'allowHalf')" :label="t('er.config.propsPanel.allowHalf')" field="allowHalf">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'])" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'], 'alpha')" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'])" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'], 'anyNode')" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'])" :label="t('er.config.propsPanel.clearable')" field="clearable">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'], 'clearable')" :label="t('er.config.propsPanel.clearable')" field="clearable">
       </PanelsConfigComponentsCheckboxComponent>
     </template>
   </div>
@@ -911,7 +914,7 @@ onMounted(() => {
     width="80%"
     draggable
   >
-    <PanelsConfigComponentsDataComponent2 v-if="checkTypeBySelected(['cascader'])" ref="dataRef"></PanelsConfigComponentsDataComponent2>
+    <PanelsConfigComponentsDataComponent2 v-if="checkTypeBySelected(['cascader'], 'data2')" ref="dataRef"></PanelsConfigComponentsDataComponent2>
     <PanelsConfigComponentsDataComponent1 v-else ref="dataRef"></PanelsConfigComponentsDataComponent1>
     <template #footer>
       <span class="dialog-footer">

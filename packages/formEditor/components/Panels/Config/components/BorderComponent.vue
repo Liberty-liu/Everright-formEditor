@@ -4,6 +4,7 @@ import { reactive, ref, onUpdated, onMounted } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import Icon from '@ER/icon'
+import _ from 'lodash-es'
 export default {
   name: 'ConfigBorder',
   inheritAttrs: false,
@@ -49,6 +50,21 @@ const borderActions = new Array(8).fill('tableStokeP').map((e, i) => {
     icon: e + (i + 1)
   }
 })
+if (checkTypeBySelected(['table'])) {
+  if (!_.has(target.value.style, 'borderColor') || !_.has(target.value.style, 'borderWidth') || !_.has(target.value.style, 'borderType')) {
+    target.value.style.borderColor = '#000'
+    target.value.style.borderWidth = target.value.style.borderType = 1
+  }
+} else {
+  if (!target.value.style.border) {
+    target.value.style.borderRadius = 0
+    target.value.style.border = {
+      width: 1,
+      style: 'solid',
+      color: '#4285f4'
+    }
+  }
+}
 // const bindingEvent = () => {
 //   state.default = target.value.style.borderType
 //   elements.value.forEach(e => {
@@ -81,7 +97,6 @@ const handleTypeListener = ({ property, data }) => {
   <div :class="[ns.b()]">
     <div v-if="checkTypeBySelected(['table'])">
       <PanelsConfigComponentsTypeComponent
-        class="abc"
         @listener="handleTypeListener"
         property="borderType"
         :height="30"
@@ -143,47 +158,6 @@ const handleTypeListener = ({ property, data }) => {
           </el-form-item>
         </el-col>
       </el-row>
-      <!--    <el-form-item size="default" label="Border">-->
-      <!--      <div>-->
-      <!--        <el-row :gutter="14">-->
-      <!--          <el-col :span="12">-->
-      <!--            <div>{{t('er.public.width')}}</div>-->
-      <!--            <el-input-number-->
-      <!--              :step="10"-->
-      <!--              v-model="target.style.border.width"-->
-      <!--              controls-position="right"-->
-      <!--            />-->
-      <!--          </el-col>-->
-      <!--          <el-col :span="12">-->
-      <!--            <div>{{t('er.public.radius')}}</div>-->
-      <!--            <el-input-number-->
-      <!--              :step="10"-->
-      <!--              v-model="target.style.borderRadius"-->
-      <!--              controls-position="right"-->
-      <!--            />-->
-      <!--          </el-col>-->
-      <!--        </el-row>-->
-      <!--        <el-row :gutter="14">-->
-      <!--          <el-col :span="12">-->
-      <!--            <div>{{t('er.public.style')}}</div>-->
-      <!--            <el-select v-model="target.style.border.style" placeholder="Select" size="large">-->
-      <!--              <el-option-->
-      <!--                v-for="item in options0"-->
-      <!--                :key="item"-->
-      <!--                :label="item"-->
-      <!--                :value="item"-->
-      <!--              />-->
-      <!--            </el-select>-->
-      <!--          </el-col>-->
-      <!--          <el-col :span="12">-->
-      <!--            <div>{{t('er.public.color')}}</div>-->
-      <!--            <el-color-picker-->
-      <!--              v-model="target.style.border.color"-->
-      <!--            />-->
-      <!--          </el-col>-->
-      <!--        </el-row>-->
-      <!--      </div>-->
-      <!--    </el-form-item>-->
     </div>
   </div>
 </template>

@@ -145,39 +145,28 @@ export default defineComponent({
             break
           default:
             let TypeComponent = ''
-            if (element.type.startsWith('site-')) {
-              TypeComponent = load.findComponent('SiteTypes', element.type.replace('site-', ''))
+            const typeProps = hooks.useProps(state, element, unref(isPc))
+            TypeComponent = load.findComponent('FormTypes', element.type)
+            if (unref(isPc)) {
               node = (
-                <SectorSelectElement
-                  hasMask={element.type === 'site-button' || element.type === 'site-image'}
-                  type={'site'} hasCopy hasDel hasDrag data={element} parent={props.data}>
-                  <TypeComponent data={element}></TypeComponent>
-                </SectorSelectElement>
-              )
-            } else {
-              const typeProps = hooks.useProps(state, element, unref(isPc))
-              TypeComponent = load.findComponent('FormTypes', element.type)
-              if (unref(isPc)) {
-                node = (
-                  <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
-                    {
-                      element.type !== 'divider'
-                        ? (<el-form-item
+                <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                  {
+                    element.type !== 'divider'
+                      ? (<el-form-item
                         {...typeProps.value}
                       >
                         <TypeComponent data={element} params={typeProps.value}></TypeComponent>
                       </el-form-item>)
-                        : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                    }
-                  </SectorSelectElement>
-                )
-              } else {
-                node = (
-                  <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
-                    <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                  </SectorSelectElement>
-                )
-              }
+                      : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                  }
+                </SectorSelectElement>
+              )
+            } else {
+              node = (
+                <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                  <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                </SectorSelectElement>
+              )
             }
             break
         }

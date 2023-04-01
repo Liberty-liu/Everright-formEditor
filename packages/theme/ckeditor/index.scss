@@ -26,8 +26,9 @@ $namespace: 'Everright-ckeditor';
     }
   }
   @include e('mobile') {
-    height: calc(100% - 46px);
+    height: calc(100% - 40px);
     display: flex;
+    justify-content: flex-end;
     flex-direction: column-reverse;
     &>.#{$namespace}-Main__toolbar{
       .ck.ck-toolbar {

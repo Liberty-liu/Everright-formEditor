@@ -9,7 +9,7 @@ import erFormPreview from './preview.vue'
 import Icon from '@ER/icon'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
-import { fieldConfig, globalConfig } from './componentsConfig'
+// import { fieldConfig, globalConfig } from './componentsConfig'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
 import generatorData from './generatorData'
@@ -25,9 +25,9 @@ const props = defineProps(_.merge({
     type: String,
     default: '220px'
   },
-  configPanelWidth: {
-    type: String,
-    default: '320px'
+  blockPanelDefaultOpeneds: {
+    type: Array,
+    default: () => ['defaultField', 'field', 'container']
   }
 }, defaultProps))
 const layout = {
@@ -38,13 +38,13 @@ window.layout = layout
 const previewPlatform = ref('pc')
 const previewLoading = ref(true)
 const state = reactive({
-  blocks: fieldConfig,
+  blocks: props.fieldConfig,
   store: [],
   sector: {},
   mode: 'edit',
   platform: 'pc',
   children: [],
-  config: globalConfig,
+  config: props.globalConfig,
   previewVisible: false,
   widthScaleLock: false,
   data: {},
@@ -114,7 +114,7 @@ const setSector = (node) => {
 }
 setSector(state.config)
 const addField = (node) => {
-  if (utils.checkIsField(node.type)) {
+  if (utils.checkIsField(node)) {
     const findIndex = _.findIndex(state.fields, {
       id: node.id
     })
@@ -170,7 +170,7 @@ const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true, 
         }
       : el
   if (!sourceBlock && resetWidth) {
-    if (utils.checkIsField(el.type)) {
+    if (utils.checkIsField(el)) {
       if (state.platform === 'pc') {
         el.style.width.pc = '100%'
       } else {

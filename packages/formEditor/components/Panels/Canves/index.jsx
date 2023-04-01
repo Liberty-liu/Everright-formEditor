@@ -32,7 +32,7 @@ export default defineComponent({
               unref(isEditModel) ? Layout : Layout
             }
           </TagComponent>
-          {!unref(isEditModel) && !_.isEmpty(state.config) && <CompleteButton handle={form}/>}
+          {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={form}/>}
         </div>
       )
     }

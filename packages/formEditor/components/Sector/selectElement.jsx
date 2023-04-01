@@ -25,14 +25,6 @@ export default {
       type: String,
       default: 'div'
     },
-    type: {
-      type: String,
-      default: 'form'
-    },
-    hasConfigPanel: {
-      type: Boolean,
-      default: false
-    },
     parent: Object,
     hasMask: {
       type: Boolean,
@@ -50,10 +42,6 @@ export default {
       type: Boolean,
       default: false
     },
-    hasDiscolor: {
-      type: Boolean,
-      default: false
-    },
     hasTableCellOperator: {
       type: Boolean,
       default: false
@@ -67,6 +55,10 @@ export default {
       default: false
     },
     hasInserRow: {
+      type: Boolean,
+      default: false
+    },
+    hasAddCol: {
       type: Boolean,
       default: false
     }
@@ -91,7 +83,7 @@ export default {
     const visible = ref(false)
     const slots = useSlots()
     const isWarning = ref(false)
-    const isField = utils.checkIsField(props.data.type)
+    const isField = utils.checkIsField(props.data)
     const handleClick = (e) => {
       setSector(props.data)
     }
@@ -107,7 +99,6 @@ export default {
         state.validateStates.splice(index, 1)
       }
     })
-    const isSite = props.type === 'site'
     const handleCommand = (command) => {
       const [fn, param] = command.split(' ')
       props.data.context[fn](param)
@@ -161,7 +152,7 @@ export default {
         case 1:
           props.data.context.delete()
           utils.deepTraversal(props.data, (node) => {
-            if (utils.checkIsField(node.type)) {
+            if (utils.checkIsField(node)) {
               ER.delField(node)
             }
           })
@@ -187,7 +178,7 @@ export default {
           setSector(copyData)
           utils.deepTraversal(copyData, (node) => {
             ER.addFieldData(node, true)
-            if (utils.checkIsField(node.type)) {
+            if (utils.checkIsField(node)) {
               ER.addField(node)
             }
           })
@@ -209,6 +200,9 @@ export default {
             parent = parent.context.parent.context.parent
           }
           setSector(Array.isArray(parent) ? 'root' : parent)
+          break
+        case 6:
+          props.data.context.appendCol()
           break
       }
     }
@@ -303,10 +297,9 @@ export default {
           {...useAttrs()}
           class={[
             ns.b(),
-            !isField && ns.is('borderless'),
+            !isField && ns.e('borderless'),
             unref(isEditModel) && ns.e('editor'),
             Selected.value,
-            isSite && ns.e('site'),
             isHover.value && ns.e('hover'),
             isScale.value && ns.e('isScale'),
             isWarning.value && ns.is('Warning')
@@ -343,6 +336,11 @@ export default {
                   props.hasInserRow && (<Icon class={[ns.e('charuhangIcon')]} onClick={withModifiers((e) => {
                     handleAction(3)
                   }, ['stop'])} icon="tableInsertRow"></Icon>)
+                }
+                {
+                  props.hasAddCol && (<Icon class={[ns.e('addCol')]} onClick={withModifiers((e) => {
+                    handleAction(6)
+                  }, ['stop'])} icon="plus"></Icon>)
                 }
                 {
                   isShowCopy.value && (<Icon class={[ns.e('copyIcon')]} onClick={withModifiers((e) => {

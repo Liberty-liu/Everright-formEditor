@@ -28,42 +28,6 @@ export default {
       state,
       setSector
     } = hooks.useTarget()
-    const avargeTask = () => {
-      const total = 24
-      const count = state.sector.columns.length
-      const base = Math.floor(total / count)
-      const rest = total % count
-
-      // let result = [];
-      for (let i = 0; i < count; i++) {
-        state.sector.columns[i].options.span = base + (i < rest ? 1 : 0)
-        // result.push(base + ( i < rest ? 1 : 0 ))
-      }
-      // result.for
-      // return result
-    }
-    const insideType = ref([0])
-    const radio1 = ref('2')
-    const addElement = (columns, element) => {
-      columns.forEach(e => {
-        if (e === -1) {
-          state.sector.columns.push(
-            {
-              options: {
-                span: 24
-              },
-              type: 'col',
-              list: [
-                _.clone(element)
-              ]
-            }
-          )
-        } else {
-          state.sector.columns[e].list.push(_.clone(element))
-        }
-      })
-      avargeTask()
-    }
     const addStore = (element) => {
       const newElement = reactive(ER.wrapElement(_.cloneDeep(element)))
       state.store.push(newElement)
@@ -104,11 +68,11 @@ export default {
         <ElAside class={[ns.b()]} width={ER.props.blockPanelWidth}>
           <el-scrollbar>
             <el-menu
-              default-openeds={['0', '1', '2']}>
+              default-openeds={ER.props.blockPanelDefaultOpeneds}>
               {state.blocks.map((element, index) => {
                 return (
                   <el-sub-menu
-                    index={String(index)}
+                    index={element.id}
                     v-slots={{
                       title () {
                         return t(`er.blocks.${element.id}`)

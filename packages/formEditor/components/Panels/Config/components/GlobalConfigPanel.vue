@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import hooks from '@ER/hooks'
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import _ from 'lodash-es'
-import { ref, unref, computed } from 'vue'
+import { ref, unref, computed, inject } from 'vue'
 import { ClickOutside as vClickOutside } from 'element-plus'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
@@ -22,6 +22,7 @@ const {
 const {
   t
 } = hooks.useI18n()
+const ER = inject('Everright')
 const ns = hooks.useNamespace('GlobalConfigPanel')
 const compareKeys = ['labelPosition', 'completeButton']
 const visible = ref(false)
@@ -176,7 +177,7 @@ const handleTypeListener = ({ property, data }) => {
       :val="target[state.platform].labelPosition"
       :nodes="options0"
     />
-    <el-form-item :label="t('er.public.button')">
+    <el-form-item v-if="ER.props.isShowCompleteButton" :label="t('er.public.button')">
       <div style="width: 100%;">
         <div>
           <CompleteButton mode="preview"/>

@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import hooks from '@ER/hooks'
 import { erFormEditor } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
+import { ElMessage } from "element-plus"
 const route = useRoute()
 const {
   lang
@@ -57,6 +58,10 @@ const handleListener = async ({ type, data }) => {
           method: 'put',
           data: postData
         })
+        ElMessage({
+          message: 'save successfully.',
+          type: 'success'
+        })
       } finally {
         loading.value = false
       }
@@ -66,13 +71,28 @@ const handleListener = async ({ type, data }) => {
 onMounted(() => {
   getObjData()
 })
+const checkPropsBySelected = (sector, propType) => {
+  // console.log(sector.type === 'cascader' && propType === 'defaultValue')
+  // console.log(propType)
+  if (sector.type === 'cascader' && propType === 'defaultValue') {
+    // return false
+  }
+  // return propType === 'defaultValue'
+}
+const quickImages = ref([
+  '/public/Everright-logo.svg',
+  '/public/Everright-logo.svg',
+  '/public/Everright-logo.svg'
+])
 </script>
 <template>
   <div
     v-loading="loading"
   >
     <er-form-editor
+      :checkPropsBySelected="checkPropsBySelected"
       v-if="isRender"
+      :quickImages="quickImages"
       :layoutType="layoutType"
       :lang="lang"
       @listener="handleListener"

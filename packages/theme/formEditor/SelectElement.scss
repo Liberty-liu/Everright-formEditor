@@ -27,7 +27,7 @@
     //  opacity: 1;
     //}
   }
-  @include when(borderless) {
+  @include e(borderless) {
     padding: 0;
   }
   @include when(Selected) {
@@ -45,7 +45,7 @@
     font-size: 20px;
     margin: 0 !important;
   }
-  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon, selectParent, dragIcon)) {
+  @include e((copyIcon, copyDelete, widthScale, tableOperator, charulieIcon, charuhang, charuhangIcon, selectParent, dragIcon, addCol)) {
     border-radius: 4px;
     //box-shadow: 0 2px 6px #00000040;
     background: $primary-color;

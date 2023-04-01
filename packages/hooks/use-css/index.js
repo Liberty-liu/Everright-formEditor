@@ -15,125 +15,6 @@ const sheet = jss.createStyleSheet({
 }, {
   classNamePrefix: 'ER-'
 }).attach()
-// const renderTable = (style) => {
-//   let result = {
-//     width: style.width,
-//     margin: style.margin
-//   }
-//   const value = {
-//     width: style.borderWidth,
-//     style: 'solid',
-//     color: style.borderColor
-//   }
-//   switch (style.borderType) {
-//     case 0:
-//       break
-//     case 1:
-//       result = {
-//         '&>table': {
-//           border: value,
-//           '& td': {
-//             border: value
-//           }
-//         }
-//       }
-//       break
-//     case 2:
-//       result = {
-//         '&>table': {
-//           border: value,
-//           '& td': {
-//             border: {
-//               style: 'none'
-//             }
-//           }
-//         }
-//       }
-//       break
-//     case 3:
-//       result = {
-//         '&>table': {
-//           border: {
-//             style: 'none'
-//           },
-//           '& td:not(`:last-child`)': {
-//             borderRight: value
-//           },
-//           '& tr:not(:last-child)': {
-//             '& td': {
-//               borderBottom: value
-//             }
-//           }
-//         }
-//       }
-//       break
-//     case 4:
-//       result = {
-//         '&>table': {
-//           border: {
-//             style: 'none'
-//           },
-//           borderLeft: value,
-//           '& td': {
-//             border: {
-//               style: 'none'
-//             }
-//           }
-//         }
-//       }
-//       break
-//     case 5:
-//       result = {
-//         '&>table': {
-//           border: {
-//             style: 'none'
-//           },
-//           borderRight: value,
-//           '& td': {
-//             border: {
-//               style: 'none'
-//             }
-//           }
-//         }
-//       }
-//       break
-//     case 6:
-//       result = {
-//         '&>table': {
-//           border: {
-//             style: 'none'
-//           },
-//           borderTop: value,
-//           '& td': {
-//             border: {
-//               style: 'none'
-//             }
-//           }
-//         }
-//       }
-//       break
-//     case 7:
-//       result = {
-//         '&>table': {
-//           border: {
-//             style: 'none'
-//           },
-//           borderBottom: value,
-//           '& td': {
-//             border: {
-//               style: 'none'
-//             }
-//           }
-//         }
-//       }
-//       break
-//   }
-//   result.background = style.background
-//   if (style.background && style.background.image) {
-//     style.background.image = `url(${style.background.image})`
-//   }
-//   return result
-// }
 const isShowKeys = [
   'padding',
   'margin',
@@ -269,10 +150,18 @@ const renderStyleSheets = (node, uid, platform) => {
     } else {
       if (!(style[`isShow${_.upperFirst(key)}`])) {
         delete style[key]
+        if (key === 'border') {
+          delete style.borderRadius
+        }
         delete style[`isShow${_.upperFirst(key)}`]
       }
     }
   })
+  // if (node.type === 'td') {
+  //   debugger
+  // }
+  // console.log(node.id)
+  // console.log(node.style)
   if (_.isObject(node.style.width)) {
     delete style.width
     style.width = node.style.width[platform]
@@ -280,10 +169,7 @@ const renderStyleSheets = (node, uid, platform) => {
   if (style.background && style.background.image) {
     style.background.image = `url(${style.background.image})`
   }
-  // if (node.type === 'table') {
-  //   // console.log(renderTableBorder(node.style))
-  // }
-  return sheet.replaceRule(uid, style).id
+  return sheet.addRule(uid.toString(), style).id
 }
 // const renderStyleSheets = (node, uid, platform) => {
 //   let style = {}

@@ -582,7 +582,6 @@ export const addContext = (node, parent, fn) => {
       }
       return result
     },
-    isRender: true,
     copy () {
       const index = arr.indexOf(node)
       const newNode = reactive(_.cloneDeep(toRaw(node)))
@@ -601,6 +600,21 @@ export const addContext = (node, parent, fn) => {
       // if (node.context.parent.type === 'inline' && !arr.length) {
       //   node.context.parent.context.delete()
       // }
+    },
+    appendCol () {
+      const newNode = wrapElement({
+        options: {
+          span: 6,
+          offset: 0,
+          pull: 0,
+          push: 0
+        },
+        type: 'col',
+        list: [
+        ]
+      })
+      node.columns.push(newNode)
+      addContext(newNode, node)
     },
     get columns () {
       const result = []

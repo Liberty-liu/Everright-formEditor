@@ -173,7 +173,8 @@ export default {
         allowHalf: '半选',
         alpha: '透明度',
         anyNode: '选择任意节点',
-        clearable: '一键清除按钮'
+        clearable: '一键清除按钮',
+        star: '星星数'
       }
     },
     public: {
@@ -210,7 +211,9 @@ export default {
       phone: '请输入正确的手机号',
       http: '请输入正确的网址',
       fileSize: '文件大小不能超过 <%= size %> MB',
-      idUnique: '字段标识重复'
+      idUnique: '字段标识重复',
+      placeholder1: '请输入',
+      placeholder2: '请选择'
     },
     form: {
       selectDate: '选择日期',

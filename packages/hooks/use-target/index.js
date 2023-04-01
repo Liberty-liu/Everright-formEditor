@@ -8,11 +8,16 @@ export const useTarget = () => {
   //     name
   //   }
   // } = Instance
-  const { state, setSector } = inject('Everright')
+  const {
+    state,
+    setSector,
+    props
+  } = inject('Everright')
   // onBeforeUnmount(() => {
   //   state.children.splice(state.children.indexOf(Instance), 1)
   // })
   // state.children.push(Instance)
+  // console.log(props.checkTypeBySelected)
   const sector = computed(() => {
     return state.sector
   })
@@ -32,7 +37,8 @@ export const useTarget = () => {
   })
   const isSelectField = computed({
     get () {
-      return utils.checkIsField(type.value)
+      // return utils.checkIsField(type.value)
+      return utils.checkIsField(state.sector)
     }
   })
   const target = computed({
@@ -45,11 +51,18 @@ export const useTarget = () => {
       return !_.isEmpty(state.sector) && state.sector.context.col
     }
   })
-  const checkTypeBySelected = (nodes = []) => {
+  const checkTypeBySelected = (nodes = [], propType) => {
     let result = false
     if (!_.isEmpty(state.sector)) {
-      result = nodes.includes(type.value)
+      if (type.value) {
+        const fn = props.checkPropsBySelected(state.sector, propType)
+        // console.log(fn !== undefined ? fn : nodes.includes(type.value))
+        result = fn !== undefined ? fn : nodes.includes(type.value)
+      } else {
+        result = nodes.includes(type.value)
+      }
     }
+    // props.checkTypeBySelected
     // if (!unref(isSelectRoot)) {
     //   result = nodes.includes(type.value)
     // }
