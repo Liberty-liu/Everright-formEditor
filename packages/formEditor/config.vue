@@ -1,6 +1,6 @@
 <script>
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, watch, nextTick, onMounted } from 'vue'
-import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
+import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
@@ -24,7 +24,7 @@ const layout = {
 }
 const state = reactive({
   store: [],
-  sector: {},
+  selected: {},
   config: globalConfig,
   platform: 'pc',
   Namespace: 'formEditor',
@@ -36,7 +36,7 @@ const state = reactive({
 const element = ref('')
 const ns = hooks.useNamespace('Main', state.Namespace)
 const loading = ref(false)
-const setSector = (node) => {
+const setSelection = (node) => {
   let result = ''
   if (node === 'root') {
     result = state.config
@@ -47,7 +47,7 @@ const setSector = (node) => {
       result = node
     }
   }
-  state.sector = result
+  state.selected = result
 }
 const switchPlatform = (platform) => {
   state.platform = platform
@@ -56,7 +56,7 @@ provide('Everright', {
   state,
   emit,
   props,
-  setSector,
+  setSelection,
   switchPlatform
 })
 watch(() => props.field, (newVal) => {
@@ -64,7 +64,7 @@ watch(() => props.field, (newVal) => {
     state.store[0] = newVal
     utils.addContext(newVal, state.store)
   }
-  setSector(newVal)
+  setSelection(newVal)
 }, {
   immediate: true
 })
@@ -74,7 +74,7 @@ defineExpose({
     state.platform = platform
   }
 })
-watch(() => state.sector, (newVal) => {
+watch(() => state.selected, (newVal) => {
   emit('listener', {
     type: 'changeParams',
     data: _.cloneDeep(newVal)
@@ -85,5 +85,5 @@ watch(() => state.sector, (newVal) => {
 })
 </script>
 <template>
-  <PanelsConfig mode="config"></PanelsConfig>
+  <ConfigPanel mode="config"></ConfigPanel>
 </template>

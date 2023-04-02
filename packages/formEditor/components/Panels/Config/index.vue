@@ -25,7 +25,7 @@ const {
   isSelectAnyElement,
   isSelectField,
   isSelectRoot,
-  setSector,
+  setSelection,
   type,
   checkTypeBySelected,
   target,
@@ -40,7 +40,7 @@ const {
 } = hooks.useI18n()
 const activeName0 = ref('props')
 const isShow = computed(() => {
-  return !_.isEmpty(state.sector) && state.sector.type !== 'grid'
+  return !_.isEmpty(state.selected) && state.selected.type !== 'grid'
 })
 const ns = hooks.useNamespace('Config')
 const form = ref()
@@ -137,9 +137,9 @@ const bars = computed(() => {
 })
 const handleBreadcrumbClick = (item) => {
   if (item !== 'root') {
-    setSector(item)
+    setSelection(item)
   } else {
-    setSector('root')
+    setSelection('root')
   }
 }
 watch(target, () => {

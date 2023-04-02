@@ -30,9 +30,7 @@ export default {
       table: 'Table',
       tabs: 'Tabs',
       collapse: 'Collapse',
-      divider: 'Divider'
-    },
-    blocks: {
+      divider: 'Divider',
       container: 'Container',
       field: 'Basic field',
       defaultField: 'Default field'
@@ -225,7 +223,7 @@ export default {
       uploading: 'uploading...',
       uploadFailed: 'Fail to upload'
     },
-    sector: {
+    selection: {
       insertLeft: 'Insert column left',
       insertRight: 'Insert column right',
       insertTop: 'Insert row before',

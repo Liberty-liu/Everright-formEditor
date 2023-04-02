@@ -1,6 +1,6 @@
 import { defineComponent, resolveComponent, watch, useAttrs, unref } from 'vue'
 import hooks from '@ER/hooks'
-import SectorSelectElement from '@ER/formEditor/components/Sector/selectElement.jsx'
+import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
 const isTrTag = (tagName) => tagName.toLocaleLowerCase() === 'td'
 export default defineComponent({
@@ -44,7 +44,7 @@ export default defineComponent({
         }
       }
       return (
-        <SectorSelectElement class={ns.b()} {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasInserColumn hasInserRow data={props.data} parent={props.parent}>
+        <Selection class={ns.b()} {...useAttrs()} hasWidthScale hasCopy hasDel hasDrag hasInserColumn hasInserRow data={props.data} parent={props.parent}>
           <table>
             <tbody>
             {
@@ -54,7 +54,7 @@ export default defineComponent({
                     {
                       element.columns.map((element1, index1) => {
                         const node = !element1.options.isMerged && (
-                          <SectorSelectElement
+                          <Selection
                             tag="td"
                             class={[ns.e('area')]}
                             key={element1.id}
@@ -71,7 +71,7 @@ export default defineComponent({
                               data-layout-type={'td'}
                               data={element1.list}
                               parent={element1}/>
-                          </SectorSelectElement>
+                          </Selection>
                         )
                         return node
                       })
@@ -82,7 +82,7 @@ export default defineComponent({
             }
             </tbody>
           </table>
-        </SectorSelectElement>
+        </Selection>
       )
     }
   }

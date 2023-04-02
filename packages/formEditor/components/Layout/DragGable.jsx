@@ -21,7 +21,7 @@ import LayoutTabsLayout from './TabsLayout'
 import LayoutCollapseLayout from './CollapseLayout'
 import LayoutTableLayout from './TableLayout'
 import LayoutInlineLayout from './InlineLayout'
-import SectorSelectElement from '@ER/formEditor/components/Sector/selectElement.jsx'
+import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import ControlInsertionPlugin from './ControlInsertionPlugin'
 const dragGableWrap = defineComponent({
   inheritAttrs: false,
@@ -94,7 +94,7 @@ export default defineComponent({
       state,
       isEditModel,
       isPc,
-      setSector
+      setSelection
     } = hooks.useTarget()
     const handleMove = (e) => {
       return true
@@ -149,7 +149,7 @@ export default defineComponent({
             TypeComponent = load.findComponent('FormTypes', element.type)
             if (unref(isPc)) {
               node = (
-                <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
                   {
                     element.type !== 'divider'
                       ? (<el-form-item
@@ -159,13 +159,13 @@ export default defineComponent({
                       </el-form-item>)
                       : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
                   }
-                </SectorSelectElement>
+                </Selection>
               )
             } else {
               node = (
-                <SectorSelectElement hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
                   <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                </SectorSelectElement>
+                </Selection>
               )
             }
             break

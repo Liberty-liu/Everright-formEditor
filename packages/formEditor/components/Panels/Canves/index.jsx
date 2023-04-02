@@ -13,13 +13,13 @@ export default defineComponent({
     const ns = hooks.useNamespace('Canves')
     const {
       state,
-      setSector,
+      setSelection,
       isEditModel,
       isPc
     } = hooks.useTarget()
     const form = ref('')
     const handleClick = (e) => {
-      setSector('root')
+      setSelection('root')
     }
     const renderContent = () => {
       const TagComponent = resolveComponent(unref(isPc) ? 'el-form' : 'van-form')

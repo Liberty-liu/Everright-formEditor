@@ -368,7 +368,7 @@ function ControlInsertionPlugin (ER) {
           }
         })
         nextTick(() => {
-          ER.setSector(newElement)
+          ER.setSelection(newElement)
         })
       }
       resetStates()

@@ -73,7 +73,7 @@ export default {
     const isInlineChildren = utils.checkIslineChildren(props.data)
     const {
       target,
-      setSector,
+      setSelection,
       state,
       isEditModel,
       isSelectRoot,
@@ -85,7 +85,7 @@ export default {
     const isWarning = ref(false)
     const isField = utils.checkIsField(props.data)
     const handleClick = (e) => {
-      setSector(props.data)
+      setSelection(props.data)
     }
     if (props.data.type && isField) {
       state.validateStates.push({
@@ -109,20 +109,20 @@ export default {
         dropdown: () => {
           let node = (
             <el-dropdown-menu>
-              <el-dropdown-item command="insert left">{t('er.sector.insertLeft')}</el-dropdown-item>
-              <el-dropdown-item command="insert right">{t('er.sector.insertRight')}</el-dropdown-item>
-              <el-dropdown-item command="insert top">{t('er.sector.insertTop')}</el-dropdown-item>
-              <el-dropdown-item command="insert bottom">{t('er.sector.insertBottom')}</el-dropdown-item>
-              <el-dropdown-item command="merge left" disabled={props.data.context.isDisableMargeLeft} divided>{t('er.sector.mergeLeft')}</el-dropdown-item>
-              <el-dropdown-item command="merge right" disabled={props.data.context.isDisableMargeRight}>{t('er.sector.mergeRight')}</el-dropdown-item>
-              <el-dropdown-item command="merge row" disabled={props.data.context.isDisableMargeRow}>{t('er.sector.mergeRow')}</el-dropdown-item>
-              <el-dropdown-item command="merge top" disabled={props.data.context.isDisableMargeTop} divided>{t('er.sector.mergeTop')}</el-dropdown-item>
-              <el-dropdown-item command="merge bottom" disabled={props.data.context.isDisableMargeBottom}>{t('er.sector.mergeBottom')}</el-dropdown-item>
-              <el-dropdown-item command="merge column" disabled={props.data.context.isDisableMargeColumn}>{t('er.sector.mergeColumn')}</el-dropdown-item>
-              <el-dropdown-item command="del row" divided disabled={props.data.context.isDisableDelRow}>{t('er.sector.delRow')}</el-dropdown-item>
-              <el-dropdown-item command="del column" disabled={props.data.context.isDisableDelColumn}>{t('er.sector.delColumn')}</el-dropdown-item>
-              <el-dropdown-item command="split column" disabled={props.data.context.isDisableSplitColumn} divided>{t('er.sector.splitColumn')}</el-dropdown-item>
-              <el-dropdown-item command="split row" disabled={props.data.context.isDisableSplitRow}>{t('er.sector.splitRow')}</el-dropdown-item>
+              <el-dropdown-item command="insert left">{t('er.selection.insertLeft')}</el-dropdown-item>
+              <el-dropdown-item command="insert right">{t('er.selection.insertRight')}</el-dropdown-item>
+              <el-dropdown-item command="insert top">{t('er.selection.insertTop')}</el-dropdown-item>
+              <el-dropdown-item command="insert bottom">{t('er.selection.insertBottom')}</el-dropdown-item>
+              <el-dropdown-item command="merge left" disabled={props.data.context.isDisableMargeLeft} divided>{t('er.selection.mergeLeft')}</el-dropdown-item>
+              <el-dropdown-item command="merge right" disabled={props.data.context.isDisableMargeRight}>{t('er.selection.mergeRight')}</el-dropdown-item>
+              <el-dropdown-item command="merge row" disabled={props.data.context.isDisableMargeRow}>{t('er.selection.mergeRow')}</el-dropdown-item>
+              <el-dropdown-item command="merge top" disabled={props.data.context.isDisableMargeTop} divided>{t('er.selection.mergeTop')}</el-dropdown-item>
+              <el-dropdown-item command="merge bottom" disabled={props.data.context.isDisableMargeBottom}>{t('er.selection.mergeBottom')}</el-dropdown-item>
+              <el-dropdown-item command="merge column" disabled={props.data.context.isDisableMargeColumn}>{t('er.selection.mergeColumn')}</el-dropdown-item>
+              <el-dropdown-item command="del row" divided disabled={props.data.context.isDisableDelRow}>{t('er.selection.delRow')}</el-dropdown-item>
+              <el-dropdown-item command="del column" disabled={props.data.context.isDisableDelColumn}>{t('er.selection.delColumn')}</el-dropdown-item>
+              <el-dropdown-item command="split column" disabled={props.data.context.isDisableSplitColumn} divided>{t('er.selection.splitColumn')}</el-dropdown-item>
+              <el-dropdown-item command="split row" disabled={props.data.context.isDisableSplitRow}>{t('er.selection.splitRow')}</el-dropdown-item>
             </el-dropdown-menu>
           )
           if (!isShowCell.value) {
@@ -162,30 +162,24 @@ export default {
           }
           if (props.parent.length > 0) {
             if (index === props.parent.length) {
-              // state.sector = props.parent[index - 1]
-              setSector(props.parent[index - 1])
+              setSelection(props.parent[index - 1])
             } else {
-              // state.sector = props.parent[index]
-              setSector(props.parent[index])
+              setSelection(props.parent[index])
             }
           } else {
-            setSector('root')
-            // state.sector = {}
+            setSelection('root')
           }
           break
         case 2:
           props.data.context.copy()
           const copyData = props.parent[index + 1]
-          setSector(copyData)
+          setSelection(copyData)
           utils.deepTraversal(copyData, (node) => {
             ER.addFieldData(node, true)
             if (utils.checkIsField(node)) {
               ER.addField(node)
             }
           })
-          // console.log(props.parent[index + 1])
-          // ER.addField()
-          // state.sector = props.parent[index + 1]
           break
         case 3:
           _.last(props.data.context.columns[0]).context.insert('bottom')
@@ -200,7 +194,7 @@ export default {
           } else if (/^(tr)$/.test(parent.type)) {
             parent = parent.context.parent.context.parent
           }
-          setSector(Array.isArray(parent) ? 'root' : parent)
+          setSelection(Array.isArray(parent) ? 'root' : parent)
           break
         case 6:
           props.data.context.appendCol()
@@ -266,27 +260,10 @@ export default {
     const Selected = computed(() => {
       return target.value.id === props.data.id && ns.is('Selected')
     })
-    let maskNode = (
+    const maskNode = (
       <div class={[ns.e('mask')]}>
       </div>
     )
-    if (props.data.type === 'site-button') {
-      const buttonConfigPanelSlot = {
-        default ({ state }) {
-          return (
-            <div onClick={() => {
-              state.visible = true
-            }} class={[ns.e('mask'), (props.data.type === 'site-button') && ns.e('mask-action')]}>
-              <span class={ns.e('maskContent')}>编辑</span>
-            </div>
-          )
-        }
-      }
-      maskNode = (
-        <SectorComponentsButtonConfigPanel data={props.data} v-slots={buttonConfigPanelSlot}>
-        </SectorComponentsButtonConfigPanel>
-      )
-    }
     const isShowCopy = computed(() => isInlineChildren ? props.hasCopy && props.data.context.parent.columns.length < 4 : props.hasCopy)
     // const isShowSelectParent = computed(() => {
     //   return !isSelectRoot.value

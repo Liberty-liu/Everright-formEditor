@@ -1,6 +1,6 @@
 <script>
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, watch, nextTick, onMounted } from 'vue'
-import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
+import CanvesPanel from '@ER/formEditor/components/Panels/Canves'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
@@ -18,7 +18,7 @@ const layout = {
 }
 const state = reactive({
   store: [],
-  sector: {},
+  selection: {},
   platform: utils.isPc() ? 'pc' : 'mobile',
   mode: 'preview',
   config: {},
@@ -93,5 +93,5 @@ defineExpose({
 })
 </script>
 <template>
-  <PanelsCanves v-if="state.store.length"></PanelsCanves>
+  <CanvesPanel v-if="state.store.length"></CanvesPanel>
 </template>

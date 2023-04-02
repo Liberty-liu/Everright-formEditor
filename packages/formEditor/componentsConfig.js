@@ -18,7 +18,7 @@ export const globalConfig = {
     }
   }
 }
-export const fieldConfig = [
+export const fieldsConfig = [
   {
     name: '预设字段',
     id: 'defaultField',

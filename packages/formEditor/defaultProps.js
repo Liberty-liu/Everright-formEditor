@@ -1,7 +1,7 @@
-import { fieldConfig, globalConfig } from './componentsConfig'
+import { fieldsConfig, globalConfig } from './componentsConfig'
 export default {
-  fieldConfig: {
-    default: () => fieldConfig
+  fieldsConfig: {
+    default: () => fieldsConfig
   },
   globalConfig: {
     default: () => globalConfig

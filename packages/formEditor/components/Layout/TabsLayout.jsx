@@ -1,5 +1,5 @@
 import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent } from 'vue'
-import SectorSelectElement from '@ER/formEditor/components/Sector/selectElement.jsx'
+import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
 import hooks from '@ER/hooks'
 export default defineComponent({
@@ -14,12 +14,12 @@ export default defineComponent({
     const ns = hooks.useNamespace('TabsLayout')
     return () => {
       return (
-        <SectorSelectElement {...useAttrs()} data={props.data} parent={props.parent} hasCopy hasDel hasDrag hasWidthScale>
+        <Selection {...useAttrs()} data={props.data} parent={props.parent} hasCopy hasDel hasDrag hasWidthScale>
           <el-tabs class={[ns.b()]} vModel={props.data.options.defaultValue} type={props.data.options.type} tabPosition={props.data.options.tabPosition}>
             {
               props.data.columns.map((element, index0) => {
                 return (
-                  <SectorSelectElement
+                  <Selection
                     class={[ns.e('area')]}
                     tag='el-tab-pane' label={element.label} name={element.value} data={element} parent={props.data}
                   >
@@ -28,12 +28,12 @@ export default defineComponent({
                       data={element.list}
                       ControlInsertion={true}
                       parent={element}/>
-                  </SectorSelectElement>
+                  </Selection>
                 )
               })
             }
           </el-tabs>
-        </SectorSelectElement>
+        </Selection>
       )
     }
   }

@@ -16,8 +16,8 @@ const all = ref([])
 watch(lang, (newLang) => {
   all.value = []
   store.layouts = []
-  store.fields = [...erComponentsConfig.fieldConfig[0].list, ...erComponentsConfig.fieldConfig[1].list].map(e => erGeneratorData(e, true, newLang))
-  const layoutNodes = erComponentsConfig.fieldConfig[2].list.map(e => erGeneratorData(e, true, newLang))
+  store.fields = [...erComponentsConfig.fieldsConfig[0].list, ...erComponentsConfig.fieldsConfig[1].list].map(e => erGeneratorData(e, true, newLang))
+  const layoutNodes = erComponentsConfig.fieldsConfig[2].list.map(e => erGeneratorData(e, true, newLang))
   layoutNodes.forEach((node, index) => {
     store.layouts.push(node)
     // console.log(node)

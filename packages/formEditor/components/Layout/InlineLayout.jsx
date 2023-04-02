@@ -1,5 +1,5 @@
 import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent, unref, nextTick, inject } from 'vue'
-import SectorSelectElement from '@ER/formEditor/components/Sector/selectElement.jsx'
+import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable, { dragGableWrap } from './DragGable.jsx'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'

@@ -10,7 +10,7 @@ export const useTarget = () => {
   // } = Instance
   const {
     state,
-    setSector,
+    setSelection,
     props
   } = inject('Everright')
   // onBeforeUnmount(() => {
@@ -18,44 +18,43 @@ export const useTarget = () => {
   // })
   // state.children.push(Instance)
   // console.log(props.checkTypeBySelected)
-  const sector = computed(() => {
-    return state.sector
+  const selection = computed(() => {
+    return state.selected
   })
   const isSelectAnyElement = computed({
     get () {
-      // return !_.isEmpty(state.sector)
-      return state.sector !== state.config
+      return state.selected !== state.config
     }
   })
   const isSelectRoot = computed({
     get () {
-      return state.sector === state.config
+      return state.selected === state.config
     }
   })
   const type = computed(() => {
-    return state.sector.type
+    return state.selected.type
   })
   const isSelectField = computed({
     get () {
       // return utils.checkIsField(type.value)
-      return utils.checkIsField(state.sector)
+      return utils.checkIsField(state.selected)
     }
   })
   const target = computed({
     get () {
-      return state.sector
+      return state.selected
     }
   })
   const col = computed({
     get () {
-      return !_.isEmpty(state.sector) && state.sector.context.col
+      return !_.isEmpty(state.selected) && state.selected.context.col
     }
   })
   const checkTypeBySelected = (nodes = [], propType) => {
     let result = false
-    if (!_.isEmpty(state.sector)) {
+    if (!_.isEmpty(state.selected)) {
       if (type.value) {
-        const fn = props.checkPropsBySelected(state.sector, propType)
+        const fn = props.checkPropsBySelected(state.selected, propType)
         // console.log(fn !== undefined ? fn : nodes.includes(type.value))
         result = fn !== undefined ? fn : nodes.includes(type.value)
       } else {
@@ -100,10 +99,10 @@ export const useTarget = () => {
   })
   return {
     state,
-    setSector,
+    setSelection,
     type,
     col,
-    sector,
+    selection,
     isSelectAnyElement,
     isSelectField,
     target,

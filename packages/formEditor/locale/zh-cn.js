@@ -30,9 +30,7 @@ export default {
       table: '表格布局',
       tabs: '标签页',
       collapse: '折叠面板',
-      divider: '分割线'
-    },
-    blocks: {
+      divider: '分割线',
       container: '容器',
       field: '基础字段',
       defaultField: '预设字段'
@@ -225,7 +223,7 @@ export default {
       uploading: '上传中...',
       uploadFailed: '上传失败'
     },
-    sector: {
+    selection: {
       insertLeft: '左插入列',
       insertRight: '右插入列',
       insertTop: '上插入行',

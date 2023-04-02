@@ -1,9 +1,9 @@
 <script>
 import { ClickOutside as vClickOutside } from 'element-plus'
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, nextTick, onMounted, watch } from 'vue'
-import PanelsBlocks from '@ER/formEditor/components/Panels/Blocks'
-import PanelsCanves from '@ER/formEditor/components/Panels/Canves'
-import PanelsConfig from '@ER/formEditor/components/Panels/Config/index.vue'
+import FieldsPanel from '@ER/formEditor/components/Panels/Fields'
+import CanvesPanel from '@ER/formEditor/components/Panels/Canves'
+import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue'
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue'
 import erFormPreview from './preview.vue'
 import Icon from '@ER/icon'
@@ -42,9 +42,8 @@ window.layout = layout
 const previewPlatform = ref('pc')
 const previewLoading = ref(true)
 const state = reactive({
-  blocks: props.fieldConfig,
   store: [],
-  sector: {},
+  selected: {},
   mode: 'edit',
   platform: 'pc',
   children: [],
@@ -56,7 +55,7 @@ const state = reactive({
   fields: [],
   Namespace: 'formEditor'
 })
-const isFoldBlocks = ref(true)
+const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
 state.validator = (target, fn) => {
   if (target) {
@@ -81,17 +80,17 @@ state.validator = (target, fn) => {
     fn(state.validateStates.every(e => !e.isWarning))
   }
 }
-const {
-  canUndo,
-  canRedo,
-  undo,
-  redo,
-  undoStack,
-  redoStack,
-  last
-  // stop,
-  // restart
-} = hooks.useHistory(state)
+// const {
+//   canUndo,
+//   canRedo,
+//   undo,
+//   redo,
+//   undoStack,
+//   redoStack,
+//   last
+//   // stop,
+//   // restart
+// } = hooks.useHistory(state)
 const {
   t,
   lang
@@ -99,7 +98,7 @@ const {
 const EReditorPreviewRef = ref('')
 const isShow = ref(true)
 const isShowConfig = ref(true)
-const setSector = (node) => {
+const setSelection = (node) => {
   let result = ''
   if (node === 'root') {
     result = state.config
@@ -110,13 +109,13 @@ const setSector = (node) => {
       result = node
     }
   }
-  isShowConfig.value = state.sector === result
-  state.sector = result
+  isShowConfig.value = state.selected === result
+  state.selected = result
   nextTick(() => {
     isShowConfig.value = true
   })
 }
-setSector(state.config)
+setSelection(state.config)
 const addField = (node) => {
   if (utils.checkIsField(node)) {
     const findIndex = _.findIndex(state.fields, {
@@ -159,7 +158,7 @@ const addFieldData = (node, isCopy = false) => {
     node.options.action = props.fileUploadURI
   }
 }
-const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true, resetWidth = true) => {
+const wrapElement = (el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) => {
   const node = sourceBlock
     ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
       addFieldData(node)
@@ -188,9 +187,9 @@ const wrapElement = (el, isWrap = true, isSetSector = true, sourceBlock = true, 
       el.style.width = '100%'
     }
   }
-  if (isSetSector) {
+  if (isSetSelection) {
     // nextTick(() => {
-    //   setSector(node)
+    //   setSelection(node)
     // })
   }
   return node
@@ -270,12 +269,11 @@ const switchPlatform = (platform) => {
     })
   }
   state.platform = platform
-  // setSector('root')
 }
 const canvesScrollRef = ref('')
 provide('Everright', {
   state,
-  setSector,
+  setSelection,
   props,
   wrapElement,
   delField,
@@ -313,7 +311,7 @@ const setData1 = (data) => {
   // state.store = data.list.slice(data.list.length - 1)
   state.config = newData.config
   state.data = newData.data
-  setSector(state.config)
+  setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
@@ -336,7 +334,7 @@ const setData2 = (data) => {
   state.store = curLayout
   state.config = newData.config
   state.data = newData.data
-  setSector(state.config)
+  setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
@@ -371,7 +369,7 @@ const handleOperation = (type, val) => {
       layout.mobile = []
       state.fields.splice(0)
       state.store.splice(0)
-      setSector('root')
+      setSelection('root')
       break
     case 3:
       state.previewVisible = true
@@ -390,7 +388,7 @@ const handleOperation = (type, val) => {
       })
       break
     case 5:
-      isFoldBlocks.value = !isFoldBlocks.value
+      isFoldFields.value = !isFoldFields.value
       break
     case 6:
       isFoldConfig.value = !isFoldConfig.value
@@ -408,7 +406,7 @@ const handleOperation = (type, val) => {
       break
   }
 }
-watch(() => state.sector, (newVal) => {
+watch(() => state.selected, (newVal) => {
   emit('listener', {
     type: 'changeParams',
     data: _.cloneDeep(newVal)
@@ -418,7 +416,6 @@ watch(() => state.sector, (newVal) => {
   immediate: true
 })
 const onClickOutside = () => {
-  // setSector('root')
 }
 </script>
 <template>
@@ -434,7 +431,7 @@ const onClickOutside = () => {
     <el-scrollbar>
       <div v-loading="previewLoading" :class="[ns.e('previewDialogWrap'), previewPlatform === 'mobile' && ns.is('mobilePreview')]">
         <er-form-preview
-          :lang="props.lang"
+          v-bind="props"
           ref="EReditorPreviewRef"
         />
       </div>
@@ -442,7 +439,7 @@ const onClickOutside = () => {
   </el-dialog>
   <el-container :class="[ns.b()]" direction="vertical">
     <el-container>
-      <PanelsBlocks v-show="isFoldBlocks"/>
+      <FieldsPanel v-show="isFoldFields"/>
       <el-container :class="[ns.e('container')]">
         <el-header :class="[ns.e('operation')]">
           <div>
@@ -468,11 +465,11 @@ const onClickOutside = () => {
             <Icon @click="handleOperation(3)" :class="[ns.e('icon')]" icon="preview"></Icon>
           </div>
         </el-header>
-        <PanelsCanves v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></PanelsCanves>
-        <Icon @click="handleOperation(5)" :class="[ns.e('arrowLeft'), !isFoldBlocks && ns.is('close')]" icon="arrowLeft"></Icon>
+        <CanvesPanel v-click-outside="onClickOutside" v-if="isShow" :data="state.store"></CanvesPanel>
+        <Icon @click="handleOperation(5)" :class="[ns.e('arrowLeft'), !isFoldFields && ns.is('close')]" icon="arrowLeft"></Icon>
         <Icon @click="handleOperation(6)" :class="[ns.e('arrowRight'), !isFoldConfig && ns.is('close')]" icon="arrowRight"></Icon>
       </el-container>
-      <PanelsConfig v-show="isFoldConfig" v-if="isShow && isShowConfig"></PanelsConfig>
+      <ConfigPanel v-show="isFoldConfig" v-if="isShow && isShowConfig"></ConfigPanel>
     </el-container>
   </el-container>
 </template>

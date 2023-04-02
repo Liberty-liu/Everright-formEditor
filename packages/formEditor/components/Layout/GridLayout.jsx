@@ -1,6 +1,6 @@
 import { defineComponent, resolveComponent, watch, useAttrs, unref, inject } from 'vue'
 import hooks from '@ER/hooks'
-import SectorSelectElement from '@ER/formEditor/components/Sector/selectElement.jsx'
+import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable, { dragGableWrap } from './DragGable.jsx'
 export default defineComponent({
   name: 'GridLayout',
@@ -33,7 +33,7 @@ export default defineComponent({
     const tag = resolveComponent('el-row')
     return () => {
       const node = (
-        <SectorSelectElement {...useAttrs()} hasWidthScale hasCopy hasAddCol hasDel hasDrag data={props.data} parent={props.parent}>
+        <Selection {...useAttrs()} hasWidthScale hasCopy hasAddCol hasDel hasDrag data={props.data} parent={props.parent}>
           <tag data-layout-type={'grid'} {...{
             gutter: props.data.options.gutter,
             justify: props.data.options.justify,
@@ -43,7 +43,7 @@ export default defineComponent({
             {
               props.data.columns.map((element, index) => {
                 return (
-                  <SectorSelectElement
+                  <Selection
                     key={element.id}
                     hasCopy
                     hasDel={props.data.columns.length > 1}
@@ -65,12 +65,12 @@ export default defineComponent({
                       parent={element}
                       ControlInsertion={true}
                     />
-                  </SectorSelectElement>
+                  </Selection>
                 )
               })
             }
           </tag>
-        </SectorSelectElement>
+        </Selection>
       )
       return node
     }

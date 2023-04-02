@@ -7,7 +7,7 @@ import Icon from '@ER/icon'
 import ControlInsertionPlugin from '../../Layout/ControlInsertionPlugin.js'
 import { nanoid } from 'nanoid'
 export default {
-  name: 'Blocks',
+  name: 'Fields',
   inheritAttrs: false,
   customOptions: {},
   props: {
@@ -19,21 +19,21 @@ export default {
   },
   setup (props) {
     const ER = inject('Everright')
-    const ns = hooks.useNamespace('Blocks')
+    const ns = hooks.useNamespace('Fields')
     const {
       t
     } = hooks.useI18n()
     // console.log(t('lhf'))
     const {
       state,
-      setSector
+      setSelection
     } = hooks.useTarget()
     const addStore = (element) => {
       const newElement = reactive(ER.wrapElement(_.cloneDeep(element)))
       state.store.push(newElement)
       utils.addContext(newElement, state.store)
       nextTick(() => {
-        setSector(newElement)
+        setSelection(newElement)
         setTimeout(() => {
           ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
         }, 100)
@@ -69,13 +69,13 @@ export default {
           <el-scrollbar>
             <el-menu
               default-openeds={ER.props.blockPanelDefaultOpeneds}>
-              {state.blocks.map((element, index) => {
+              {ER.props.fieldsConfig.map((element, index) => {
                 return (
                   <el-sub-menu
                     index={element.id}
                     v-slots={{
                       title () {
-                        return t(`er.blocks.${element.id}`)
+                        return t(`er.fields.${element.id}`)
                       },
                       default () {
                         return (
