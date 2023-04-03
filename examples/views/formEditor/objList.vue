@@ -167,8 +167,8 @@ onMounted(() => {
       </el-form-item>
       <el-form-item v-if="!isEdit" label="编辑器类型" prop="layoutType">
         <el-radio-group v-model="ruleForm.layoutType" class="ml-4">
-          <el-radio :label="1" size="large">分离布局与字段</el-radio>
-          <el-radio :label="2" size="large">不分离布局与字段</el-radio>
+          <el-radio :label="1" size="large">不分离布局与字段</el-radio>
+          <el-radio :label="2" size="large">分离布局与字段</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>

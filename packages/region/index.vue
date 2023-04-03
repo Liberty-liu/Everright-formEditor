@@ -50,7 +50,6 @@ const store = new Store(region.getAll(), {
   disabled: 'disabled',
   multiple: props.multiple
 })
-// window.store = store
 const state = reactive({
   Namespace: 'region',
   menus: [{

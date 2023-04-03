@@ -204,7 +204,7 @@ const setStates = (newTarget, ev, ER) => {
   // console.log(ER.props.layoutType === 1)
   // console.log(targetContainer)
   if (/^(2|4)$/.test(direction)) {
-    if (targetList.length === 4 && !el.contains(dragEl)) {
+    if (targetList.length === ER.props.inlineMax && !el.contains(dragEl)) {
       return false
     }
   }
@@ -264,7 +264,7 @@ const setStates = (newTarget, ev, ER) => {
       break
     case 5:
       // console.log('上')
-      if (targetList.length === 4 && !el.contains(dragEl)) {
+      if (targetList.length === ER.props.inlineMax && !el.contains(dragEl)) {
         return false
       }
       if (cols[utils.index(target) - 1] !== dragEl) {
@@ -276,7 +276,7 @@ const setStates = (newTarget, ev, ER) => {
       break
     case 6:
       // console.log('下')
-      if (targetList.length === 4 && !el.contains(dragEl)) {
+      if (targetList.length === ER.props.inlineMax && !el.contains(dragEl)) {
         return false
       }
       if (cols[utils.index(target) + 1] !== dragEl) {

@@ -65,10 +65,10 @@ export default {
     }
     return () => {
       return (
-        <ElAside class={[ns.b()]} width={ER.props.blockPanelWidth}>
+        <ElAside class={[ns.b()]} width={ER.props.fieldsPanelWidth}>
           <el-scrollbar>
             <el-menu
-              default-openeds={ER.props.blockPanelDefaultOpeneds}>
+              default-openeds={ER.props.fieldsPanelDefaultOpeneds}>
               {ER.props.fieldsConfig.map((element, index) => {
                 return (
                   <el-sub-menu

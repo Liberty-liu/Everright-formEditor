@@ -21,24 +21,39 @@ export default {
 <script setup>
 const emit = defineEmits(['listener'])
 const props = defineProps(_.merge({
-  blockPanelWidth: {
+  fieldsPanelWidth: {
     type: String,
     default: '220px'
   },
-  blockPanelDefaultOpeneds: {
+  fieldsPanelDefaultOpeneds: {
     type: Array,
     default: () => ['defaultField', 'field', 'container']
   },
   delHandle: {
     type: Function,
     default: () => {}
+  },
+  copyHandle: {
+    type: Function,
+    default: () => {}
+  },
+  inlineMax: {
+    type: Number,
+    default: 4
+  },
+  isShowClear: {
+    type: Boolean,
+    default: true
+  },
+  isShowI18n: {
+    type: Boolean,
+    default: true
   }
 }, defaultProps))
 const layout = {
   pc: [],
   mobile: []
 }
-window.layout = layout
 const previewPlatform = ref('pc')
 const previewLoading = ref(true)
 const state = reactive({
@@ -254,7 +269,6 @@ const getLayoutDataByplatform = (platform) => {
     return copyData
   }
 }
-window.layout = layout
 const switchPlatform = (platform) => {
   if (state.platform === platform) {
     return false
@@ -282,7 +296,6 @@ provide('Everright', {
   addFieldData,
   canvesScrollRef
 })
-window.state = state
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
   return utils.disassemblyData1(_.cloneDeep({
@@ -444,13 +457,17 @@ const onClickOutside = () => {
         <el-header :class="[ns.e('operation')]">
           <div>
             <Icon @click="handleOperation(4)" :class="[ns.e('icon')]" icon="save"></Icon>
-            <Icon @click="handleOperation(2)" :class="[ns.e('icon')]" icon="clear0"></Icon>
+            <Icon v-if="isShowClear" @click="handleOperation(2)" :class="[ns.e('icon')]" icon="clear0"></Icon>
+            <slot name="operation-left"></slot>
           </div>
           <div>
             <DeviceSwitch :modelValue="state.platform" @update:modelValue="(val) => switchPlatform(val)"></DeviceSwitch>
           </div>
           <div>
-            <el-dropdown @command="(command) => emit('listener', {
+            <slot name="operation-right"></slot>
+            <el-dropdown
+              v-if="isShowI18n"
+              @command="(command) => emit('listener', {
               type: 'lang',
               data: command
             })">

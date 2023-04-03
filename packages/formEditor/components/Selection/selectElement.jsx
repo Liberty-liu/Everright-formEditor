@@ -171,6 +171,7 @@ export default {
           }
           break
         case 2:
+          if (ER.props.copyHandle(props.data) === false) return false
           props.data.context.copy()
           const copyData = props.parent[index + 1]
           setSelection(copyData)
@@ -264,7 +265,7 @@ export default {
       <div class={[ns.e('mask')]}>
       </div>
     )
-    const isShowCopy = computed(() => isInlineChildren ? props.hasCopy && props.data.context.parent.columns.length < 4 : props.hasCopy)
+    const isShowCopy = computed(() => isInlineChildren ? props.hasCopy && props.data.context.parent.columns.length < ER.props.inlineMax : props.hasCopy)
     // const isShowSelectParent = computed(() => {
     //   return !isSelectRoot.value
     // })
@@ -301,7 +302,7 @@ export default {
                   handleAction(5)
                 }, ['stop'])} icon="top"></Icon>
                 {props.hasDel && (
-                  <Icon class={[ns.e('copyDelete')]} onClick={withModifiers((e) => {
+                  <Icon class={[ns.e('copy')]} onClick={withModifiers((e) => {
                     handleAction(1)
                   }, ['stop'])} icon="delete"></Icon>
                 )}

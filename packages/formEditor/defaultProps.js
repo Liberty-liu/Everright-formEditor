@@ -1,9 +1,11 @@
 import { fieldsConfig, globalConfig } from './componentsConfig'
 export default {
   fieldsConfig: {
+    type: Array,
     default: () => fieldsConfig
   },
   globalConfig: {
+    type: Object,
     default: () => globalConfig
   },
   lang: {

@@ -1,10 +1,25 @@
 {
   "name": "everright-formeditor",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "files": [
     "dist"
   ],
+  "license": "MIT",
+  "keywords": [
+    "drag-and-drop",
+    "form",
+    "formbuilder",
+    "low-code",
+    "no-code",
+    "vue",
+    "element-plus",
+    "vant"
+  ],
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Liberty-liu/Everright-formEditor.git"
+  },
   "main": "dist/Everright-formEditor.umd.cjs",
   "module": "dist/Everright-formEditor.js",
   "exports": {
