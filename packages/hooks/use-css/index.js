@@ -4,7 +4,7 @@ import jss from 'jss'
 import preset from 'jss-preset-default'
 jss.setup({
   ...preset(),
-  insertionPoint: document.getElementById('insertion-point')
+  insertionPoint: document.getElementById('Everright-formEditor-point')
 })
 const sheet = jss.createStyleSheet({
   // "button" is a rule name; a class gets generated.

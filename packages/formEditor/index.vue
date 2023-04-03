@@ -365,7 +365,6 @@ const clearData = () => {
 const getData = props.layoutType === 1 ? getData1 : getData2
 const setData = props.layoutType === 1 ? setData1 : setData2
 defineExpose({
-  state,
   switchPlatform (platform) {
     switchPlatform(platform)
   },
@@ -396,7 +395,7 @@ const handleOperation = (type, val) => {
       break
     case 4:
       emit('listener', {
-        type: 'getData',
+        type: 'save',
         data: getData()
       })
       break

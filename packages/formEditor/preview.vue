@@ -66,7 +66,6 @@ const setData2 = (data, value) => {
 const setData1 = (data, value) => {
   if (_.isEmpty(data)) return false
   const newData = utils.combinationData1(_.cloneDeep(data))
-  console.log(newData)
   state.store = newData.list
   state.config = newData.config
   state.data = newData.data
@@ -84,7 +83,6 @@ const setData1 = (data, value) => {
 }
 const setData = props.layoutType === 1 ? setData1 : setData2
 defineExpose({
-  state,
   switchPlatform (platform) {
     state.platform = platform
   },
