@@ -96,9 +96,7 @@ export default defineConfig({
     examplePlugin(),
     svgLoader(),
     vue(),
-    eslintPlugin({
-      include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
-    }),
+    eslintPlugin(),
     vueJsx({
     })
   ],

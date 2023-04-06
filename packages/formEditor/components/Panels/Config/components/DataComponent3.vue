@@ -17,19 +17,12 @@ const {
   t
 } = hooks.useI18n()
 const ns = hooks.useNamespace('ConfigData3')
-const handleAction = (type) => {
-  switch (type) {
-    case 1:
-      const type = `${target.value.type}Col`
-      const data = utils.renderFieldData(type)
-      data.label = `Tab ${unref(target).columns.length + 1}`
-      // console.log(unref(target))
-      unref(target).columns.push(data)
-      utils.addContext(data, target.value)
-      break
-    case 2:
-      break
-  }
+const addTab = (type) => {
+  const data = utils.renderFieldData(`${target.value.type}Col`)
+  data.label = `Tab ${unref(target).columns.length + 1}`
+  // console.log(unref(target))
+  unref(target).columns.push(data)
+  utils.addContext(data, target.value)
 }
 </script>
 <template>
@@ -37,7 +30,7 @@ const handleAction = (type) => {
     <template v-slot:label>
       <div :class="[ns.e('title')]">
         <span class="el-form-item__label">{{t('er.config.dataComponent3.panel')}}</span>
-        <el-button text @click="handleAction(1)">{{t('er.config.dataComponent3.add')}}</el-button>
+        <el-button text @click="addTab">{{t('er.config.dataComponent3.add')}}</el-button>
       </div>
     </template>
     <div style="width: 100%;">

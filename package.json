@@ -1,8 +1,9 @@
 {
   "name": "everright-formeditor",
-  "version": "0.0.12",
+  "version": "1.0.0-beta.11",
   "files": [
-    "dist"
+    "dist",
+    "packages/formEditor/componentsConfig.js"
   ],
   "license": "MIT",
   "keywords": [
@@ -22,16 +23,7 @@
   },
   "main": "dist/Everright-formEditor.umd.cjs",
   "module": "dist/Everright-formEditor.js",
-  "exports": {
-    ".": {
-      "import": "dist/Everright-formEditor.js",
-      "require": "dist/Everright-formEditor.umd.cjs"
-    },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
-    }
-  },
+  "style": "dist/style.css",
   "scripts": {
     "dev:server": "nodemon server --watch server",
     "dev:ckeditor5": "pnpm -C external/ckeditor5 dev",
@@ -96,6 +88,11 @@
     "vite": "^3.2.5",
     "vite-plugin-eslint": "^1.8.1",
     "vue-router": "^4.1.6"
+  },
+  "peerDependencies": {
+    "element-plus": "^2.2.28",
+    "vant": "^4.0.8",
+    "vue": "^3.2.45"
   },
   "lint-staged": {
     "*.{vue,js,jsx}": "eslint"

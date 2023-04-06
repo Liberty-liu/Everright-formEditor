@@ -911,6 +911,7 @@ onMounted(() => {
     :destroy-on-close="true"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
+    append-to-body
     width="80%"
     draggable
   >

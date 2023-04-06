@@ -25,7 +25,7 @@ export default defineComponent({
         props.data.context.delete()
       }
       if (newVal !== oldVal) {
-        utils.syncWidthByPlatform(props.data.columns, state.platform, ER.props.layoutType === 1)
+        utils.syncWidthByPlatform(props.data.columns, ER.state.platform, ER.props.layoutType === 1)
       }
     })
     const dragOptions = {

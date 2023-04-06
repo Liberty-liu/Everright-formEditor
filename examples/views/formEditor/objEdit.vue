@@ -45,7 +45,7 @@ const handleListener = async ({ type, data }) => {
       lang.value = data
       localStorage.setItem('er-lang', data)
       break
-    case 'getData':
+    case 'save':
       loading.value = true
       try {
         const postData = {

@@ -215,11 +215,11 @@ const setStates = (newTarget, ev, ER) => {
   }
   switch (direction) {
     case 1:
-      if (list.length === 1 && rows[rowIndex - 1] && rows[rowIndex - 1].contains(dragEl)) {
+      if ((list.length === 1 && rows[rowIndex - 1] && rows[rowIndex - 1].contains(dragEl)) || !sortable.el.parentNode.parentNode.__draggable_component__) {
         prevEl = ''
         return false
       }
-      prevSortable = sortable
+      prevSortable = (sortable.el.parentNode.parentNode.__draggable_component__)._sortable
       prevEl = targetContainer
       inserRowIndex = utils.index(prevEl)
       setBorder(prevEl, 'drag-line-top')
@@ -240,7 +240,10 @@ const setStates = (newTarget, ev, ER) => {
       }
       break
     case 3:
-      prevSortable = sortable
+      if (sortable.el.dataset.layoutType === 'root') {
+        return false
+      }
+      prevSortable = (sortable.el.parentNode.parentNode.__draggable_component__)._sortable
       if (rowIndex === rows.length - 1) {
         prevEl = targetContainer
         setBorder(prevEl, 'drag-line-bottom')
@@ -323,7 +326,6 @@ function ControlInsertionPlugin (ER) {
       if (!prevEl || !e.activeSortable) {
         return false
       }
-      // e.sortable.el.parentNode.removeAttribute('style')
       const isBlock = _.get(e, 'activeSortable.options.dataSource', false) === 'block'
       const {
         dragEl,
@@ -431,7 +433,10 @@ function ControlInsertionPlugin (ER) {
           if (/^(root|grid-col)$/.test(target.dataset.layoutType)) {
             const rows = el.children
             prevEl = lastChild(el)
-            if (prevEl.contains(dragEl) && list.length === 1) {
+            // if (prevEl.contains(dragEl) && list.length === 1) {
+            // console.log(prevEl)
+            // console.log(dragEl)
+            if (prevEl === dragEl.parentNode.parentNode && list.length === 1) {
               prevEl = ''
               return false
             }

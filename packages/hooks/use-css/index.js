@@ -7,11 +7,6 @@ jss.setup({
   insertionPoint: document.getElementById('Everright-formEditor-point')
 })
 const sheet = jss.createStyleSheet({
-  // "button" is a rule name; a class gets generated.
-  // button: {
-  //   width: 100,
-  //   height: 100
-  // }
 }, {
   classNamePrefix: 'ER-'
 }).attach()
@@ -140,13 +135,6 @@ const renderStyleSheets = (node, uid, platform) => {
       if (style[`isShow${_.upperFirst(key)}`]) {
         Object.assign(style, renderTableBorder(node.style))
       }
-      // console.log(style)
-      // delete style.isShowBorder
-      // delete style.borderWidth
-      // delete style.borderColor
-      // isShowBorder
-      // borderWidth
-      // borderColor
     } else {
       if (!(style[`isShow${_.upperFirst(key)}`])) {
         delete style[key]
@@ -157,11 +145,6 @@ const renderStyleSheets = (node, uid, platform) => {
       }
     }
   })
-  // if (node.type === 'td') {
-  //   debugger
-  // }
-  // console.log(node.id)
-  // console.log(node.style)
   if (_.isObject(node.style.width)) {
     delete style.width
     style.width = node.style.width[platform]
@@ -171,37 +154,8 @@ const renderStyleSheets = (node, uid, platform) => {
   }
   return sheet.addRule(uid.toString(), style).id
 }
-// const renderStyleSheets = (node, uid, platform) => {
-//   let style = {}
-//   switch (node.type) {
-//     case 'table':
-//       style = renderTable(_.cloneDeep(node.style))
-//       break
-//     default:
-//       style = _.cloneDeep(node.style)
-//       // console.log(node.options)
-//       // if (node.options === undefined) {
-//       //   console.log(node)
-//       // }
-//       isShowKeys.forEach((key) => {
-//         if (!(style[`isShow${_.upperFirst(key)}`])) {
-//           delete style[key]
-//           delete style[`isShow${_.upperFirst(key)}`]
-//         }
-//       })
-//       if (_.isObject(node.style.width)) {
-//         delete style.width
-//         style.width = node.style.width[platform]
-//       }
-//       if (style.background && style.background.image) {
-//         style.background.image = `url(${style.background.image})`
-//       }
-//   }
-//   return sheet.replaceRule(uid, style).id
-// }
 export const useCss = (node, platform) => {
   const id = ref('')
-  // const id = `ER${node.id}`
   const {
     uid
   } = getCurrentInstance()
