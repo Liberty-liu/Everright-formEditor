@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, reactive, inject } from 'vue'
+import { ref, onMounted, reactive, inject, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import hooks from '@ER/hooks'
@@ -7,6 +7,7 @@ import { erFormPreview } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 const route = useRoute()
 const loading = ref(true)
+const isRender = ref(false)
 const {
   lang
 } = inject('globalConfig')
@@ -15,6 +16,7 @@ const isEdit = !!route.params.actionid
 const state = reactive({
   name: ''
 })
+const layoutType = ref()
 const getObjData = async () => {
   try {
     const data = []
@@ -24,6 +26,7 @@ const getObjData = async () => {
       method: 'get'
     })
     data.push(data0.content)
+    layoutType.value = data0.content.layoutType
     if (isEdit) {
       const {
         data: data1
@@ -32,7 +35,10 @@ const getObjData = async () => {
       })
       data.push(data1.content)
     }
-    EReditorRef.value.setData(...data)
+    isRender.value = true
+    nextTick(() => {
+      EReditorRef.value.setData(...data)
+    })
   } finally {
     loading.value = false
   }
@@ -64,6 +70,8 @@ onMounted(() => {
 <template>
   <er-form-preview
     :lang="lang"
+    v-if="isRender"
+    :layoutType="layoutType"
     @listener="handleListener"
     v-loading="loading"
     ref="EReditorRef"/>
