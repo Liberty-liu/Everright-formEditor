@@ -179,7 +179,7 @@ export default {
       confirm: 'Confirm',
       cancel: 'Cancel',
       button: 'Button',
-      text: 'Cext',
+      text: 'Text',
       color: 'Color',
       backgroundColor: 'Background-color',
       width: 'Width',
