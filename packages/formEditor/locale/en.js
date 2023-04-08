@@ -8,7 +8,7 @@ export default {
         'Input',
         'Email',
         'ID number',
-        'Phone',
+        'Cellphone',
         'URL'
       ],
       textarea: 'Textarea',

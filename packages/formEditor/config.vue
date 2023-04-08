@@ -69,7 +69,6 @@ watch(() => props.field, (newVal) => {
   immediate: true
 })
 defineExpose({
-  state,
   switchPlatform (platform) {
     state.platform = platform
   }

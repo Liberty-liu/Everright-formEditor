@@ -278,10 +278,10 @@ export default {
             ns.b(),
             !isField && ns.e('borderless'),
             unref(isEditModel) && ns.e('editor'),
-            Selected.value,
-            isHover.value && ns.e('hover'),
-            isScale.value && ns.e('isScale'),
-            isWarning.value && ns.is('Warning')
+            unref(isEditModel) && Selected.value,
+            unref(isEditModel) && isHover.value && ns.e('hover'),
+            unref(isEditModel) && isScale.value && ns.e('isScale'),
+            unref(isEditModel) && isWarning.value && ns.is('Warning')
           ]}
           ref={elementRef} onClick={unref(isEditModel) && withModifiers(handleClick, ['stop'])}
         >

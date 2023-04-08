@@ -1,4 +1,5 @@
-# Everright-formEditor
+<p align="center"><a href="https://everright.site/en/module/formEditor/introduction.html" target="_blank"><img height="200px" src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png"></a></p>
+<h1 align="center">Everright-formEditor</h1>
 
 [![vue](https://img.shields.io/badge/vue-%3E%3D%203-green.svg)](https://vuejs.org/)
 [![element-plus](https://img.shields.io/badge/element--plus-%3E%3D%202.3.1-green.svg)](https://element-plus.gitee.io/)
@@ -16,7 +17,7 @@
 
 Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
 
-<img height="400px" alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/21301475/227166023-2abf45c8-cab6-49b1-a787-53e07cf0ecf7.png">
+<img width="100%" src="https://user-images.githubusercontent.com/21301475/230697059-baf94040-297e-43fc-acf2-7fa90ecaf3fb.gif">
 
 ## Features
 
@@ -24,6 +25,9 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 * 2.Support Pc and Mobile
 * 3.Rich fields and layout containers
 * 4.Flexible interaction
+* 5.Fields and layout separated
+* 6.Fields and layout not separated
+* 7.The editor, previewer, and configuration panel can all be used separately
 
 ## Fields adaptation
 
@@ -32,7 +36,7 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | Input  | :white_check_mark:  | :white_check_mark:  |
 | Email  | :white_check_mark: | :white_check_mark:  |
 | ID  |  :white_check_mark: | :white_check_mark:  |
-| Phone  | :white_check_mark:  | :white_check_mark:  |
+| Cellphone  | :white_check_mark:  | :white_check_mark:  |
 | URL  | :white_check_mark:  | :white_check_mark:  |
 | Textarea  | :white_check_mark:  | :white_check_mark:  |
 | Number  | :white_check_mark:  | :white_check_mark:  |

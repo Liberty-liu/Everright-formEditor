@@ -10,9 +10,9 @@ const handle = (val) => {
 }
 </script>
 <template>
-  <el-radio-group v-if="$route.name !== 'objEdit'" v-model="lang" @change="handle">
-    <el-radio label="zh-cn" size="large">中文</el-radio>
-    <el-radio label="en" size="large">English</el-radio>
-  </el-radio-group>
+<!--  <el-radio-group v-if="$route.name !== 'objEdit'" v-model="lang" @change="handle">-->
+<!--    <el-radio label="zh-cn" size="large">中文</el-radio>-->
+<!--    <el-radio label="en" size="large">English</el-radio>-->
+<!--  </el-radio-group>-->
   <router-view></router-view>
 </template>

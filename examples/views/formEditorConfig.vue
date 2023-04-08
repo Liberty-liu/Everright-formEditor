@@ -20,7 +20,6 @@ watch(lang, (newLang) => {
   const layoutNodes = erComponentsConfig.fieldsConfig[2].list.map(e => erGeneratorData(e, true, newLang))
   layoutNodes.forEach((node, index) => {
     store.layouts.push(node)
-    // console.log(node)
     switch (node.columns[0].type) {
       case 'grid':
       case 'tabs':
@@ -37,8 +36,8 @@ watch(lang, (newLang) => {
   all.value = [...store.fields, ...store.layouts]
 }, { immediate: true })
 // const value0 = ref('root')
-// const value0 = ref(store.layouts[8].id)
-const value0 = ref(store.fields[17].id)
+const value0 = ref(store.layouts[6].id)
+// const value0 = ref(store.fields[17].id)
 const sector = computed(() => {
   let result = ''
   if (value0.value === 'root') {
@@ -103,7 +102,6 @@ const handleListener = async ({ type, data }) => {
   padding: 10px;
   ::v-deep .Everright-formEditor-Config {
     width: 100%;
-    //height: 600px;
   }
 }
 </style>
