@@ -25,6 +25,9 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 * 2.Support Pc and Mobile
 * 3.Rich fields and layout containers
 * 4.Flexible interaction
+* 5.Fields and layout separated
+* 6.Fields and layout not separated
+* 7.The editor, previewer, and configuration panel can all be used separately
 
 ## Fields adaptation
 
@@ -33,7 +36,7 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | Input  | :white_check_mark:  | :white_check_mark:  |
 | Email  | :white_check_mark: | :white_check_mark:  |
 | ID  |  :white_check_mark: | :white_check_mark:  |
-| Phone  | :white_check_mark:  | :white_check_mark:  |
+| Cellphone  | :white_check_mark:  | :white_check_mark:  |
 | URL  | :white_check_mark:  | :white_check_mark:  |
 | Textarea  | :white_check_mark:  | :white_check_mark:  |
 | Number  | :white_check_mark:  | :white_check_mark:  |

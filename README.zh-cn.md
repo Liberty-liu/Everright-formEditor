@@ -1,4 +1,5 @@
-# Everright-formEditor
+<p align="center"><a href="https://everright.site/zh-cn/module/formEditor/introduction.html" target="_blank"><img height="200px" src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png"></a></p>
+<h1 align="center">Everright-formEditor</h1>
 
 [![vue](https://img.shields.io/badge/vue-%3E%3D%203-green.svg)](https://vuejs.org/)
 [![element-plus](https://img.shields.io/badge/element--plus-%3E%3D%202.3.1-green.svg)](https://element-plus.gitee.io/)
@@ -16,7 +17,7 @@
 
 Everright-formEditor是一个免费开源的javascript可视化低代码编辑器，通过gui的界面只需简单的操作即可创建出表单，拥有灵活的交互界面，pc端依赖element-plus，mobile依赖vant,内部有一套适配器，适配element和vant的组件
 
-<img height="400px" alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png">
+<img width="100%" src="https://user-images.githubusercontent.com/21301475/230697059-baf94040-297e-43fc-acf2-7fa90ecaf3fb.gif">
 
 ## 特点
 
@@ -24,6 +25,9 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 * 2.多终端适配
 * 3.丰富的字段和布局容器
 * 4.灵活的交互方式
+* 5.字段与布局分离
+* 6.字段与布局不分离
+* 7.编辑器、预览器和配置面板都可以单独使用
 
 ## 字段适配
 
@@ -32,7 +36,7 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 | Input  | :white_check_mark:  | :white_check_mark:  |
 | Email  | :white_check_mark: | :white_check_mark:  |
 | ID  |  :white_check_mark: | :white_check_mark:  |
-| Phone  | :white_check_mark:  | :white_check_mark:  |
+| Cellphone  | :white_check_mark:  | :white_check_mark:  |
 | URL  | :white_check_mark:  | :white_check_mark:  |
 | Textarea  | :white_check_mark:  | :white_check_mark:  |
 | Number  | :white_check_mark:  | :white_check_mark:  |
