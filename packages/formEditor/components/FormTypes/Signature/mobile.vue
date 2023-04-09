@@ -151,7 +151,7 @@ const handleAction = async (type) => {
       <canvas
         ref="element"
       ></canvas>
-      <Icon v-if="showClear" @click="handleClear" :class="[ns.e('clear')]" icon="CLEAR"></Icon>
+      <Icon v-if="showClear" @click="handleClear" :class="[ns.e('clear')]" icon="delete"></Icon>
     </div>
   </van-popup>
 </template>

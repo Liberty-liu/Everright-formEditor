@@ -105,7 +105,7 @@ const handleCommit = async () => {
         :fit="'contain'"
         style="width: 100%; height: 100%;"
       />
-      <Icon @click="data.options.defaultValue = ''" :class="[ns.e('clear')]" icon="CLEAR"></Icon>
+      <Icon @click="data.options.defaultValue = ''" :class="[ns.e('clear')]" icon="delete"></Icon>
     </template>
     <div
       v-else
