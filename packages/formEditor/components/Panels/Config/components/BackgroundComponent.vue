@@ -219,7 +219,7 @@ const handleSuccess = (response, uploadFile) => {
         <li v-if="state.value0" :class="ns.e('uploadFile')">
           <el-upload
             accept=".png,.jpg"
-            action="http://192.168.31.181:8001/Everright-api/lowCode/uploads"
+            :action="ER.props.fileUploadURI"
             list-type="picture-card"
             ref="element"
             :show-file-list="false"

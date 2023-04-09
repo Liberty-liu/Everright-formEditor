@@ -55,7 +55,7 @@ const handlePictureCardPreview = (uploadFile) => {
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.size > props.params.maxSize) {
     ElMessage({
-      message: t('er.validateMsg.fileSize', { size: props.data.size }),
+      message: t('er.validateMsg.fileSize', { size: props.data.options.size }),
       type: 'warning'
     })
     return false

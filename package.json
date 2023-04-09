@@ -1,6 +1,6 @@
 {
   "name": "everright-formeditor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "files": [
     "dist",
     "packages/formEditor/componentsConfig.js"
