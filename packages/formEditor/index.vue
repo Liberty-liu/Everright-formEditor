@@ -362,7 +362,13 @@ const clearData = () => {
   // state.fields.splice(0)
   // state.store.splice(0)
 }
-const getData = props.layoutType === 1 ? getData1 : getData2
+const getData = () => {
+  if (!state.validateStates.every(e => !e.isWarning)) {
+    return {}
+  } else {
+    return (props.layoutType === 1 ? getData1 : getData2)()
+  }
+}
 const setData = props.layoutType === 1 ? setData1 : setData2
 defineExpose({
   switchPlatform (platform) {
@@ -381,6 +387,7 @@ const handleOperation = (type, val) => {
       layout.mobile = []
       state.fields.splice(0)
       state.store.splice(0)
+      state.data = {}
       setSelection('root')
       break
     case 3:
