@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import hooks from '@ER/hooks'
 import { erFormEditor } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
+import _ from 'lodash-es'
 import { ElMessage } from "element-plus"
 const route = useRoute()
 const {
@@ -46,6 +47,9 @@ const handleListener = async ({ type, data }) => {
       localStorage.setItem('er-lang', data)
       break
     case 'save':
+      if (_.isEmpty(data)) {
+        return false
+      }
       loading.value = true
       try {
         const postData = {

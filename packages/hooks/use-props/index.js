@@ -329,7 +329,11 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         break
       case 'rate':
         result.allowHalf = options.allowHalf
-        result.max = options.max
+        if (!isPc) {
+          result.count = options.max
+        } else {
+          result.max = options.max
+        }
         break
       case 'html':
         result.type = 'textarea'
