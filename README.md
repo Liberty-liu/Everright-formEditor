@@ -29,6 +29,21 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 * 6.Fields and layout not separated
 * 7.The editor, previewer, and configuration panel can all be used separately
 
+## Sample screenshot
+
+### Editor
+![image](https://user-images.githubusercontent.com/21301475/231447451-4266854c-88a8-464c-8971-31444f246243.png)
+
+### Previewer on PC
+![image](https://user-images.githubusercontent.com/21301475/231448036-3ecee0b8-f6ca-4eb6-b363-059abaaa5cd1.png)
+
+### Previewer on mobile
+![IMG_0570](https://user-images.githubusercontent.com/21301475/231448538-c1996918-1ab0-4afa-936e-3cd41db8f5f6.PNG)
+
+### Config panel
+
+![image](https://user-images.githubusercontent.com/21301475/231448710-564533a9-62df-4233-a937-41a50ae24056.png)
+
 ## Fields adaptation
 
 | Type  | Pc | Mobile |
