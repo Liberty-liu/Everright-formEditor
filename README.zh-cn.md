@@ -29,6 +29,21 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 * 6.字段与布局不分离
 * 7.编辑器、预览器和配置面板都可以单独使用
 
+## 截图
+
+### 编辑器
+![image](https://user-images.githubusercontent.com/21301475/231447451-4266854c-88a8-464c-8971-31444f246243.png)
+
+### pc预览器
+![image](https://user-images.githubusercontent.com/21301475/231448036-3ecee0b8-f6ca-4eb6-b363-059abaaa5cd1.png)
+
+### 移动端预览器
+![IMG_0570](https://user-images.githubusercontent.com/21301475/231448538-c1996918-1ab0-4afa-936e-3cd41db8f5f6.PNG)
+
+### 配置面板
+
+![image](https://user-images.githubusercontent.com/21301475/231448710-564533a9-62df-4233-a937-41a50ae24056.png)
+
 ## 字段适配
 
 | Field  | Pc | Mobile |
