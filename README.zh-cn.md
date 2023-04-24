@@ -1,6 +1,8 @@
 <p align="center"><a href="https://everright.site/zh-cn/module/formEditor/introduction.html" target="_blank"><img height="200px" src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png"></a></p>
 <h1 align="center">Everright-formEditor</h1>
 
+[English](./README.md) | 简体中文
+
 [![vue](https://img.shields.io/badge/vue-%3E%3D%203-green.svg)](https://vuejs.org/)
 [![element-plus](https://img.shields.io/badge/element--plus-%3E%3D%202.3.1-green.svg)](https://element-plus.gitee.io/)
 [![vant](https://img.shields.io/badge/vant-%3E%3D%204.1.1-green.svg)](https://vant-ui.github.io/)
@@ -13,7 +15,7 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-[English](./README.md) | 简体中文
+**[中文官网](https://everright.site/zh-cn/module/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/module/formEditor/introduction.html)**
 
 Everright-formEditor是一个免费开源的javascript可视化低代码编辑器，通过gui的界面只需简单的操作即可创建出表单，拥有灵活的交互界面，pc端依赖element-plus，mobile依赖vant,内部有一套适配器，适配element和vant的组件
 
@@ -28,6 +30,23 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 * 5.字段与布局分离
 * 6.字段与布局不分离
 * 7.编辑器、预览器和配置面板都可以单独使用
+
+## 文档
+
++ [Get Started](https://everright.site/zh-cn/module/formEditor/started.html)
++ [Docs](https://everright.site/zh-cn/module/formEditor/doc.html)
+
+## Examples
+
++ [Editor](https://everright.site/demo/editor.html?layoutType=1&isEdit=1&lang=zh-cn) `layoutType1: 字段与布局不分离`
++ [Editor](https://everright.site/demo/editor.html?layoutType=2&isEdit=1&lang=zh-cn) `layoutType2: 字段与布局分离`
++ [Preview](https://everright.site/demo/preview.html?layoutType=1&lang=zh-cn) `layoutType1: 字段与布局不分离`
++ [Preview](https://everright.site/demo/preview.html?layoutType=2&lang=zh-cn) `layoutType2: 字段与布局分离`
++ [Config panel](https://everright.site/demo/formEditorConfig.html?lang=zh-cn) `用于展示和编辑表单字段的各种属性，包括基础信息、类型、布局等等`
+
+> 组织了一个低代码群，感兴趣的话加我微信，拉你进群，欢迎一块讨论技术。
+
+<img height="400px" src="https://user-images.githubusercontent.com/21301475/233946727-f1c52766-dacd-4aec-8afe-a92915199498.JPG">
 
 ## 截图
 
