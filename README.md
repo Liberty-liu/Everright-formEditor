@@ -1,6 +1,8 @@
 <p align="center"><a href="https://everright.site/en/module/formEditor/introduction.html" target="_blank"><img height="200px" src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png"></a></p>
 <h1 align="center">Everright-formEditor</h1>
 
+[简体中文](./README.zh-cn.md) | English
+
 [![vue](https://img.shields.io/badge/vue-%3E%3D%203-green.svg)](https://vuejs.org/)
 [![element-plus](https://img.shields.io/badge/element--plus-%3E%3D%202.3.1-green.svg)](https://element-plus.gitee.io/)
 [![vant](https://img.shields.io/badge/vant-%3E%3D%204.1.1-green.svg)](https://vant-ui.github.io/)
@@ -13,7 +15,7 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-[简体中文](./README.zh-cn.md) | English
+**[中文官网](https://everright.site/zh-cn/module/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/module/formEditor/introduction.html)**
 
 Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
 
@@ -28,6 +30,19 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 * 5.Fields and layout separated
 * 6.Fields and layout not separated
 * 7.The editor, previewer, and configuration panel can all be used separately
+
+## Docs
+
++ [Get Started](https://everright.site/en/module/formEditor/started.html)
++ [Docs](https://everright.site/en/module/formEditor/doc.html)
+
+## Examples
+
++ [Editor](https://everright.site/demo/editor.html?layoutType=1&isEdit=1&lang=en) `layoutType1: Fields and layout not separated`
++ [Editor](https://everright.site/demo/editor.html?layoutType=2&isEdit=1&lang=en) `layoutType2: Fields and layout separated`
++ [Preview](https://everright.site/demo/preview.html?layoutType=1&lang=en) `layoutType1: Fields and layout not separated`
++ [Preview](https://everright.site/demo/preview.html?layoutType=2&lang=en) `layoutType2: Fields and layout separated`
++ [Config panel](https://everright.site/demo/formEditorConfig.html?lang=en) `Various properties for displaying and editing form fields are provided, including basic information, types, layouts, and so on`
 
 ## Sample screenshot
 
