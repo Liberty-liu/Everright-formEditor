@@ -29,8 +29,7 @@ module.exports = {
     'no-case-declarations': 'off',
     'no-useless-escape': 'off',
     'no-mixed-operators': 'off',
-    'no-async-promise-executor': 'off',
-    'quotes': 'off'
+    'no-async-promise-executor': 'off'
   },
   overrides: [
     // {

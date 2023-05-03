@@ -1,0 +1,45 @@
+@include b(ConfigLogicComponent) {
+  margin-top: 4vh;
+  @include e(rule) {
+    //background-color: #f9f9f9;
+    margin: 10px;
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    //margin: 16px 0;
+    position: relative;
+    &>div {
+      &:first-child {
+        margin-top: 0;
+      }
+      h2 {
+        padding: 10px 0 0;
+        margin: 0;
+      }
+    }
+  }
+  @include e(delRule) {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  @include e(then) {
+    .Everright-filter-LogicalOperatorComponent {
+      display: none;
+    }
+  }
+  .Everright-filter-FilterItem{
+    background: none;
+    margin-top: 0;
+    padding-bottom: 40px;
+  }
+  .Everright-filter-Main {
+    padding: 0;
+  }
+  @include e(button) {
+    width: calc(100% - 20px);
+    border: none;
+    margin: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  }
+}

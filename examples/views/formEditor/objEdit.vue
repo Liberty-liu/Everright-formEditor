@@ -5,7 +5,7 @@ import hooks from '@ER/hooks'
 import { erFormEditor } from '@ER/formEditor'
 import uri from '@ER-examples/uri.js'
 import _ from 'lodash-es'
-import { ElMessage } from "element-plus"
+import { ElMessage } from 'element-plus'
 const route = useRoute()
 const {
   lang

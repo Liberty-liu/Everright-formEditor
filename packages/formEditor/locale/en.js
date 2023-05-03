@@ -203,7 +203,7 @@ export default {
     },
     validateMsg: {
       required: 'Required',
-      limitWord: `At least <%= min %> character`,
+      limitWord: 'At least <%= min %> character',
       email: 'Please enter the valid email address',
       IdNumber: 'Please enter the valid ID number',
       phone: 'Please enter the valid Phone number',

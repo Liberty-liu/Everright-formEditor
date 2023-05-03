@@ -100,7 +100,7 @@ const handleListener = async ({ type, data }) => {
 <style scoped lang="scss">
 .customConfig {
   padding: 10px;
-  ::v-deep .Everright-formEditor-Config {
+  :deep(.Everright-formEditor-Config) {
     width: 100%;
   }
 }

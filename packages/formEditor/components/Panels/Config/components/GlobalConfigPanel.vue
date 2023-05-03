@@ -7,6 +7,7 @@ import { ref, unref, computed, inject } from 'vue'
 import { ClickOutside as vClickOutside } from 'element-plus'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
+import PanelsConfigComponentsLogicComponent from './LogicComponent.vue'
 export default {
   name: 'GlobalConfigPanel',
   inheritAttrs: false,
@@ -220,5 +221,6 @@ const handleTypeListener = ({ property, data }) => {
         </div>
       </div>
     </el-form-item>
+    <PanelsConfigComponentsLogicComponent/>
   </div>
 </template>

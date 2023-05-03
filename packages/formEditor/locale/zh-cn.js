@@ -203,7 +203,7 @@ export default {
     },
     validateMsg: {
       required: '必填',
-      limitWord: `最少<%= min %>字符`,
+      limitWord: '最少<%= min %>字符',
       email: '请输入正确的邮箱地址',
       IdNumber: '请输入正确的身份证号',
       phone: '请输入正确的手机号',

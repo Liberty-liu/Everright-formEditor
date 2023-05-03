@@ -6,7 +6,6 @@ import _ from 'lodash-es'
 import Icon from '@ER/icon'
 import PanelsConfigComponentsPropsPanel from '@ER/formEditor/components/Panels/Config/components/PropsPanel.vue'
 import GlobalConfigPanel from './components/GlobalConfigPanel.vue'
-// import PanelsConfigComponentsDataPanel from './components/Data.jsx'
 export default {
   name: 'Config',
   inheritAttrs: false,
@@ -177,28 +176,6 @@ watch(target, () => {
           </div>
         </div>
       </el-scrollbar>
-<!--      <el-tabs-->
-<!--        v-model="activeName0" type="border-card"-->
-<!--        :class="[ns.e('wrap')]"-->
-<!--        name="content">-->
-<!--        <el-tab-pane-->
-<!--          v-if="isSelectAnyElement"-->
-<!--          name="props">-->
-<!--          <el-scrollbar>-->
-<!--            <PanelsConfigComponentsPropsPanel-->
-<!--              :key="target.id"-->
-<!--            />-->
-<!--          </el-scrollbar>-->
-<!--        </el-tab-pane>-->
-<!--&lt;!&ndash;        v-if="!checkTypeBySelected(['table', 'td', 'grid', 'col', 'tabsCol', 'collapseCol'])"&ndash;&gt;-->
-<!--        <el-tab-pane-->
-<!--          v-if="isSelectRoot"-->
-<!--          name="root">-->
-<!--          <el-scrollbar>-->
-<!--            <GlobalConfigPanel></GlobalConfigPanel>-->
-<!--          </el-scrollbar>-->
-<!--        </el-tab-pane>-->
-<!--      </el-tabs>-->
     </el-form>
   </el-aside>
 </template>

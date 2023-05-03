@@ -68,7 +68,8 @@ const state = reactive({
   data: {},
   validateStates: [],
   fields: [],
-  Namespace: 'formEditor'
+  Namespace: 'formEditor',
+  logic: {}
 })
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
@@ -298,11 +299,13 @@ provide('Everright', {
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
-  return utils.disassemblyData1(_.cloneDeep({
+  return Object.assign(utils.disassemblyData1(_.cloneDeep({
     list: state.store,
     config: state.config,
     data: state.data
-  }))
+  })), {
+    logic: state.logic
+  })
 }
 const getData2 = () => {
   layout.pc = getLayoutDataByplatform('pc')
@@ -311,7 +314,8 @@ const getData2 = () => {
     layout,
     data: state.data,
     config: state.config,
-    fields: state.fields
+    fields: state.fields,
+    logic: state.logic
   })
 }
 const setData1 = (data) => {
@@ -324,6 +328,8 @@ const setData1 = (data) => {
   // state.store = data.list.slice(data.list.length - 1)
   state.config = newData.config
   state.data = newData.data
+  state.fields = newData.fields
+  state.logic = newData.logic
   setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
