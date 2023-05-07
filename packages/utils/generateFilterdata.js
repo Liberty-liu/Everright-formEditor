@@ -121,15 +121,54 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         filterNode.operatorKey = 'Number'
         break
       case 'radio':
+        filterNode.renderType = 'SELECT'
+        filterNode.operatorKey = 'Text'
+        break
       case 'checkbox':
+        filterNode.renderType = 'SELECT'
+        filterNode.operatorKey = 'Text'
+        filterNode.multiple = true
+        filterNode.excludeOperator = {
+          operator: [
+            'contains',
+            'not_contain'
+          ]
+        }
+        break
       case 'select':
+        filterNode.renderType = 'SELECT'
+        filterNode.operatorKey = 'Text'
+        filterNode.multiple = node.options.multiple
+        filterNode.excludeOperator = {
+          operator: [
+            'contains',
+            'not_contain'
+          ]
+        }
+        break
       case 'switch':
         filterNode.renderType = 'SELECT'
         filterNode.operatorKey = 'Text'
+        filterNode.excludeOperator = {
+          operator: [
+            'contains',
+            'not_contain'
+          ]
+        }
         break
       case 'cascader':
         filterNode.renderType = 'CASCADER'
         filterNode.operatorKey = 'Text'
+        filterNode.multiple = node.options.multiple
+        filterNode.customProps = {
+          onChange: () => {},
+          props: {
+            multiple: node.options.multiple,
+            emitPath: true,
+            checkStrictly: node.options.checkStrictly,
+            disabled: 'disabled'
+          }
+        }
         break
       case 'time':
         filterNode.renderType = 'TIME'
@@ -166,12 +205,12 @@ const generateIfFilterConditionsData = (activeTab, state, property) => {
         {
           label: '开',
           en_label: 'on',
-          value: true
+          value: 1
         },
         {
           label: '关',
           en_label: 'off',
-          value: false
+          value: 0
         }
       ]
     } else {

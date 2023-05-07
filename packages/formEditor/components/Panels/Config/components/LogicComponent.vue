@@ -1,5 +1,5 @@
 <script>
-import { ref, inject, nextTick, reactive, computed, watch } from 'vue'
+import { ref, inject, nextTick, reactive, computed, watch, onMounted } from 'vue'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
@@ -125,6 +125,7 @@ const closeDialog = () => {
   dialogVisible.value = false
 }
 const openDialog = () => {
+  dialogVisible.value = true
   tabs.value.forEach((tab, index) => {
     const rules = _.get(ER.state.logic, `${tab.value}`, [])
     remoteCount += rules.length * 2
@@ -132,7 +133,6 @@ const openDialog = () => {
       tab.rules.push(index)
     })
   })
-  dialogVisible.value = true
 }
 const handleAction = (type) => {
   switch (type) {
@@ -173,7 +173,9 @@ const handleListener = (ruleType, index, tab, { type, data }) => {
   if (type === 'init') {
     if (remoteCount > 0) {
       const filterRef = _.get(tab, `${ruleType}Refs[${index}]`, {})
-      filterRef.setData(_.get(ER.state.logic, `${tab.value}[${index}].${ruleType}Rules`, {}))
+      nextTick(() => {
+        filterRef.setData(_.get(ER.state.logic, `${tab.value}[${index}].${ruleType}Rules`, {}))
+      })
       remoteCount = remoteCount - 1
     } else {
       if (ruleType === 'then') {

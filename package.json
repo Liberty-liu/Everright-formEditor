@@ -46,7 +46,7 @@
     "axios": "^1.2.2",
     "dayjs": "^1.11.7",
     "element-plus": "^2.2.28",
-    "everright-filter": "^0.0.19",
+    "everright-filter": "^0.0.20",
     "jss": "^10.9.2",
     "jss-preset-default": "^10.9.2",
     "lodash-es": "^4.17.21",

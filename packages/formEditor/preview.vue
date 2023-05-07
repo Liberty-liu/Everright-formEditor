@@ -25,9 +25,11 @@ const state = reactive({
   Namespace: 'formEditor',
   validateStates: [],
   data: {},
-  fields: []
+  fields: [],
+  logic: {}
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
+hooks.useLogic(state)
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
@@ -52,6 +54,7 @@ const setData2 = (data, value) => {
   state.store = curLayout
   state.config = newData.config
   state.data = newData.data
+  state.logic = newData.logic
   state.store.forEach((e) => {
     utils.addContext(e, state.store, false)
   })
@@ -70,6 +73,7 @@ const setData1 = (data, value) => {
   state.config = newData.config
   state.data = newData.data
   state.fields = newData.fields
+  state.logic = newData.logic
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
