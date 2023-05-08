@@ -72,12 +72,16 @@ const empty = (logicValue, value, fieldType) => {
 const notEmpty = (...e) => {
   return !empty(...e)
 }
+const gt = (logicValue, value, fieldType) => {
+  return _.gt(value, logicValue)
+}
+const gte = (logicValue, value, fieldType) => {
+  return _.gte(value, logicValue)
+}
 export const validator = (logic, value, field) => {
   let result = false
-  // console.log(field)
   switch (logic.operator) {
     case 'equal':
-      // result = logic.value === value
       result = equal(logic.value, value, field.type)
       break
     case 'one_of':
@@ -92,19 +96,26 @@ export const validator = (logic, value, field) => {
       result = notContains(logic.value, value, field.type)
       break
     case 'empty':
-      // console.log(logic.value)
-      // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
-      // console.log(value)
-      // console.log(`field的值：${value} type: ${typeof value}`)
-      // console.log(field)
       result = empty(logic.value, value, field.type)
       break
     case 'not_empty':
       result = notEmpty(logic.value, value, field.type)
       break
     case 'greater_than':
+      // console.log(logic.value)
+      // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
+      // console.log(value)
+      // console.log(`field的值：${value} type: ${typeof value}`)
+      // console.log(field)
+      result = gt(logic.value, value, field.type)
       break
     case 'greater_than_equal':
+      console.log(logic.value)
+      console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
+      console.log(value)
+      console.log(`field的值：${value} type: ${typeof value}`)
+      console.log(field)
+      result = gte(logic.value, value, field.type)
       break
     case 'less_than':
       break

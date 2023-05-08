@@ -206,11 +206,6 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
           ]
         }
         break
-      // case 'rate':
-      //   filterNode.renderType = 'TIME'
-      //   filterNode.operatorKey = 'Number'
-      //   filterNode.format = 'HH:mm:ss'
-      //   break
     }
     result.options.push(filterNode)
   })
