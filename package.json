@@ -34,7 +34,9 @@
     "lint": "eslint . --ext .js,.jsx,.vue",
     "lint-fix": "eslint --fix . --ext .js,.jsx,.vue",
     "prepare": "husky install",
-    "init": "node ./server/db/generateDatabase.js && mkdir uploads"
+    "init": "node ./server/db/generateDatabase.js && mkdir uploads",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@vant/area-data": "^1.4.0",
@@ -88,6 +90,7 @@
     "sass": "^1.58.3",
     "vite": "^3.2.5",
     "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.31.0",
     "vue-router": "^4.1.6"
   },
   "peerDependencies": {

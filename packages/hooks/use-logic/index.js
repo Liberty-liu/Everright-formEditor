@@ -35,6 +35,9 @@ const getDataType = (fieldType) => {
 const equal = (logicValue, value, filedType) => {
   // console.log(logicValue)
   // console.log(value)
+  if (filedType === 'region') {
+    return _.includes(logicValue, value)
+  }
   if (_.isString(value) || _.isNumber(value)) {
     return _.isEqual(logicValue, value)
   }
@@ -48,23 +51,36 @@ const equal = (logicValue, value, filedType) => {
     return !!logicValue === value
   }
 }
-const validator = (logic, value, filed) => {
+const notEqual = (...e) => {
+  return !equal(...e)
+}
+const contains = (logicValue, value, filedType) => {
+  if (_.isString(value)) {
+    return logicValue.some((v) => _.includes(value, v))
+  }
+  if (_.isArray(value)) {
+    return !!_.intersection(logicValue, value).length
+  }
+}
+export const validator = (logic, value, filed) => {
   let result = false
   // console.log(filed)
   switch (logic.operator) {
     case 'equal':
-      // console.log(logic.value)
-      // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
-      // console.log(value)
-      // console.log(`field的值：${value} type: ${typeof value}`)
       // result = logic.value === value
       result = equal(logic.value, value, filed.type)
       break
     case 'one_of':
       break
     case 'not_equal':
+      result = notEqual(logic.value, value, filed.type)
       break
     case 'contains':
+      console.log(logic.value)
+      console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
+      console.log(value)
+      console.log(`field的值：${value} type: ${typeof value}`)
+      result = contains(logic.value, value, filed.type)
       break
     case 'not_contain':
       break

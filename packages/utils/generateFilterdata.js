@@ -10,11 +10,11 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
           value: 'equal',
           style: 'noop'
         },
-        {
-          label: '等于其中之一',
-          value: 'one_of',
-          style: 'tags'
-        },
+        // {
+        //   label: '等于其中之一',
+        //   value: 'one_of',
+        //   style: 'tags'
+        // },
         {
           label: '不等于',
           value: 'not_equal',
@@ -23,12 +23,12 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         {
           label: '包含',
           value: 'contains',
-          style: 'noop'
+          style: 'tags'
         },
         {
           label: '不包含',
           value: 'not_contain',
-          style: 'noop'
+          style: 'tags'
         },
         {
           label: '为空',
@@ -128,23 +128,23 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         filterNode.renderType = 'SELECT'
         filterNode.operatorKey = 'Text'
         filterNode.multiple = true
-        filterNode.excludeOperator = {
-          operator: [
-            'contains',
-            'not_contain'
-          ]
-        }
+        // filterNode.excludeOperator = {
+        //   operator: [
+        //     'contains',
+        //     'not_contain'
+        //   ]
+        // }
         break
       case 'select':
         filterNode.renderType = 'SELECT'
         filterNode.operatorKey = 'Text'
         filterNode.multiple = node.options.multiple
-        filterNode.excludeOperator = {
-          operator: [
-            'contains',
-            'not_contain'
-          ]
-        }
+        // filterNode.excludeOperator = {
+        //   operator: [
+        //     'contains',
+        //     'not_contain'
+        //   ]
+        // }
         break
       case 'switch':
         filterNode.renderType = 'SELECT'
@@ -168,6 +168,12 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
             checkStrictly: node.options.checkStrictly,
             disabled: 'disabled'
           }
+        }
+        filterNode.excludeOperator = {
+          operator: [
+            'contains',
+            'not_contain'
+          ]
         }
         break
       case 'time':

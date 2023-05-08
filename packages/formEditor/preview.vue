@@ -43,6 +43,7 @@ provide('Everright', {
   getData,
   props
 })
+window.state = state
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
   layout.pc = newData.layout.pc
