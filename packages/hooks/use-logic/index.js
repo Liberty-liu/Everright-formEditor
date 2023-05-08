@@ -62,6 +62,9 @@ const contains = (logicValue, value, filedType) => {
     return !!_.intersection(logicValue, value).length
   }
 }
+const notContains = (...e) => {
+  return !contains(...e)
+}
 export const validator = (logic, value, filed) => {
   let result = false
   // console.log(filed)
@@ -76,13 +79,14 @@ export const validator = (logic, value, filed) => {
       result = notEqual(logic.value, value, filed.type)
       break
     case 'contains':
-      console.log(logic.value)
-      console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
-      console.log(value)
-      console.log(`field的值：${value} type: ${typeof value}`)
+      // console.log(logic.value)
+      // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
+      // console.log(value)
+      // console.log(`field的值：${value} type: ${typeof value}`)
       result = contains(logic.value, value, filed.type)
       break
     case 'not_contain':
+      result = notContains(logic.value, value, filed.type)
       break
     case 'empty':
       break
