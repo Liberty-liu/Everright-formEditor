@@ -1,5 +1,6 @@
 import { computed, watch } from 'vue'
 import _ from 'lodash-es'
+import utils from '@ER/utils'
 const findValidityRule = (state) => {
   const result = {}
   for (const logicType in state.logic) {
@@ -32,19 +33,16 @@ const getDataType = (fieldType) => {
   }
   return result
 }
-const equal = (logicValue, value, filedType) => {
+const equal = (logicValue, value, fieldType) => {
   // console.log(logicValue)
   // console.log(value)
-  if (filedType === 'region') {
+  if (fieldType === 'region') {
     return _.includes(logicValue, value)
   }
   if (_.isString(value) || _.isNumber(value)) {
     return _.isEqual(logicValue, value)
   }
   if (_.isArray(value)) {
-    // if (/^(select|checkbox)$/.test(filedType)) {
-    //   return logicValue.length === value.length && _.isEqual(_.chain(logicValue).clone().flattenDeep().sort().value(), _.chain(value).clone().flattenDeep().sort().value())
-    // }
     return _.isEqual(_.chain(logicValue).clone().flattenDeep().sort().value(), _.chain(value).clone().flattenDeep().sort().value())
   }
   if (_.isBoolean(value)) {
@@ -54,7 +52,7 @@ const equal = (logicValue, value, filedType) => {
 const notEqual = (...e) => {
   return !equal(...e)
 }
-const contains = (logicValue, value, filedType) => {
+const contains = (logicValue, value, fieldType) => {
   if (_.isString(value)) {
     return logicValue.some((v) => _.includes(value, v))
   }
@@ -65,32 +63,44 @@ const contains = (logicValue, value, filedType) => {
 const notContains = (...e) => {
   return !contains(...e)
 }
-export const validator = (logic, value, filed) => {
+const empty = (logicValue, value, fieldType) => {
+  if (fieldType === 'rate') {
+    return value === 0 || utils.isEmpty(value)
+  }
+  return utils.isEmpty(value)
+}
+const notEmpty = (...e) => {
+  return !empty(...e)
+}
+export const validator = (logic, value, field) => {
   let result = false
-  // console.log(filed)
+  // console.log(field)
   switch (logic.operator) {
     case 'equal':
       // result = logic.value === value
-      result = equal(logic.value, value, filed.type)
+      result = equal(logic.value, value, field.type)
       break
     case 'one_of':
       break
     case 'not_equal':
-      result = notEqual(logic.value, value, filed.type)
+      result = notEqual(logic.value, value, field.type)
       break
     case 'contains':
+      result = contains(logic.value, value, field.type)
+      break
+    case 'not_contain':
+      result = notContains(logic.value, value, field.type)
+      break
+    case 'empty':
       // console.log(logic.value)
       // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
       // console.log(value)
       // console.log(`field的值：${value} type: ${typeof value}`)
-      result = contains(logic.value, value, filed.type)
-      break
-    case 'not_contain':
-      result = notContains(logic.value, value, filed.type)
-      break
-    case 'empty':
+      // console.log(field)
+      result = empty(logic.value, value, field.type)
       break
     case 'not_empty':
+      result = notEmpty(logic.value, value, field.type)
       break
     case 'greater_than':
       break
@@ -118,6 +128,9 @@ const operatingShowHidden = (fields, rules) => {
       // console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, getDataType(targetFields[index].type)))))
       console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
       // console.log(values.map((value, index) => validator(rule.if.conditions[index], value, getDataType(targetFields[index].type))))
+    }, {
+      immediate: true,
+      deep: true
     })
     // console.log(rule.if.conditions.map(e => e.property))
   })

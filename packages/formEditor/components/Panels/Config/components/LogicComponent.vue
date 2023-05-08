@@ -148,6 +148,7 @@ const handleAction = (type) => {
       break
     case 2:
       if (tabs.value.every(tab => !tab.rules.length)) {
+        ER.state.logic = {}
         closeDialog()
       } else {
         const data = getData()

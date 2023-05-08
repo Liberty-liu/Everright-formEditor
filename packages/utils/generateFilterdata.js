@@ -115,10 +115,22 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         }
         break
       case 'number':
+        filterNode.renderType = 'NUMBER'
+        filterNode.operatorKey = 'Number'
+        break
       case 'rate':
+        filterNode.renderType = 'NUMBER'
+        filterNode.operatorKey = 'Number'
+        break
       case 'slider':
         filterNode.renderType = 'NUMBER'
         filterNode.operatorKey = 'Number'
+        filterNode.excludeOperator = {
+          operator: [
+            'not_empty',
+            'empty'
+          ]
+        }
         break
       case 'radio':
         filterNode.renderType = 'SELECT'
@@ -152,7 +164,9 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         filterNode.excludeOperator = {
           operator: [
             'contains',
-            'not_contain'
+            'not_contain',
+            'not_empty',
+            'empty'
           ]
         }
         break
