@@ -240,6 +240,7 @@ export const fieldsConfig = [
         options: {
           clearable: true,
           format: 'HH:mm:ss',
+          valueFormat: 'HH:mm:ss',
           defaultValue: null,
           placeholder: '',
           labelWidth: 100,

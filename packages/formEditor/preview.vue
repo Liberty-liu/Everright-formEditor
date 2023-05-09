@@ -61,6 +61,9 @@ const setData2 = (data, value) => {
   })
   if (!_.isEmpty(value)) {
     state.fields.forEach((e) => {
+      if (e.type === 'time' && !e.options.valueFormat) {
+        e.options.valueFormat = 'HH:mm:ss'
+      }
       if (value[e.key]) {
         e.options.defaultValue = value[e.key]
       }
@@ -80,6 +83,9 @@ const setData1 = (data, value) => {
   })
   if (!_.isEmpty(value)) {
     state.fields.forEach((e) => {
+      if (e.type === 'time' && !e.options.valueFormat) {
+        e.options.valueFormat = 'HH:mm:ss'
+      }
       if (value[e.key]) {
         e.options.defaultValue = value[e.key]
       }

@@ -1,6 +1,13 @@
 import { computed, watch } from 'vue'
 import _ from 'lodash-es'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter.js'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore.js'
 import utils from '@ER/utils'
+dayjs.extend(customParseFormat)
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
 const findValidityRule = (state) => {
   const result = {}
   for (const logicType in state.logic) {
@@ -33,10 +40,13 @@ const getDataType = (fieldType) => {
   }
   return result
 }
-const equal = (logicValue, value, fieldType) => {
+const equal = (logicValue, value, field) => {
   // console.log(logicValue)
   // console.log(value)
-  if (fieldType === 'region') {
+  if (field.type === 'time') {
+    return dayjs(value, field.options.valueFormat).isSame(dayjs(logicValue, field.options.valueFormat))
+  }
+  if (field.type === 'region') {
     return _.includes(logicValue, value)
   }
   if (_.isString(value) || _.isNumber(value)) {
@@ -52,7 +62,7 @@ const equal = (logicValue, value, fieldType) => {
 const notEqual = (...e) => {
   return !equal(...e)
 }
-const contains = (logicValue, value, fieldType) => {
+const contains = (logicValue, value, field) => {
   if (_.isString(value)) {
     return logicValue.some((v) => _.includes(value, v))
   }
@@ -63,8 +73,8 @@ const contains = (logicValue, value, fieldType) => {
 const notContains = (...e) => {
   return !contains(...e)
 }
-const empty = (logicValue, value, fieldType) => {
-  if (fieldType === 'rate') {
+const empty = (logicValue, value, field) => {
+  if (field.type === 'rate') {
     return value === 0 || utils.isEmpty(value)
   }
   return utils.isEmpty(value)
@@ -72,68 +82,75 @@ const empty = (logicValue, value, fieldType) => {
 const notEmpty = (...e) => {
   return !empty(...e)
 }
-const gt = (logicValue, value, fieldType) => {
+const gt = (logicValue, value, field) => {
+  if (field.type === 'time') {
+    return dayjs(value, field.options.valueFormat).isAfter(dayjs(logicValue, field.options.valueFormat))
+  }
   return _.gt(value, logicValue)
 }
-const gte = (logicValue, value, fieldType) => {
+const gte = (logicValue, value, field) => {
+  if (field.type === 'time') {
+    return dayjs(value, field.options.valueFormat).isSameOrAfter(dayjs(logicValue, field.options.valueFormat))
+  }
   return _.gte(value, logicValue)
 }
-const lt = (logicValue, value, fieldType) => {
+const lt = (logicValue, value, field) => {
+  if (field.type === 'time') {
+    return dayjs(value, field.options.valueFormat).isBefore(dayjs(logicValue, field.options.valueFormat))
+  }
   return _.lt(value === undefined ? 0 : value, logicValue)
 }
-const lte = (logicValue, value, fieldType) => {
+const lte = (logicValue, value, field) => {
+  if (field.type === 'time') {
+    return dayjs(value, field.options.valueFormat).isSameOrBefore(dayjs(logicValue, field.options.valueFormat))
+  }
   return _.lte(value === undefined ? 0 : value, logicValue)
 }
-const between = (logicValue, value, fieldType) => {
+const between = (logicValue, value, field) => {
   const [min, max] = logicValue
-  return lte(max, value) && gte(min, value)
+  return lte(max, value, field) && gte(min, value, field)
 }
 export const validator = (logic, value, field) => {
   let result = false
   switch (logic.operator) {
     case 'equal':
-      result = equal(logic.value, value, field.type)
+      result = equal(logic.value, value, field)
       break
     case 'one_of':
       break
     case 'not_equal':
-      result = notEqual(logic.value, value, field.type)
+      result = notEqual(logic.value, value, field)
       break
     case 'contains':
-      result = contains(logic.value, value, field.type)
+      result = contains(logic.value, value, field)
       break
     case 'not_contain':
-      result = notContains(logic.value, value, field.type)
+      result = notContains(logic.value, value, field)
       break
     case 'empty':
-      result = empty(logic.value, value, field.type)
+      result = empty(logic.value, value, field)
       break
     case 'not_empty':
-      result = notEmpty(logic.value, value, field.type)
+      result = notEmpty(logic.value, value, field)
       break
     case 'greater_than':
+      result = gt(logic.value, value, field)
+      break
+    case 'greater_than_equal':
+      result = gte(logic.value, value, field)
+      break
+    case 'less_than':
+      result = lt(logic.value, value, field)
+      break
+    case 'less_than_equal':
+      result = lte(logic.value, value, field)
+      break
+    case 'between':
       // console.log(logic.value)
       // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
       // console.log(value)
       // console.log(`field的值：${value} type: ${typeof value}`)
       // console.log(field)
-      result = gt(logic.value, value, field.type)
-      break
-    case 'greater_than_equal':
-      result = gte(logic.value, value, field.type)
-      break
-    case 'less_than':
-      result = lt(logic.value, value, field.type)
-      break
-    case 'less_than_equal':
-      result = lte(logic.value, value, field.type)
-      break
-    case 'between':
-      console.log(logic.value)
-      console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
-      console.log(value)
-      console.log(`field的值：${value} type: ${typeof value}`)
-      console.log(field)
       result = between(logic.value, value, field.type)
       break
   }

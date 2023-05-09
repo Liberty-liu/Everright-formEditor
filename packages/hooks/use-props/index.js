@@ -224,7 +224,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       case 'time':
         result.format = options.format
         if (isPc) {
-          result.valueFormat = 'HH:mm:ss'
+          result.valueFormat = options.valueFormat
         }
         break
       case 'date':

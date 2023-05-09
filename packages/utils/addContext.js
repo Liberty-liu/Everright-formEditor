@@ -426,7 +426,7 @@ export const addContext = (node, parent, fn) => {
           case 'time':
             result.format = options.format
             if (isPc) {
-              result.valueFormat = 'HH:mm:ss'
+              result.valueFormat = options.valueFormat
             }
             break
           case 'date':

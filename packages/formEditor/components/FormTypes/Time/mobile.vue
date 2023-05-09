@@ -2,6 +2,8 @@
 import hooks from '@ER/hooks'
 import { ref, computed, watch } from 'vue'
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+dayjs.extend(customParseFormat)
 export default {
   name: 'er-time',
   inheritAttrs: false,
@@ -16,11 +18,11 @@ const columnsType = ['hour', 'minute', 'second']
 watch(() => props.data.options.defaultValue, (newVal) => {
   let date = ''
   if (newVal) {
-    date = dayjs(`${dayjs().format('YYYY/MM/DD')} ${newVal.split(':')}`, 'YYYY/MM/DD HH:mm:ss')
+    date = dayjs(newVal, props.data.options.valueFormat)
   } else {
     date = dayjs()
   }
-  currentTime.value = date.format('HH:mm:ss').split(':')
+  currentTime.value = date.format(props.data.options.valueFormat).split(':')
 }, {
   immediate: true
 })
@@ -28,7 +30,7 @@ const currentValue = computed({
   get () {
     let result = ''
     if (props.data.options.defaultValue) {
-      result = dayjs(`${dayjs().format('YYYY/MM/DD')} ${props.data.options.defaultValue.split(':')}`, 'YYYY/MM/DD HH:mm:ss').format(props.data.options.format)
+      result = dayjs(props.data.options.defaultValue, props.data.options.valueFormat).format(props.data.options.format)
     }
     return result
   },
