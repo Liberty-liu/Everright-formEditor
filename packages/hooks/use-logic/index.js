@@ -84,6 +84,10 @@ const lt = (logicValue, value, fieldType) => {
 const lte = (logicValue, value, fieldType) => {
   return _.lte(value === undefined ? 0 : value, logicValue)
 }
+const between = (logicValue, value, fieldType) => {
+  const [min, max] = logicValue
+  return lte(max, value) && gte(min, value)
+}
 export const validator = (logic, value, field) => {
   let result = false
   switch (logic.operator) {
@@ -122,14 +126,15 @@ export const validator = (logic, value, field) => {
       result = lt(logic.value, value, field.type)
       break
     case 'less_than_equal':
+      result = lte(logic.value, value, field.type)
+      break
+    case 'between':
       console.log(logic.value)
       console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
       console.log(value)
       console.log(`field的值：${value} type: ${typeof value}`)
       console.log(field)
-      result = lte(logic.value, value, field.type)
-      break
-    case 'between':
+      result = between(logic.value, value, field.type)
       break
   }
   return result

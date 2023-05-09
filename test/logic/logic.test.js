@@ -600,6 +600,41 @@ describe('validator', () => {
       },
       1.9,
       field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      1,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      null,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      '',
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      undefined,
+      field)).toBeFalsy()
   })
   test('Radio', () => {
     const field = { type: 'radio', label: 'Radio', icon: 'radio', key: 'radio_FQWZ5Tf_KQryjLOj_-Oso', id: 'FQWZ5Tf_KQryjLOj_-Oso', options: { dataKey: 'FQWZ5Tf_KQryjLOj_-Oso', displayStyle: 'block', defaultValue: '', labelWidth: 100, isShowLabel: true, disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
@@ -1174,6 +1209,41 @@ describe('validator', () => {
       },
       1.9,
       field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      1,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      null,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      '',
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      undefined,
+      field)).toBeFalsy()
   })
   test('Switch', () => {
     const field = { type: 'switch', label: 'Switch', icon: 'switch', key: 'switch_XpvOZGZjVMTVdHWZiuehy', id: 'XpvOZGZjVMTVdHWZiuehy', options: { defaultValue: true, labelWidth: 100, isShowLabel: true, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
@@ -1313,6 +1383,41 @@ describe('validator', () => {
       },
       1.9,
       field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      1,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      null,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      '',
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'between',
+        value: [1, 2]
+      },
+      undefined,
+      field)).toBeFalsy()
   })
   test('Html', () => {
     const field = { type: 'html', label: 'Html', icon: 'html', key: 'html_cBsbj6NW7wNicW2umHzsE', id: 'cBsbj6NW7wNicW2umHzsE', options: { defaultValue: '<p>123</p>', placeholder: 'Please enter', action: 'http://localhost:8001/Everright-api/lowCode/uploads', size: 1, labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
