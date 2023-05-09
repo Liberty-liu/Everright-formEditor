@@ -551,6 +551,55 @@ describe('validator', () => {
       },
       2.1,
       field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      null,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      '',
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      undefined,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      2.0,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      2.1,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      1.9,
+      field)).toBeTruthy()
   })
   test('Radio', () => {
     const field = { type: 'radio', label: 'Radio', icon: 'radio', key: 'radio_FQWZ5Tf_KQryjLOj_-Oso', id: 'FQWZ5Tf_KQryjLOj_-Oso', options: { dataKey: 'FQWZ5Tf_KQryjLOj_-Oso', displayStyle: 'block', defaultValue: '', labelWidth: 100, isShowLabel: true, disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
@@ -1076,6 +1125,55 @@ describe('validator', () => {
       },
       2.1,
       field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      null,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      '',
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      undefined,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      2.0,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      2.1,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      1.9,
+      field)).toBeTruthy()
   })
   test('Switch', () => {
     const field = { type: 'switch', label: 'Switch', icon: 'switch', key: 'switch_XpvOZGZjVMTVdHWZiuehy', id: 'XpvOZGZjVMTVdHWZiuehy', options: { defaultValue: true, labelWidth: 100, isShowLabel: true, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
@@ -1165,6 +1263,55 @@ describe('validator', () => {
         value: 2
       },
       2.1,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      null,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      '',
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      undefined,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'toBeTruthy',
+        value: 2
+      },
+      2.0,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than',
+        value: 2
+      },
+      2.1,
+      field)).toBeFalsy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      2.0,
+      field)).toBeTruthy()
+    expect(
+      validator({
+        operator: 'less_than_equal',
+        value: 2
+      },
+      1.9,
       field)).toBeTruthy()
   })
   test('Html', () => {
