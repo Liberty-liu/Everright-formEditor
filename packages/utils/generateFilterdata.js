@@ -109,10 +109,32 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
       case 'date':
         filterNode.renderType = 'DATE'
         filterNode.operatorKey = 'Number'
+        filterNode.includeOperator = {
+          dateOperator: ['date']
+        }
         filterNode.datePanel = {
           excludeShortcuts: -1,
           excludeManuals: -1
         }
+        if (node.options.type === 'datetime') {
+          filterNode.renderType = 'DATE'
+          filterNode.operatorKey = 'Number'
+        }
+        if (node.options.type === 'dates') {
+          filterNode.renderType = 'DATE'
+          filterNode.operatorKey = 'Text'
+        }
+        if (node.options.type === 'daterange') {
+          filterNode.renderType = 'DATE'
+          filterNode.operatorKey = 'Text'
+          filterNode.excludeOperator = {
+            operator: [
+              'contains',
+              'not_contain'
+            ]
+          }
+        }
+        filterNode.datePanel.pickerType = node.options.type || 'date'
         break
       case 'number':
         filterNode.renderType = 'NUMBER'

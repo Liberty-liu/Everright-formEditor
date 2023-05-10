@@ -41,8 +41,14 @@ const getDataType = (fieldType) => {
   return result
 }
 const equal = (logicValue, value, field) => {
-  // console.log(logicValue)
-  // console.log(value)
+  if (field.type === 'date') {
+    if (/^(date|datetime)$/.test(field.options.type)) {
+      return dayjs.unix(value).isSame(dayjs.unix(logicValue.value))
+    }
+    if (/^(dates|daterange)$/.test(field.options.type)) {
+      return _.isEqual(_.chain(logicValue.value).clone().flattenDeep().sort().value(), _.chain(value).clone().flattenDeep().sort().value())
+    }
+  }
   if (field.type === 'time') {
     return dayjs(value, field.options.valueFormat).isSame(dayjs(logicValue, field.options.valueFormat))
   }
@@ -67,7 +73,7 @@ const contains = (logicValue, value, field) => {
     return logicValue.some((v) => _.includes(value, v))
   }
   if (_.isArray(value)) {
-    return !!_.intersection(logicValue, value).length
+    return !!_.intersection(field.type === 'date' ? logicValue.value : logicValue, value).length
   }
 }
 const notContains = (...e) => {
@@ -83,31 +89,45 @@ const notEmpty = (...e) => {
   return !empty(...e)
 }
 const gt = (logicValue, value, field) => {
+  if (field.type === 'date') {
+    return dayjs.unix(value).isAfter(dayjs.unix(logicValue.value))
+  }
   if (field.type === 'time') {
     return dayjs(value, field.options.valueFormat).isAfter(dayjs(logicValue, field.options.valueFormat))
   }
   return _.gt(value, logicValue)
 }
 const gte = (logicValue, value, field) => {
+  if (field.type === 'date') {
+    return dayjs.unix(value).isSameOrAfter(dayjs.unix(_.isObject(logicValue) ? logicValue.value : logicValue))
+  }
   if (field.type === 'time') {
     return dayjs(value, field.options.valueFormat).isSameOrAfter(dayjs(logicValue, field.options.valueFormat))
   }
   return _.gte(value, logicValue)
 }
 const lt = (logicValue, value, field) => {
+  if (field.type === 'date') {
+    return dayjs.unix(value).isBefore(dayjs.unix(logicValue.value))
+  }
   if (field.type === 'time') {
     return dayjs(value, field.options.valueFormat).isBefore(dayjs(logicValue, field.options.valueFormat))
   }
   return _.lt(value === undefined ? 0 : value, logicValue)
 }
 const lte = (logicValue, value, field) => {
+  if (field.type === 'date') {
+    return dayjs.unix(value).isSameOrBefore(dayjs.unix(_.isObject(logicValue) ? logicValue.value : logicValue))
+  }
   if (field.type === 'time') {
     return dayjs(value, field.options.valueFormat).isSameOrBefore(dayjs(logicValue, field.options.valueFormat))
   }
   return _.lte(value === undefined ? 0 : value, logicValue)
 }
 const between = (logicValue, value, field) => {
-  const [min, max] = logicValue
+  const [min, max] = field.type === 'date' ? logicValue.value : logicValue
+  // console.log(logicValue)
+  // console.log(value)
   return lte(max, value, field) && gte(min, value, field)
 }
 export const validator = (logic, value, field) => {
@@ -116,8 +136,8 @@ export const validator = (logic, value, field) => {
     case 'equal':
       result = equal(logic.value, value, field)
       break
-    case 'one_of':
-      break
+    // case 'one_of':
+    //   break
     case 'not_equal':
       result = notEqual(logic.value, value, field)
       break
@@ -151,7 +171,7 @@ export const validator = (logic, value, field) => {
       // console.log(value)
       // console.log(`field的值：${value} type: ${typeof value}`)
       // console.log(field)
-      result = between(logic.value, value, field.type)
+      result = between(logic.value, value, field)
       break
   }
   return result
