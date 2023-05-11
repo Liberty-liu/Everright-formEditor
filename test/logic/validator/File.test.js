@@ -1,8 +1,8 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('File', () => {
-    const field = { type: 'uploadfile', label: 'File', icon: 'upload', key: 'uploadfile_FSDpM3CGDUP7-GioNkFLn', id: 'FSDpM3CGDUP7-GioNkFLn', options: { isShowLabel: true, labelWidth: 100, defaultValue: [], multiple: false, action: 'http://localhost:8001/Everright-api/lowCode/uploads', limit: 1, size: 1, accept: '.png,.jpg,.gif', disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+const field = { type: 'uploadfile', label: 'File', icon: 'upload', key: 'uploadfile_FSDpM3CGDUP7-GioNkFLn', id: 'FSDpM3CGDUP7-GioNkFLn', options: { isShowLabel: true, labelWidth: 100, defaultValue: [], multiple: false, action: 'http://localhost:8001/Everright-api/lowCode/uploads', limit: 1, size: 1, accept: '.png,.jpg,.gif', disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+describe('File', () => {
+  test('empty', () => {
     expect(
       validator({
         operator: 'empty'
@@ -27,6 +27,8 @@ describe('validator', () => {
       },
       [],
       field)).toBeTruthy()
+  })
+  test('not_empty', () => {
     expect(
       validator({
         operator: 'not_empty'

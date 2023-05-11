@@ -1,8 +1,8 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('Date', () => {
-    const field = { type: 'date', label: 'Date', icon: 'calendar', key: 'date_mczJoB7trWElolPW48BEm', id: 'mczJoB7trWElolPW48BEm', options: { isShowWordLimit: false, clearable: true, format: 'YYYY-MM-DD', defaultValue: null, startTime: null, endTime: null, placeholder: 'Please select', labelWidth: 100, isShowLabel: true, type: 'date', required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+const field = { type: 'date', label: 'Date', icon: 'calendar', key: 'date_mczJoB7trWElolPW48BEm', id: 'mczJoB7trWElolPW48BEm', options: { isShowWordLimit: false, clearable: true, format: 'YYYY-MM-DD', defaultValue: null, startTime: null, endTime: null, placeholder: 'Please select', labelWidth: 100, isShowLabel: true, type: 'date', required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+describe('Date', () => {
+  test('equal: date/datetime', () => {
     expect(
       validator({
         operator: 'equal',
@@ -43,6 +43,19 @@ describe('validator', () => {
       },
       undefined,
       field)).toBeFalsy()
+    field.options.type = 'datetime'
+    expect(
+      validator({
+        operator: 'equal',
+        value: {
+          dateType: 'static',
+          value: 1683648000
+        }
+      },
+      1683648000,
+      field)).toBeTruthy()
+  })
+  test('not_equal: date/datetime', () => {
     expect(
       validator({
         operator: 'not_equal',
@@ -53,6 +66,8 @@ describe('validator', () => {
       },
       1683648000,
       field)).toBeFalsy()
+  })
+  test('empty: date/datetime', () => {
     expect(
       validator({
         operator: 'empty',
@@ -93,6 +108,8 @@ describe('validator', () => {
       },
       [],
       field)).toBeTruthy()
+  })
+  test('greater_than: date/datetime', () => {
     expect(
       validator({
         operator: 'greater_than',
@@ -133,6 +150,8 @@ describe('validator', () => {
       },
       null,
       field)).toBeFalsy()
+  })
+  test('greater_than_equal: date/datetime', () => {
     expect(
       validator({
         operator: 'greater_than_equal',
@@ -143,6 +162,8 @@ describe('validator', () => {
       },
       1683648000,
       field)).toBeTruthy()
+  })
+  test('less_than: date/datetime', () => {
     expect(
       validator({
         operator: 'less_than',
@@ -153,6 +174,8 @@ describe('validator', () => {
       },
       1683648000,
       field)).toBeTruthy()
+  })
+  test('less_than_equal: date/datetime', () => {
     expect(
       validator({
         operator: 'less_than_equal',
@@ -163,6 +186,8 @@ describe('validator', () => {
       },
       1683734400,
       field)).toBeTruthy()
+  })
+  test('between: date/datetime', () => {
     expect(
       validator({
         operator: 'between',
@@ -215,17 +240,8 @@ describe('validator', () => {
       },
       '',
       field)).toBeFalsy()
-    field.options.type = 'datetime'
-    expect(
-      validator({
-        operator: 'equal',
-        value: {
-          dateType: 'static',
-          value: 1683648000
-        }
-      },
-      1683648000,
-      field)).toBeTruthy()
+  })
+  test('equal: dates', () => {
     field.options.type = 'dates'
     expect(
       validator({
@@ -256,6 +272,9 @@ describe('validator', () => {
       },
       [],
       field)).toBeFalsy()
+  })
+  test('not_equal: dates', () => {
+    field.options.type = 'dates'
     expect(
       validator({
         operator: 'not_equal',
@@ -272,6 +291,9 @@ describe('validator', () => {
         1683734400
       ],
       field)).toBeFalsy()
+  })
+  test('contains: dates', () => {
+    field.options.type = 'dates'
     expect(
       validator({
         operator: 'contains',
@@ -287,6 +309,9 @@ describe('validator', () => {
         1683561600
       ],
       field)).toBeTruthy()
+  })
+  test('not_contain: dates', () => {
+    field.options.type = 'dates'
     expect(
       validator({
         operator: 'not_contain',
@@ -303,6 +328,8 @@ describe('validator', () => {
         1683734400
       ],
       field)).toBeFalsy()
+  })
+  test('equal: daterange', () => {
     field.options.type = 'daterange'
     expect(
       validator({
@@ -336,6 +363,9 @@ describe('validator', () => {
         1684339200
       ],
       field)).toBeFalsy()
+  })
+  test('not_equal: daterange', () => {
+    field.options.type = 'daterange'
     expect(
       validator({
         operator: 'not_equal',

@@ -1,8 +1,8 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('Textarea', () => {
-    const field = { type: 'textarea', label: 'Textarea', icon: 'textarea', key: 'textarea_ZPRzSVZkMHOMYgWZBmrvR', id: 'ZPRzSVZkMHOMYgWZBmrvR', options: { clearable: true, isShowWordLimit: false, rows: 6, defaultValue: '', placeholder: 'Please enter', disabled: false, labelWidth: 100, isShowLabel: true, required: false, min: null, max: null }, style: { width: { pc: '100%', mobile: '100%' } } }
+const field = { type: 'textarea', label: 'Textarea', icon: 'textarea', key: 'textarea_ZPRzSVZkMHOMYgWZBmrvR', id: 'ZPRzSVZkMHOMYgWZBmrvR', options: { clearable: true, isShowWordLimit: false, rows: 6, defaultValue: '', placeholder: 'Please enter', disabled: false, labelWidth: 100, isShowLabel: true, required: false, min: null, max: null }, style: { width: { pc: '100%', mobile: '100%' } } }
+describe('Textarea', () => {
+  test('equal', () => {
     expect(
       validator({
         operator: 'equal',
@@ -10,6 +10,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeTruthy()
+  })
+  test('not_equal', () => {
     expect(
       validator({
         operator: 'not_equal',
@@ -17,6 +19,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeFalsy()
+  })
+  test('contains', () => {
     expect(
       validator({
         operator: 'contains',
@@ -26,6 +30,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeTruthy()
+  })
+  test('not_contain', () => {
     expect(
       validator({
         operator: 'not_contain',
@@ -35,6 +41,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeFalsy()
+  })
+  test('empty', () => {
     expect(
       validator({
         operator: 'empty'
@@ -53,6 +61,8 @@ describe('validator', () => {
       },
       null,
       field)).toBeTruthy()
+  })
+  test('not_empty', () => {
     expect(
       validator({
         operator: 'not_empty'

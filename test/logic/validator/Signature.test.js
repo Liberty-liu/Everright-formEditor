@@ -1,8 +1,8 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('Signature', () => {
-    const field = { type: 'signature', label: 'Signature', icon: 'signature', key: 'signature_TBB-T_V2Gkt-BwinGdG4f', id: 'TBB-T_V2Gkt-BwinGdG4f', options: { required: false, isShowLabel: true, labelWidth: 100, defaultValue: '', penColor: 'rgb(0, 0, 0)', action: 'http://localhost:8001/Everright-api/lowCode/uploads', disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+const field = { type: 'signature', label: 'Signature', icon: 'signature', key: 'signature_TBB-T_V2Gkt-BwinGdG4f', id: 'TBB-T_V2Gkt-BwinGdG4f', options: { required: false, isShowLabel: true, labelWidth: 100, defaultValue: '', penColor: 'rgb(0, 0, 0)', action: 'http://localhost:8001/Everright-api/lowCode/uploads', disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+describe('Signature', () => {
+  test('empty', () => {
     expect(
       validator({
         operator: 'empty'
@@ -21,6 +21,8 @@ describe('validator', () => {
       },
       null,
       field)).toBeTruthy()
+  })
+  test('not_empty', () => {
     expect(
       validator({
         operator: 'not_empty'

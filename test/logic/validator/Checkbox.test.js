@@ -1,8 +1,8 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('Checkbox', () => {
-    const field = { type: 'checkbox', label: 'Checkbox', icon: 'checkbox', key: 'checkbox_qE0oMb42msqQ1M4N35F6P', id: 'qE0oMb42msqQ1M4N35F6P', options: { dataKey: 'qE0oMb42msqQ1M4N35F6P', displayStyle: 'block', defaultValue: [], labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+const field = { type: 'checkbox', label: 'Checkbox', icon: 'checkbox', key: 'checkbox_qE0oMb42msqQ1M4N35F6P', id: 'qE0oMb42msqQ1M4N35F6P', options: { dataKey: 'qE0oMb42msqQ1M4N35F6P', displayStyle: 'block', defaultValue: [], labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+describe('Checkbox', () => {
+  test('equal', () => {
     expect(
       validator({
         operator: 'equal',
@@ -26,6 +26,8 @@ describe('validator', () => {
         '0bZN9TQ0bePdjOewythuj'
       ],
       field)).toBeFalsy()
+  })
+  test('not_equal', () => {
     expect(
       validator({
         operator: 'not_equal',
@@ -49,6 +51,8 @@ describe('validator', () => {
         '0bZN9TQ0bePdjOewythuj'
       ],
       field)).toBeTruthy()
+  })
+  test('contains', () => {
     expect(
       validator({
         operator: 'contains',
@@ -73,6 +77,8 @@ describe('validator', () => {
         '0bZN9TQ0bePdjOewythuj1'
       ],
       field)).toBeFalsy()
+  })
+  test('not_contain', () => {
     expect(
       validator({
         operator: 'not_contain',
@@ -97,12 +103,16 @@ describe('validator', () => {
         '0bZN9TQ0bePdjOewythuj1'
       ],
       field)).toBeTruthy()
+  })
+  test('empty', () => {
     expect(
       validator({
         operator: 'empty'
       },
       [],
       field)).toBeTruthy()
+  })
+  test('not_empty', () => {
     expect(
       validator({
         operator: 'not_empty'

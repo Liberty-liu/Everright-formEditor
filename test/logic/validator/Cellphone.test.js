@@ -1,26 +1,26 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-describe('validator', () => {
-  test('Cellphone', () => {
-    const field = {
-      type: 'input',
-      label: 'Cellphone',
-      icon: 'cellphone',
-      key: 'input_feokPGo0uqPDPGvcbbkrB',
-      id: 'feokPGo0uqPDPGvcbbkrB',
-      options: {
-        clearable: true,
-        renderType: 4,
-        disabled: false,
-        showPassword: false,
-        defaultValue: '',
-        placeholder: 'Please enter',
-        labelWidth: 100,
-        isShowLabel: true,
-        required: false
-      },
-      style: { width: { pc: '100%', mobile: '100%' } }
-    }
+const field = {
+  type: 'input',
+  label: 'Cellphone',
+  icon: 'cellphone',
+  key: 'input_feokPGo0uqPDPGvcbbkrB',
+  id: 'feokPGo0uqPDPGvcbbkrB',
+  options: {
+    clearable: true,
+    renderType: 4,
+    disabled: false,
+    showPassword: false,
+    defaultValue: '',
+    placeholder: 'Please enter',
+    labelWidth: 100,
+    isShowLabel: true,
+    required: false
+  },
+  style: { width: { pc: '100%', mobile: '100%' } }
+}
+describe('Cellphone', () => {
+  test('equal', () => {
     expect(
       validator({
         operator: 'equal',
@@ -28,6 +28,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeTruthy()
+  })
+  test('not_equal', () => {
     expect(
       validator({
         operator: 'not_equal',
@@ -35,6 +37,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeFalsy()
+  })
+  test('contains', () => {
     expect(
       validator({
         operator: 'contains',
@@ -44,6 +48,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeTruthy()
+  })
+  test('not_contain', () => {
     expect(
       validator({
         operator: 'not_contain',
@@ -53,6 +59,8 @@ describe('validator', () => {
       },
       '123',
       field)).toBeFalsy()
+  })
+  test('empty', () => {
     expect(
       validator({
         operator: 'empty'
@@ -71,6 +79,8 @@ describe('validator', () => {
       },
       null,
       field)).toBeTruthy()
+  })
+  test('not_empty', () => {
     expect(
       validator({
         operator: 'not_empty'
