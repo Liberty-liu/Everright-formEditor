@@ -23,22 +23,15 @@ const findValidityRule = (state) => {
   return result
 }
 const findFieldsByid = (list, fields) => _.intersectionBy(fields, list.map(e => ({ id: e })), 'id')
-// const runLogic = () => {}
-const getDataType = (fieldType) => {
-  let result = ''
-  switch (fieldType) {
-    case 'textarea':
-    case 'input':
-    case 'html':
-      result = 'string'
-      break
-    case 'number':
-    case 'rate':
-    case 'slider':
-      result = 'number'
-      break
+const getAreaType = (code) => {
+  const val = String(code)
+  if (val.substring(0, 2) !== '00' && val.substring(2, 4) === '00') {
+    return 1
+  } else if (val.substring(2, 4) !== '00' && val.substring(4, 6) === '00') {
+    return 2
+  } else if (val.substring(4, 6) !== '00') {
+    return 3
   }
-  return result
 }
 const equal = (logicValue, value, field) => {
   if (field.type === 'date') {
@@ -130,14 +123,41 @@ const between = (logicValue, value, field) => {
   // console.log(value)
   return lte(max, value, field) && gte(min, value, field)
 }
+const oneOf = (logicValue, value, field) => {
+  return !!_.intersection(logicValue, [value]).length
+}
+const notOneOf = (...e) => {
+  return !oneOf(...e)
+}
+const belongOneOf = (logicValue, value, field) => {
+  return utils.isEmpty(value)
+    ? false
+    : logicValue.some(code => {
+      let result = false
+      const type = getAreaType(code)
+      switch (type) {
+        case 1:
+          result = code.substring(0, 2) === value.substring(0, 2)
+          break
+        case 2:
+          result = code.substring(0, 2) === value.substring(0, 2) && code.substring(2, 4) === value.substring(2, 4)
+          break
+        case 3:
+          result = code === value
+          break
+      }
+      return result
+    })
+}
+const notBelongOneOf = (...e) => {
+  return !belongOneOf(...e)
+}
 export const validator = (logic, value, field) => {
   let result = false
   switch (logic.operator) {
     case 'equal':
       result = equal(logic.value, value, field)
       break
-    // case 'one_of':
-    //   break
     case 'not_equal':
       result = notEqual(logic.value, value, field)
       break
@@ -166,12 +186,19 @@ export const validator = (logic, value, field) => {
       result = lte(logic.value, value, field)
       break
     case 'between':
-      // console.log(logic.value)
-      // console.log(`操作符的值：${logic.value} type: ${typeof logic.value}`)
-      // console.log(value)
-      // console.log(`field的值：${value} type: ${typeof value}`)
-      // console.log(field)
       result = between(logic.value, value, field)
+      break
+    case 'one_of':
+      result = oneOf(logic.value, value, field)
+      break
+    case 'not_one_of':
+      result = notOneOf(logic.value, value, field)
+      break
+    case 'belong_one_of':
+      result = belongOneOf(logic.value, value, field)
+      break
+    case 'not_belong_one_of':
+      result = notBelongOneOf(logic.value, value, field)
       break
   }
   return result

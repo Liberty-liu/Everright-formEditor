@@ -28,6 +28,7 @@ const state = reactive({
   fields: [],
   logic: {}
 })
+console.log(hooks)
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
 const getData = () => {

@@ -87,6 +87,38 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
           value: 'not_empty',
           style: 'none'
         }
+      ],
+      Region: [
+        {
+          label: '等于其中之一',
+          value: 'one_of',
+          style: 'tags'
+        },
+        {
+          label: '不等于其中之一',
+          value: 'not_one_of',
+          style: 'tags'
+        },
+        {
+          label: '属于其中之一',
+          value: 'belong_one_of',
+          style: 'tags'
+        },
+        {
+          label: '不属于其中之一',
+          value: 'not_belong_one_of',
+          style: 'tags'
+        },
+        {
+          label: '为空',
+          value: 'empty',
+          style: 'none'
+        },
+        {
+          label: '不为空',
+          value: 'not_empty',
+          style: 'none'
+        }
       ]
     }
   }
@@ -104,7 +136,9 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         break
       case 'region':
         filterNode.renderType = 'REGION'
-        filterNode.operatorKey = 'Text'
+        filterNode.operatorKey = 'Region'
+        filterNode.selectType = node.options.selectType
+        console.log(filterNode.selectType)
         break
       case 'date':
         filterNode.renderType = 'DATE'
