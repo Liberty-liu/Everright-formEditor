@@ -145,28 +145,30 @@ export default defineComponent({
             break
           default:
             let TypeComponent = ''
-            const typeProps = hooks.useProps(state, element, unref(isPc))
-            TypeComponent = load.findComponent('FormTypes', element.type)
-            if (unref(isPc)) {
-              node = (
-                <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
-                  {
-                    element.type !== 'divider'
-                      ? (<el-form-item
-                        {...typeProps.value}
-                      >
-                        <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                      </el-form-item>)
-                      : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                  }
-                </Selection>
-              )
-            } else {
-              node = (
-                <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
-                  <TypeComponent data={element} params={typeProps.value}></TypeComponent>
-                </Selection>
-              )
+            if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visibility', undefined) !== 0) {
+              const typeProps = hooks.useProps(state, element, unref(isPc))
+              TypeComponent = load.findComponent('FormTypes', element.type)
+              if (unref(isPc)) {
+                node = (
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                    {
+                      element.type !== 'divider'
+                        ? (<el-form-item
+                          {...typeProps.value}
+                        >
+                          <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                        </el-form-item>)
+                        : <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                    }
+                  </Selection>
+                )
+              } else {
+                node = (
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                    <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                  </Selection>
+                )
+              }
             }
             break
         }

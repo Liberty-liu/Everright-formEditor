@@ -23,7 +23,7 @@ const findValidityRule = (state) => {
   return result
 }
 const findFieldsByid = (list, fields) => _.intersectionBy(fields, list.map(e => ({ id: e })), 'id')
-const getAreaType = (code) => {
+export const getAreaType = (code) => {
   const val = String(code)
   if (val.substring(0, 2) !== '00' && val.substring(2, 4) === '00') {
     return 1
@@ -203,34 +203,156 @@ export const validator = (logic, value, field) => {
   }
   return result
 }
-const operatingShowHidden = (fields, rules) => {
-  rules.forEach(rule => {
-    const targetFields = findFieldsByid(rule.if.conditions.map(e => e.property), fields)
-    // console.log(rule.if.logicalOperator)
-    const operator = (v) => rule.if.logicalOperator === 'and' ? v.every(v => v) : v.some(v => v)
-    // console.log(targetFields)
-    // console.log(rule)
-    // watch(() => [targetFields[0].options.defaultValue], () => {
-    watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
-      // console.log(values)
-      // console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, getDataType(targetFields[index].type)))))
-      console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
-      // console.log(values.map((value, index) => validator(rule.if.conditions[index], value, getDataType(targetFields[index].type))))
-    }, {
-      immediate: true,
-      deep: true
-    })
-    // console.log(rule.if.conditions.map(e => e.property))
+// const operatingShowHidden = (fields, rules) => {
+//   rules.forEach(rule => {
+//     const targetFields = findFieldsByid(rule.if.conditions.map(e => e.property), fields)
+//     const operator = (v) => rule.if.logicalOperator === 'and' ? v.every(v => v) : v.some(v => v)
+//     console.log(rule)
+//     watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
+//       console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
+//     }, {
+//       immediate: true,
+//       deep: true
+//     })
+//     // console.log(rule.if.conditions.map(e => e.property))
+//   })
+// }
+const changeState = (fieldsLogicState, field, key, value) => {
+  if (!fieldsLogicState.has(field)) {
+    fieldsLogicState.set(field, {})
+  }
+  fieldsLogicState.get(field)[key] = value
+}
+const operatingShowHidden = (isValidation, rule, fields, fieldsLogicState) => {
+  _.get(rule, 'then.conditions', []).forEach(condition => {
+    switch (condition.property) {
+      case 'show':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'visibility', 1)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'visibility', 0)
+          })
+        }
+        break
+      case 'hide':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'visibility', 0)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'visibility', 1)
+          })
+        }
+        break
+    }
+  })
+}
+const operatingRequired = (isValidation, rule, fields, fieldsLogicState) => {
+  _.get(rule, 'then.conditions', []).forEach(condition => {
+    switch (condition.operator) {
+      case 'required':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            // fieldsRequired.set(field, 1)
+            changeState(fieldsLogicState, field, 'required', 1)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            // fieldsRequired.set(field, 0)
+            changeState(fieldsLogicState, field, 'required', 0)
+          })
+        }
+        break
+      case 'not_required':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            // fieldsRequired.set(field, 0)
+            changeState(fieldsLogicState, field, 'required', 0)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            // fieldsRequired.set(field, 1)
+            changeState(fieldsLogicState, field, 'required', 1)
+          })
+        }
+        break
+    }
+  })
+}
+const operatingReadOnly = (isValidation, rule, fields, fieldsLogicState) => {
+  _.get(rule, 'then.conditions', []).forEach(condition => {
+    switch (condition.operator) {
+      case 'readOnly':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'readOnly', 1)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'readOnly', 0)
+          })
+        }
+        break
+      case 'editable':
+        if (isValidation) {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'readOnly', 0)
+          })
+        } else {
+          findFieldsByid(condition.value, state.fields).forEach(field => {
+            changeState(fieldsLogicState, field, 'readOnly', 1)
+          })
+        }
+        break
+    }
+  })
+}
+const operatingValidation = (isValidation, rule, fields, fieldsLogicState) => {
+  _.get(rule, 'then.conditions', []).forEach(condition => {
+    if (isValidation) {
+      fieldsValidation.set(condition, 1)
+    } else {
+      fieldsValidation.delete(condition)
+    }
   })
 }
 const listenEvent = (state) => {
   const rules = findValidityRule(state)
   for (const type in rules) {
-    switch (type) {
-      case 'showHidden':
-        operatingShowHidden(state.fields, rules[type])
-        break
-    }
+    rules[type].forEach(rule => {
+      const targetFields = findFieldsByid(rule.if.conditions.map(e => e.property), state.fields)
+      const operator = (v) => rule.if.logicalOperator === 'and' ? v.every(v => v) : v.some(v => v)
+      // console.log(rule)
+      watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
+        // console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
+        switch (type) {
+          case 'showHidden':
+            operatingShowHidden(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
+            break
+          case 'required':
+            operatingRequired(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
+            break
+          case 'readOnly':
+            operatingReadOnly(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
+            break
+          // case 'validation':
+          //   operatingValidation(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsValidation)
+          //   break
+        }
+      }, {
+        immediate: true,
+        deep: true
+      })
+    })
+    // switch (type) {
+    //   case 'showHidden':
+    //     operatingShowHidden(state.fields, rules[type])
+    //     break
+    // }
   }
 }
 export const useLogic = (state) => {

@@ -5,6 +5,8 @@ import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
+import { ElMessage } from 'element-plus'
+import { showNotify } from 'vant'
 export default {
   name: 'Everright-form-preview'
 }
@@ -26,11 +28,31 @@ const state = reactive({
   validateStates: [],
   data: {},
   fields: [],
-  logic: {}
+  logic: {},
+  // fieldsVisibility: ref(new WeakMap()),
+  // fieldsRequired: ref(new WeakMap()),
+  // fieldsValidation: new Map(),
+  fieldsLogicState: new Map()
 })
-console.log(hooks)
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
+// const checkFieldsValidation = async () => {
+//   for (const [key, value] of state.fieldsValidation) {
+//     if (value) {
+//       if (utils.isPc()) {
+//         ElMessage({
+//           message: key.value,
+//           type: 'warning'
+//         })
+//       } else {
+//         showNotify({ type: 'warning', message: key.value })
+//       }
+//       return Promise.reject(key)
+//     }
+//   }
+//   return Promise.resolve()
+// }
+// window.checkFieldsValidation = checkFieldsValidation
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
@@ -43,6 +65,7 @@ provide('Everright', {
   emit,
   getData,
   props
+  // checkFieldsValidation
 })
 window.state = state
 const setData2 = (data, value) => {

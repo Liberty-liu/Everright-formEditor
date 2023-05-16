@@ -138,7 +138,6 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         filterNode.renderType = 'REGION'
         filterNode.operatorKey = 'Region'
         filterNode.selectType = node.options.selectType
-        console.log(filterNode.selectType)
         break
       case 'date':
         filterNode.renderType = 'DATE'
@@ -322,7 +321,15 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
       break
     case 'required':
       result = {
-        options: generateIfFilterOptionsData(activeTab, fields).options,
+        options: [
+          {
+            label: '',
+            value: 'required',
+            renderType: 'SELECT',
+            operatorKey: 'Text',
+            multiple: true
+          }
+        ],
         operators: {
           Text: [
             {
@@ -338,16 +345,39 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
           ]
         }
       }
-      result.options.forEach(e => {
-        e.renderType = 'TEXT'
-        e.operatorKey = 'Text'
-      })
+      break
+    case 'readOnly':
+      result = {
+        options: [
+          {
+            label: '',
+            value: 'readOnly',
+            renderType: 'SELECT',
+            operatorKey: 'Text',
+            multiple: true
+          }
+        ],
+        operators: {
+          Text: [
+            {
+              label: '只读',
+              value: 'readOnly',
+              style: 'noop'
+            },
+            {
+              label: '可编辑',
+              value: 'editable',
+              style: 'noop'
+            }
+          ]
+        }
+      }
       break
     case 'validation':
       result = {
         options: [
           {
-            label: '提示语',
+            label: '提示内容',
             value: 'message',
             renderType: 'TEXT',
             isShowOperator: false,

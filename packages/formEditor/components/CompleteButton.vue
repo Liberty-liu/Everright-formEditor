@@ -27,21 +27,14 @@ const handleClick = async (type) => {
   if (props.mode === 'preview') return false
   try {
     await Promise.resolve(unref(props.handle).validate())
+    // await ER.checkFieldsValidation()
     ER.emit('listener', {
       type: 'submit',
       data: ER.getData()
     })
-    // console.log(JSON.stringify(_.cloneDeep(result)))
   } catch (e) {
     console.log(e)
   }
-  // unref(props.handle).validate().then(() => {
-  //   const result = {}
-  //   ER.state.allFields.forEach(e => {
-  //     result[e.key] = e.options.defaultValue
-  //   })
-  //   console.log(_.cloneDeep(result))
-  // })
 }
 </script>
 <template>

@@ -1,8 +1,18 @@
 import { describe, assert, expect, test } from 'vitest'
-import { validator } from '@ER/hooks/use-logic'
+import { validator, getAreaType } from '@ER/hooks/use-logic'
 import { areaList } from '@vant/area-data'
 const field = { type: 'region', label: 'Region', icon: 'location', key: 'region_Yqz1snVkubaX2WG8xCEFs', id: 'Yqz1snVkubaX2WG8xCEFs', options: { placeholder: 'Please select', required: false, isShowLabel: true, labelWidth: 100, defaultValue: '', selectType: 1, filterable: true }, style: { width: { pc: '100%', mobile: '100%' } } }
 describe('Region', () => {
+  test.each([
+    { codes: areaList.province_list, expected: 1 },
+    { codes: areaList.city_list, expected: 2 },
+    { codes: areaList.county_list, expected: 3 }
+  ])('getAreaType should return expected for %p', ({ codes, expected }) => {
+    Object.keys(codes).forEach(code => {
+      const result = getAreaType(code)
+      expect(result).toBe(expected)
+    })
+  })
   test('one_of: selectType 1', () => {
     field.options.selectType = 1
     expect(
@@ -519,19 +529,4 @@ describe('Region', () => {
       null,
       field)).toBeTruthy()
   })
-  // test('getAreaType:1', () => {
-  //   Object.keys(areaList.province_list).forEach(code => {
-  //     expect(getAreaType(code)).toBe(1)
-  //   })
-  // })
-  // test('getAreaType:2', () => {
-  //   Object.keys(areaList.city_list).forEach(code => {
-  //     expect(getAreaType(code)).toBe(2)
-  //   })
-  // })
-  // test('getAreaType:3', () => {
-  //   Object.keys(areaList.county_list).forEach(code => {
-  //     expect(getAreaType(code)).toBe(3)
-  //   })
-  // })
 })

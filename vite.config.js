@@ -55,8 +55,14 @@ const examplePlugin = () => {
   }
 }
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    transformMode: {
+      web: [/\.[jt]sx$/],
+    }
+  },
   base: './',
-  define: { 'process.env.NODE_ENV': '"production"' },
+  // define: { 'process.env.NODE_ENV': process.env.NODE_ENV },
   build: {
     lib: {
       entry: resolve(__dirname, 'packages/formEditor/index.js'),

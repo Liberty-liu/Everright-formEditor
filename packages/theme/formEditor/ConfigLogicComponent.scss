@@ -28,6 +28,11 @@
       display: none;
     }
   }
+  @include e((requiredthen, readOnlythen)) {
+    .Everright-filter-TriggerComponent {
+      display: none;
+    }
+  }
   .Everright-filter-FilterItem{
     background: none;
     margin-top: 0;

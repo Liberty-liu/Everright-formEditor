@@ -1,9 +1,14 @@
 <script>
 import { ref, inject, nextTick, reactive, computed, watch, onMounted } from 'vue'
 import hooks from '@ER/hooks'
-import utils from '@ER/utils'
+import {
+  generateIfFilterOptionsData,
+  generateIfFilterConditionsData,
+  generateThenFilterOptionsData,
+  generateThenFilterConditionsData
+} from './generateFilterdata.js'
 import _ from 'lodash-es'
-import { EverrightFilter } from 'everright-filter'
+import { EverrightFilter } from 'everright-filter/dist/Everright-filter.js'
 import Icon from '@ER/icon'
 export default {
   name: 'ConfigLogicComponent'
@@ -28,22 +33,29 @@ const tabs = ref([
     thenRefs: []
   },
   {
-    label: '校验',
-    value: 'validation',
-    rules: [],
-    ifRefs: [],
-    thenRefs: []
-  },
-  {
     label: '必填',
     value: 'required',
     rules: [],
     ifRefs: [],
     thenRefs: []
+  },
+  {
+    label: '只读',
+    value: 'readOnly',
+    rules: [],
+    ifRefs: [],
+    thenRefs: []
   }
+  // {
+  //   label: '校验',
+  //   value: 'validation',
+  //   rules: [],
+  //   ifRefs: [],
+  //   thenRefs: []
+  // }
 ])
 window.tabs = tabs
-const activeTab = ref('showHidden')
+const activeTab = ref('readOnly')
 const emit = defineEmits(['update:modelValue'])
 const ER = inject('Everright')
 const scrollbarRef = ref()
@@ -55,28 +67,28 @@ const {
 const getIfOptions = (type) => async () => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: utils.generateIfFilterOptionsData(type, state.fields)
+      data: generateIfFilterOptionsData(type, state.fields)
     })
   })
 }
 const getIfConditions = (type) => async ({ property }) => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: utils.generateIfFilterConditionsData(type, state, property)
+      data: generateIfFilterConditionsData(type, state, property)
     })
   })
 }
 const getThenOptions = (type) => async () => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: utils.generateThenFilterOptionsData(type, state.fields)
+      data: generateThenFilterOptionsData(type, state.fields)
     })
   })
 }
 const getThenConditions = (type) => async ({ property }) => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: utils.generateThenFilterConditionsData(type, state.fields)
+      data: generateThenFilterConditionsData(type, state.fields)
     })
   })
 }
@@ -187,10 +199,33 @@ const handleListener = (ruleType, index, tab, { type, data }) => {
           case 'showHidden':
             _.last(tab.thenRefs).pushData('show')
             break
+          case 'required':
+            _.last(tab.thenRefs).pushData('required')
+            break
+          case 'readOnly':
+            _.last(tab.thenRefs).pushData('readOnly')
+            break
         }
       }
     }
   }
+}
+const addRuleHandler = (tab) => {
+  switch (activeTab.value) {
+    case 'validation':
+      _.last(tab.thenRefs).pushData('message')
+      break
+    case 'showHidden':
+      _.last(tab.thenRefs).pushData('show')
+      break
+    case 'required':
+      _.last(tab.thenRefs).pushData('required')
+      break
+    case 'readOnly':
+      _.last(tab.thenRefs).pushData('readOnly')
+      break
+  }
+  return false
 }
 const handleClosed = () => {
   tabs.value.forEach(tab => {
@@ -226,13 +261,15 @@ const handleClosed = () => {
                     :getConditions="getIfConditions(tab.value)"
                   />
                 </div>
-                <div :class="ns.e('then')">
+                <div :class="[ns.e('then'), ns.e(`${tab.value}then`)]">
                   <h2>Then</h2>
                   <EverrightFilter
                     :ref="relationalRef(tab, 'thenRefs', index)"
                     :lang="ER.props.lang"
+                    :canAddRule="() => addRuleHandler(tab)"
                     @listener="(e) => handleListener('then', index, tab, e)"
                     :getOptions="getThenOptions(tab.value)"
+                    :rule-limit="tab.value === 'required' ? 2 : tab.value === 'validation' ? 1 : -1"
                     :getConditions="getThenConditions(tab.value)"
                   />
                 </div>
