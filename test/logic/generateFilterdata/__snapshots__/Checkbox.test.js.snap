@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Checkbox > default 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "Checkbox",
+      "multiple": true,
+      "operatorKey": "Text",
+      "renderType": "SELECT",
+      "value": "qE0oMb42msqQ1M4N35F6P",
+    },
+  ],
+}
+`;

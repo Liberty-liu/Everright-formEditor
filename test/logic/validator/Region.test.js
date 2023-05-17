@@ -1,7 +1,7 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator, getAreaType } from '@ER/hooks/use-logic'
 import { areaList } from '@vant/area-data'
-const field = { type: 'region', label: 'Region', icon: 'location', key: 'region_Yqz1snVkubaX2WG8xCEFs', id: 'Yqz1snVkubaX2WG8xCEFs', options: { placeholder: 'Please select', required: false, isShowLabel: true, labelWidth: 100, defaultValue: '', selectType: 1, filterable: true }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Region } from '@ER-test/data/fields.js'
 describe('Region', () => {
   test.each([
     { codes: areaList.province_list, expected: 1 },
@@ -14,7 +14,7 @@ describe('Region', () => {
     })
   })
   test('one_of: selectType 1', () => {
-    field.options.selectType = 1
+    Region.options.selectType = 1
     expect(
       validator({
         operator: 'one_of',
@@ -25,7 +25,7 @@ describe('Region', () => {
         ]
       },
       '110000',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'one_of',
@@ -36,10 +36,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('one_of: selectType 2', () => {
-    field.options.selectType = 2
+    Region.options.selectType = 2
     expect(
       validator({
         operator: 'one_of',
@@ -49,7 +49,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'one_of',
@@ -59,10 +59,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('one_of: selectType 3', () => {
-    field.options.selectType = 3
+    Region.options.selectType = 3
     expect(
       validator({
         operator: 'one_of',
@@ -72,7 +72,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'one_of',
@@ -82,10 +82,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('not_one_of: selectType 1', () => {
-    field.options.selectType = 1
+    Region.options.selectType = 1
     expect(
       validator({
         operator: 'not_one_of',
@@ -96,7 +96,7 @@ describe('Region', () => {
         ]
       },
       '110000',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_one_of',
@@ -107,10 +107,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
   test('not_one_of: selectType 2', () => {
-    field.options.selectType = 2
+    Region.options.selectType = 2
     expect(
       validator({
         operator: 'not_one_of',
@@ -120,7 +120,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_one_of',
@@ -130,10 +130,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
   test('not_one_of: selectType 3', () => {
-    field.options.selectType = 3
+    Region.options.selectType = 3
     expect(
       validator({
         operator: 'not_one_of',
@@ -143,7 +143,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_one_of',
@@ -153,10 +153,10 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
   test('belong_one_of: selectType 1', () => {
-    field.options.selectType = 1
+    Region.options.selectType = 1
     expect(
       validator({
         operator: 'belong_one_of',
@@ -166,7 +166,7 @@ describe('Region', () => {
         ]
       },
       '110000',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -176,7 +176,7 @@ describe('Region', () => {
         ]
       },
       '110001',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -186,7 +186,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -196,7 +196,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -206,10 +206,10 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('belong_one_of: selectType 2', () => {
-    field.options.selectType = 2
+    Region.options.selectType = 2
     expect(
       validator({
         operator: 'belong_one_of',
@@ -219,7 +219,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -228,7 +228,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -238,7 +238,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -248,7 +248,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -258,7 +258,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -268,10 +268,10 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('belong_one_of: selectType 3', () => {
-    field.options.selectType = 3
+    Region.options.selectType = 3
     expect(
       validator({
         operator: 'belong_one_of',
@@ -281,7 +281,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -291,7 +291,7 @@ describe('Region', () => {
         ]
       },
       '130100',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -300,7 +300,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -310,7 +310,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -320,7 +320,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -330,7 +330,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'belong_one_of',
@@ -340,10 +340,10 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
   })
   test('not_belong_one_of: selectType 1', () => {
-    field.options.selectType = 1
+    Region.options.selectType = 1
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -353,7 +353,7 @@ describe('Region', () => {
         ]
       },
       '110000',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -363,7 +363,7 @@ describe('Region', () => {
         ]
       },
       '110001',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -373,7 +373,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -383,7 +383,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -393,10 +393,10 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
   test('not_belong_one_of: selectType 2', () => {
-    field.options.selectType = 2
+    Region.options.selectType = 2
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -406,7 +406,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -415,7 +415,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -425,7 +425,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -435,7 +435,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -445,7 +445,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -455,10 +455,10 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
   test('not_belong_one_of: selectType 3', () => {
-    field.options.selectType = 3
+    Region.options.selectType = 3
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -468,7 +468,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -478,7 +478,7 @@ describe('Region', () => {
         ]
       },
       '130100',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -487,7 +487,7 @@ describe('Region', () => {
         ]
       },
       '110100',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -497,7 +497,7 @@ describe('Region', () => {
         ]
       },
       '110101',
-      field)).toBeFalsy()
+      Region)).toBeFalsy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -507,7 +507,7 @@ describe('Region', () => {
         ]
       },
       '',
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -517,7 +517,7 @@ describe('Region', () => {
         ]
       },
       undefined,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
     expect(
       validator({
         operator: 'not_belong_one_of',
@@ -527,6 +527,6 @@ describe('Region', () => {
         ]
       },
       null,
-      field)).toBeTruthy()
+      Region)).toBeTruthy()
   })
 })

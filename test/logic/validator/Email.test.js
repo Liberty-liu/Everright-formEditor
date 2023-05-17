@@ -1,24 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = {
-  type: 'input',
-  label: 'Email',
-  icon: 'email',
-  key: 'input_dkY3cEvdfnJ-2Y6IP9pkf',
-  id: 'dkY3cEvdfnJ-2Y6IP9pkf',
-  options: {
-    clearable: true,
-    renderType: 2,
-    disabled: false,
-    showPassword: false,
-    defaultValue: '',
-    placeholder: 'Please enter',
-    labelWidth: 100,
-    isShowLabel: true,
-    required: false
-  },
-  style: { width: { pc: '100%', mobile: '100%' } }
-}
+import { Email } from '@ER-test/data/fields.js'
 describe('Email', () => {
   test('equal', () => {
     expect(
@@ -27,7 +9,7 @@ describe('Email', () => {
         value: '123'
       },
       '123',
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -36,7 +18,7 @@ describe('Email', () => {
         value: '123'
       },
       '123',
-      field)).toBeFalsy()
+      Email)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -47,7 +29,7 @@ describe('Email', () => {
         ]
       },
       '123',
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
   })
   test('not_contain', () => {
     expect(
@@ -58,7 +40,7 @@ describe('Email', () => {
         ]
       },
       '123',
-      field)).toBeFalsy()
+      Email)).toBeFalsy()
     expect(
       validator({
         operator: 'not_contain',
@@ -67,7 +49,7 @@ describe('Email', () => {
         ]
       },
       '456',
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
   })
   test('empty', () => {
     expect(
@@ -75,19 +57,19 @@ describe('Email', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Email)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -95,18 +77,18 @@ describe('Email', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Email)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Email)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Email)).toBeFalsy()
   })
 })

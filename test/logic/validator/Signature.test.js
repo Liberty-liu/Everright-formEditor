@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'signature', label: 'Signature', icon: 'signature', key: 'signature_TBB-T_V2Gkt-BwinGdG4f', id: 'TBB-T_V2Gkt-BwinGdG4f', options: { required: false, isShowLabel: true, labelWidth: 100, defaultValue: '', penColor: 'rgb(0, 0, 0)', action: 'http://localhost:8001/Everright-api/lowCode/uploads', disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Signature } from '@ER-test/data/fields.js'
 describe('Signature', () => {
   test('empty', () => {
     expect(
@@ -8,19 +8,19 @@ describe('Signature', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Signature)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Signature)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Signature)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -28,18 +28,18 @@ describe('Signature', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Signature)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Signature)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Signature)).toBeFalsy()
   })
 })

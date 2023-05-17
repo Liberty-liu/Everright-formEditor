@@ -46,6 +46,7 @@ const tabs = ref([
     ifRefs: [],
     thenRefs: []
   }
+  // 暂时放弃，后期来做
   // {
   //   label: '校验',
   //   value: 'validation',

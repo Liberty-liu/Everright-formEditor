@@ -1,24 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = {
-  type: 'input',
-  label: 'Cellphone',
-  icon: 'cellphone',
-  key: 'input_feokPGo0uqPDPGvcbbkrB',
-  id: 'feokPGo0uqPDPGvcbbkrB',
-  options: {
-    clearable: true,
-    renderType: 4,
-    disabled: false,
-    showPassword: false,
-    defaultValue: '',
-    placeholder: 'Please enter',
-    labelWidth: 100,
-    isShowLabel: true,
-    required: false
-  },
-  style: { width: { pc: '100%', mobile: '100%' } }
-}
+import { Cellphone } from '@ER-test/data/fields.js'
 describe('Cellphone', () => {
   test('equal', () => {
     expect(
@@ -27,7 +9,7 @@ describe('Cellphone', () => {
         value: '123'
       },
       '123',
-      field)).toBeTruthy()
+      Cellphone)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -36,7 +18,7 @@ describe('Cellphone', () => {
         value: '123'
       },
       '123',
-      field)).toBeFalsy()
+      Cellphone)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -47,7 +29,7 @@ describe('Cellphone', () => {
         ]
       },
       '123',
-      field)).toBeTruthy()
+      Cellphone)).toBeTruthy()
   })
   test('not_contain', () => {
     expect(
@@ -58,7 +40,7 @@ describe('Cellphone', () => {
         ]
       },
       '123',
-      field)).toBeFalsy()
+      Cellphone)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -66,19 +48,19 @@ describe('Cellphone', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Cellphone)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Cellphone)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Cellphone)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -86,18 +68,18 @@ describe('Cellphone', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Cellphone)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Cellphone)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Cellphone)).toBeFalsy()
   })
 })

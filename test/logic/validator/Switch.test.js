@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'switch', label: 'Switch', icon: 'switch', key: 'switch_XpvOZGZjVMTVdHWZiuehy', id: 'XpvOZGZjVMTVdHWZiuehy', options: { defaultValue: true, labelWidth: 100, isShowLabel: true, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Switch } from '@ER-test/data/fields.js'
 describe('Switch', () => {
   test('equal', () => {
     expect(
@@ -9,14 +9,14 @@ describe('Switch', () => {
         value: 1
       },
       true,
-      field)).toBeTruthy()
+      Switch)).toBeTruthy()
     expect(
       validator({
         operator: 'equal',
         value: 0
       },
       false,
-      field)).toBeTruthy()
+      Switch)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -25,13 +25,13 @@ describe('Switch', () => {
         value: 1
       },
       true,
-      field)).toBeFalsy()
+      Switch)).toBeFalsy()
     expect(
       validator({
         operator: 'not_equal',
         value: 0
       },
       false,
-      field)).toBeFalsy()
+      Switch)).toBeFalsy()
   })
 })

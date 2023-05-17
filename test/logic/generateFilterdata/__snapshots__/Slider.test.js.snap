@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Slider > default 1`] = `
+{
+  "operators": {
+    "Number": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "大于",
+        "style": "noop",
+        "value": "greater_than",
+      },
+      {
+        "label": "大于等于",
+        "style": "noop",
+        "value": "greater_than_equal",
+      },
+      {
+        "label": "小于",
+        "style": "noop",
+        "value": "less_than",
+      },
+      {
+        "label": "小于等于",
+        "style": "noop",
+        "value": "less_than_equal",
+      },
+      {
+        "label": "区间",
+        "style": "range",
+        "value": "between",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "excludeOperator": {
+        "operator": [
+          "not_empty",
+          "empty",
+        ],
+      },
+      "label": "Slider",
+      "operatorKey": "Number",
+      "renderType": "NUMBER",
+      "value": "DnNgjeX1vs6MTUd8IuMqO",
+    },
+  ],
+}
+`;

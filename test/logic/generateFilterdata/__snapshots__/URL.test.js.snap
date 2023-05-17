@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: URL > default 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "URL",
+      "operatorKey": "Text",
+      "renderType": "TEXT",
+      "value": "8Des6TBcAhe5zmEl7x83q",
+    },
+  ],
+}
+`;

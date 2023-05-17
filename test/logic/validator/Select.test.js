@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'select', label: 'Select', icon: 'dropdown0', key: 'select_lLyhZ6ThDBd2_O5JKOjzN', id: 'lLyhZ6ThDBd2_O5JKOjzN', options: { dataKey: 'lLyhZ6ThDBd2_O5JKOjzN', filterable: true, multiple: false, defaultValue: [], placeholder: 'Please select', labelWidth: 100, isShowLabel: true, disabled: false, clearable: true, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Select } from '@ER-test/data/fields.js'
 describe('Select', () => {
   test('equal: multiple false', () => {
     expect(
@@ -9,7 +9,7 @@ describe('Select', () => {
         value: '0bZN9TQ0bePdjOewythuj'
       },
       '0bZN9TQ0bePdjOewythuj',
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('equal: multiple true', () => {
     expect(
@@ -18,10 +18,10 @@ describe('Select', () => {
         value: '0bZN9TQ0bePdjOewythuj'
       },
       '0bZN9TQ0bePdjOewythuj',
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('equal: multiple true', () => {
-    field.options.multiple = true
+    Select.options.multiple = true
     expect(
       validator({
         operator: 'equal',
@@ -32,7 +32,7 @@ describe('Select', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
     expect(
       validator({
         operator: 'equal',
@@ -44,20 +44,20 @@ describe('Select', () => {
         '0bZN9TQ0bePdjOewythuj',
         'OzUgt2_0be-2f97bPu0yJ'
       ],
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
   })
   test('not_equal: multiple false', () => {
-    field.options.multiple = false
+    Select.options.multiple = false
     expect(
       validator({
         operator: 'not_equal',
         value: '0bZN9TQ0bePdjOewythuj'
       },
       '0bZN9TQ0bePdjOewythuj',
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
   })
   test('not_equal: multiple true', () => {
-    field.options.multiple = true
+    Select.options.multiple = true
     expect(
       validator({
         operator: 'not_equal',
@@ -68,7 +68,7 @@ describe('Select', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
     expect(
       validator({
         operator: 'not_equal',
@@ -80,10 +80,10 @@ describe('Select', () => {
         '0bZN9TQ0bePdjOewythuj',
         'OzUgt2_0be-2f97bPu0yJ'
       ],
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('contains: multiple false', () => {
-    field.options.multiple = false
+    Select.options.multiple = false
     expect(
       validator({
         operator: 'contains',
@@ -92,10 +92,10 @@ describe('Select', () => {
         ]
       },
       '0bZN9TQ0bePdjOewythuj',
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('contains: multiple true', () => {
-    field.options.multiple = true
+    Select.options.multiple = true
     expect(
       validator({
         operator: 'contains',
@@ -106,10 +106,10 @@ describe('Select', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('not_contain: multiple false', () => {
-    field.options.multiple = false
+    Select.options.multiple = false
     expect(
       validator({
         operator: 'not_contain',
@@ -118,10 +118,10 @@ describe('Select', () => {
         ]
       },
       '0bZN9TQ0bePdjOewythuj',
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
   })
   test('not_contain: multiple true', () => {
-    field.options.multiple = true
+    Select.options.multiple = true
     expect(
       validator({
         operator: 'not_contain',
@@ -132,7 +132,7 @@ describe('Select', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -140,25 +140,25 @@ describe('Select', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       [],
-      field)).toBeTruthy()
+      Select)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -166,24 +166,24 @@ describe('Select', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       [],
-      field)).toBeFalsy()
+      Select)).toBeFalsy()
   })
 })

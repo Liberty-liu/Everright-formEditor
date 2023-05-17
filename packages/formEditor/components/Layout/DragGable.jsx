@@ -148,9 +148,17 @@ export default defineComponent({
             if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visibility', undefined) !== 0) {
               const typeProps = hooks.useProps(state, element, unref(isPc))
               TypeComponent = load.findComponent('FormTypes', element.type)
+              const params = {
+                data: element,
+                parent: props.data
+              }
+              if (process.env.NODE_ENV === 'test') {
+                params['data-field-id'] = `${element.id}`
+              }
               if (unref(isPc)) {
                 node = (
-                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                  // <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask { ...params }>
                     {
                       element.type !== 'divider'
                         ? (<el-form-item
@@ -164,7 +172,7 @@ export default defineComponent({
                 )
               } else {
                 node = (
-                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask data={element} parent={props.data}>
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask { ...params }>
                     <TypeComponent data={element} params={typeProps.value}></TypeComponent>
                   </Selection>
                 )

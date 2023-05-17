@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'input', label: 'URL', icon: 'url', key: 'input_8Des6TBcAhe5zmEl7x83q', id: '8Des6TBcAhe5zmEl7x83q', options: { clearable: true, renderType: 5, disabled: false, showPassword: false, defaultValue: '', placeholder: 'Please enter', labelWidth: 100, isShowLabel: true, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { URL } from '@ER-test/data/fields.js'
 describe('URL', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('URL', () => {
         value: 'https://everright.site/'
       },
       'https://everright.site/',
-      field)).toBeTruthy()
+      URL)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('URL', () => {
         value: 'https://everright.site/'
       },
       'https://everright.site/',
-      field)).toBeFalsy()
+      URL)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -29,7 +29,7 @@ describe('URL', () => {
         ]
       },
       'https://everright.site/',
-      field)).toBeTruthy()
+      URL)).toBeTruthy()
   })
   test('not_contain', () => {
     expect(
@@ -40,7 +40,7 @@ describe('URL', () => {
         ]
       },
       'https://everright.site/',
-      field)).toBeFalsy()
+      URL)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -48,19 +48,19 @@ describe('URL', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      URL)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      URL)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      URL)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -68,18 +68,18 @@ describe('URL', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      URL)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      URL)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      URL)).toBeFalsy()
   })
 })

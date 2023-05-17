@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'slider', label: 'Slider', icon: 'slider', key: 'slider_DnNgjeX1vs6MTUd8IuMqO', id: 'DnNgjeX1vs6MTUd8IuMqO', options: { min: 0, max: 100, step: 1, defaultValue: 0, placeholder: '', labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Slider } from '@ER-test/data/fields.js'
 describe('Slider', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('Slider', () => {
         value: 4
       },
       4,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('Slider', () => {
         value: 4
       },
       4,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
   })
   test('greater_than', () => {
     expect(
@@ -27,35 +27,35 @@ describe('Slider', () => {
         value: 2
       },
       null,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       '',
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       undefined,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       2.0,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       2.1,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
   })
   test('greater_than_equal', () => {
     expect(
@@ -64,7 +64,7 @@ describe('Slider', () => {
         value: 2
       },
       2.1,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
   })
   test('less_than', () => {
     expect(
@@ -73,35 +73,35 @@ describe('Slider', () => {
         value: 2
       },
       null,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       '',
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       undefined,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       2.0,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       2.1,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
   })
   test('less_than_equal', () => {
     expect(
@@ -110,14 +110,14 @@ describe('Slider', () => {
         value: 2
       },
       2.0,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: 2
       },
       1.9,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
   })
   test('between', () => {
     expect(
@@ -126,34 +126,34 @@ describe('Slider', () => {
         value: [1, 2]
       },
       1,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       2.0,
-      field)).toBeTruthy()
+      Slider)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       null,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       '',
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       undefined,
-      field)).toBeFalsy()
+      Slider)).toBeFalsy()
   })
 })

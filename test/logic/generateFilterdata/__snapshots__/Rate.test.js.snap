@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Rate > default 1`] = `
+{
+  "operators": {
+    "Number": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "大于",
+        "style": "noop",
+        "value": "greater_than",
+      },
+      {
+        "label": "大于等于",
+        "style": "noop",
+        "value": "greater_than_equal",
+      },
+      {
+        "label": "小于",
+        "style": "noop",
+        "value": "less_than",
+      },
+      {
+        "label": "小于等于",
+        "style": "noop",
+        "value": "less_than_equal",
+      },
+      {
+        "label": "区间",
+        "style": "range",
+        "value": "between",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "Rate",
+      "operatorKey": "Number",
+      "renderType": "NUMBER",
+      "value": "h3rw6be0P5V5ciSTbD6Yx",
+    },
+  ],
+}
+`;

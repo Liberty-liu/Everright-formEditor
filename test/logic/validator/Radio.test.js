@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'radio', label: 'Radio', icon: 'radio', key: 'radio_FQWZ5Tf_KQryjLOj_-Oso', id: 'FQWZ5Tf_KQryjLOj_-Oso', options: { dataKey: 'FQWZ5Tf_KQryjLOj_-Oso', displayStyle: 'block', defaultValue: '', labelWidth: 100, isShowLabel: true, disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Radio } from '@ER-test/data/fields.js'
 describe('Radio', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('Radio', () => {
         value: 'CrvWR4TVdNRxvxty5iAT2'
       },
       'CrvWR4TVdNRxvxty5iAT2',
-      field)).toBeTruthy()
+      Radio)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('Radio', () => {
         value: 'CrvWR4TVdNRxvxty5iAT2'
       },
       'CrvWR4TVdNRxvxty5iAT2',
-      field)).toBeFalsy()
+      Radio)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -27,7 +27,7 @@ describe('Radio', () => {
         value: ['CrvWR4TVdNRxvxty5iAT2']
       },
       'CrvWR4TVdNRxvxty5iAT2',
-      field)).toBeTruthy()
+      Radio)).toBeTruthy()
   })
   test('empty', () => {
     expect(
@@ -35,19 +35,19 @@ describe('Radio', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Radio)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Radio)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Radio)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -55,18 +55,18 @@ describe('Radio', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Radio)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Radio)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Radio)).toBeFalsy()
   })
 })

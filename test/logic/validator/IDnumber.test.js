@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'input', label: 'ID number', icon: 'ID', key: 'input_KElgoYLKSLp8rkKQA5CP-', id: 'KElgoYLKSLp8rkKQA5CP-', options: { clearable: true, renderType: 3, disabled: false, showPassword: false, defaultValue: '', placeholder: 'Please enter', labelWidth: 100, isShowLabel: true, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { IDnumber } from '@ER-test/data/fields.js'
 describe('ID number', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('ID number', () => {
         value: '123'
       },
       '123',
-      field)).toBeTruthy()
+      IDnumber)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('ID number', () => {
         value: '123'
       },
       '123',
-      field)).toBeFalsy()
+      IDnumber)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -29,7 +29,7 @@ describe('ID number', () => {
         ]
       },
       '123',
-      field)).toBeTruthy()
+      IDnumber)).toBeTruthy()
   })
   test('not_contain', () => {
     expect(
@@ -40,7 +40,7 @@ describe('ID number', () => {
         ]
       },
       '123',
-      field)).toBeFalsy()
+      IDnumber)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -48,19 +48,19 @@ describe('ID number', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      IDnumber)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      IDnumber)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      IDnumber)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -68,18 +68,18 @@ describe('ID number', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      IDnumber)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      IDnumber)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      IDnumber)).toBeFalsy()
   })
 })

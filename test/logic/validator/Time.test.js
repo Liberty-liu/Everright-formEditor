@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'time', label: 'Time', icon: 'time', key: 'time_JfeEFqHMQbVI424FbFEHw', id: 'JfeEFqHMQbVI424FbFEHw', options: { clearable: true, format: 'HH时mm分ss秒', valueFormat: 'HH:mm:ss', defaultValue: null, placeholder: 'Please select', labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Time } from '@ER-test/data/fields.js'
 describe('Time', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('Time', () => {
         value: '16:12:46'
       },
       '16:12:46',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('Time', () => {
         value: '16:12:46'
       },
       '16:12:46',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -26,19 +26,19 @@ describe('Time', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -46,19 +46,19 @@ describe('Time', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('greater_than', () => {
     expect(
@@ -67,35 +67,35 @@ describe('Time', () => {
         value: '16:12:47'
       },
       '16:12:48',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'greater_than',
         value: '16:12:47'
       },
       '16:12:46',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: '16:12:47'
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: '16:12:47'
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: '16:12:47'
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('greater_than_equal', () => {
     expect(
@@ -104,28 +104,28 @@ describe('Time', () => {
         value: '16:12:48'
       },
       '16:12:48',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'greater_than_equal',
         value: '16:12:48'
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than_equal',
         value: '16:12:48'
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than_equal',
         value: '16:12:48'
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('less_than', () => {
     expect(
@@ -134,35 +134,35 @@ describe('Time', () => {
         value: '16:12:48'
       },
       '16:12:47',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: '16:12:48'
       },
       '16:12:48',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than',
         value: '16:12:48'
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than',
         value: '16:12:48'
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than',
         value: '16:12:48'
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('less_than_equal', () => {
     expect(
@@ -171,35 +171,35 @@ describe('Time', () => {
         value: '16:12:48'
       },
       '16:12:48',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: '16:12:48'
       },
       '16:12:47',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: '16:12:48'
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: '16:12:48'
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: '16:12:48'
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
   test('between', () => {
     expect(
@@ -211,7 +211,7 @@ describe('Time', () => {
         ]
       },
       '16:12:48',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
@@ -221,7 +221,7 @@ describe('Time', () => {
         ]
       },
       '16:12:49',
-      field)).toBeTruthy()
+      Time)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
@@ -231,7 +231,7 @@ describe('Time', () => {
         ]
       },
       '16:12:50',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
@@ -241,7 +241,7 @@ describe('Time', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
@@ -251,7 +251,7 @@ describe('Time', () => {
         ]
       },
       null,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
@@ -261,7 +261,7 @@ describe('Time', () => {
         ]
       },
       '',
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
@@ -271,6 +271,6 @@ describe('Time', () => {
         ]
       },
       undefined,
-      field)).toBeFalsy()
+      Time)).toBeFalsy()
   })
 })

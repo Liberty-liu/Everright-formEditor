@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'rate', label: 'Rate', icon: 'rating', key: 'rate_h3rw6be0P5V5ciSTbD6Yx', id: 'h3rw6be0P5V5ciSTbD6Yx', options: { max: 5, allowHalf: true, defaultValue: 0, labelWidth: 100, isShowLabel: true, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Rate } from '@ER-test/data/fields.js'
 describe('Rate', () => {
   test('equal: allowHalf true', () => {
     expect(
@@ -9,37 +9,37 @@ describe('Rate', () => {
         value: 3.5
       },
       3.5,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('equal: allowHalf false', () => {
-    field.options.allowHalf = false
+    Rate.options.allowHalf = false
     expect(
       validator({
         operator: 'equal',
         value: 3
       },
       3,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('not_equal: allowHalf true', () => {
-    field.options.allowHalf = true
+    Rate.options.allowHalf = true
     expect(
       validator({
         operator: 'not_equal',
         value: 3.5
       },
       3.5,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
   })
   test('not_equal: allowHalf false', () => {
-    field.options.allowHalf = false
+    Rate.options.allowHalf = false
     expect(
       validator({
         operator: 'not_equal',
         value: 3
       },
       3,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -47,25 +47,25 @@ describe('Rate', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       0,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -73,25 +73,25 @@ describe('Rate', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       0,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
   })
   test('greater_than', () => {
     expect(
@@ -100,35 +100,35 @@ describe('Rate', () => {
         value: 2
       },
       null,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       '',
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       undefined,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       2.0,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'greater_than',
         value: 2
       },
       2.1,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('greater_than_equal', () => {
     expect(
@@ -137,7 +137,7 @@ describe('Rate', () => {
         value: 2
       },
       2.1,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('less_than', () => {
     expect(
@@ -146,35 +146,35 @@ describe('Rate', () => {
         value: 2
       },
       null,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       '',
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       undefined,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       2.0,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'less_than',
         value: 2
       },
       2.1,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
   })
   test('less_than_equal', () => {
     expect(
@@ -183,14 +183,14 @@ describe('Rate', () => {
         value: 2
       },
       2.0,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'less_than_equal',
         value: 2
       },
       1.9,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
   })
   test('between', () => {
     expect(
@@ -199,34 +199,34 @@ describe('Rate', () => {
         value: [1, 2]
       },
       1,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       2.0,
-      field)).toBeTruthy()
+      Rate)).toBeTruthy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       null,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       '',
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
     expect(
       validator({
         operator: 'between',
         value: [1, 2]
       },
       undefined,
-      field)).toBeFalsy()
+      Rate)).toBeFalsy()
   })
 })

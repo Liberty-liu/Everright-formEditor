@@ -36,9 +36,10 @@ const handleClick = async (type) => {
     console.log(e)
   }
 }
+const dataset = process.env.NODE_ENV === 'test' ? { 'data-test': 'er-complete-button' } : {}
 </script>
 <template>
-  <div>
+  <div v-bind="dataset">
     <div v-if="isPc" style="text-align: center;">
       <el-button @click="handleClick" :color="state.config[state.platform].completeButton.backgroundColor" type="primary">
         <span :style="{color: state.config[state.platform].completeButton.color }">{{ state.config[state.platform].completeButton.text }}</span>

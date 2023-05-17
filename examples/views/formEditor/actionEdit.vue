@@ -44,24 +44,26 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
-  if (type === 'submit') {
-    loading.value = true
-    try {
-      const postData = {
-        content: data
-      }
-      await hooks.useFetch(`${uri.obj}/${route.params.objid}/action${isEdit ? `/${route.params.actionid}` : '/create'}`, {
-        method: isEdit ? 'put' : 'post',
-        data: postData
-      })
-      ElMessage({
-        message: 'save successfully.',
-        type: 'success'
-      })
-    } finally {
-      loading.value = false
-    }
-  }
+  console.log(type)
+  console.log(data)
+  // if (type === 'submit') {
+  //   loading.value = true
+  //   try {
+  //     const postData = {
+  //       content: data
+  //     }
+  //     await hooks.useFetch(`${uri.obj}/${route.params.objid}/action${isEdit ? `/${route.params.actionid}` : '/create'}`, {
+  //       method: isEdit ? 'put' : 'post',
+  //       data: postData
+  //     })
+  //     ElMessage({
+  //       message: 'save successfully.',
+  //       type: 'success'
+  //     })
+  //   } finally {
+  //     loading.value = false
+  //   }
+  // }
 }
 onMounted(() => {
   getObjData()

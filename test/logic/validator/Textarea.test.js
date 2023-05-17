@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'textarea', label: 'Textarea', icon: 'textarea', key: 'textarea_ZPRzSVZkMHOMYgWZBmrvR', id: 'ZPRzSVZkMHOMYgWZBmrvR', options: { clearable: true, isShowWordLimit: false, rows: 6, defaultValue: '', placeholder: 'Please enter', disabled: false, labelWidth: 100, isShowLabel: true, required: false, min: null, max: null }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Textarea } from '@ER-test/data/fields.js'
 describe('Textarea', () => {
   test('equal', () => {
     expect(
@@ -9,7 +9,7 @@ describe('Textarea', () => {
         value: '123'
       },
       '123',
-      field)).toBeTruthy()
+      Textarea)).toBeTruthy()
   })
   test('not_equal', () => {
     expect(
@@ -18,7 +18,7 @@ describe('Textarea', () => {
         value: '123'
       },
       '123',
-      field)).toBeFalsy()
+      Textarea)).toBeFalsy()
   })
   test('contains', () => {
     expect(
@@ -29,7 +29,7 @@ describe('Textarea', () => {
         ]
       },
       '123',
-      field)).toBeTruthy()
+      Textarea)).toBeTruthy()
   })
   test('not_contain', () => {
     expect(
@@ -40,7 +40,7 @@ describe('Textarea', () => {
         ]
       },
       '123',
-      field)).toBeFalsy()
+      Textarea)).toBeFalsy()
   })
   test('empty', () => {
     expect(
@@ -48,19 +48,19 @@ describe('Textarea', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      Textarea)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      Textarea)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      Textarea)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -68,18 +68,18 @@ describe('Textarea', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      Textarea)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      Textarea)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      Textarea)).toBeFalsy()
   })
 })

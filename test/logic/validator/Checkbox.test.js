@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'checkbox', label: 'Checkbox', icon: 'checkbox', key: 'checkbox_qE0oMb42msqQ1M4N35F6P', id: 'qE0oMb42msqQ1M4N35F6P', options: { dataKey: 'qE0oMb42msqQ1M4N35F6P', displayStyle: 'block', defaultValue: [], labelWidth: 100, isShowLabel: true, required: false, disabled: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { Checkbox } from '@ER-test/data/fields.js'
 describe('Checkbox', () => {
   test('equal', () => {
     expect(
@@ -13,7 +13,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeTruthy()
+      Checkbox)).toBeTruthy()
     expect(
       validator({
         operator: 'equal',
@@ -25,7 +25,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeFalsy()
+      Checkbox)).toBeFalsy()
   })
   test('not_equal', () => {
     expect(
@@ -38,7 +38,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeFalsy()
+      Checkbox)).toBeFalsy()
     expect(
       validator({
         operator: 'not_equal',
@@ -50,7 +50,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeTruthy()
+      Checkbox)).toBeTruthy()
   })
   test('contains', () => {
     expect(
@@ -64,7 +64,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeTruthy()
+      Checkbox)).toBeTruthy()
     expect(
       validator({
         operator: 'contains',
@@ -76,7 +76,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj1'
       ],
-      field)).toBeFalsy()
+      Checkbox)).toBeFalsy()
   })
   test('not_contain', () => {
     expect(
@@ -90,7 +90,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj'
       ],
-      field)).toBeFalsy()
+      Checkbox)).toBeFalsy()
     expect(
       validator({
         operator: 'not_contain',
@@ -102,7 +102,7 @@ describe('Checkbox', () => {
       [
         '0bZN9TQ0bePdjOewythuj1'
       ],
-      field)).toBeTruthy()
+      Checkbox)).toBeTruthy()
   })
   test('empty', () => {
     expect(
@@ -110,7 +110,7 @@ describe('Checkbox', () => {
         operator: 'empty'
       },
       [],
-      field)).toBeTruthy()
+      Checkbox)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -118,6 +118,6 @@ describe('Checkbox', () => {
         operator: 'not_empty'
       },
       [],
-      field)).toBeFalsy()
+      Checkbox)).toBeFalsy()
   })
 })

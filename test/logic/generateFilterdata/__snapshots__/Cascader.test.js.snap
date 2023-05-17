@@ -1,0 +1,253 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Cascader > property:["multiple = false", "checkStrictly = false"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "customProps": {
+        "onChange": [Function],
+        "props": {
+          "checkStrictly": false,
+          "disabled": "disabled",
+          "emitPath": true,
+          "multiple": false,
+        },
+      },
+      "excludeOperator": {
+        "operator": [
+          "contains",
+          "not_contain",
+        ],
+      },
+      "label": "Cascader",
+      "multiple": false,
+      "operatorKey": "Text",
+      "renderType": "CASCADER",
+      "value": "KFrOTULCQ0EAcMcIQTd_v",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Cascader > property:["multiple = false", "checkStrictly = true"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "customProps": {
+        "onChange": [Function],
+        "props": {
+          "checkStrictly": true,
+          "disabled": "disabled",
+          "emitPath": true,
+          "multiple": false,
+        },
+      },
+      "excludeOperator": {
+        "operator": [
+          "contains",
+          "not_contain",
+        ],
+      },
+      "label": "Cascader",
+      "multiple": false,
+      "operatorKey": "Text",
+      "renderType": "CASCADER",
+      "value": "KFrOTULCQ0EAcMcIQTd_v",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Cascader > property:["multiple = true", "checkStrictly = false"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "customProps": {
+        "onChange": [Function],
+        "props": {
+          "checkStrictly": false,
+          "disabled": "disabled",
+          "emitPath": true,
+          "multiple": true,
+        },
+      },
+      "excludeOperator": {
+        "operator": [
+          "contains",
+          "not_contain",
+        ],
+      },
+      "label": "Cascader",
+      "multiple": true,
+      "operatorKey": "Text",
+      "renderType": "CASCADER",
+      "value": "KFrOTULCQ0EAcMcIQTd_v",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Cascader > property:["multiple = true", "checkStrictly = true"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "customProps": {
+        "onChange": [Function],
+        "props": {
+          "checkStrictly": true,
+          "disabled": "disabled",
+          "emitPath": true,
+          "multiple": true,
+        },
+      },
+      "excludeOperator": {
+        "operator": [
+          "contains",
+          "not_contain",
+        ],
+      },
+      "label": "Cascader",
+      "multiple": true,
+      "operatorKey": "Text",
+      "renderType": "CASCADER",
+      "value": "KFrOTULCQ0EAcMcIQTd_v",
+    },
+  ],
+}
+`;

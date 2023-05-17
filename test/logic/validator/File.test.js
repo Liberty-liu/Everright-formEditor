@@ -1,6 +1,6 @@
 import { describe, assert, expect, test } from 'vitest'
 import { validator } from '@ER/hooks/use-logic'
-const field = { type: 'uploadfile', label: 'File', icon: 'upload', key: 'uploadfile_FSDpM3CGDUP7-GioNkFLn', id: 'FSDpM3CGDUP7-GioNkFLn', options: { isShowLabel: true, labelWidth: 100, defaultValue: [], multiple: false, action: 'http://localhost:8001/Everright-api/lowCode/uploads', limit: 1, size: 1, accept: '.png,.jpg,.gif', disabled: false, required: false }, style: { width: { pc: '100%', mobile: '100%' } } }
+import { File } from '@ER-test/data/fields.js'
 describe('File', () => {
   test('empty', () => {
     expect(
@@ -8,25 +8,25 @@ describe('File', () => {
         operator: 'empty'
       },
       '',
-      field)).toBeTruthy()
+      File)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       undefined,
-      field)).toBeTruthy()
+      File)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       null,
-      field)).toBeTruthy()
+      File)).toBeTruthy()
     expect(
       validator({
         operator: 'empty'
       },
       [],
-      field)).toBeTruthy()
+      File)).toBeTruthy()
   })
   test('not_empty', () => {
     expect(
@@ -34,24 +34,24 @@ describe('File', () => {
         operator: 'not_empty'
       },
       '',
-      field)).toBeFalsy()
+      File)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       undefined,
-      field)).toBeFalsy()
+      File)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       null,
-      field)).toBeFalsy()
+      File)).toBeFalsy()
     expect(
       validator({
         operator: 'not_empty'
       },
       [],
-      field)).toBeFalsy()
+      File)).toBeFalsy()
   })
 })
