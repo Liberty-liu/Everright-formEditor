@@ -145,7 +145,7 @@ export default defineComponent({
             break
           default:
             let TypeComponent = ''
-            if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visibility', undefined) !== 0) {
+            if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
               const typeProps = hooks.useProps(state, element, unref(isPc))
               TypeComponent = load.findComponent('FormTypes', element.type)
               const params = {

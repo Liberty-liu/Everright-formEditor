@@ -29,9 +29,6 @@ const state = reactive({
   data: {},
   fields: [],
   logic: {},
-  // fieldsVisibility: ref(new WeakMap()),
-  // fieldsRequired: ref(new WeakMap()),
-  // fieldsValidation: new Map(),
   fieldsLogicState: new Map()
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
@@ -67,7 +64,6 @@ provide('Everright', {
   props
   // checkFieldsValidation
 })
-window.state = state
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
   layout.pc = newData.layout.pc

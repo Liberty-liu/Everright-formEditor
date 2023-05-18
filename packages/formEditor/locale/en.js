@@ -199,7 +199,8 @@ export default {
       disabled: 'disabled',
       back: 'Back',
       save: 'Save',
-      reset: 'Reset'
+      reset: 'Reset',
+      add: 'Add'
     },
     validateMsg: {
       required: 'Required',
@@ -238,6 +239,44 @@ export default {
       delColumn: 'Delete column',
       splitColumn: 'Split column',
       splitRow: 'Split row'
+    },
+    logic: {
+      filter: {
+        equal: 'Equal',
+        not_equal: 'Not equal',
+        contains: 'Contains',
+        not_contain: 'Not contain',
+        empty: 'Empty',
+        not_empty: 'Not empty',
+        greater_than: 'Greater than',
+        greater_than_equal: 'Greater than or equal to',
+        less_than: 'Less than',
+        less_than_equal: 'Less than or equal to',
+        between: 'Between',
+        one_of: 'Equal to one of',
+        not_one_of: 'Not equal to one of',
+        belong_one_of: 'Belong to one of',
+        not_belong_one_of: 'Not belong to one of',
+        on: 'On',
+        off: 'Off',
+        show: 'Show',
+        hide: 'Hide',
+        field: 'Field',
+        required: 'Required',
+        not_required: 'Not required',
+        readOnly: 'Readonly',
+        editable: 'Editable'
+      },
+      filterLabel: {
+        if: 'When the following conditions are met',
+        then: 'Then execute'
+      },
+      tabs: {
+        visible: 'Visible',
+        required: 'Required',
+        readOnly: 'Readonly'
+      },
+      button: 'Logic Control'
     }
   }
 }

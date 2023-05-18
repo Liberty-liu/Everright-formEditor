@@ -5,31 +5,37 @@ exports[`Generate filter data: Html > default 1`] = `
   "operators": {
     "Text": [
       {
+        "en_label": "Equal",
         "label": "等于",
         "style": "noop",
         "value": "equal",
       },
       {
+        "en_label": "Not equal",
         "label": "不等于",
         "style": "noop",
         "value": "not_equal",
       },
       {
+        "en_label": "Contains",
         "label": "包含",
         "style": "tags",
         "value": "contains",
       },
       {
+        "en_label": "Not contain",
         "label": "不包含",
         "style": "tags",
         "value": "not_contain",
       },
       {
+        "en_label": "Empty",
         "label": "为空",
         "style": "none",
         "value": "empty",
       },
       {
+        "en_label": "Not empty",
         "label": "不为空",
         "style": "none",
         "value": "not_empty",

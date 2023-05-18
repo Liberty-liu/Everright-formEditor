@@ -93,7 +93,7 @@ describe('er-form-preview', () => {
   })
   test('logic & Hide ByW9gM4L6R8ScRvEh-xRB when QENpBBxQfZVSzk2ahMmOH is empty', async () => {
     testData.logic = {
-      showHidden: [
+      visible: [
         {
           ifRules: {
             filters: [
@@ -184,7 +184,7 @@ describe('er-form-preview', () => {
   })
   test('logic & Hide and Required ByW9gM4L6R8ScRvEh-xRB when QENpBBxQfZVSzk2ahMmOH is empty', async () => {
     testData.logic = {
-      showHidden: [
+      visible: [
         {
           ifRules: {
             filters: [

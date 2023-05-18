@@ -1,4 +1,6 @@
 import _ from 'lodash-es'
+import utils from '@ER/utils'
+import locale from '@ER/formEditor/locale'
 const generateIfFilterOptionsData = (activeTab, fields) => {
   const result = {
     options: [
@@ -151,124 +153,110 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         case 'Text':
           result.operators.Text = [
             {
-              label: '等于',
               value: 'equal',
               style: 'noop'
             },
-            // {
-            //   label: '等于其中之一',
-            //   value: 'one_of',
-            //   style: 'tags'
-            // },
             {
-              label: '不等于',
               value: 'not_equal',
               style: 'noop'
             },
             {
-              label: '包含',
               value: 'contains',
               style: 'tags'
             },
             {
-              label: '不包含',
               value: 'not_contain',
               style: 'tags'
             },
             {
-              label: '为空',
               value: 'empty',
               style: 'none'
             },
             {
-              label: '不为空',
               value: 'not_empty',
               style: 'none'
             }
-          ]
+          ].map(e => {
+            e.label = utils.transferData('zh-cn', `er.logic.filter.${e.value}`, locale)
+            e.en_label = utils.transferData('en', `er.logic.filter.${e.value}`, locale)
+            return e
+          })
           break
         case 'Number':
           result.operators.Number = [
             {
-              label: '等于',
               value: 'equal',
               style: 'noop'
             },
             {
-              label: '不等于',
               value: 'not_equal',
               style: 'noop'
             },
             {
-              label: '大于',
               value: 'greater_than',
               style: 'noop'
             },
             {
-              label: '大于等于',
               value: 'greater_than_equal',
               style: 'noop'
             },
             {
-              label: '小于',
               value: 'less_than',
               style: 'noop'
             },
             {
-              label: '小于等于',
               value: 'less_than_equal',
               style: 'noop'
             },
             {
-              label: '区间',
               value: 'between',
               style: 'range'
             },
             {
-              label: '为空',
               value: 'empty',
               style: 'none'
             },
             {
-              label: '不为空',
               value: 'not_empty',
               style: 'none'
             }
-          ]
+          ].map(e => {
+            e.label = utils.transferData('zh-cn', `er.logic.filter.${e.value}`, locale)
+            e.en_label = utils.transferData('en', `er.logic.filter.${e.value}`, locale)
+            return e
+          })
           break
         case 'Region':
-          result.operators.Number = [
+          result.operators.Region = [
             {
-              label: '等于其中之一',
               value: 'one_of',
               style: 'tags'
             },
             {
-              label: '不等于其中之一',
               value: 'not_one_of',
               style: 'tags'
             },
             {
-              label: '属于其中之一',
               value: 'belong_one_of',
               style: 'tags'
             },
             {
-              label: '不属于其中之一',
               value: 'not_belong_one_of',
               style: 'tags'
             },
             {
-              label: '为空',
               value: 'empty',
               style: 'none'
             },
             {
-              label: '不为空',
               value: 'not_empty',
               style: 'none'
             }
-          ]
+          ].map(e => {
+            e.label = utils.transferData('zh-cn', `er.logic.filter.${e.value}`, locale)
+            e.en_label = utils.transferData('en', `er.logic.filter.${e.value}`, locale)
+            return e
+          })
           break
       }
     }
@@ -283,13 +271,13 @@ const generateIfFilterConditionsData = (activeTab, state, property) => {
     if (findField.type === 'switch') {
       result = [
         {
-          label: '开',
-          en_label: 'on',
+          label: utils.transferData('zh-cn', 'er.logic.filter.on', locale),
+          en_label: utils.transferData('en', 'er.logic.filter.on', locale),
           value: 1
         },
         {
-          label: '关',
-          en_label: 'off',
+          label: utils.transferData('zh-cn', 'er.logic.filter.off', locale),
+          en_label: utils.transferData('en', 'er.logic.filter.off', locale),
           value: 0
         }
       ]
@@ -302,17 +290,19 @@ const generateIfFilterConditionsData = (activeTab, state, property) => {
 const generateThenFilterOptionsData = (activeTab, fields) => {
   let result = {}
   switch (activeTab) {
-    case 'showHidden':
+    case 'visible':
       result = {
         options: [
           {
-            label: '显示',
+            label: utils.transferData('zh-cn', 'er.logic.filter.show', locale),
+            en_label: utils.transferData('en', 'er.logic.filter.show', locale),
             value: 'show',
             renderType: 'SELECT',
             operatorKey: 'Text'
           },
           {
-            label: '隐藏',
+            label: utils.transferData('zh-cn', 'er.logic.filter.hide', locale),
+            en_label: utils.transferData('en', 'er.logic.filter.hide', locale),
             value: 'hide',
             renderType: 'SELECT',
             operatorKey: 'Text'
@@ -321,7 +311,8 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
         operators: {
           Text: [
             {
-              label: '字段',
+              label: utils.transferData('zh-cn', 'er.logic.filter.field', locale),
+              en_label: utils.transferData('en', 'er.logic.filter.field', locale),
               value: 'field',
               style: 'tags'
             }
@@ -343,12 +334,14 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
         operators: {
           Text: [
             {
-              label: '必填',
+              label: utils.transferData('zh-cn', 'er.logic.filter.required', locale),
+              en_label: utils.transferData('en', 'er.logic.filter.required', locale),
               value: 'required',
               style: 'noop'
             },
             {
-              label: '不必填',
+              label: utils.transferData('zh-cn', 'er.logic.filter.not_required', locale),
+              en_label: utils.transferData('en', 'er.logic.filter.not_required', locale),
               value: 'not_required',
               style: 'noop'
             }
@@ -370,12 +363,14 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
         operators: {
           Text: [
             {
-              label: '只读',
+              label: utils.transferData('zh-cn', 'er.logic.filter.readOnly', locale),
+              en_label: utils.transferData('en', 'er.logic.filter.readOnly', locale),
               value: 'readOnly',
               style: 'noop'
             },
             {
-              label: '可编辑',
+              label: utils.transferData('zh-cn', 'er.logic.filter.editable', locale),
+              en_label: utils.transferData('en', 'er.logic.filter.editable', locale),
               value: 'editable',
               style: 'noop'
             }
@@ -384,26 +379,26 @@ const generateThenFilterOptionsData = (activeTab, fields) => {
       }
       break
     case 'validation':
-      result = {
-        options: [
-          {
-            label: '提示内容',
-            value: 'message',
-            renderType: 'TEXT',
-            isShowOperator: false,
-            operatorKey: 'Text'
-          }
-        ],
-        operators: {
-          Text: [
-            {
-              label: '',
-              value: 'required',
-              style: 'noop'
-            }
-          ]
-        }
-      }
+      // result = {
+      //   options: [
+      //     {
+      //       label: utils.transferData('zh-cn', 'er.logic.filter.message', locale),
+      //       en_label: utils.transferData('en', 'er.logic.filter.message', locale),
+      //       renderType: 'TEXT',
+      //       isShowOperator: false,
+      //       operatorKey: 'Text'
+      //     }
+      //   ],
+      //   operators: {
+      //     Text: [
+      //       {
+      //         label: '',
+      //         value: 'required',
+      //         style: 'noop'
+      //       }
+      //     ]
+      //   }
+      // }
       break
   }
   return result

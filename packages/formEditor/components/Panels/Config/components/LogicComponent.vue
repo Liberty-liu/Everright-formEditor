@@ -22,25 +22,23 @@ const props = defineProps({
   }
 })
 const {
-  t
+  t,
+  lang
 } = hooks.useI18n()
 const tabs = ref([
   {
-    label: '显隐',
-    value: 'showHidden',
+    value: 'visible',
     rules: [],
     ifRefs: [],
     thenRefs: []
   },
   {
-    label: '必填',
     value: 'required',
     rules: [],
     ifRefs: [],
     thenRefs: []
   },
   {
-    label: '只读',
     value: 'readOnly',
     rules: [],
     ifRefs: [],
@@ -55,8 +53,7 @@ const tabs = ref([
   //   thenRefs: []
   // }
 ])
-window.tabs = tabs
-const activeTab = ref('readOnly')
+const activeTab = ref('visible')
 const emit = defineEmits(['update:modelValue'])
 const ER = inject('Everright')
 const scrollbarRef = ref()
@@ -156,7 +153,9 @@ const handleAction = (type) => {
       const rules = tabs.value[curIndex.value].rules
       rules.push(rules.length)
       nextTick(() => {
-        scrollbarRef.value[curIndex.value].setScrollTop(scrollbarRef.value[curIndex.value].wrapRef.scrollHeight)
+        requestAnimationFrame(() => {
+          scrollbarRef.value[curIndex.value].setScrollTop(scrollbarRef.value[curIndex.value].wrapRef.scrollHeight)
+        })
       })
       break
     case 2:
@@ -194,10 +193,10 @@ const handleListener = (ruleType, index, tab, { type, data }) => {
     } else {
       if (ruleType === 'then') {
         switch (activeTab.value) {
-          case 'validation':
-            _.last(tab.thenRefs).pushData('message')
-            break
-          case 'showHidden':
+          // case 'validation':
+          //   _.last(tab.thenRefs).pushData('message')
+          //   break
+          case 'visible':
             _.last(tab.thenRefs).pushData('show')
             break
           case 'required':
@@ -211,19 +210,19 @@ const handleListener = (ruleType, index, tab, { type, data }) => {
     }
   }
 }
-const addRuleHandler = (tab) => {
+const addRuleHandler = (tab, index) => {
   switch (activeTab.value) {
-    case 'validation':
-      _.last(tab.thenRefs).pushData('message')
-      break
-    case 'showHidden':
-      _.last(tab.thenRefs).pushData('show')
+    // case 'validation':
+    //   // _.last(tab.thenRefs).pushData('message')
+    //   break
+    case 'visible':
+      tab.thenRefs[index].pushData('show')
       break
     case 'required':
-      _.last(tab.thenRefs).pushData('required')
+      tab.thenRefs[index].pushData('required')
       break
     case 'readOnly':
-      _.last(tab.thenRefs).pushData('readOnly')
+      tab.thenRefs[index].pushData('readOnly')
       break
   }
   return false
@@ -235,62 +234,71 @@ const handleClosed = () => {
 }
 </script>
 <template>
-  <el-dialog
+  <el-drawer
     destroy-on-close
-    width="80%"
+    size="60%"
+    :modal="false"
     append-to-body
+    :close-on-press-escape="false"
+    :with-header="false"
     @closed="handleClosed"
     :class="[ns.b()]"
     v-model="dialogVisible">
     <div>
       <el-tabs v-model="activeTab" class="demo-tabs">
-        <el-tab-pane v-for="tab in tabs" :label="tab.label" :name="tab.value" :key="tab.value">
-          <el-scrollbar ref="scrollbarRef" max-height="calc(100vh - 400px)">
+        <el-tab-pane v-for="tab in tabs" :label="t(`er.logic.tabs.${tab.value}`)" :name="tab.value" :key="tab.value">
+          <el-scrollbar ref="scrollbarRef" max-height="calc(100vh - 210px)">
             <el-empty v-if="!tab.rules.length">
               <el-button type="primary" icon="plus" @click="handleAction(1)">Add</el-button>
             </el-empty>
             <div v-else>
-              <div :class="ns.e('rule')" v-for="(key, index) in tab.rules" :key="key">
-                <Icon @click="tab.rules.splice(index, 1)" :class="[ns.e('delRule')]" icon="delete"/>
-                <div :class="ns.e('if')">
-                  <h2>If</h2>
-                  <EverrightFilter
-                    :ref="relationalRef(tab, 'ifRefs', index)"
-                    @listener="(e) => handleListener('if', index, tab, e)"
-                    :lang="ER.props.lang"
-                    :getOptions="getIfOptions(tab.value)"
-                    :getConditions="getIfConditions(tab.value)"
-                  />
+              <transition-group name="el-fade-in">
+                <div :class="ns.e('rule')" v-for="(key, index) in tab.rules" :key="key">
+                  <Icon @click="tab.rules.splice(index, 1)" :class="[ns.e('delRule')]" icon="delete"/>
+                  <div :class="ns.e('if')">
+                    <h3>{{ t('er.logic.filterLabel.if')}}</h3>
+                    <EverrightFilter
+                      :ref="relationalRef(tab, 'ifRefs', index)"
+                      @listener="(e) => handleListener('if', index, tab, e)"
+                      :lang="lang"
+                      :getOptions="getIfOptions(tab.value)"
+                      :getConditions="getIfConditions(tab.value)"
+                    />
+                  </div>
+                  <div :class="[ns.e('then'), ns.e(`${tab.value}then`)]">
+                    <h3>{{ t('er.logic.filterLabel.then')}}</h3>
+                    <EverrightFilter
+                      :ref="relationalRef(tab, 'thenRefs', index)"
+                      :lang="lang"
+                      :canAddRule="() => addRuleHandler(tab, index)"
+                      @listener="(e) => handleListener('then', index, tab, e)"
+                      :getOptions="getThenOptions(tab.value)"
+                      :rule-limit="tab.value === 'required' ? 2 : tab.value === 'validation' ? 1 : -1"
+                      :getConditions="getThenConditions(tab.value)"
+                    />
+                  </div>
                 </div>
-                <div :class="[ns.e('then'), ns.e(`${tab.value}then`)]">
-                  <h2>Then</h2>
-                  <EverrightFilter
-                    :ref="relationalRef(tab, 'thenRefs', index)"
-                    :lang="ER.props.lang"
-                    :canAddRule="() => addRuleHandler(tab)"
-                    @listener="(e) => handleListener('then', index, tab, e)"
-                    :getOptions="getThenOptions(tab.value)"
-                    :rule-limit="tab.value === 'required' ? 2 : tab.value === 'validation' ? 1 : -1"
-                    :getConditions="getThenConditions(tab.value)"
-                  />
-                </div>
-              </div>
+              </transition-group>
             </div>
           </el-scrollbar>
         </el-tab-pane>
       </el-tabs>
       <el-button v-show="tabs[curIndex].rules.length" :class="[ns.e('button')]" @click="handleAction(1)">
-        添加
+        {{ t('er.public.add')}}
       </el-button>
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="handleAction(0)">Cancel</el-button>
+        <el-button @click="handleAction(0)">
+          {{ t('er.public.cancel')}}
+        </el-button>
         <el-button type="primary" @click="handleAction(2)">
-          Confirm
+          {{ t('er.public.confirm')}}
         </el-button>
       </span>
     </template>
-  </el-dialog>
-  <el-button style="width: 100%;" type="primary" @click="openDialog">业务逻辑</el-button>
+  </el-drawer>
+  <el-button style="width: 100%;" type="primary" @click="openDialog">
+    {{ t('er.logic.button') }}
+  </el-button>
 </template>

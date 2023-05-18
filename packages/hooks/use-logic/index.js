@@ -203,48 +203,34 @@ export const validator = (logic, value, field) => {
   }
   return result
 }
-// const operatingShowHidden = (fields, rules) => {
-//   rules.forEach(rule => {
-//     const targetFields = findFieldsByid(rule.if.conditions.map(e => e.property), fields)
-//     const operator = (v) => rule.if.logicalOperator === 'and' ? v.every(v => v) : v.some(v => v)
-//     console.log(rule)
-//     watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
-//       console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
-//     }, {
-//       immediate: true,
-//       deep: true
-//     })
-//     // console.log(rule.if.conditions.map(e => e.property))
-//   })
-// }
 const changeState = (fieldsLogicState, field, key, value) => {
   if (!fieldsLogicState.has(field)) {
     fieldsLogicState.set(field, {})
   }
   fieldsLogicState.get(field)[key] = value
 }
-const operatingShowHidden = (isValidation, rule, fields, fieldsLogicState) => {
+const operatingVisible = (isValidation, rule, fields, fieldsLogicState) => {
   _.get(rule, 'then.conditions', []).forEach(condition => {
     switch (condition.property) {
       case 'show':
         if (isValidation) {
           findFieldsByid(condition.value, state.fields).forEach(field => {
-            changeState(fieldsLogicState, field, 'visibility', 1)
+            changeState(fieldsLogicState, field, 'visible', 1)
           })
         } else {
           findFieldsByid(condition.value, state.fields).forEach(field => {
-            changeState(fieldsLogicState, field, 'visibility', 0)
+            changeState(fieldsLogicState, field, 'visible', 0)
           })
         }
         break
       case 'hide':
         if (isValidation) {
           findFieldsByid(condition.value, state.fields).forEach(field => {
-            changeState(fieldsLogicState, field, 'visibility', 0)
+            changeState(fieldsLogicState, field, 'visible', 0)
           })
         } else {
           findFieldsByid(condition.value, state.fields).forEach(field => {
-            changeState(fieldsLogicState, field, 'visibility', 1)
+            changeState(fieldsLogicState, field, 'visible', 1)
           })
         }
         break
@@ -330,8 +316,8 @@ const listenEvent = (state) => {
       watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
         // console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
         switch (type) {
-          case 'showHidden':
-            operatingShowHidden(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
+          case 'visible':
+            operatingVisible(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
             break
           case 'required':
             operatingRequired(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))), rule, state.fields, state.fieldsLogicState)
@@ -348,18 +334,10 @@ const listenEvent = (state) => {
         deep: true
       })
     })
-    // switch (type) {
-    //   case 'showHidden':
-    //     operatingShowHidden(state.fields, rules[type])
-    //     break
-    // }
   }
 }
 export const useLogic = (state) => {
-  // console.log(state)
-  // console.log(state.logic)
   watch(() => state.logic, () => {
     listenEvent(state)
   })
-  // findValidityFields(state)
 }
