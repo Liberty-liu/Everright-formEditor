@@ -12,6 +12,7 @@ const store = reactive({
   layouts: []
 })
 const fieldData = ref({})
+const logicData = ref('{}')
 const all = ref([])
 watch(lang, (newLang) => {
   all.value = []
@@ -35,8 +36,8 @@ watch(lang, (newLang) => {
   })
   all.value = [...store.fields, ...store.layouts]
 }, { immediate: true })
-// const value0 = ref('root')
-const value0 = ref(store.layouts[6].id)
+const value0 = ref('root')
+// const value0 = ref(store.layouts[6].id)
 // const value0 = ref(store.fields[17].id)
 const sector = computed(() => {
   let result = ''
@@ -48,8 +49,12 @@ const sector = computed(() => {
   return result
 })
 const handleListener = async ({ type, data }) => {
+  console.log(type)
   if (type === 'changeParams') {
     fieldData.value = JSON.stringify(data, '', 2)
+  }
+  if (/^logic:(cancel|confirm)$/.test(type)) {
+    logicData.value = JSON.stringify(data, '', 2)
   }
 }
 </script>
@@ -82,13 +87,22 @@ const handleListener = async ({ type, data }) => {
             :lang="lang"
             @listener="handleListener"
             :field="sector"
+            :fields="store.fields.map(e => e.columns[0])"
             ref="EReditorRef"/>
         </div>
       </el-aside>
       <el-main>
         <el-input
           v-model="fieldData"
-          :rows="40"
+          :rows="value0 === 'root' ? 20 : 40"
+          disabled
+          type="textarea"
+          placeholder="Please input"
+        />
+        <el-input
+          v-if="value0 === 'root'"
+          v-model="logicData"
+          :rows="value0 === 'root' ? 20 : 40"
           disabled
           type="textarea"
           placeholder="Please input"

@@ -1,0 +1,629 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Delete logic data based by field id > Delete the data inside the if and then statement(1) 1`] = `
+{
+  "required": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "NLSfG6qSkyzXWfL82rW0E",
+                "value": {
+                  "dateType": "static",
+                  "value": [
+                    "1685116800",
+                  ],
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "NLSfG6qSkyzXWfL82rW0E",
+                "value": {
+                  "dateType": "static",
+                  "value": [
+                    "1683043200",
+                  ],
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Delete logic data based by field id > Delete the data inside the if and then statement(2) 1`] = `
+{
+  "readOnly": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1682956800",
+                },
+              },
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1684512000",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "3EnU8Uc7e7gjyt0I_wkAl",
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "3EnU8Uc7e7gjyt0I_wkAl",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+  "required": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683648000",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683907200",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+  "visible": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683129600",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Delete logic data based by field id > Delete the data inside the if and then statement(3) 1`] = `
+{
+  "readOnly": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1682956800",
+                },
+              },
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1684512000",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "NLSfG6qSkyzXWfL82rW0E",
+                ],
+              },
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "3EnU8Uc7e7gjyt0I_wkAl",
+                ],
+              },
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "3EnU8Uc7e7gjyt0I_wkAl",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+  "visible": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1682870400",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "NLSfG6qSkyzXWfL82rW0E",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Delete logic data based by field id > Delete the data inside the if and then statement(4) 1`] = `
+{
+  "readOnly": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1682956800",
+                },
+              },
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1684512000",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "NLSfG6qSkyzXWfL82rW0E",
+                ],
+              },
+              {
+                "operator": "readOnly",
+                "property": "readOnly",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+  "required": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683648000",
+                },
+              },
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "NLSfG6qSkyzXWfL82rW0E",
+                "value": {
+                  "dateType": "static",
+                  "value": [
+                    "1685116800",
+                  ],
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "NLSfG6qSkyzXWfL82rW0E",
+                "value": {
+                  "dateType": "static",
+                  "value": [
+                    "1683043200",
+                  ],
+                },
+              },
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683907200",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "required",
+                "property": "required",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+  "visible": [
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1682870400",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "NLSfG6qSkyzXWfL82rW0E",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+    {
+      "ifRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "dateOperator": "date",
+                "operator": "equal",
+                "property": "6FobSGWf9gFBgK0MS7a3E",
+                "value": {
+                  "dateType": "static",
+                  "value": "1683129600",
+                },
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+      "thenRules": {
+        "filters": [
+          {
+            "conditions": [
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+              {
+                "operator": "field",
+                "property": "show",
+                "value": [
+                  "315WAA5x2C6VvvL7kM1pF",
+                ],
+              },
+            ],
+            "logicalOperator": "and",
+          },
+        ],
+        "logicalOperator": "and",
+      },
+    },
+  ],
+}
+`;

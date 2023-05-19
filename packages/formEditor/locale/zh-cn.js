@@ -276,7 +276,8 @@ export default {
         required: '必填',
         readOnly: '只读'
       },
-      button: '逻辑控制'
+      button: '逻辑控制',
+      logicSuggests: '检测到当前字段的属性发生了变动，为了保证逻辑控制的准确性，已自动删除了相应的逻辑规则。'
     }
   }
 }

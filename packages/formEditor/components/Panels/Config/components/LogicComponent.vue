@@ -8,7 +8,7 @@ import {
   generateThenFilterConditionsData
 } from './generateFilterdata.js'
 import _ from 'lodash-es'
-import { EverrightFilter } from 'everright-filter/dist/Everright-filter.js'
+import { EverrightFilter } from 'everright-filter'
 import Icon from '@ER/icon'
 export default {
   name: 'ConfigLogicComponent'
@@ -162,12 +162,14 @@ const handleAction = (type) => {
       if (tabs.value.every(tab => !tab.rules.length)) {
         ER.state.logic = {}
         closeDialog()
+        ER.fireEvent('logic:cancel', _.cloneDeep(ER.state.logic))
       } else {
         const data = getData()
         if (!_.isEmpty(data)) {
           ER.state.logic = getData(activeTab.value)
           closeDialog()
         }
+        ER.fireEvent('logic:confirm', _.cloneDeep(ER.state.logic))
       }
       break
   }

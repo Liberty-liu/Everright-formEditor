@@ -28,10 +28,7 @@ const handleClick = async (type) => {
   try {
     await Promise.resolve(unref(props.handle).validate())
     // await ER.checkFieldsValidation()
-    ER.emit('listener', {
-      type: 'submit',
-      data: ER.getData()
-    })
+    ER.fireEvent('submit', ER.getData())
   } catch (e) {
     console.log(e)
   }

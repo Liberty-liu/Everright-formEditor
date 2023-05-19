@@ -276,7 +276,8 @@ export default {
         required: 'Required',
         readOnly: 'Readonly'
       },
-      button: 'Logic Control'
+      button: 'Logic Control',
+      logicSuggests: 'It is detected that the attributes of the current field have changed, and in order to ensure the accuracy of logic control, the corresponding logic rules have been automatically deleted.'
     }
   }
 }

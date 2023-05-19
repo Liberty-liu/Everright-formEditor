@@ -41,6 +41,7 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
+  console.log(type)
   switch (type) {
     case 'lang':
       lang.value = data

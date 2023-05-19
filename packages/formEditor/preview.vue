@@ -57,11 +57,17 @@ const getData = () => {
   })
   return _.cloneDeep(result)
 }
+const fireEvent = (type, data) => {
+  emit('listener', {
+    type,
+    data
+  })
+}
 provide('Everright', {
   state,
-  emit,
   getData,
-  props
+  props,
+  fireEvent
   // checkFieldsValidation
 })
 const setData2 = (data, value) => {

@@ -214,22 +214,22 @@ const operatingVisible = (isValidation, rule, fields, fieldsLogicState) => {
     switch (condition.property) {
       case 'show':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'visible', 1)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'visible', 0)
           })
         }
         break
       case 'hide':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'visible', 0)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'visible', 1)
           })
         }
@@ -242,12 +242,12 @@ const operatingRequired = (isValidation, rule, fields, fieldsLogicState) => {
     switch (condition.operator) {
       case 'required':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             // fieldsRequired.set(field, 1)
             changeState(fieldsLogicState, field, 'required', 1)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             // fieldsRequired.set(field, 0)
             changeState(fieldsLogicState, field, 'required', 0)
           })
@@ -255,12 +255,12 @@ const operatingRequired = (isValidation, rule, fields, fieldsLogicState) => {
         break
       case 'not_required':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             // fieldsRequired.set(field, 0)
             changeState(fieldsLogicState, field, 'required', 0)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             // fieldsRequired.set(field, 1)
             changeState(fieldsLogicState, field, 'required', 1)
           })
@@ -274,22 +274,22 @@ const operatingReadOnly = (isValidation, rule, fields, fieldsLogicState) => {
     switch (condition.operator) {
       case 'readOnly':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'readOnly', 1)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'readOnly', 0)
           })
         }
         break
       case 'editable':
         if (isValidation) {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'readOnly', 0)
           })
         } else {
-          findFieldsByid(condition.value, state.fields).forEach(field => {
+          findFieldsByid(condition.value, fields).forEach(field => {
             changeState(fieldsLogicState, field, 'readOnly', 1)
           })
         }

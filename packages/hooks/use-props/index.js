@@ -152,7 +152,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       clearable: options.clearable,
       required: options.required
     }
-    if (state.mode !== 'edit') {
+    if (state.mode === 'preview') {
       const fieldState = state.fieldsLogicState.get(node)
       const required = _.get(fieldState, 'required', undefined)
       const readOnly = _.get(fieldState, 'readOnly', undefined)
