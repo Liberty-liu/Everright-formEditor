@@ -71,7 +71,6 @@ const state = reactive({
 })
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
-window.state = state
 state.validator = (target, fn) => {
   if (target) {
     const count = _.countBy(state.validateStates, 'data.key')

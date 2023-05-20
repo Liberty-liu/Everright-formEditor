@@ -15,12 +15,6 @@ export default {
 }
 </script>
 <script setup>
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: 'pc'
-  }
-})
 const {
   t,
   lang
@@ -54,7 +48,6 @@ const tabs = ref([
   // }
 ])
 const activeTab = ref('visible')
-const emit = defineEmits(['update:modelValue'])
 const ER = inject('Everright')
 const scrollbarRef = ref()
 const ns = hooks.useNamespace('ConfigLogicComponent')
@@ -251,7 +244,7 @@ const handleClosed = () => {
         <el-tab-pane v-for="tab in tabs" :label="t(`er.logic.tabs.${tab.value}`)" :name="tab.value" :key="tab.value">
           <el-scrollbar ref="scrollbarRef" max-height="calc(100vh - 210px)">
             <el-empty v-if="!tab.rules.length">
-              <el-button type="primary" icon="plus" @click="handleAction(1)">Add</el-button>
+              <el-button type="primary" icon="plus" @click="handleAction(1)">{{ t('er.public.add')}}</el-button>
             </el-empty>
             <div v-else>
               <transition-group name="el-fade-in">

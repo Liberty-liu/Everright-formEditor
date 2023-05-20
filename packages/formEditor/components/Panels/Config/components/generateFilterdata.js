@@ -282,7 +282,7 @@ const generateIfFilterConditionsData = (activeTab, state, property) => {
         }
       ]
     } else {
-      result = _.get(state.data, `${findField.options.dataKey}.list`, [])
+      result = state.mode === 'edit' ? _.get(state.data, `${findField.options.dataKey}.list`, []) : _.get(findField, 'options.data', [])
     }
   }
   return result

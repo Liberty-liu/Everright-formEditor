@@ -17,7 +17,16 @@ const all = ref([])
 watch(lang, (newLang) => {
   all.value = []
   store.layouts = []
-  store.fields = [...erComponentsConfig.fieldsConfig[0].list, ...erComponentsConfig.fieldsConfig[1].list].map(e => erGeneratorData(e, true, newLang))
+  store.fields = [...erComponentsConfig.fieldsConfig[0].list, ...erComponentsConfig.fieldsConfig[1].list].map(e => {
+    const result = erGeneratorData(e, true, newLang)
+    if (/^(radio|cascader|checkbox|select)$/.test(e.type)) {
+      result.columns[0].options.data = utils.generateOptions(3).map((e, i) => {
+        e.label += i + 1
+        return e
+      })
+    }
+    return result
+  })
   const layoutNodes = erComponentsConfig.fieldsConfig[2].list.map(e => erGeneratorData(e, true, newLang))
   layoutNodes.forEach((node, index) => {
     store.layouts.push(node)
