@@ -1,0 +1,163 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Region > property:["selectType = 1"] 1`] = `
+{
+  "operators": {
+    "Region": [
+      {
+        "en_label": "Equal to one of",
+        "label": "等于其中之一",
+        "style": "tags",
+        "value": "one_of",
+      },
+      {
+        "en_label": "Not equal to one of",
+        "label": "不等于其中之一",
+        "style": "tags",
+        "value": "not_one_of",
+      },
+      {
+        "en_label": "Belong to one of",
+        "label": "属于其中之一",
+        "style": "tags",
+        "value": "belong_one_of",
+      },
+      {
+        "en_label": "Not belong to one of",
+        "label": "不属于其中之一",
+        "style": "tags",
+        "value": "not_belong_one_of",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "Region",
+      "operatorKey": "Region",
+      "renderType": "REGION",
+      "selectType": 1,
+      "value": "Yqz1snVkubaX2WG8xCEFs",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Region > property:["selectType = 2"] 1`] = `
+{
+  "operators": {
+    "Region": [
+      {
+        "en_label": "Equal to one of",
+        "label": "等于其中之一",
+        "style": "tags",
+        "value": "one_of",
+      },
+      {
+        "en_label": "Not equal to one of",
+        "label": "不等于其中之一",
+        "style": "tags",
+        "value": "not_one_of",
+      },
+      {
+        "en_label": "Belong to one of",
+        "label": "属于其中之一",
+        "style": "tags",
+        "value": "belong_one_of",
+      },
+      {
+        "en_label": "Not belong to one of",
+        "label": "不属于其中之一",
+        "style": "tags",
+        "value": "not_belong_one_of",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "Region",
+      "operatorKey": "Region",
+      "renderType": "REGION",
+      "selectType": 2,
+      "value": "Yqz1snVkubaX2WG8xCEFs",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Region > property:["selectType = 3"] 1`] = `
+{
+  "operators": {
+    "Region": [
+      {
+        "en_label": "Equal to one of",
+        "label": "等于其中之一",
+        "style": "tags",
+        "value": "one_of",
+      },
+      {
+        "en_label": "Not equal to one of",
+        "label": "不等于其中之一",
+        "style": "tags",
+        "value": "not_one_of",
+      },
+      {
+        "en_label": "Belong to one of",
+        "label": "属于其中之一",
+        "style": "tags",
+        "value": "belong_one_of",
+      },
+      {
+        "en_label": "Not belong to one of",
+        "label": "不属于其中之一",
+        "style": "tags",
+        "value": "not_belong_one_of",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "label": "Region",
+      "operatorKey": "Region",
+      "renderType": "REGION",
+      "selectType": 3,
+      "value": "Yqz1snVkubaX2WG8xCEFs",
+    },
+  ],
+}
+`;

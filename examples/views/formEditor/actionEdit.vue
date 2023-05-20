@@ -44,6 +44,7 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
+  console.log(type)
   if (type === 'submit') {
     loading.value = true
     try {

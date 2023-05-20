@@ -199,11 +199,12 @@ export default {
       disabled: '禁用',
       back: '返回',
       save: '保存',
-      reset: '重置'
+      reset: '重置',
+      add: '添加'
     },
     validateMsg: {
       required: '必填',
-      limitWord: `最少<%= min %>字符`,
+      limitWord: '最少<%= min %>字符',
       email: '请输入正确的邮箱地址',
       IdNumber: '请输入正确的身份证号',
       phone: '请输入正确的手机号',
@@ -238,6 +239,45 @@ export default {
       delColumn: '删除整列',
       splitColumn: '拆分成列',
       splitRow: '拆分成行'
+    },
+    logic: {
+      filter: {
+        equal: '等于',
+        not_equal: '不等于',
+        contains: '包含',
+        not_contain: '不包含',
+        empty: '为空',
+        not_empty: '不为空',
+        greater_than: '大于',
+        greater_than_equal: '大于等于',
+        less_than: '小于',
+        less_than_equal: '小于等于',
+        between: '区间',
+        one_of: '等于其中之一',
+        not_one_of: '不等于其中之一',
+        belong_one_of: '属于其中之一',
+        not_belong_one_of: '不属于其中之一',
+        on: '开',
+        off: '关',
+        show: '显示',
+        hide: '隐藏',
+        field: '字段',
+        required: '必填',
+        not_required: '不必填',
+        readOnly: '只读',
+        editable: '可编辑'
+      },
+      filterLabel: {
+        if: '当满足以下条件时',
+        then: '则执行'
+      },
+      tabs: {
+        visible: '显隐',
+        required: '必填',
+        readOnly: '只读'
+      },
+      button: '逻辑控制',
+      logicSuggests: '检测到当前字段的属性发生了变动，为了保证逻辑控制的准确性，已自动删除了相应的逻辑规则。'
     }
   }
 }

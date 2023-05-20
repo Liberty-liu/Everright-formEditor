@@ -1,0 +1,64 @@
+@include b(ConfigLogicComponent) {
+  @include e(rule) {
+    margin: 10px;
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+    &>div {
+      &:first-child {
+        margin-top: 0;
+      }
+      h3 {
+        padding: 10px 0 0;
+        margin: 0;
+        color: #333333;
+      }
+    }
+  }
+  @include e(delRule) {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  @include e(then) {
+    .Everright-filter-LogicalOperatorComponent {
+      display: none;
+    }
+  }
+  @include e((requiredthen, readOnlythen)) {
+    .Everright-filter-TriggerComponent {
+      display: none;
+    }
+  }
+  .Everright-filter-FilterItem{
+    background: none;
+    margin-top: 0;
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
+  .Everright-filter-Main {
+    padding: 0;
+  }
+  @include e(button) {
+    width: calc(100% - 20px);
+    border: none;
+    margin: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1) !important;
+    &:focus {
+      background-color: transparent;
+    }
+    &:hover {
+      background: var(--el-button-hover-bg-color);
+    }
+  }
+  .Everright-filter-OperatorComponent__width {
+    width: 120px;
+  }
+  .Everright-filter-TriggerComponent,.Everright-filter-TextType__width,.Everright-filter-SelectType__width,.Everright-filter-RegionType__width {
+    width: 200px !important;
+  }
+  .Everright-filter-NumberType__width {
+    width: 150px;
+  }
+}

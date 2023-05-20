@@ -5,6 +5,8 @@ import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
+import { ElMessage } from 'element-plus'
+import { showNotify } from 'vant'
 export default {
   name: 'Everright-form-preview'
 }
@@ -25,9 +27,29 @@ const state = reactive({
   Namespace: 'formEditor',
   validateStates: [],
   data: {},
-  fields: []
+  fields: [],
+  logic: {},
+  fieldsLogicState: new Map()
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
+hooks.useLogic(state)
+// const checkFieldsValidation = async () => {
+//   for (const [key, value] of state.fieldsValidation) {
+//     if (value) {
+//       if (utils.isPc()) {
+//         ElMessage({
+//           message: key.value,
+//           type: 'warning'
+//         })
+//       } else {
+//         showNotify({ type: 'warning', message: key.value })
+//       }
+//       return Promise.reject(key)
+//     }
+//   }
+//   return Promise.resolve()
+// }
+// window.checkFieldsValidation = checkFieldsValidation
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
@@ -35,11 +57,18 @@ const getData = () => {
   })
   return _.cloneDeep(result)
 }
+const fireEvent = (type, data) => {
+  emit('listener', {
+    type,
+    data
+  })
+}
 provide('Everright', {
   state,
-  emit,
   getData,
-  props
+  props,
+  fireEvent
+  // checkFieldsValidation
 })
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
@@ -52,11 +81,15 @@ const setData2 = (data, value) => {
   state.store = curLayout
   state.config = newData.config
   state.data = newData.data
+  state.logic = newData.logic
   state.store.forEach((e) => {
     utils.addContext(e, state.store, false)
   })
   if (!_.isEmpty(value)) {
     state.fields.forEach((e) => {
+      if (e.type === 'time' && !e.options.valueFormat) {
+        e.options.valueFormat = 'HH:mm:ss'
+      }
       if (value[e.key]) {
         e.options.defaultValue = value[e.key]
       }
@@ -70,11 +103,15 @@ const setData1 = (data, value) => {
   state.config = newData.config
   state.data = newData.data
   state.fields = newData.fields
+  state.logic = newData.logic
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
   if (!_.isEmpty(value)) {
     state.fields.forEach((e) => {
+      if (e.type === 'time' && !e.options.valueFormat) {
+        e.options.valueFormat = 'HH:mm:ss'
+      }
       if (value[e.key]) {
         e.options.defaultValue = value[e.key]
       }

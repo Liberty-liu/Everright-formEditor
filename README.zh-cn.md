@@ -30,6 +30,7 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 * 5.字段与布局分离
 * 6.字段与布局不分离
 * 7.编辑器、预览器和配置面板都可以单独使用
+* 8.逻辑控制器(显隐、必填、只读)
 
 ## 文档
 
@@ -62,6 +63,11 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 ### 配置面板
 
 ![image](https://user-images.githubusercontent.com/21301475/231448710-564533a9-62df-4233-a937-41a50ae24056.png)
+
+### 逻辑控制器
+
+![Logical controlle](https://github.com/Liberty-liu/Everright-formEditor/assets/21301475/0c7ab28d-c57f-47fa-aedc-a48e5939d6af)
+
 
 ## 字段适配
 
@@ -99,3 +105,33 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 | Tabs  |  :white_check_mark: | :white_check_mark:  |
 | Collapse  | :white_check_mark:  | :white_check_mark:  |
 | Divider  | :white_check_mark:  | :white_check_mark:  |
+
+
+## 逻辑控制器操作符
+
+| Field  | 等于 | 不等于 | 包含 | 不包含 | 大于 | 大于等于 | 小于 | 小于等于 | 区间 | 等于其中之一 | 不等于其中之一 | 属于其中之一 | 不属于其中之一| 为空 | 不为空 |
+| :-------------:| :-------------: |:-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |:-------------:| :-------------:| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| Input  |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Email |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| ID number|  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Cellphone  |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| URL |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Textarea |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Number  |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | :white_check_mark:| :white_check_mark: |
+| Radio |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Checkbox |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Select |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Time  |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | :white_check_mark:| :white_check_mark: |
+| Date (date) |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | :white_check_mark:| :white_check_mark: |
+| Date (datetime) |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | :white_check_mark:| :white_check_mark: |
+| Date (dates) |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Date (daterange) |  :white_check_mark: | :white_check_mark: |  |  | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Rate  |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | :white_check_mark:| :white_check_mark: |
+| Switch  |  :white_check_mark:  |  :white_check_mark:  | | | | | | | | | | | | | |
+| Slider |  :white_check_mark: | :white_check_mark: | | | :white_check_mark:| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | |
+| Html  |  :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| Cascader  | :white_check_mark: | :white_check_mark:| | | | | | | | | | | | :white_check_mark: | :white_check_mark: |
+| File  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
+| Signature  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
+| Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| 
+

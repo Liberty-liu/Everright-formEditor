@@ -1,5 +1,5 @@
 <script>
-import { ClickOutside as vClickOutside } from 'element-plus'
+import { ClickOutside as vClickOutside, ElMessage } from 'element-plus'
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, nextTick, onMounted, watch } from 'vue'
 import FieldsPanel from '@ER/formEditor/components/Panels/Fields'
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves'
@@ -9,11 +9,9 @@ import erFormPreview from './preview.vue'
 import Icon from '@ER/icon'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
-// import { fieldConfig, globalConfig } from './componentsConfig'
 import _ from 'lodash-es'
 import defaultProps from './defaultProps'
 import generatorData from './generatorData'
-// import utilsa from '@ER/formEditor/name.js'
 export default {
   name: 'Everright-form-editor'
 }
@@ -68,7 +66,8 @@ const state = reactive({
   data: {},
   validateStates: [],
   fields: [],
-  Namespace: 'formEditor'
+  Namespace: 'formEditor',
+  logic: {}
 })
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
@@ -148,6 +147,15 @@ const delField = (node) => {
     id: node.id
   })
   if (fieldIndex !== -1) {
+    if (utils.checkIdExistInLogic(node.id, state.logic)) {
+      ElMessage({
+        showClose: true,
+        duration: 4000,
+        message: t('er.logic.logicSuggests'),
+        type: 'warning'
+      })
+      utils.removeLogicDataByid(node.id, state.logic)
+    }
     state.fields.splice(fieldIndex, 1)
   }
 }
@@ -285,6 +293,12 @@ const switchPlatform = (platform) => {
   state.platform = platform
 }
 const canvesScrollRef = ref('')
+const fireEvent = (type, data) => {
+  emit('listener', {
+    type,
+    data
+  })
+}
 provide('Everright', {
   state,
   setSelection,
@@ -294,15 +308,18 @@ provide('Everright', {
   addField,
   switchPlatform,
   addFieldData,
-  canvesScrollRef
+  canvesScrollRef,
+  fireEvent
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
-  return utils.disassemblyData1(_.cloneDeep({
+  return Object.assign(utils.disassemblyData1(_.cloneDeep({
     list: state.store,
     config: state.config,
     data: state.data
-  }))
+  })), {
+    logic: state.logic
+  })
 }
 const getData2 = () => {
   layout.pc = getLayoutDataByplatform('pc')
@@ -311,7 +328,8 @@ const getData2 = () => {
     layout,
     data: state.data,
     config: state.config,
-    fields: state.fields
+    fields: state.fields,
+    logic: state.logic
   })
 }
 const setData1 = (data) => {
@@ -324,6 +342,8 @@ const setData1 = (data) => {
   // state.store = data.list.slice(data.list.length - 1)
   state.config = newData.config
   state.data = newData.data
+  state.fields = newData.fields
+  state.logic = newData.logic
   setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
@@ -401,10 +421,7 @@ const handleOperation = (type, val) => {
       })
       break
     case 4:
-      emit('listener', {
-        type: 'save',
-        data: getData()
-      })
+      fireEvent('save', getData())
       break
     case 5:
       isFoldFields.value = !isFoldFields.value
@@ -426,10 +443,7 @@ const handleOperation = (type, val) => {
   }
 }
 watch(() => state.selected, (newVal) => {
-  emit('listener', {
-    type: 'changeParams',
-    data: _.cloneDeep(newVal)
-  })
+  fireEvent('changeParams', _.cloneDeep(newVal))
 }, {
   deep: true,
   immediate: true
@@ -473,10 +487,7 @@ const onClickOutside = () => {
             <slot name="operation-right"></slot>
             <el-dropdown
               v-if="isShowI18n"
-              @command="(command) => emit('listener', {
-              type: 'lang',
-              data: command
-            })">
+              @command="(command) => fireEvent('lang', command)">
               <Icon :class="[ns.e('icon')]" icon="language"></Icon>
               <template #dropdown>
                 <el-dropdown-menu>

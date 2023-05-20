@@ -12,11 +12,21 @@ const store = reactive({
   layouts: []
 })
 const fieldData = ref({})
+const logicData = ref('{}')
 const all = ref([])
 watch(lang, (newLang) => {
   all.value = []
   store.layouts = []
-  store.fields = [...erComponentsConfig.fieldsConfig[0].list, ...erComponentsConfig.fieldsConfig[1].list].map(e => erGeneratorData(e, true, newLang))
+  store.fields = [...erComponentsConfig.fieldsConfig[0].list, ...erComponentsConfig.fieldsConfig[1].list].map(e => {
+    const result = erGeneratorData(e, true, newLang)
+    if (/^(radio|cascader|checkbox|select)$/.test(e.type)) {
+      result.columns[0].options.data = utils.generateOptions(3).map((e, i) => {
+        e.label += i + 1
+        return e
+      })
+    }
+    return result
+  })
   const layoutNodes = erComponentsConfig.fieldsConfig[2].list.map(e => erGeneratorData(e, true, newLang))
   layoutNodes.forEach((node, index) => {
     store.layouts.push(node)
@@ -35,8 +45,8 @@ watch(lang, (newLang) => {
   })
   all.value = [...store.fields, ...store.layouts]
 }, { immediate: true })
-// const value0 = ref('root')
-const value0 = ref(store.layouts[6].id)
+const value0 = ref('root')
+// const value0 = ref(store.layouts[6].id)
 // const value0 = ref(store.fields[17].id)
 const sector = computed(() => {
   let result = ''
@@ -48,8 +58,12 @@ const sector = computed(() => {
   return result
 })
 const handleListener = async ({ type, data }) => {
+  console.log(type)
   if (type === 'changeParams') {
     fieldData.value = JSON.stringify(data, '', 2)
+  }
+  if (/^logic:(cancel|confirm)$/.test(type)) {
+    logicData.value = JSON.stringify(data, '', 2)
   }
 }
 </script>
@@ -82,13 +96,22 @@ const handleListener = async ({ type, data }) => {
             :lang="lang"
             @listener="handleListener"
             :field="sector"
+            :fields="store.fields.map(e => e.columns[0])"
             ref="EReditorRef"/>
         </div>
       </el-aside>
       <el-main>
         <el-input
           v-model="fieldData"
-          :rows="40"
+          :rows="value0 === 'root' ? 20 : 40"
+          disabled
+          type="textarea"
+          placeholder="Please input"
+        />
+        <el-input
+          v-if="value0 === 'root'"
+          v-model="logicData"
+          :rows="value0 === 'root' ? 20 : 40"
           disabled
           type="textarea"
           placeholder="Please input"
@@ -100,7 +123,7 @@ const handleListener = async ({ type, data }) => {
 <style scoped lang="scss">
 .customConfig {
   padding: 10px;
-  ::v-deep .Everright-formEditor-Config {
+  :deep(.Everright-formEditor-Config) {
     width: 100%;
   }
 }

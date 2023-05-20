@@ -16,6 +16,10 @@ const props = defineProps(_.merge({
   field: {
     type: [Object, String],
     required: true
+  },
+  fields: {
+    type: Array,
+    default: () => ([])
   }
 }, defaultProps))
 const layout = {
@@ -31,7 +35,8 @@ const state = reactive({
   validateStates: [],
   data: {},
   mode: 'config',
-  fields: []
+  fields: props.fields,
+  logic: {}
 })
 const element = ref('')
 const ns = hooks.useNamespace('Main', state.Namespace)
@@ -52,12 +57,19 @@ const setSelection = (node) => {
 const switchPlatform = (platform) => {
   state.platform = platform
 }
+const fireEvent = (type, data) => {
+  emit('listener', {
+    type,
+    data
+  })
+}
 provide('Everright', {
   state,
   emit,
   props,
   setSelection,
-  switchPlatform
+  switchPlatform,
+  fireEvent
 })
 watch(() => props.field, (newVal) => {
   if (newVal !== 'root') {
@@ -74,10 +86,7 @@ defineExpose({
   }
 })
 watch(() => state.selected, (newVal) => {
-  emit('listener', {
-    type: 'changeParams',
-    data: _.cloneDeep(newVal)
-  })
+  fireEvent('changeParams', _.cloneDeep(newVal))
 }, {
   deep: true,
   immediate: true

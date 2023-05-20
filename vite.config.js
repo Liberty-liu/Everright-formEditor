@@ -55,8 +55,17 @@ const examplePlugin = () => {
   }
 }
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    threads: false,
+    clearMocks: true,
+    setupFiles: ['./vitest.setup.js'],
+    transformMode: {
+      web: [/\.[jt]sx$/],
+    }
+  },
   base: './',
-  define: { 'process.env.NODE_ENV': '"production"' },
+  // define: { 'process.env.NODE_ENV': process.env.NODE_ENV },
   build: {
     lib: {
       entry: resolve(__dirname, 'packages/formEditor/index.js'),
@@ -89,6 +98,10 @@ export default defineConfig({
       {
         find: '@ER-examples',
         replacement: resolve(__dirname, 'examples')
+      },
+      {
+        find: '@ER-test',
+        replacement: resolve(__dirname, 'test')
       }
     ]
   },

@@ -97,7 +97,8 @@ const combinationData1 = (data) => {
     list: data.list,
     config: data.config,
     data: data.data,
-    fields: data.fields
+    fields: data.fields,
+    logic: data.logic
   }
   flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
     const cur = _.find(data.fields, { id: node })

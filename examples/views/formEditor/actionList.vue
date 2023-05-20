@@ -33,10 +33,10 @@ const getAllActions = async () => {
 const handleDel = async (id) => {
   loading.value = true
   try {
-    await hooks.useFetch(`${uri.obj}/${id}`, {
+    await hooks.useFetch(`${uri.obj}/${route.params.objid}/action/${id}`, {
       method: 'delete'
     })
-    getAllobjs()
+    getAllActions()
   } finally {
     loading.value = false
   }

@@ -1,0 +1,295 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate filter data: Date > property:["type = date"] 1`] = `
+{
+  "operators": {
+    "Number": [
+      {
+        "en_label": "Equal",
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "en_label": "Not equal",
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "en_label": "Greater than",
+        "label": "大于",
+        "style": "noop",
+        "value": "greater_than",
+      },
+      {
+        "en_label": "Greater than or equal to",
+        "label": "大于等于",
+        "style": "noop",
+        "value": "greater_than_equal",
+      },
+      {
+        "en_label": "Less than",
+        "label": "小于",
+        "style": "noop",
+        "value": "less_than",
+      },
+      {
+        "en_label": "Less than or equal to",
+        "label": "小于等于",
+        "style": "noop",
+        "value": "less_than_equal",
+      },
+      {
+        "en_label": "Between",
+        "label": "区间",
+        "style": "range",
+        "value": "between",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "datePanel": {
+        "excludeManuals": -1,
+        "excludeShortcuts": -1,
+        "pickerType": "date",
+      },
+      "includeOperator": {
+        "dateOperator": [
+          "date",
+        ],
+      },
+      "label": "Date",
+      "operatorKey": "Number",
+      "renderType": "DATE",
+      "value": "mczJoB7trWElolPW48BEm",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Date > property:["type = daterange"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "en_label": "Equal",
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "en_label": "Not equal",
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "en_label": "Contains",
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "en_label": "Not contain",
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "datePanel": {
+        "excludeManuals": -1,
+        "excludeShortcuts": -1,
+        "pickerType": "daterange",
+      },
+      "excludeOperator": {
+        "operator": [
+          "contains",
+          "not_contain",
+        ],
+      },
+      "includeOperator": {
+        "dateOperator": [
+          "date",
+        ],
+      },
+      "label": "Date",
+      "operatorKey": "Text",
+      "renderType": "DATE",
+      "value": "mczJoB7trWElolPW48BEm",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Date > property:["type = dates"] 1`] = `
+{
+  "operators": {
+    "Text": [
+      {
+        "en_label": "Equal",
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "en_label": "Not equal",
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "en_label": "Contains",
+        "label": "包含",
+        "style": "tags",
+        "value": "contains",
+      },
+      {
+        "en_label": "Not contain",
+        "label": "不包含",
+        "style": "tags",
+        "value": "not_contain",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "datePanel": {
+        "excludeManuals": -1,
+        "excludeShortcuts": -1,
+        "pickerType": "dates",
+      },
+      "includeOperator": {
+        "dateOperator": [
+          "date",
+        ],
+      },
+      "label": "Date",
+      "operatorKey": "Text",
+      "renderType": "DATE",
+      "value": "mczJoB7trWElolPW48BEm",
+    },
+  ],
+}
+`;
+
+exports[`Generate filter data: Date > property:["type = datetime"] 1`] = `
+{
+  "operators": {
+    "Number": [
+      {
+        "en_label": "Equal",
+        "label": "等于",
+        "style": "noop",
+        "value": "equal",
+      },
+      {
+        "en_label": "Not equal",
+        "label": "不等于",
+        "style": "noop",
+        "value": "not_equal",
+      },
+      {
+        "en_label": "Greater than",
+        "label": "大于",
+        "style": "noop",
+        "value": "greater_than",
+      },
+      {
+        "en_label": "Greater than or equal to",
+        "label": "大于等于",
+        "style": "noop",
+        "value": "greater_than_equal",
+      },
+      {
+        "en_label": "Less than",
+        "label": "小于",
+        "style": "noop",
+        "value": "less_than",
+      },
+      {
+        "en_label": "Less than or equal to",
+        "label": "小于等于",
+        "style": "noop",
+        "value": "less_than_equal",
+      },
+      {
+        "en_label": "Between",
+        "label": "区间",
+        "style": "range",
+        "value": "between",
+      },
+      {
+        "en_label": "Empty",
+        "label": "为空",
+        "style": "none",
+        "value": "empty",
+      },
+      {
+        "en_label": "Not empty",
+        "label": "不为空",
+        "style": "none",
+        "value": "not_empty",
+      },
+    ],
+  },
+  "options": [
+    {
+      "datePanel": {
+        "excludeManuals": -1,
+        "excludeShortcuts": -1,
+        "pickerType": "datetime",
+      },
+      "includeOperator": {
+        "dateOperator": [
+          "date",
+        ],
+      },
+      "label": "Date",
+      "operatorKey": "Number",
+      "renderType": "DATE",
+      "value": "mczJoB7trWElolPW48BEm",
+    },
+  ],
+}
+`;

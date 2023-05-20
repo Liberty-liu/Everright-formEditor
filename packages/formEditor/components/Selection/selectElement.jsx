@@ -190,10 +190,8 @@ export default {
           break
         case 5:
           let parent = props.data.context.parent
-          if (/^(inline)$/.test(parent.type)) {
+          if (/^(inline|tr)$/.test(parent.type)) {
             parent = parent.context.parent
-          } else if (/^(tr)$/.test(parent.type)) {
-            parent = parent.context.parent.context.parent
           }
           setSelection(Array.isArray(parent) ? 'root' : parent)
           break

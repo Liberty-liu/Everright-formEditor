@@ -1,4 +1,5 @@
 <script>
+import { ElMessage } from 'element-plus'
 import { ref, computed, reactive, watchEffect, watch, unref, provide, onMounted, inject } from 'vue'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
@@ -7,8 +8,6 @@ import PanelsConfigComponentsCollapseComponent from './CollapseComponent.vue'
 import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
 import PanelsConfigComponentsBorderComponent from './BorderComponent.vue'
 import PanelsConfigComponentsLimitComponent from './LimitComponent.vue'
-// import PanelsConfigComponentsGridLayoutComponent from './GridLayoutComponent.vue'
-// import PanelsConfigComponentsTabsLayout from './TabsLayout.vue'
 import PanelsConfigComponentsAllsidesComponent from './AllsidesComponent.vue'
 import PanelsConfigComponentsBackgroundComponent from './BackgroundComponent.vue'
 import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
@@ -297,7 +296,19 @@ const typeProps = hooks.useProps(state, target, true, false, (type, props) => {
       break
   }
 })
+const checkLogicData = () => {
+  if (utils.checkIdExistInLogic(target.value.id, state.logic)) {
+    ElMessage({
+      showClose: true,
+      duration: 4000,
+      message: t('er.logic.logicSuggests'),
+      type: 'warning'
+    })
+    utils.removeLogicDataByid(target.value.id, state.logic)
+  }
+}
 const handleChange0 = (value) => {
+  checkLogicData()
   if (/^(dates|datarange)$/.test(value)) {
     target.value.options.defaultValue = []
   } else {
@@ -307,7 +318,12 @@ const handleChange0 = (value) => {
     target.value.options.format = options0.value[0].value
   }
 }
+const handleChange1 = () => {
+  checkLogicData()
+  target.value.options.defaultValue = ''
+}
 const handleMultipleChange = (value) => {
+  checkLogicData()
   if (value) {
     target.value.options.defaultValue = []
   } else {
@@ -687,7 +703,7 @@ onMounted(() => {
       v-if="checkTypeBySelected(['region'], 'regionType')"
       :label="t('er.config.propsPanel.region.label')"
       :layoutType="0">
-      <el-select v-model="target.options.selectType" @change="target.options.defaultValue = ''">
+      <el-select v-model="target.options.selectType" @change="handleChange1">
         <el-option
           v-for="item in options8"
           :key="item.value"
@@ -899,7 +915,7 @@ onMounted(() => {
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'], 'alpha')" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'], 'anyNode')" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly">
+      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'], 'anyNode')" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly" @change="checkLogicData">
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'], 'clearable')" :label="t('er.config.propsPanel.clearable')" field="clearable">
       </PanelsConfigComponentsCheckboxComponent>

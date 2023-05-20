@@ -27,25 +27,16 @@ const handleClick = async (type) => {
   if (props.mode === 'preview') return false
   try {
     await Promise.resolve(unref(props.handle).validate())
-    ER.emit('listener', {
-      type: 'submit',
-      data: ER.getData()
-    })
-    // console.log(JSON.stringify(_.cloneDeep(result)))
+    // await ER.checkFieldsValidation()
+    ER.fireEvent('submit', ER.getData())
   } catch (e) {
     console.log(e)
   }
-  // unref(props.handle).validate().then(() => {
-  //   const result = {}
-  //   ER.state.allFields.forEach(e => {
-  //     result[e.key] = e.options.defaultValue
-  //   })
-  //   console.log(_.cloneDeep(result))
-  // })
 }
+const dataset = process.env.NODE_ENV === 'test' ? { 'data-test': 'er-complete-button' } : {}
 </script>
 <template>
-  <div>
+  <div v-bind="dataset">
     <div v-if="isPc" style="text-align: center;">
       <el-button @click="handleClick" :color="state.config[state.platform].completeButton.backgroundColor" type="primary">
         <span :style="{color: state.config[state.platform].completeButton.color }">{{ state.config[state.platform].completeButton.text }}</span>
