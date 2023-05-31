@@ -15,7 +15,7 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-**[中文官网](https://everright.site/zh-cn/module/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/module/formEditor/introduction.html)**
+**[中文官网](https://everright.site/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/formEditor/introduction.html)**
 
 Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
 
@@ -34,8 +34,8 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 
 ## Docs
 
-+ [Get Started](https://everright.site/en/module/formEditor/started.html)
-+ [Docs](https://everright.site/en/module/formEditor/doc.html)
++ [Get Started](https://everright.site/en/formEditor/started.html)
++ [Docs](https://everright.site/en/formEditor/doc.html)
 
 ## Examples
 
@@ -45,20 +45,9 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 + [Preview](https://everright.site/demo/preview.html?layoutType=2&lang=en) `layoutType2: Fields and layout separated`
 + [Config panel](https://everright.site/demo/formEditorConfig.html?lang=en) `Various properties for displaying and editing form fields are provided, including basic information, types, layouts, and so on`
 
-## Sample screenshot
+## Screenshot
 
-### Editor
-![image](https://user-images.githubusercontent.com/21301475/231447451-4266854c-88a8-464c-8971-31444f246243.png)
-
-### Previewer on PC
-![image](https://user-images.githubusercontent.com/21301475/231448036-3ecee0b8-f6ca-4eb6-b363-059abaaa5cd1.png)
-
-### Previewer on mobile
-![IMG_0570](https://user-images.githubusercontent.com/21301475/231448538-c1996918-1ab0-4afa-936e-3cd41db8f5f6.PNG)
-
-### Config panel
-
-![image](https://user-images.githubusercontent.com/21301475/231448710-564533a9-62df-4233-a937-41a50ae24056.png)
+![yourDesign](https://github.com/Liberty-liu/Everright-formEditor/assets/21301475/02ff87c2-0418-4587-b55a-9fd2a0d049f1)
 
 ### Logical controller
 
