@@ -15,7 +15,7 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-**[中文官网](https://everright.site/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/formEditor/introduction.html)**
+**[中文主页](https://everright.site/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/formEditor/introduction.html)**
 
 Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
 
