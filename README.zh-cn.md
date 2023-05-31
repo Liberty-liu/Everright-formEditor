@@ -15,7 +15,7 @@
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
 
-**[中文官网](https://everright.site/zh-cn/module/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/module/formEditor/introduction.html)**
+**[中文主页](https://everright.site/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/formEditor/introduction.html)**
 
 Everright-formEditor是一个免费开源的javascript可视化低代码编辑器，通过gui的界面只需简单的操作即可创建出表单，拥有灵活的交互界面，pc端依赖element-plus，mobile依赖vant,内部有一套适配器，适配element和vant的组件
 
@@ -34,8 +34,8 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 
 ## 文档
 
-+ [Get Started](https://everright.site/zh-cn/module/formEditor/started.html)
-+ [Docs](https://everright.site/zh-cn/module/formEditor/doc.html)
++ [Get Started](https://everright.site/formEditor/started.html)
++ [Docs](https://everright.site/formEditor/doc.html)
 
 ## Examples
 
@@ -45,24 +45,9 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 + [Preview](https://everright.site/demo/preview.html?layoutType=2&lang=zh-cn) `layoutType2: 字段与布局分离`
 + [Config panel](https://everright.site/demo/formEditorConfig.html?lang=zh-cn) `用于展示和编辑表单字段的各种属性，包括基础信息、类型、布局等等`
 
-> 组织了一个低代码群，感兴趣的话加我微信，拉你进群，欢迎一块讨论技术。
-
-<img height="400px" src="https://user-images.githubusercontent.com/21301475/233946727-f1c52766-dacd-4aec-8afe-a92915199498.JPG">
-
 ## 截图
 
-### 编辑器
-![image](https://user-images.githubusercontent.com/21301475/231447451-4266854c-88a8-464c-8971-31444f246243.png)
-
-### pc预览器
-![image](https://user-images.githubusercontent.com/21301475/231448036-3ecee0b8-f6ca-4eb6-b363-059abaaa5cd1.png)
-
-### 移动端预览器
-![IMG_0570](https://user-images.githubusercontent.com/21301475/231448538-c1996918-1ab0-4afa-936e-3cd41db8f5f6.PNG)
-
-### 配置面板
-
-![image](https://user-images.githubusercontent.com/21301475/231448710-564533a9-62df-4233-a937-41a50ae24056.png)
+![yourDesign](https://github.com/Liberty-liu/Everright-formEditor/assets/21301475/02ff87c2-0418-4587-b55a-9fd2a0d049f1)
 
 ### 逻辑控制器
 
