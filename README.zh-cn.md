@@ -1,4 +1,4 @@
-<p align="center"><a href="https://everright.site/zh-cn/module/formEditor/introduction.html" target="_blank"><img height="200px" src="https://user-images.githubusercontent.com/21301475/229654952-6cc89842-9db7-421d-87be-e7cee1e26199.png"></a></p>
+<p align="center"><img height="200px" src="https://github.com/Liberty-liu/Liberty-liu/assets/21301475/9922bb46-b7a4-48e8-a087-a93ea48b3e32"></p>
 <h1 align="center">Everright-formEditor</h1>
 
 [English](./README.md) | 简体中文
