@@ -118,3 +118,9 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | File  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: | 
 | Signature  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: | 
 | Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| 
+
+## Sponsor
+
+![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)
+
+Powerful JavaScript IDE [WebStorm](https://www.jetbrains.com/webstorm/) from [Jetbrains](https://jb.gg/OpenSourceSupport).
