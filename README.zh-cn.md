@@ -19,7 +19,7 @@
 
 Everright-formEditor是一个免费开源的javascript可视化低代码编辑器，通过gui的界面只需简单的操作即可创建出表单，拥有灵活的交互界面，pc端依赖element-plus，mobile依赖vant,内部有一套适配器，适配element和vant的组件
 
-<img width="100%" src="https://user-images.githubusercontent.com/21301475/230697059-baf94040-297e-43fc-acf2-7fa90ecaf3fb.gif">
+<img width="100%" src="https://user-images.githubusercontent.com/21301475/249369687-e79780b5-cdb8-4d2b-bdca-8ff59d9026e2.gif">
 
 ## 特点
 
