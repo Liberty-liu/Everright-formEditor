@@ -19,7 +19,7 @@
 
 Everright-formEditor is a free and open source javascript visual low-code editor. It can create forms with simple operations through the GUI interface. It has a flexible interaction. The PC depends on element-plus while the mobile depends on vant. There is a set of adapters to convert parameters into ones that can be recognized by both element-plus and vant.
 
-<img width="100%" src="https://user-images.githubusercontent.com/21301475/230697059-baf94040-297e-43fc-acf2-7fa90ecaf3fb.gif">
+<img width="100%" src="https://user-images.githubusercontent.com/21301475/249369687-e79780b5-cdb8-4d2b-bdca-8ff59d9026e2.gif">
 
 ## Features
 
