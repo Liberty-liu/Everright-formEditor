@@ -6,6 +6,11 @@
     "dist",
     "packages/formEditor/componentsConfig.js"
   ],
+  "engines": {
+    "pnpm": "7.9.5",
+    "node": ">= 16.16.0"
+  },
+  "packageManager": "pnpm@7.9.5",
   "license": "MIT",
   "keywords": [
     "drag-and-drop",
