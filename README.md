@@ -14,6 +14,7 @@
 [![@vuelidate/core](https://img.shields.io/badge/@vuelidate/core-%3E%3D%202.0.0-green.svg)](https://github.com/vuelidate/vuelidate)
 [![axios](https://img.shields.io/badge/axios-%3E%3D%201.3.4-green.svg)](https://github.com/axios/axios)
 [![signature_pad](https://img.shields.io/badge/signature_pad-%3E%3D%204.1.5-green.svg)](https://github.com/szimek/signature_pad)
+[![everright-filter](https://img.shields.io/badge/everright--filter-%3E%3D%200.0.22-green.svg)](https://github.com/Liberty-liu/Everright-filter)
 
 **[中文主页](https://everright.site/formEditor/introduction.html)** | **[ENGLISH HOMEPAGE](https://everright.site/en/formEditor/introduction.html)**
 
