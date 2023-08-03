@@ -39,7 +39,8 @@ export default {
       tabsCol: '标签面板',
       col: '栅格列',
       collapseCol: '折叠子面板',
-      td: '单元格'
+      td: '单元格',
+      inline: 'inline'
     },
     config: {
       globalConfig: {

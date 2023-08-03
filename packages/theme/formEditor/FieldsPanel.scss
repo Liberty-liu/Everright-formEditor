@@ -1,0 +1,51 @@
+@include b(FieldsPanel) {
+  height: 100%;
+  .el-sub-menu__title {
+    height: 40px;
+    font-weight: 600;
+    font-size: 12px;
+    .el-sub-menu__icon-arrow {
+      color: #666666;
+    }
+  }
+  .el-menu {
+    border: none;
+  }
+  .#{$namespace}-DeviceSwitch {
+    border-top: 1px solid #DDDDDD;
+  }
+  @include e(dragContent) {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    li {
+      overflow: hidden;
+      border-radius: 4px;
+      margin: 4px;
+      background: #F9F9F9;
+      font-size: 12px;
+      cursor: grab;
+      height: 34px;
+      color: #333333;
+      width: 46%;
+      align-items: center;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      padding: 2px 10px;
+      display: flex;
+      .ER-icon {
+        margin-right: 6px;
+      }
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+        .ER-icon {
+          color: $primary-color;
+        }
+      }
+      &[draggable="true"] {
+        cursor: grabbing;
+      }
+    }
+  }
+}

@@ -152,6 +152,7 @@ export default {
         case 1:
           if (ER.props.delHandle(props.data) === false) return false
           props.data.context.delete()
+          console.log(123123)
           utils.deepTraversal(props.data, (node) => {
             if (utils.checkIsField(node)) {
               ER.delField(node)

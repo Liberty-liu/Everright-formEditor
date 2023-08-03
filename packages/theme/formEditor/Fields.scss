@@ -2,52 +2,23 @@
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 3;
-  .el-sub-menu__title {
-    height: 40px;
-    font-weight: 600;
-    font-size: 12px;
-    .el-sub-menu__icon-arrow {
-      color: #666666;
+  @include e(tabs) {
+    height: 100%;
+    .el-tab-pane {
+      height: 100%;
     }
-  }
-  .el-menu {
-    border: none;
-  }
-  .#{$namespace}-DeviceSwitch {
-    border-top: 1px solid #DDDDDD;
-  }
-  @include e(dragContent) {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    li {
-      overflow: hidden;
-      border-radius: 4px;
-      margin: 4px;
-      background: #F9F9F9;
-      font-size: 12px;
-      cursor: grab;
-      height: 34px;
-      color: #333333;
-      width: 46%;
-      align-items: center;
-      box-sizing: border-box;
-      border: 1px solid transparent;
-      padding: 2px 10px;
-      display: flex;
-      .ER-icon {
-        margin-right: 6px;
+    .el-tabs__header {
+      height: 40px;
+      padding-left: 20px;
+      margin: 0;
+      z-index: 2;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+      .el-tabs__nav-wrap::after {
+        display: none;
       }
-      &:hover {
-        border-color: $primary-color;
-        color: $primary-color;
-        .ER-icon {
-          color: $primary-color;
-        }
-      }
-      &[draggable="true"] {
-        cursor: grabbing;
-      }
+    }
+    .el-tabs__content {
+      height: calc(100% - 40px);
     }
   }
 }
