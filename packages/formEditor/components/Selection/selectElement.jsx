@@ -223,16 +223,12 @@ export default {
       if (isShowWidthScale.value) {
         // if (!hoverEl.offsetParent) return false
         widthScaleEl.addEventListener('mousedown', (e) => {
+          e.preventDefault()
           const columnWidth = hoverEl.offsetParent.offsetWidth / 24
           state.widthScaleLock = isScale.value = true
           const oldX = e.clientX
           const oldWidth = hoverEl.offsetWidth
-          document.ondragstart = document.onselectstart = () => false
-          document.onmouseup = function () {
-            document.ondragstart = document.onselectstart = document.onmousemove = null
-            state.widthScaleLock = isScale.value = false
-          }
-          document.onmousemove = (e) => {
+          const onMouseMove = (e) => {
             if (!isInlineChildren) {
               let offset = Math.ceil((oldWidth + Math.round((e.clientX - oldX) / columnWidth) * columnWidth) / columnWidth)
               if (offset >= 24) {
@@ -252,6 +248,13 @@ export default {
               utils.syncWidthByPlatform(props.data, state.platform, false, curWidth)
             }
           }
+          const onMouseUp = () => {
+            document.removeEventListener('mouseup', onMouseUp)
+            document.removeEventListener('mousemove', onMouseMove)
+            state.widthScaleLock = isScale.value = false
+          }
+          document.addEventListener('mouseup', onMouseUp)
+          document.addEventListener('mousemove', onMouseMove)
         })
       }
     })
