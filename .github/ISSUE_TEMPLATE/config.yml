@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 提问
+    url: https://github.com/Liberty-liu/Everright-formEditor/discussions
+    about: 讨论关于Everright-formEditor的使用问题
+  - name: Ask a question
+    url: https://github.com/Liberty-liu/Everright-formEditor/discussions
+    about: Ask a question about Everright-formEditor
