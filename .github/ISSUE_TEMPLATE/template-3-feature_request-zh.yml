@@ -1,7 +1,7 @@
 name: 🚀 我想要一个新的功能
 description: 通过模板反馈bug
 title: "[Feature Request] 请输入一个标题"
-labels: ["feature: need confirm"]
+labels: ["enhancement"]
 body:
 - type: textarea
   attributes:
