@@ -1,4 +1,4 @@
-name: 🐞 Bug
+name: 🐞 反馈一个Bug
 description: 通过模板反馈bug
 title: "[BUG Report] 请输入一个标题"
 labels: ["bug"]
@@ -9,6 +9,7 @@ body:
       在此之前，请注意：
       
       - 如果不是反馈 Bug，请到 [Discussions 讨论区](https://github.com/Liberty-liu/Everright-formEditor/discussions) 发帖。
+      - 如果可以的话，请提供一个尽可能简单的 [codesandbox](https://codesandbox.io) 或 GitHub 仓库链接。
 - type: textarea
   attributes:
     label: Environment
