@@ -35,6 +35,8 @@ body:
   attributes:
     label: 设备/浏览器
     description: 在哪些设备/浏览器上能重现这个问题？
+  validations:
+    required: true
 - type: textarea
   attributes:
     label: 描述一下你的问题
