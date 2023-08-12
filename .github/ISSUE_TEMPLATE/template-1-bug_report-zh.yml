@@ -1,7 +1,7 @@
 name: 🐞 反馈一个Bug
 description: 通过模板反馈bug
 title: "[BUG Report] 请输入一个标题"
-labels: ["bug"]
+labels: ["bug: need confirm"]
 body:
 - type: markdown
   attributes:
