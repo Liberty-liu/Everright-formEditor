@@ -33,7 +33,7 @@ body:
     required: true
 - type: textarea
   attributes:
-    label: Describe your problem
+    label: Describe the Bug
   validations:
     required: true
 - type: textarea
