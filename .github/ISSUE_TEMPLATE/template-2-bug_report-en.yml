@@ -1,7 +1,7 @@
 name: 🐞 Bug Report
 description: File a bug/issue
 title: "[BUG Report] Title"
-labels: ["bug"]
+labels: ["bug: need confirm"]
 body:
 - type: textarea
   attributes:
