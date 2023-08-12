@@ -1,0 +1,20 @@
+name: 🚀 New feature proposal
+description: Suggest an idea for this project
+title: "[Feature Request] Title"
+labels: ["enhancement"]
+body:
+- type: textarea
+  attributes:
+    label: What problem does this feature solve?
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What does the proposed API look like?
+    description: Provide some code examples.
+    value: |
+        ```javascript
+          console.log('Hello World')
+        ``` 
+  validations:
+    required: true
