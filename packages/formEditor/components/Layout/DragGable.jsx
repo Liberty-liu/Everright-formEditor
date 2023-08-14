@@ -200,7 +200,7 @@ export default defineComponent({
       return (
         <dragGableWrap
           list={props.data}
-          handle=".handle"
+          handle=".ER-handle"
           class={[ns.b(), unref(isEditModel) && ns.e('edit')]}
           tag={props.tag}
           item-key="id"
