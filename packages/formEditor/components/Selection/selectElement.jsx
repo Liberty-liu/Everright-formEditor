@@ -277,7 +277,7 @@ export default {
           {...useAttrs()}
           class={[
             ns.b(),
-            unref(isEditModel) && ER?.props?.dragMode === 'full' && props.hasDrag && 'handle',
+            unref(isEditModel) && ER.props.dragMode === 'full' && props.hasDrag && 'ER-handle',
             !isField && ns.e('borderless'),
             unref(isEditModel) && ns.e('editor'),
             unref(isEditModel) && Selected.value,
@@ -288,12 +288,13 @@ export default {
           ref={elementRef} onClick={unref(isEditModel) && withModifiers(handleClick, ['stop'])}
         >
           {slots.default()}
+          {!isPc.value && (<span></span>)}
           {
-            ER?.props?.dragMode === 'icon' &&
-              unref(isEditModel) && (
-                <div class={[ns.e('topLeft')]}>
-                  {props.hasDrag && (<Icon class={['handle', ns.e('dragIcon')]} icon="Rank"></Icon>)}
-                </div>
+            ER.props.dragMode === 'icon' &&
+            unref(isEditModel) && (
+              <div class={[ns.e('topLeft')]}>
+                {props.hasDrag && (<Icon class={['ER-handle', ns.e('dragIcon')]} icon="Rank"></Icon>)}
+              </div>
             )
           }
           {
