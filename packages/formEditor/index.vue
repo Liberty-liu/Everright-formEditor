@@ -46,6 +46,11 @@ const props = defineProps(_.merge({
   isShowI18n: {
     type: Boolean,
     default: true
+  },
+  dragMode: {
+    type: String,
+    default: 'icon',
+    validator: (value) => ['full', 'icon'].includes(value)
   }
 }, defaultProps))
 const layout = {
