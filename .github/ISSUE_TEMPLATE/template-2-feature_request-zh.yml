@@ -1,0 +1,20 @@
+name: 🚀 我想要一个新的功能
+description: 描述一下你的功能需求
+title: "[Feature Request] 请输入一个标题"
+labels: ["enhancement"]
+body:
+- type: textarea
+  attributes:
+    label: 这个功能解决了什么问题？
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: 你期望的 API 是什么样子的？
+    description: 提供一些代码示例。
+    value: |
+        ```javascript
+          console.log('Hello World')
+        ``` 
+  validations:
+    required: true

@@ -120,6 +120,14 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | Signature  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: | 
 | Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| 
 
+## Contributors
+
+This repo exists thanks to all the people who contributed.<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Clapping%20Hands.png" alt="Clapping Hands" width="25" height="25" />
+
+<a href="https://github.com/Liberty-liu/Everright-formEditor/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Liberty-liu/Everright-formEditor" />
+</a>
+
 ## Sponsor
 
 ![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)
