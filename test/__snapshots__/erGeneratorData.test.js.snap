@@ -1,5 +1,40 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Generate field data: > Cellphone 1`] = `
+{
+  "columns": [
+    {
+      "icon": "cellphone",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "Cellphone",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 4,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Email 1`] = `
 {
   "columns": [
