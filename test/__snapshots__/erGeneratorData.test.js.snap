@@ -82,6 +82,44 @@ exports[`Generate field data: > Checkbox 1`] = `
 }
 `;
 
+exports[`Generate field data: > Date 1`] = `
+{
+  "columns": [
+    {
+      "icon": "calendar",
+      "id": "{{test-id-nanoid}}",
+      "key": "date_{{test-id-nanoid}}",
+      "label": "Date",
+      "options": {
+        "clearable": true,
+        "defaultValue": null,
+        "disabled": false,
+        "endTime": null,
+        "format": "YYYY-MM-DD",
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "startTime": null,
+        "type": "date",
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "date",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Email 1`] = `
 {
   "columns": [

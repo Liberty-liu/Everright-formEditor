@@ -52,4 +52,7 @@ describe('Generate field data:', () => {
   test('Time', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[6], true, 'en')).toMatchSnapshot()
   })
+  test('Date', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[7], true, 'en')).toMatchSnapshot()
+  })
 })
