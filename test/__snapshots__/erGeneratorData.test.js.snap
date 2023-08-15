@@ -396,6 +396,41 @@ exports[`Generate field data: > Textarea 1`] = `
 }
 `;
 
+exports[`Generate field data: > Time 1`] = `
+{
+  "columns": [
+    {
+      "icon": "time",
+      "id": "{{test-id-nanoid}}",
+      "key": "time_{{test-id-nanoid}}",
+      "label": "Time",
+      "options": {
+        "clearable": true,
+        "defaultValue": null,
+        "disabled": false,
+        "format": "HH:mm:ss",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "valueFormat": "HH:mm:ss",
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "time",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > URL 1`] = `
 {
   "columns": [
