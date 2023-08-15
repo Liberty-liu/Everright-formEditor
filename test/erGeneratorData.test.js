@@ -16,4 +16,7 @@ describe('Generate field data:', () => {
   test('ID number', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[4], true, 'en')).toMatchSnapshot()
   })
+  test('Input', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[0], true, 'en')).toMatchSnapshot()
+  })
 })

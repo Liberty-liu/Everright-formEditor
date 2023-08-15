@@ -105,6 +105,44 @@ exports[`Generate field data: > ID number 1`] = `
 }
 `;
 
+exports[`Generate field data: > Input 1`] = `
+{
+  "columns": [
+    {
+      "icon": "input",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "Input",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "max": null,
+        "min": null,
+        "placeholder": "Please enter",
+        "renderType": 1,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Region 1`] = `
 {
   "columns": [
