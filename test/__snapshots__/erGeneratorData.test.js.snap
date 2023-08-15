@@ -805,6 +805,62 @@ exports[`Generate field data: > Table 1`] = `
 }
 `;
 
+exports[`Generate field data: > Tabs 1`] = `
+{
+  "columns": [
+    {
+      "columns": [
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 1",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 2",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 3",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+      ],
+      "icon": "label",
+      "id": "{{test-id-nanoid}}",
+      "key": "tabs_{{test-id-nanoid}}",
+      "label": "Tabs",
+      "options": {
+        "align": "top",
+        "hidden": false,
+        "tabPosition": "top",
+        "type": "",
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "tabs",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Textarea 1`] = `
 {
   "columns": [

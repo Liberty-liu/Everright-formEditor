@@ -87,4 +87,7 @@ describe('Generate field data:', () => {
   test('Table', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[1], true, 'en')).toMatchSnapshot()
   })
+  test('Tabs', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[2], true, 'en')).toMatchSnapshot()
+  })
 })
