@@ -1,5 +1,55 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Generate field data: > Cascader 1`] = `
+{
+  "columns": [
+    {
+      "icon": "cascader",
+      "id": "{{test-id-nanoid}}",
+      "key": "cascader_{{test-id-nanoid}}",
+      "label": "Cascader",
+      "options": {
+        "checkStrictly": false,
+        "clearable": true,
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "defaultValue": "",
+        "disabled": false,
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "multiple": false,
+        "placeholder": "Please select",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "cascader",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Cellphone 1`] = `
 {
   "columns": [
