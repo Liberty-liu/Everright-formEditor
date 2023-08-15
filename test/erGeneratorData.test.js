@@ -13,4 +13,7 @@ describe('Generate field data:', () => {
   test('Region', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[3], true, 'en')).toMatchSnapshot()
   })
+  test('ID number', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[4], true, 'en')).toMatchSnapshot()
+  })
 })
