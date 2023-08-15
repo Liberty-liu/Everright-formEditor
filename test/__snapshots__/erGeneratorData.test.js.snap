@@ -549,6 +549,39 @@ exports[`Generate field data: > Select 1`] = `
 }
 `;
 
+exports[`Generate field data: > Signature 1`] = `
+{
+  "columns": [
+    {
+      "icon": "signature",
+      "id": "{{test-id-nanoid}}",
+      "key": "signature_{{test-id-nanoid}}",
+      "label": "Signature",
+      "options": {
+        "action": "",
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "penColor": "rgb(0, 0, 0)",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "signature",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Slider 1`] = `
 {
   "columns": [

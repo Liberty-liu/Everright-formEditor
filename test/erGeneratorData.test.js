@@ -78,4 +78,7 @@ describe('Generate field data:', () => {
   test('File', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[13], true, 'en')).toMatchSnapshot()
   })
+  test('Signature', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[14], true, 'en')).toMatchSnapshot()
+  })
 })
