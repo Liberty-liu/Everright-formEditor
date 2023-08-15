@@ -25,4 +25,12 @@ describe('Generate field data:', () => {
   test('Number', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[2], true, 'en')).toMatchSnapshot()
   })
+  test('Radio', () => {
+    const result = erGeneratorData(erComponentsConfig.fieldsConfig[1].list[3], true, 'en')
+    result.columns[0].options.data = utils.generateOptions(3).map((e, i) => {
+      e.label += i + 1
+      return e
+    })
+    expect(result).toMatchSnapshot()
+  })
 })

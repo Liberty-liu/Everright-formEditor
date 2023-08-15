@@ -182,6 +182,53 @@ exports[`Generate field data: > Number 1`] = `
 }
 `;
 
+exports[`Generate field data: > Radio 1`] = `
+{
+  "columns": [
+    {
+      "icon": "radio",
+      "id": "{{test-id-nanoid}}",
+      "key": "radio_{{test-id-nanoid}}",
+      "label": "Radio",
+      "options": {
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": "",
+        "disabled": false,
+        "displayStyle": "block",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "radio",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Region 1`] = `
 {
   "columns": [
