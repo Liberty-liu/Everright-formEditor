@@ -309,6 +309,56 @@ exports[`Generate field data: > Region 1`] = `
 }
 `;
 
+exports[`Generate field data: > Select 1`] = `
+{
+  "columns": [
+    {
+      "icon": "dropdown0",
+      "id": "{{test-id-nanoid}}",
+      "key": "select_{{test-id-nanoid}}",
+      "label": "Select",
+      "options": {
+        "clearable": true,
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": "",
+        "disabled": false,
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "multiple": false,
+        "placeholder": "Please select",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "select",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Textarea 1`] = `
 {
   "columns": [

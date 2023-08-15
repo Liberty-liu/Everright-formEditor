@@ -41,4 +41,12 @@ describe('Generate field data:', () => {
     })
     expect(result).toMatchSnapshot()
   })
+  test('Select', () => {
+    const result = erGeneratorData(erComponentsConfig.fieldsConfig[1].list[5], true, 'en')
+    result.columns[0].options.data = utils.generateOptions(3).map((e, i) => {
+      e.label += i + 1
+      return e
+    })
+    expect(result).toMatchSnapshot()
+  })
 })
