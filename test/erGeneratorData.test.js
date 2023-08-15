@@ -7,4 +7,7 @@ describe('Generate field data:', () => {
   test('Cellphone', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[1], true, 'en')).toMatchSnapshot()
   })
+  test('URL', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[2], true, 'en')).toMatchSnapshot()
+  })
 })

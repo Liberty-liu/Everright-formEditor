@@ -69,3 +69,38 @@ exports[`Generate field data: > Email 1`] = `
   "type": "inline",
 }
 `;
+
+exports[`Generate field data: > URL 1`] = `
+{
+  "columns": [
+    {
+      "icon": "url",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "URL",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 5,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
