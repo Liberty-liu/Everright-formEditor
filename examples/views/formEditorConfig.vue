@@ -44,6 +44,9 @@ watch(lang, (newLang) => {
     }
   })
   all.value = [...store.fields, ...store.layouts]
+  all.value.forEach(e => {
+    console.log(e)
+  })
 }, { immediate: true })
 const value0 = ref('root')
 // const value0 = ref(store.layouts[6].id)
@@ -55,7 +58,8 @@ const sector = computed(() => {
   } else {
     result = _.find(all.value, { id: value0.value })
   }
-  return result
+  console.log(result?.columns?.[0])
+  return result?.columns?.[0] || result
 })
 const handleListener = async ({ type, data }) => {
   console.log(type)
