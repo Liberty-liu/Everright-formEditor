@@ -224,6 +224,35 @@ exports[`Generate field data: > Date 1`] = `
 }
 `;
 
+exports[`Generate field data: > Divider 1`] = `
+{
+  "columns": [
+    {
+      "icon": "divider",
+      "id": "{{test-id-nanoid}}",
+      "key": "divider_{{test-id-nanoid}}",
+      "label": "Divider",
+      "options": {
+        "contentPosition": "center",
+        "defaultValue": "divider",
+        "filterable": true,
+        "labelHidden": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "divider",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Email 1`] = `
 {
   "columns": [

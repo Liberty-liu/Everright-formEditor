@@ -93,4 +93,7 @@ describe('Generate field data:', () => {
   test('Collapse', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[3], true, 'en')).toMatchSnapshot()
   })
+  test('Divider', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[4], true, 'en')).toMatchSnapshot()
+  })
 })
