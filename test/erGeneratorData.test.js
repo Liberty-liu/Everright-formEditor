@@ -81,4 +81,7 @@ describe('Generate field data:', () => {
   test('Signature', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[14], true, 'en')).toMatchSnapshot()
   })
+  test('Grid', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[0], true, 'en')).toMatchSnapshot()
+  })
 })
