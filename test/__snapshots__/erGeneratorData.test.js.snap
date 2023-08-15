@@ -429,6 +429,36 @@ exports[`Generate field data: > Select 1`] = `
 }
 `;
 
+exports[`Generate field data: > Switch 1`] = `
+{
+  "columns": [
+    {
+      "icon": "switch",
+      "id": "{{test-id-nanoid}}",
+      "key": "switch_{{test-id-nanoid}}",
+      "label": "Switch",
+      "options": {
+        "defaultValue": true,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "switch",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Textarea 1`] = `
 {
   "columns": [
