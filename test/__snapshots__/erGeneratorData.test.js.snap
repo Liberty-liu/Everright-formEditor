@@ -70,6 +70,39 @@ exports[`Generate field data: > Email 1`] = `
 }
 `;
 
+exports[`Generate field data: > Region 1`] = `
+{
+  "columns": [
+    {
+      "icon": "location",
+      "id": "{{test-id-nanoid}}",
+      "key": "region_{{test-id-nanoid}}",
+      "label": "Region",
+      "options": {
+        "defaultValue": "",
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "selectType": 3,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "region",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > URL 1`] = `
 {
   "columns": [

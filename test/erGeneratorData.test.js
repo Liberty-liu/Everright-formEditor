@@ -10,4 +10,7 @@ describe('Generate field data:', () => {
   test('URL', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[2], true, 'en')).toMatchSnapshot()
   })
+  test('Region', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[3], true, 'en')).toMatchSnapshot()
+  })
 })
