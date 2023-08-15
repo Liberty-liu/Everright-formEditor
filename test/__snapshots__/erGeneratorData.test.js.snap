@@ -35,6 +35,53 @@ exports[`Generate field data: > Cellphone 1`] = `
 }
 `;
 
+exports[`Generate field data: > Checkbox 1`] = `
+{
+  "columns": [
+    {
+      "icon": "checkbox",
+      "id": "{{test-id-nanoid}}",
+      "key": "checkbox_{{test-id-nanoid}}",
+      "label": "Checkbox",
+      "options": {
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": [],
+        "disabled": false,
+        "displayStyle": "block",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "checkbox",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Email 1`] = `
 {
   "columns": [
