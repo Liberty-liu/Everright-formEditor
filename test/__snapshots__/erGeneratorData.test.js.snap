@@ -714,6 +714,97 @@ exports[`Generate field data: > Switch 1`] = `
 }
 `;
 
+exports[`Generate field data: > Table 1`] = `
+{
+  "columns": [
+    {
+      "icon": "tableStokeP2",
+      "id": "{{test-id-nanoid}}",
+      "key": "table_{{test-id-nanoid}}",
+      "label": "Table",
+      "options": {
+        "width": 100,
+        "widthType": "%",
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+          ],
+          "id": "{{test-id-nanoid}}",
+          "key": "tr_{{test-id-nanoid}}",
+          "style": {},
+          "type": "tr",
+        },
+        {
+          "columns": [
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+          ],
+          "id": "{{test-id-nanoid}}",
+          "key": "tr_{{test-id-nanoid}}",
+          "style": {},
+          "type": "tr",
+        },
+      ],
+      "style": {
+        "width": "100%",
+      },
+      "type": "table",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Textarea 1`] = `
 {
   "columns": [

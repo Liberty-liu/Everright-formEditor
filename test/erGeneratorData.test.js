@@ -84,4 +84,7 @@ describe('Generate field data:', () => {
   test('Grid', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[0], true, 'en')).toMatchSnapshot()
   })
+  test('Table', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[1], true, 'en')).toMatchSnapshot()
+  })
 })
