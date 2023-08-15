@@ -44,9 +44,6 @@ watch(lang, (newLang) => {
     }
   })
   all.value = [...store.fields, ...store.layouts]
-  all.value.forEach(e => {
-    console.log(e)
-  })
 }, { immediate: true })
 const value0 = ref('root')
 // const value0 = ref(store.layouts[6].id)
