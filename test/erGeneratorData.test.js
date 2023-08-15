@@ -19,4 +19,7 @@ describe('Generate field data:', () => {
   test('Input', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[0], true, 'en')).toMatchSnapshot()
   })
+  test('Textarea', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[1], true, 'en')).toMatchSnapshot()
+  })
 })

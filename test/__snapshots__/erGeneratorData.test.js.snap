@@ -176,6 +176,43 @@ exports[`Generate field data: > Region 1`] = `
 }
 `;
 
+exports[`Generate field data: > Textarea 1`] = `
+{
+  "columns": [
+    {
+      "icon": "textarea",
+      "id": "{{test-id-nanoid}}",
+      "key": "textarea_{{test-id-nanoid}}",
+      "label": "Textarea",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "max": null,
+        "min": null,
+        "placeholder": "Please enter",
+        "required": false,
+        "rows": 6,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "textarea",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > URL 1`] = `
 {
   "columns": [
