@@ -75,4 +75,7 @@ describe('Generate field data:', () => {
     })
     expect(result).toMatchSnapshot()
   })
+  test('File', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[13], true, 'en')).toMatchSnapshot()
+  })
 })

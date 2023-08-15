@@ -205,6 +205,42 @@ exports[`Generate field data: > Email 1`] = `
 }
 `;
 
+exports[`Generate field data: > File 1`] = `
+{
+  "columns": [
+    {
+      "icon": "upload",
+      "id": "{{test-id-nanoid}}",
+      "key": "uploadfile_{{test-id-nanoid}}",
+      "label": "File",
+      "options": {
+        "accept": ".png,.jpg",
+        "action": "",
+        "defaultValue": [],
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "limit": 1,
+        "multiple": false,
+        "required": false,
+        "size": 5,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "uploadfile",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Html 1`] = `
 {
   "columns": [
