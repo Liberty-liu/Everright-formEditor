@@ -429,6 +429,41 @@ exports[`Generate field data: > Select 1`] = `
 }
 `;
 
+exports[`Generate field data: > Slider 1`] = `
+{
+  "columns": [
+    {
+      "icon": "slider",
+      "id": "{{test-id-nanoid}}",
+      "key": "slider_{{test-id-nanoid}}",
+      "label": "Slider",
+      "options": {
+        "defaultValue": 0,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": 100,
+        "min": 0,
+        "placeholder": "",
+        "required": false,
+        "step": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "slider",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Switch 1`] = `
 {
   "columns": [
