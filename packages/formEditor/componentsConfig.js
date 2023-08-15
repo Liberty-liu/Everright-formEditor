@@ -563,6 +563,17 @@ export const fieldsConfig = [
           labelHidden: true,
           required: false
         }
+      },
+      {
+        type: 'subform',
+        label: '子表单',
+        icon: 'subform',
+        id: '',
+        columns: [],
+        options: {
+          defaultValue: [],
+          accordion: false
+        }
       }
     ]
   }

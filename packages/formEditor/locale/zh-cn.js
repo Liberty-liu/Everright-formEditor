@@ -33,7 +33,8 @@ export default {
       divider: '分割线',
       container: '容器',
       field: '基础字段',
-      defaultField: '预设字段'
+      defaultField: '预设字段',
+      subform: '子表单'
     },
     layout: {
       tabsCol: '标签面板',

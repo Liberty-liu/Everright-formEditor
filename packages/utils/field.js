@@ -20,7 +20,7 @@ const wrapElement = (element, fn) => {
     if (!node.key) {
       node.key = `${node.type}_${node.id}`
     }
-    if (/^(grid|tabs|collapse|table|divider)$/.test(node.type)) {
+    if (/^(grid|tabs|collapse|table|divider|subform)$/.test(node.type)) {
       node.style = {
         width: '100%'
       }

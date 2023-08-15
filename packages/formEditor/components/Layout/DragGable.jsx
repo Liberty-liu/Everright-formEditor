@@ -21,6 +21,7 @@ import LayoutTabsLayout from './TabsLayout'
 import LayoutCollapseLayout from './CollapseLayout'
 import LayoutTableLayout from './TableLayout'
 import LayoutInlineLayout from './InlineLayout'
+import LayoutSubformLayout from './SubformLayout'
 import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import ControlInsertionPlugin from './ControlInsertionPlugin'
 const dragGableWrap = defineComponent({
@@ -142,6 +143,9 @@ export default defineComponent({
             break
           case 'inline':
             node = (<LayoutInlineLayout key={element.id} data={element} parent={props.data}></LayoutInlineLayout>)
+            break
+          case 'subform':
+            node = (<LayoutSubformLayout key={element.id} data={element} parent={props.data}></LayoutSubformLayout>)
             break
           default:
             let TypeComponent = ''

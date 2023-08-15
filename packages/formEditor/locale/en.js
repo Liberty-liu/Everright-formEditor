@@ -33,7 +33,8 @@ export default {
       divider: 'Divider',
       container: 'Container',
       field: 'Basic field',
-      defaultField: 'Default field'
+      defaultField: 'Default field',
+      subform: 'Sub-form'
     },
     layout: {
       tabsCol: 'Tab panel',
