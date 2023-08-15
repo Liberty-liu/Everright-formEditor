@@ -143,6 +143,45 @@ exports[`Generate field data: > Input 1`] = `
 }
 `;
 
+exports[`Generate field data: > Number 1`] = `
+{
+  "columns": [
+    {
+      "icon": "numbers",
+      "id": "{{test-id-nanoid}}",
+      "key": "number_{{test-id-nanoid}}",
+      "label": "Number",
+      "options": {
+        "controls": true,
+        "controlsPosition": true,
+        "defaultValue": null,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": null,
+        "maxlength": null,
+        "min": 0,
+        "minlength": null,
+        "precision": 0,
+        "required": false,
+        "step": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "number",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Region 1`] = `
 {
   "columns": [

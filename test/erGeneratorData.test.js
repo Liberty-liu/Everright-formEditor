@@ -22,4 +22,7 @@ describe('Generate field data:', () => {
   test('Textarea', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[1], true, 'en')).toMatchSnapshot()
   })
+  test('Number', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[2], true, 'en')).toMatchSnapshot()
+  })
 })
