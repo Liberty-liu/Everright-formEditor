@@ -132,6 +132,60 @@ exports[`Generate field data: > Checkbox 1`] = `
 }
 `;
 
+exports[`Generate field data: > Collapse 1`] = `
+{
+  "columns": [
+    {
+      "columns": [
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 1",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 2",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 3",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+      ],
+      "icon": "collapse",
+      "id": "{{test-id-nanoid}}",
+      "key": "collapse_{{test-id-nanoid}}",
+      "label": "Collapse",
+      "options": {
+        "accordion": false,
+        "defaultValue": [],
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "collapse",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Date 1`] = `
 {
   "columns": [
