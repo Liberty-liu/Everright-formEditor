@@ -314,6 +314,38 @@ exports[`Generate field data: > Radio 1`] = `
 }
 `;
 
+exports[`Generate field data: > Rate 1`] = `
+{
+  "columns": [
+    {
+      "icon": "rating",
+      "id": "{{test-id-nanoid}}",
+      "key": "rate_{{test-id-nanoid}}",
+      "label": "Rate",
+      "options": {
+        "allowHalf": false,
+        "defaultValue": 0,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": 5,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "rate",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Region 1`] = `
 {
   "columns": [
