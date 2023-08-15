@@ -64,4 +64,7 @@ describe('Generate field data:', () => {
   test('Slider', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[10], true, 'en')).toMatchSnapshot()
   })
+  test('Html', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[11], true, 'en')).toMatchSnapshot()
+  })
 })

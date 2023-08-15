@@ -155,6 +155,40 @@ exports[`Generate field data: > Email 1`] = `
 }
 `;
 
+exports[`Generate field data: > Html 1`] = `
+{
+  "columns": [
+    {
+      "icon": "html",
+      "id": "{{test-id-nanoid}}",
+      "key": "html_{{test-id-nanoid}}",
+      "label": "Html",
+      "options": {
+        "action": "",
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "required": false,
+        "size": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "html",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > ID number 1`] = `
 {
   "columns": [
