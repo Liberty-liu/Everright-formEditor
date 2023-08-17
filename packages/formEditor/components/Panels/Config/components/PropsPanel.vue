@@ -501,6 +501,7 @@ onMounted(() => {
       </template>
       <template v-else-if="checkTypeBySelected(['date'], 'defaultValue')">
         <el-date-picker
+          :class="[utils.addTestId('configPanel-defaultValue', 'id')]"
           v-bind="typeProps"
           style="width: 100%"
           v-model="target.options.defaultValue"
@@ -607,7 +608,12 @@ onMounted(() => {
       v-if="checkTypeBySelected(['date'], 'dateType')"
       :layoutType="0"
       :label="t('er.config.propsPanel.dateType')">
-      <el-select v-model="target.options.type" @change="handleChange0" style="width: 100%">
+      <el-select
+        v-model="target.options.type"
+        @change="handleChange0"
+        style="width: 100%"
+        v-bind="utils.addTestId('configPanel:dateType')"
+      >
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -787,7 +793,12 @@ onMounted(() => {
         </el-col>
       </el-row>
     </PanelsConfigComponentsCheckboxComponent>
-    <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['date'], 'dateRange')" :label="t('er.config.propsPanel.dateRange')" field="isShowWordLimit">
+    <PanelsConfigComponentsCheckboxComponent
+      v-if="checkTypeBySelected(['date'], 'dateRange')"
+      :label="t('er.config.propsPanel.dateRange')"
+      field="isShowWordLimit"
+      v-bind="utils.addTestId('configPanel:dateRange')"
+    >
       <PanelsConfigComponentsLimitComponent/>
     </PanelsConfigComponentsCheckboxComponent>
     <PanelsConfigComponentsCheckboxComponent
