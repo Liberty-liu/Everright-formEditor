@@ -461,6 +461,7 @@ onMounted(() => {
     ], 'defaultValue')">
       <template v-if="checkTypeBySelected(['cascader', 'region'], 'defaultValue')">
         <el-cascader
+          :class="[utils.addTestId('configPanel-defaultValue', 'id')]"
           v-model="target.options.defaultValue"
           v-bind="typeProps"
           clearable
@@ -706,7 +707,9 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent
       v-if="checkTypeBySelected(['region'], 'regionType')"
       :label="t('er.config.propsPanel.region.label')"
-      :layoutType="0">
+      :layoutType="0"
+      v-bind="utils.addTestId('configPanel:regionType')"
+    >
       <el-select v-model="target.options.selectType" @change="handleChange1">
         <el-option
           v-for="item in options8"
@@ -912,7 +915,12 @@ onMounted(() => {
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'], 'multiple')" :label="t('er.config.propsPanel.multiple')" @change="handleMultipleChange" field="multiple">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'], 'filterable')" :label="t('er.config.propsPanel.filterable')" field="filterable">
+      <PanelsConfigComponentsCheckboxComponent
+        v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'], 'filterable')"
+        :label="t('er.config.propsPanel.filterable')"
+        field="filterable"
+        v-bind="utils.addTestId('configPanel:filterable')"
+      >
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'], 'controls')" :label="t('er.config.propsPanel.numberControls.label')" field="controls">
         <PanelsConfigComponentsTypeComponent
