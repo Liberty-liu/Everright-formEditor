@@ -473,6 +473,7 @@ onMounted(() => {
           type="textarea"
           rows="4"
           v-model="target.options.defaultValue"
+          v-bind="utils.addTestId('configPanel:defaultValue')"
         />
       </template>
       <template v-else-if="checkTypeBySelected(['input', 'divider'], 'defaultValue')">
@@ -566,6 +567,7 @@ onMounted(() => {
         type="textarea"
         v-model="target.options.placeholder"
         clearable
+        v-bind="utils.addTestId('configPanel:placeholder')"
       />
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
@@ -625,7 +627,12 @@ onMounted(() => {
       :layoutType="0"
       v-if="checkTypeBySelected(['textarea'], 'textareaHeight')"
       :label="t('er.config.propsPanel.textareaHeight')">
-      <el-slider v-model="target.options.rows" :max="10" show-input />
+      <el-slider
+        v-model="target.options.rows"
+        :max="10"
+        show-input
+        v-bind="utils.addTestId('configPanel:textareaHeight')"
+      />
     </PanelsConfigComponentsTypeComponent>
     <div v-if="checkTypeBySelected(['uploadfile'], 'uploadfile')">
       <el-form-item :label="t('er.config.propsPanel.uploadfile.fileType')">
@@ -743,7 +750,10 @@ onMounted(() => {
     />
     <PanelsConfigComponentsCheckboxComponent
       v-if="(checkTypeBySelected(['input'], 'wordLimit') && target.options.renderType === 1) || checkTypeBySelected(['textarea', 'number'], 'wordLimit')"
-      :label="t('er.config.propsPanel.wordLimit')" field="isShowWordLimit">
+      :label="t('er.config.propsPanel.wordLimit')"
+      field="isShowWordLimit"
+      v-bind="utils.addTestId('configPanel:wordLimit')"
+    >
       <el-row align="middle" :gutter="8">
         <el-col :span="11">
           <el-form-item :label="t('er.public.min')">
