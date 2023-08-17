@@ -532,7 +532,14 @@ onMounted(() => {
       :label="t('er.public.Data')"
       :layoutType="0"
       v-if="checkTypeBySelected(['select', 'radio', 'checkbox', 'cascader'], 'dataEntry')">
-      <el-button style="width: 100%;" type="primary" @click="dialogVisible = true">{{t('er.public.dataEntry')}}</el-button>
+      <el-button
+        style="width: 100%;"
+        type="primary"
+        @click="dialogVisible = true"
+        v-bind="utils.addTestId('configPanel:dataEntry')"
+      >
+        {{t('er.public.dataEntry')}}
+      </el-button>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
       :label="t('er.config.propsPanel.star')"
@@ -614,6 +621,7 @@ onMounted(() => {
       :val="target.options.displayStyle"
       :nodes="options7"
       :layoutType="2"
+      v-bind="utils.addTestId('configPanel:displayStyle')"
     />
     <PanelsConfigComponentsTypeComponent
       v-if="checkTypeBySelected(['divider'], 'contentPosition')"
