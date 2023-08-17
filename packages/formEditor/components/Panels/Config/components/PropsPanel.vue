@@ -654,14 +654,20 @@ onMounted(() => {
       />
     </PanelsConfigComponentsTypeComponent>
     <div v-if="checkTypeBySelected(['uploadfile'], 'uploadfile')">
-      <el-form-item :label="t('er.config.propsPanel.uploadfile.fileType')">
+      <el-form-item
+        :label="t('er.config.propsPanel.uploadfile.fileType')"
+        v-bind="utils.addTestId('configPanel:accept')"
+      >
         <el-input
           v-model="target.options.accept"
           placeholder="输入只接受的文件类型后缀。例如 .png,.jpg" />
       </el-form-item>
       <el-row :gutter="8">
         <el-col :span="12">
-          <el-form-item :label="t('er.config.propsPanel.uploadfile.uploadLimit')">
+          <el-form-item
+            :label="t('er.config.propsPanel.uploadfile.uploadLimit')"
+            v-bind="utils.addTestId('configPanel:uploadLimit')"
+          >
             <el-input-number
               style="width: 100%;"
               :min="1"
@@ -670,7 +676,10 @@ onMounted(() => {
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item :label="`${t('er.config.propsPanel.uploadfile.fileSize')}(MB)`">
+          <el-form-item
+            :label="`${t('er.config.propsPanel.uploadfile.fileSize')}(MB)`"
+            v-bind="utils.addTestId('configPanel:fileSize')"
+          >
             <el-input-number
               style="width: 100%;"
               v-model="target.options.size"
