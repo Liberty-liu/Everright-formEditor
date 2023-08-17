@@ -510,7 +510,7 @@ onMounted(() => {
       </template>
       <template v-else-if="checkTypeBySelected(['rate'], 'defaultValue')">
         <el-rate
-          v-bind="typeProps"
+          v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
           v-model="target.options.defaultValue"
         />
         <el-button v-if="target.options.defaultValue > 0" link @click="target.options.defaultValue = 0">{{t('er.public.clear')}}</el-button>
@@ -547,6 +547,7 @@ onMounted(() => {
       :layoutType="0"
       v-if="checkTypeBySelected(['rate'], 'star')">
       <el-input-number
+        v-bind="utils.addTestId('configPanel:star')"
         :min="1"
         controls-position="right"
         v-model="target.options.max" />
@@ -991,7 +992,12 @@ onMounted(() => {
         <!--        </el-col>-->
         <!--      </el-row>-->
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['rate'], 'allowHalf')" :label="t('er.config.propsPanel.allowHalf')" field="allowHalf">
+      <PanelsConfigComponentsCheckboxComponent
+        v-if="checkTypeBySelected(['rate'], 'allowHalf')"
+        :label="t('er.config.propsPanel.allowHalf')"
+        field="allowHalf"
+        v-bind="utils.addTestId('configPanel:allowHalf')"
+      >
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'], 'alpha')" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
       </PanelsConfigComponentsCheckboxComponent>
