@@ -583,7 +583,9 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent
       :layoutType="0"
       v-if="checkTypeBySelected(['signature'], 'brushColor')"
-      :label="t('er.config.propsPanel.brushColor')">
+      :label="t('er.config.propsPanel.brushColor')"
+      v-bind="utils.addTestId('configPanel:brushColor')"
+    >
       <el-color-picker
         color-format="rgb"
         v-model="target.options.penColor"
