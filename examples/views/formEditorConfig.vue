@@ -55,8 +55,7 @@ const sector = computed(() => {
   } else {
     result = _.find(all.value, { id: value0.value })
   }
-  console.log(result?.columns?.[0])
-  return result?.columns?.[0] || result
+  return result
 })
 const handleListener = async ({ type, data }) => {
   console.log(type)
