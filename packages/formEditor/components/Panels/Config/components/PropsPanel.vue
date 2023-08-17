@@ -938,7 +938,13 @@ onMounted(() => {
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['input'], 'showPassword') && target.options.renderType === 1" :label="t('er.config.propsPanel.showPassword')" field="showPassword">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'], 'multiple')" :label="t('er.config.propsPanel.multiple')" @change="handleMultipleChange" field="multiple">
+      <PanelsConfigComponentsCheckboxComponent
+        v-if="checkTypeBySelected(['select', 'cascader', 'uploadfile'], 'multiple')"
+        :label="t('er.config.propsPanel.multiple')"
+        @change="handleMultipleChange"
+        field="multiple"
+        v-bind="utils.addTestId('configPanel:multiple')"
+      >
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent
         v-if="checkTypeBySelected(['select', 'cascader', 'transfer', 'region'], 'filterable')"
