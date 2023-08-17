@@ -517,7 +517,7 @@ onMounted(() => {
       </template>
       <template v-else-if="checkTypeBySelected(['switch'], 'defaultValue')">
         <el-switch
-          v-bind="typeProps"
+          v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
           v-model="target.options.defaultValue"
         />
       </template>
