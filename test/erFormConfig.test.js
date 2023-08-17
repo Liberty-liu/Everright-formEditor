@@ -114,6 +114,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Email:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -134,6 +135,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Cellphone:pc', async () => {
     value0.value = store.fields[1].id
@@ -153,6 +155,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Cellphone:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -173,6 +176,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('URL:pc', async () => {
     value0.value = store.fields[2].id
@@ -192,6 +196,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('URL:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -212,6 +217,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Region:pc', async () => {
     value0.value = store.fields[3].id
@@ -232,6 +238,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Region:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -253,6 +260,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('ID number:pc', async () => {
     value0.value = store.fields[4].id
@@ -272,6 +280,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('ID number:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -292,6 +301,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Input:pc', async () => {
     value0.value = store.fields[5].id
@@ -311,6 +321,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Input:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -331,6 +342,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Textarea:pc', async () => {
     value0.value = store.fields[6].id
@@ -350,6 +362,7 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
   test('Textarea:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -370,5 +383,47 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
+  })
+  test('Number:pc', async () => {
+    value0.value = store.fields[7].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Number'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(true)
+  })
+  test('Number:mobile', async () => {
+    wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
+    value0.value = store.fields[7].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Number'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
   })
 })

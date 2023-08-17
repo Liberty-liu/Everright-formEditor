@@ -14,6 +14,7 @@ import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
 import PanelsConfigComponentsDataComponent2 from './DataComponent2.jsx'
 import PanelsConfigComponentsDataComponent3 from './DataComponent3.vue'
 import Icon from '@ER/icon'
+import _ from 'lodash-es'
 export default {
   name: 'ConfigPropsPanel',
   inheritAttrs: false,
@@ -486,7 +487,7 @@ onMounted(() => {
       <template v-else-if="checkTypeBySelected(['number'], 'defaultValue')">
         <el-input-number
           style="width: 100%;"
-          v-bind="typeProps"
+          v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
           v-model="target.options.defaultValue"
         />
       </template>
@@ -938,7 +939,12 @@ onMounted(() => {
         v-bind="utils.addTestId('configPanel:filterable')"
       >
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="isPc && checkTypeBySelected(['number'], 'controls')" :label="t('er.config.propsPanel.numberControls.label')" field="controls">
+      <PanelsConfigComponentsCheckboxComponent
+        v-if="isPc && checkTypeBySelected(['number'], 'controls')"
+        :label="t('er.config.propsPanel.numberControls.label')"
+        field="controls"
+        v-bind="utils.addTestId('configPanel:controls')"
+      >
         <PanelsConfigComponentsTypeComponent
           @listener="handleTypeListener"
           property="controlsPosition"
