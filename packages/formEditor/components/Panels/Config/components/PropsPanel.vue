@@ -591,7 +591,10 @@ onMounted(() => {
       v-if="checkTypeBySelected(['time', 'date'], 'format')"
       :layoutType="0"
       :label="t('er.config.propsPanel.format')">
-      <el-select v-model="target.options.format" style="width: 100%">
+      <el-select
+        v-model="target.options.format"
+        style="width: 100%"
+        v-bind="utils.addTestId('configPanel:format')">
         <el-option
           v-for="item in options0"
           :key="item.value"
