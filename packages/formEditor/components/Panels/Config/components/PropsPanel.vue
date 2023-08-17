@@ -1003,8 +1003,13 @@ onMounted(() => {
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['color'], 'alpha')" :label="t('er.config.propsPanel.alpha')" field="showAlpha">
       </PanelsConfigComponentsCheckboxComponent>
-      <PanelsConfigComponentsCheckboxComponent v-if="checkTypeBySelected(['cascader'], 'anyNode')" :label="t('er.config.propsPanel.anyNode')" field="checkStrictly" @change="checkLogicData">
-      </PanelsConfigComponentsCheckboxComponent>
+      <PanelsConfigComponentsCheckboxComponent
+        v-if="checkTypeBySelected(['cascader'], 'anyNode')"
+        :label="t('er.config.propsPanel.anyNode')"
+        field="checkStrictly"
+        @change="checkLogicData"
+        v-bind="utils.addTestId('configPanel:anyNode')"
+      />
       <PanelsConfigComponentsCheckboxComponent
         v-if="checkTypeBySelected(['input', 'select', 'time', 'date', 'cascader', 'region'], 'clearable')"
         :label="t('er.config.propsPanel.clearable')"
