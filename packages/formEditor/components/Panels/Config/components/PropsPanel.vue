@@ -657,14 +657,20 @@ onMounted(() => {
     </div>
     <el-row v-if="checkTypeBySelected(['input'], 'affix') && target.options.renderType === 1 && isPc" :gutter="8">
       <el-col :span="12">
-        <el-form-item :label="t('er.config.propsPanel.prepend')">
+        <el-form-item
+          :label="t('er.config.propsPanel.prepend')"
+          v-bind="utils.addTestId('configPanel:prepend')"
+        >
           <el-input
             style="width: 100%;"
             v-model="target.options.prepend" />
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item :label="t('er.config.propsPanel.append')">
+        <el-form-item
+          :label="t('er.config.propsPanel.append')"
+          v-bind="utils.addTestId('configPanel:append')"
+        >
           <el-input
             style="width: 100%;"
             v-model="target.options.append"
