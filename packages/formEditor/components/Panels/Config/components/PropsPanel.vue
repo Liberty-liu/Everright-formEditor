@@ -523,7 +523,7 @@ onMounted(() => {
       </template>
       <template v-else-if="checkTypeBySelected(['slider'], 'defaultValue')">
         <el-slider
-          v-bind="typeProps"
+          v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
           v-model="target.options.defaultValue"
           style="padding: 0 14px;"
         />
@@ -706,7 +706,10 @@ onMounted(() => {
     </el-row>
     <el-row :gutter="8" v-if="checkTypeBySelected(['number', 'slider'], 'step')">
       <el-col :span="type !== 'slider' ? 12 : 24">
-        <el-form-item :label="t('er.config.propsPanel.step')">
+        <el-form-item
+          :label="t('er.config.propsPanel.step')"
+          v-bind="utils.addTestId('configPanel:step')"
+        >
           <el-input-number
             :min="0"
             style="width: 100%;"
@@ -714,14 +717,21 @@ onMounted(() => {
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item v-if="type !== 'slider'" :label="t('er.config.propsPanel.precision')">
+        <el-form-item
+          v-if="type !== 'slider'"
+          :label="t('er.config.propsPanel.precision')"
+          v-bind="utils.addTestId('configPanel:precision')"
+        >
           <el-input-number
             :min="0"
             controls-position="right" v-model="target.options.precision" />
         </el-form-item>
       </el-col>
     </el-row>
-    <el-row :gutter="8" v-if="checkTypeBySelected(['slider'], 'sliderCount')">
+    <el-row
+      :gutter="8"
+      v-if="checkTypeBySelected(['slider'], 'sliderCount')"
+      v-bind="utils.addTestId('configPanel:sliderCount')">
       <el-col :span="12">
         <el-form-item :label="t('er.public.max')">
           <el-input-number
@@ -870,14 +880,6 @@ onMounted(() => {
         />
       </template>
     </PanelsConfigComponentsCollapseComponent>
-    <!--  <PanelsConfigComponentsAllsidesComponent-->
-    <!--    field="margin"-->
-    <!--    v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'])"-->
-    <!--  />-->
-    <!--  <PanelsConfigComponentsAllsidesComponent-->
-    <!--    field="padding"-->
-    <!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'])"-->
-    <!--  />-->
     <PanelsConfigComponentsCollapseComponent
       v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'], 'background')"
       :label="t('er.public.background')"
