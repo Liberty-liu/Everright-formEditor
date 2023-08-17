@@ -838,10 +838,8 @@ onMounted(() => {
       :fontSize="40"
       :val="target.options.justify"
       :nodes="options6"
+      v-bind="utils.addTestId('configPanel:justify')"
     />
-    <!--  <PanelsConfigComponentsGridLayoutComponent-->
-    <!--    v-if="isSelectGrid"-->
-    <!--  />-->
     <PanelsConfigComponentsDataComponent3
       v-if="checkTypeBySelected(['collapse', 'tabs'], 'Data3')"
     />
@@ -872,7 +870,9 @@ onMounted(() => {
       v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'], 'margin')"
       :label="t('er.public.margin')"
       operationKey="style"
-      field="isShowMargin">
+      field="isShowMargin"
+      v-bind="utils.addTestId('configPanel:margin')"
+    >
       <template v-slot:content>
         <PanelsConfigComponentsAllsidesComponent
           field="margin"
@@ -884,7 +884,9 @@ onMounted(() => {
       v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td'], 'padding')"
       :label="t('er.public.padding')"
       operationKey="style"
-      field="isShowPadding">
+      field="isShowPadding"
+      v-bind="utils.addTestId('configPanel:padding')"
+    >
       <template v-slot:content>
         <PanelsConfigComponentsAllsidesComponent
           field="padding"
@@ -895,7 +897,9 @@ onMounted(() => {
       v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'td', 'table'], 'background')"
       :label="t('er.public.background')"
       operationKey="style"
-      field="isShowBackground">
+      field="isShowBackground"
+      v-bind="utils.addTestId('configPanel:background')"
+    >
       <template v-slot:subSelect>
         <div :class="[ns.e('collapseSubSelect')]">
           <el-dropdown
@@ -926,7 +930,9 @@ onMounted(() => {
       v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'], 'borderLine')"
       :label="t('er.config.borderComponent.borderLine')"
       operationKey="style"
-      field="isShowBorder">
+      field="isShowBorder"
+      v-bind="utils.addTestId('configPanel:borderLine')"
+    >
       <template v-if="!checkTypeBySelected(['table', 'borderLine'])" v-slot:subSelect>
         <div :class="[ns.e('collapseSubSelect')]">
           <el-dropdown

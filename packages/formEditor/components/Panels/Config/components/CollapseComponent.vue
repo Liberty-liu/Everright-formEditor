@@ -4,7 +4,6 @@ import hooks from '@ER/hooks'
 import Icon from '@ER/icon'
 export default {
   name: 'ConfigCollapseComponent',
-  inheritAttrs: false,
   customOptions: {}
 }
 </script>

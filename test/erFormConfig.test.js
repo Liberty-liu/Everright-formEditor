@@ -131,6 +131,11 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Email:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -168,7 +173,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Cellphone:pc', async () => {
     value0.value = store.fields[1].id
@@ -205,7 +216,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Cellphone:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -243,7 +260,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('URL:pc', async () => {
     value0.value = store.fields[2].id
@@ -280,7 +303,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('URL:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -318,7 +347,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Region:pc', async () => {
     value0.value = store.fields[3].id
@@ -355,7 +390,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Region:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -393,7 +434,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('ID number:pc', async () => {
     value0.value = store.fields[4].id
@@ -430,7 +477,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('ID number:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -468,7 +521,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Input:pc', async () => {
     value0.value = store.fields[5].id
@@ -505,7 +564,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Input:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -543,7 +608,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Textarea:pc', async () => {
     value0.value = store.fields[6].id
@@ -580,7 +651,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Textarea:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -618,7 +695,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Number:pc', async () => {
     value0.value = store.fields[7].id
@@ -655,7 +738,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Number:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -693,7 +782,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Radio:pc', async () => {
     value0.value = store.fields[8].id
@@ -730,7 +825,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Radio:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -768,7 +869,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Checkbox:pc', async () => {
     value0.value = store.fields[9].id
@@ -805,7 +912,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Checkbox:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -843,7 +956,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Select:pc', async () => {
     value0.value = store.fields[10].id
@@ -880,7 +999,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Select:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -918,7 +1043,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Time:pc', async () => {
     value0.value = store.fields[11].id
@@ -955,7 +1086,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Time:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -993,7 +1130,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Date:pc', async () => {
     value0.value = store.fields[12].id
@@ -1030,7 +1173,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Date:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1068,7 +1217,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Rate:pc', async () => {
     value0.value = store.fields[13].id
@@ -1105,7 +1260,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Rate:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1143,7 +1304,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Switch:pc', async () => {
     value0.value = store.fields[14].id
@@ -1180,7 +1347,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Switch:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1218,7 +1391,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Slider:pc', async () => {
     value0.value = store.fields[15].id
@@ -1255,7 +1434,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Slider:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1293,7 +1478,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Html:pc', async () => {
     value0.value = store.fields[16].id
@@ -1330,7 +1521,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Html:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1368,7 +1565,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Cascader:pc', async () => {
     value0.value = store.fields[17].id
@@ -1405,7 +1608,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Cascader:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1443,7 +1652,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('File:pc', async () => {
     value0.value = store.fields[18].id
@@ -1480,7 +1695,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(true)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('File:mobile', async () => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
@@ -1518,7 +1739,13 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(true)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(true)
+
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
   })
   test('Signature:pc', async () => {
     value0.value = store.fields[19].id
@@ -1594,5 +1821,90 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(true)
+  })
+  test('Grid:pc', async () => {
+    value0.value = store.layouts[0].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Grid'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:displayStyle')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:multiple')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:format')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateRange')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:star')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:allowHalf')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:sliderCount')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:step')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:precision')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:filterable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:anyNode')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(true)
+  })
+  test('Grid:mobile', async () => {
+    wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
+    value0.value = store.layouts[0].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Grid'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:displayStyle')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:multiple')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:format')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateRange')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:star')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:allowHalf')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:sliderCount')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:step')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:precision')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:filterable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:anyNode')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(true)
   })
 })
