@@ -842,6 +842,7 @@ onMounted(() => {
     />
     <PanelsConfigComponentsDataComponent3
       v-if="checkTypeBySelected(['collapse', 'tabs'], 'Data3')"
+      v-bind="utils.addTestId('configPanel:dataEntry3')"
     />
     <PanelsConfigComponentsTypeComponent
       v-if="isSelectTabs"
@@ -852,6 +853,7 @@ onMounted(() => {
       :fontSize="70"
       :val="target.options.type"
       :nodes="options4"
+      v-bind="utils.addTestId('configPanel:tabsType')"
     />
     <PanelsConfigComponentsTypeComponent
       v-if="isSelectTabs"
@@ -862,6 +864,7 @@ onMounted(() => {
       :fontSize="66"
       :val="target.options.tabPosition"
       :nodes="options5"
+      v-bind="utils.addTestId('configPanel:tabPosition')"
     />
     <!--  <PanelsConfigComponentsTabsLayout-->
     <!--    v-if="isSelectTabs"-->
