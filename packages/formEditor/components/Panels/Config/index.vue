@@ -153,7 +153,11 @@ watch(target, () => {
 </script>
 <template>
   <el-aside :class="[ns.b()]" :width="ER.props.configPanelWidth">
-    <el-breadcrumb :class="[ns.e('breadcrumb')]" separator-icon="ArrowRight">
+    <el-breadcrumb
+      :class="[ns.e('breadcrumb')]"
+      separator-icon="ArrowRight"
+      v-bind="utils.addTestId('configPanel:breadcrumb')"
+    >
       <el-breadcrumb-item @click="(index !== bars.length - 1 && item.node.value !== 'placeholder') && handleBreadcrumbClick(item.node)" v-for="(item, index) in bars" :key="index">
         {{item.node.value === 'placeholder' ? '...' : item.label}}
       </el-breadcrumb-item>

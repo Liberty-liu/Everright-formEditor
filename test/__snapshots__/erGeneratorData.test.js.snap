@@ -1,0 +1,1052 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Generate field data: > Cascader 1`] = `
+{
+  "columns": [
+    {
+      "icon": "cascader",
+      "id": "{{test-id-nanoid}}",
+      "key": "cascader_{{test-id-nanoid}}",
+      "label": "Cascader",
+      "options": {
+        "checkStrictly": false,
+        "clearable": true,
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "defaultValue": "",
+        "disabled": false,
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "multiple": false,
+        "placeholder": "Please select",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "cascader",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Cellphone 1`] = `
+{
+  "columns": [
+    {
+      "icon": "cellphone",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "Cellphone",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 4,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Checkbox 1`] = `
+{
+  "columns": [
+    {
+      "icon": "checkbox",
+      "id": "{{test-id-nanoid}}",
+      "key": "checkbox_{{test-id-nanoid}}",
+      "label": "Checkbox",
+      "options": {
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": [],
+        "disabled": false,
+        "displayStyle": "block",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "checkbox",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Collapse 1`] = `
+{
+  "columns": [
+    {
+      "columns": [
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 1",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 2",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "collapseCol_{{test-id-nanoid}}",
+          "label": "Tab 3",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "collapseCol",
+        },
+      ],
+      "icon": "collapse",
+      "id": "{{test-id-nanoid}}",
+      "key": "collapse_{{test-id-nanoid}}",
+      "label": "Collapse",
+      "options": {
+        "accordion": false,
+        "defaultValue": [],
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "collapse",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Date 1`] = `
+{
+  "columns": [
+    {
+      "icon": "calendar",
+      "id": "{{test-id-nanoid}}",
+      "key": "date_{{test-id-nanoid}}",
+      "label": "Date",
+      "options": {
+        "clearable": true,
+        "defaultValue": null,
+        "disabled": false,
+        "endTime": null,
+        "format": "YYYY-MM-DD",
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "startTime": null,
+        "type": "date",
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "date",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Divider 1`] = `
+{
+  "columns": [
+    {
+      "icon": "divider",
+      "id": "{{test-id-nanoid}}",
+      "key": "divider_{{test-id-nanoid}}",
+      "label": "Divider",
+      "options": {
+        "contentPosition": "center",
+        "defaultValue": "divider",
+        "filterable": true,
+        "labelHidden": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "divider",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Email 1`] = `
+{
+  "columns": [
+    {
+      "icon": "email",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "Email",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 2,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > File 1`] = `
+{
+  "columns": [
+    {
+      "icon": "upload",
+      "id": "{{test-id-nanoid}}",
+      "key": "uploadfile_{{test-id-nanoid}}",
+      "label": "File",
+      "options": {
+        "accept": ".png,.jpg",
+        "action": "",
+        "defaultValue": [],
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "limit": 1,
+        "multiple": false,
+        "required": false,
+        "size": 5,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "uploadfile",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Grid 1`] = `
+{
+  "columns": [
+    {
+      "columns": [
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "col_{{test-id-nanoid}}",
+          "list": [],
+          "options": {
+            "offset": 0,
+            "pull": 0,
+            "push": 0,
+            "span": 6,
+          },
+          "style": {},
+          "type": "col",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "col_{{test-id-nanoid}}",
+          "list": [],
+          "options": {
+            "offset": 0,
+            "pull": 0,
+            "push": 0,
+            "span": 6,
+          },
+          "style": {},
+          "type": "col",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "col_{{test-id-nanoid}}",
+          "list": [],
+          "options": {
+            "offset": 0,
+            "pull": 0,
+            "push": 0,
+            "span": 6,
+          },
+          "style": {},
+          "type": "col",
+        },
+      ],
+      "icon": "grid",
+      "id": "{{test-id-nanoid}}",
+      "key": "grid_{{test-id-nanoid}}",
+      "label": "Grid",
+      "options": {
+        "align": "top",
+        "gutter": 0,
+        "justify": "space-around",
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "grid",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Html 1`] = `
+{
+  "columns": [
+    {
+      "icon": "html",
+      "id": "{{test-id-nanoid}}",
+      "key": "html_{{test-id-nanoid}}",
+      "label": "Html",
+      "options": {
+        "action": "",
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "required": false,
+        "size": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "html",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > ID number 1`] = `
+{
+  "columns": [
+    {
+      "icon": "ID",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "ID number",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 3,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Input 1`] = `
+{
+  "columns": [
+    {
+      "icon": "input",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "Input",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "max": null,
+        "min": null,
+        "placeholder": "Please enter",
+        "renderType": 1,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Number 1`] = `
+{
+  "columns": [
+    {
+      "icon": "numbers",
+      "id": "{{test-id-nanoid}}",
+      "key": "number_{{test-id-nanoid}}",
+      "label": "Number",
+      "options": {
+        "controls": true,
+        "controlsPosition": true,
+        "defaultValue": null,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": null,
+        "maxlength": null,
+        "min": 0,
+        "minlength": null,
+        "precision": 0,
+        "required": false,
+        "step": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "number",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Radio 1`] = `
+{
+  "columns": [
+    {
+      "icon": "radio",
+      "id": "{{test-id-nanoid}}",
+      "key": "radio_{{test-id-nanoid}}",
+      "label": "Radio",
+      "options": {
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": "",
+        "disabled": false,
+        "displayStyle": "block",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "radio",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Rate 1`] = `
+{
+  "columns": [
+    {
+      "icon": "rating",
+      "id": "{{test-id-nanoid}}",
+      "key": "rate_{{test-id-nanoid}}",
+      "label": "Rate",
+      "options": {
+        "allowHalf": false,
+        "defaultValue": 0,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": 5,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "rate",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Region 1`] = `
+{
+  "columns": [
+    {
+      "icon": "location",
+      "id": "{{test-id-nanoid}}",
+      "key": "region_{{test-id-nanoid}}",
+      "label": "Region",
+      "options": {
+        "defaultValue": "",
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "selectType": 3,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "region",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Select 1`] = `
+{
+  "columns": [
+    {
+      "icon": "dropdown0",
+      "id": "{{test-id-nanoid}}",
+      "key": "select_{{test-id-nanoid}}",
+      "label": "Select",
+      "options": {
+        "clearable": true,
+        "data": [
+          {
+            "label": "Option1",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option2",
+            "value": "{{test-id-nanoid}}",
+          },
+          {
+            "label": "Option3",
+            "value": "{{test-id-nanoid}}",
+          },
+        ],
+        "dataKey": "",
+        "defaultValue": "",
+        "disabled": false,
+        "filterable": true,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "multiple": false,
+        "placeholder": "Please select",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "select",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Signature 1`] = `
+{
+  "columns": [
+    {
+      "icon": "signature",
+      "id": "{{test-id-nanoid}}",
+      "key": "signature_{{test-id-nanoid}}",
+      "label": "Signature",
+      "options": {
+        "action": "",
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "penColor": "rgb(0, 0, 0)",
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "signature",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Slider 1`] = `
+{
+  "columns": [
+    {
+      "icon": "slider",
+      "id": "{{test-id-nanoid}}",
+      "key": "slider_{{test-id-nanoid}}",
+      "label": "Slider",
+      "options": {
+        "defaultValue": 0,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "max": 100,
+        "min": 0,
+        "placeholder": "",
+        "required": false,
+        "step": 1,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "slider",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Switch 1`] = `
+{
+  "columns": [
+    {
+      "icon": "switch",
+      "id": "{{test-id-nanoid}}",
+      "key": "switch_{{test-id-nanoid}}",
+      "label": "Switch",
+      "options": {
+        "defaultValue": true,
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "switch",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Table 1`] = `
+{
+  "columns": [
+    {
+      "icon": "tableStokeP2",
+      "id": "{{test-id-nanoid}}",
+      "key": "table_{{test-id-nanoid}}",
+      "label": "Table",
+      "options": {
+        "width": 100,
+        "widthType": "%",
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+          ],
+          "id": "{{test-id-nanoid}}",
+          "key": "tr_{{test-id-nanoid}}",
+          "style": {},
+          "type": "tr",
+        },
+        {
+          "columns": [
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+            {
+              "id": "{{test-id-nanoid}}",
+              "key": "td_{{test-id-nanoid}}",
+              "list": [],
+              "options": {
+                "colspan": 1,
+                "isMerged": false,
+                "rowspan": 1,
+              },
+              "style": {},
+              "type": "td",
+            },
+          ],
+          "id": "{{test-id-nanoid}}",
+          "key": "tr_{{test-id-nanoid}}",
+          "style": {},
+          "type": "tr",
+        },
+      ],
+      "style": {
+        "width": "100%",
+      },
+      "type": "table",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Tabs 1`] = `
+{
+  "columns": [
+    {
+      "columns": [
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 1",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 2",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+        {
+          "id": "{{test-id-nanoid}}",
+          "key": "tabsCol_{{test-id-nanoid}}",
+          "label": "Tab 3",
+          "list": [],
+          "options": {},
+          "style": {},
+          "type": "tabsCol",
+        },
+      ],
+      "icon": "label",
+      "id": "{{test-id-nanoid}}",
+      "key": "tabs_{{test-id-nanoid}}",
+      "label": "Tabs",
+      "options": {
+        "align": "top",
+        "hidden": false,
+        "tabPosition": "top",
+        "type": "",
+      },
+      "style": {
+        "width": "100%",
+      },
+      "type": "tabs",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Textarea 1`] = `
+{
+  "columns": [
+    {
+      "icon": "textarea",
+      "id": "{{test-id-nanoid}}",
+      "key": "textarea_{{test-id-nanoid}}",
+      "label": "Textarea",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "isShowWordLimit": false,
+        "labelWidth": 100,
+        "max": null,
+        "min": null,
+        "placeholder": "Please enter",
+        "required": false,
+        "rows": 6,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "textarea",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > Time 1`] = `
+{
+  "columns": [
+    {
+      "icon": "time",
+      "id": "{{test-id-nanoid}}",
+      "key": "time_{{test-id-nanoid}}",
+      "label": "Time",
+      "options": {
+        "clearable": true,
+        "defaultValue": null,
+        "disabled": false,
+        "format": "HH:mm:ss",
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please select",
+        "required": false,
+        "valueFormat": "HH:mm:ss",
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "time",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
+exports[`Generate field data: > URL 1`] = `
+{
+  "columns": [
+    {
+      "icon": "url",
+      "id": "{{test-id-nanoid}}",
+      "key": "input_{{test-id-nanoid}}",
+      "label": "URL",
+      "options": {
+        "clearable": true,
+        "defaultValue": "",
+        "disabled": false,
+        "isShowLabel": true,
+        "labelWidth": 100,
+        "placeholder": "Please enter",
+        "renderType": 5,
+        "required": false,
+        "showPassword": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "input",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
