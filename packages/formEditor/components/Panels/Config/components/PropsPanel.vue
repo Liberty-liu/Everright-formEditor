@@ -961,10 +961,11 @@ onMounted(() => {
         </div>
       </template>
     </PanelsConfigComponentsCollapseComponent>
-    <!--  <PanelsConfigComponentsBorderComponent-->
-    <!--    v-if="checkTypeBySelected(['grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol', 'table'])"-->
-    <!--  />-->
-    <PanelsConfigComponentsCheckboxComponent v-if="isSelectCollapse" :label="t('er.config.propsPanel.accordion')" field="accordion">
+    <PanelsConfigComponentsCheckboxComponent
+      v-if="isSelectCollapse" :label="t('er.config.propsPanel.accordion')"
+      field="accordion"
+      v-bind="utils.addTestId('configPanel:accordion')"
+    >
     </PanelsConfigComponentsCheckboxComponent>
     <template v-if="isSelectField && !checkTypeBySelected(['divider'])">
       <PanelsConfigComponentsCheckboxComponent
@@ -1004,15 +1005,6 @@ onMounted(() => {
           :nodes="options9"
           :val="target.options.controlsPosition"
         />
-        <!--      <el-row align="middle">-->
-        <!--        <el-col :span="10">{{ t('er.config.propsPanel.numberControls.position') }}</el-col>-->
-        <!--        <el-col :span="14">-->
-        <!--          <el-radio-group v-model="target.options.controlsPosition">-->
-        <!--            <el-radio-button :label="false">{{ t('er.config.propsPanel.numberControls.options[0]') }}</el-radio-button>-->
-        <!--            <el-radio-button :label="true">{{ t('er.config.propsPanel.numberControls.options[1]') }}</el-radio-button>-->
-        <!--          </el-radio-group>-->
-        <!--        </el-col>-->
-        <!--      </el-row>-->
       </PanelsConfigComponentsCheckboxComponent>
       <PanelsConfigComponentsCheckboxComponent
         v-if="checkTypeBySelected(['rate'], 'allowHalf')"
