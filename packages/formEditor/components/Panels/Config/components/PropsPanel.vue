@@ -643,7 +643,9 @@ onMounted(() => {
       :height="50"
       :fontSize="80"
       :nodes="options10"
-      :val="target.options.contentPosition"/>
+      :val="target.options.contentPosition"
+      v-bind="utils.addTestId('configPanel:contentPosition')"
+    />
     <PanelsConfigComponentsTypeComponent
       :layoutType="0"
       v-if="checkTypeBySelected(['textarea'], 'textareaHeight')"
