@@ -95,10 +95,22 @@ describe('Configuration options owned by the config panel', () => {
   afterEach(() => {
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('pc')
   })
-  test('Root', () => {
-    // console.log(wrapper.html())
-    // console.log(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[0], true, 'en'))
-    // expect(erGeneratorData(erComponentsConfig.fieldsConfig[0].list[0], true, 'en')).toMatchSnapshot()
+  test('Root:pc', async () => {
+    value0.value = 'root'
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:isSync')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:size')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:labelPosition')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:completeButton')).exists()).toBe(true)
+  })
+  test('Root:mobile', async () => {
+    value0.value = 'root'
+    wrapper.findComponent({ ref: 'EReditorRef' }).vm.switchPlatform('mobile')
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:isSync')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:size')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:labelPosition')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:completeButton')).exists()).toBe(true)
   })
   test('Email:pc', async () => {
     value0.value = store.fields[0].id

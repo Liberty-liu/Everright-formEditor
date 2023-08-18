@@ -8,6 +8,7 @@ import { ClickOutside as vClickOutside } from 'element-plus'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import PanelsConfigComponentsTypeComponent from './TypeComponent.vue'
 import PanelsConfigComponentsLogicComponent from './LogicComponent.vue'
+import utils from '@ER/utils'
 export default {
   name: 'GlobalConfigPanel',
   inheritAttrs: false,
@@ -41,7 +42,6 @@ const popperPaneRef = computed(() => {
 })
 let handleConfirm = ''
 const handleBeforeChange = () => {
-  // visible.value = true
   return new Promise((resolve, reject) => {
     const pcObj = _.pick(unref(target).pc, compareKeys)
     const mobileObj = _.pick(unref(target).mobile, compareKeys)
@@ -86,10 +86,6 @@ const options0 = computed(() => {
     }
   ]
 })
-
-//   <el-radio-button label="large">{{t('er.config.globalConfig.componentSize.large')}}</el-radio-button>
-// <el-radio-button label="default" >{{t('er.config.globalConfig.componentSize.default')}}</el-radio-button>
-// <el-radio-button label="small" >{{t('er.config.globalConfig.componentSize.small')}}</el-radio-button>
 const options1 = computed(() => {
   return [
     {
@@ -152,8 +148,11 @@ const handleTypeListener = ({ property, data }) => {
         </el-button>
       </div>
     </el-popover>
-<!--    <DeviceSwitch justify-content="center"></DeviceSwitch>-->
-    <el-form-item :label="t('er.config.globalConfig.sync.label')" label-position="left">
+    <el-form-item
+      :label="t('er.config.globalConfig.sync.label')"
+      label-position="left"
+      v-bind="utils.addTestId('configPanel:isSync')"
+    >
       <el-switch
         ref="buttonRef"
         v-click-outside:[popperPaneRef]="onClickOutside"
@@ -168,6 +167,7 @@ const handleTypeListener = ({ property, data }) => {
       :label="t('er.config.globalConfig.componentSize.label')"
       :val="target[state.platform].size"
       :nodes="options1"
+      v-bind="utils.addTestId('configPanel:size')"
     />
     <PanelsConfigComponentsTypeComponent
       @listener="handleTypeListener"
@@ -177,8 +177,13 @@ const handleTypeListener = ({ property, data }) => {
       :fontSize="80"
       :val="target[state.platform].labelPosition"
       :nodes="options0"
+      v-bind="utils.addTestId('configPanel:labelPosition')"
     />
-    <el-form-item v-if="ER.props.isShowCompleteButton" :label="t('er.public.button')">
+    <el-form-item
+      v-if="ER.props.isShowCompleteButton"
+      :label="t('er.public.button')"
+      v-bind="utils.addTestId('configPanel:completeButton')"
+    >
       <div style="width: 100%;">
         <div>
           <CompleteButton mode="preview"/>
