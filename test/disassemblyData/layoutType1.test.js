@@ -22,23 +22,31 @@ describe('Fields and layout not separated', () => {
     }
   })
   const field = erGeneratorData(erComponentsConfig.fieldsConfig[0].list[0], true, 'en')
-  test('disassemblyData1: Only fields without layout', async () => {
+  test('Only fields without layout', async () => {
     const data = wrapData(field, field)
     expect(utils.combinationData1(utils.disassemblyData1(_.cloneDeep(data)))).toEqual(data)
   })
-  test('disassemblyData1: Grid', async () => {
-    const data = wrapData(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[0], true, 'en'), field)
+  test('Grid', async () => {
+    const data = wrapData(erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[0]), true, 'en'), field)
     data.list[0].columns[0].columns[0].list.push(field)
     expect(utils.combinationData1(utils.disassemblyData1(_.cloneDeep(data)))).toEqual(data)
   })
-  test('disassemblyData1: Table', async () => {
-    const data = wrapData(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[1], true, 'en'), field)
+  test('Table', async () => {
+    const data = wrapData(erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[1]), true, 'en'), field)
     data.list[0].columns[0].rows[0].columns[0].list.push(field)
     expect(utils.combinationData1(utils.disassemblyData1(_.cloneDeep(data)))).toEqual(data)
   })
-  test('disassemblyData1: Tabs', async () => {
-    const data = wrapData(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[2], true, 'en'), field)
+  test('Tabs', async () => {
+    const data = wrapData(erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[2]), true, 'en'), field)
     data.list[0].columns[0].columns[0].list.push(field)
+    expect(utils.combinationData1(utils.disassemblyData1(_.cloneDeep(data)))).toEqual(data)
+  })
+  test('nested layout:Grid > Grid > field', async () => {
+    const grid0 = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[0]), true, 'en')
+    const grid1 = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[0]), true, 'en')
+    grid0.columns[0].columns[0].list.push(grid1)
+    grid1.columns[0].columns[0].list.push(field)
+    const data = wrapData(grid0, field)
     expect(utils.combinationData1(utils.disassemblyData1(_.cloneDeep(data)))).toEqual(data)
   })
 })
