@@ -1,6 +1,6 @@
 import _ from 'lodash-es'
 import { nanoid } from './nanoid'
-const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region)$/
+const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region|subform)$/
 const deepTraversal = (node, fn) => {
   fn(node)
   const nodes = node.list || node.rows || node.columns || node.children || []
@@ -20,7 +20,7 @@ const wrapElement = (element, fn) => {
     if (!node.key) {
       node.key = `${node.type}_${node.id}`
     }
-    if (/^(grid|tabs|collapse|table|divider|subform)$/.test(node.type)) {
+    if (/^(grid|tabs|collapse|table|divider)$/.test(node.type)) {
       node.style = {
         width: '100%'
       }
@@ -88,7 +88,8 @@ const disassemblyData1 = (data) => {
     fields: flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
       nodes[currentIndex] = node.id
     }),
-    data: data.data
+    data: data.data,
+    logic: data.logic
   }
   return result
 }
@@ -100,6 +101,12 @@ const combinationData1 = (data) => {
     fields: data.fields,
     logic: data.logic
   }
+  flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
+    const cur = _.find(data.fields, { id: node })
+    if (!_.isEmpty(cur)) {
+      nodes[currentIndex] = cur
+    }
+  })
   flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
     const cur = _.find(data.fields, { id: node })
     if (!_.isEmpty(cur)) {
@@ -196,6 +203,18 @@ const transferData = (lang, path, locale, options = {}) => {
   return result
 }
 const isNull = (e) => e === '' || e === null || e === undefined
+const checkIsInSubform = (node) => {
+  if (!node) return false
+  let result = false
+  let parent = node.context.parent
+  while (parent && !result) {
+    if (parent.type === 'subform') {
+      result = true
+    }
+    parent = parent.context?.parent
+  }
+  return result
+}
 export {
   syncWidthByPlatform,
   wrapElement,
@@ -213,5 +232,6 @@ export {
   transferData,
   transferLabelPath,
   isNull,
-  repairLayout
+  repairLayout,
+  checkIsInSubform
 }

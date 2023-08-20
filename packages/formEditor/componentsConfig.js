@@ -569,10 +569,11 @@ export const fieldsConfig = [
         label: '子表单',
         icon: 'subform',
         id: '',
-        columns: [],
+        list: [],
         options: {
           defaultValue: [],
-          accordion: false
+          accordion: false,
+          isShowLabel: true
         }
       }
     ]

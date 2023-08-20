@@ -74,6 +74,7 @@ const state = reactive({
   Namespace: 'formEditor',
   logic: {}
 })
+window.state = state
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
 state.validator = (target, fn) => {
@@ -318,13 +319,12 @@ provide('Everright', {
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
-  return Object.assign(utils.disassemblyData1(_.cloneDeep({
+  return utils.disassemblyData1(_.cloneDeep({
     list: state.store,
     config: state.config,
-    data: state.data
-  })), {
+    data: state.data,
     logic: state.logic
-  })
+  }))
 }
 const getData2 = () => {
   layout.pc = getLayoutDataByplatform('pc')

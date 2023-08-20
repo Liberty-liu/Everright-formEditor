@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent } from 'vue'
+import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent, unref } from 'vue'
 import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
 import hooks from '@ER/hooks'
@@ -12,10 +12,31 @@ export default defineComponent({
   },
   setup (props) {
     const ns = hooks.useNamespace('SubformLayout')
+    const {
+      state,
+      isEditModel,
+      isPc,
+      setSelection
+    } = hooks.useTarget()
+    const typeProps = hooks.useProps(state, props.data, unref(isPc))
     return () => {
       return (
         <Selection {...useAttrs()} hasCopy hasDel hasDrag hasWidthScale data={props.data} parent={props.parent}>
-          <div class={ns.b()}>123</div>
+          <div class={ns.b()}>
+            <el-form-item
+              {...typeProps.value}
+            >
+              <div style={ { width: '100%' } }>
+                {
+                  <LayoutDragGable
+                    data-layout-type={'subform'}
+                    data={props.data.list}
+                    ControlInsertion={true}
+                    parent={props.data}/>
+                }
+              </div>
+            </el-form-item>
+          </div>
         </Selection>
       )
     }
