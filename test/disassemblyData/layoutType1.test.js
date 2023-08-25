@@ -5,7 +5,6 @@ import * as erComponentsConfig from '@ER/formEditor/componentsConfig.js'
 import _ from 'lodash-es'
 import { mount } from '@vue/test-utils'
 import { erFormEditor } from '@ER/formEditor/index.js'
-import { Plus } from '@element-plus/icons-vue'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 import { nextTick } from 'vue'
@@ -49,9 +48,6 @@ const _mount = (template, data, otherObj) => mount(
   {
     attachTo: 'body',
     global: {
-      components: {
-        Plus
-      },
       plugins: [
         ElementPlus,
         Vant

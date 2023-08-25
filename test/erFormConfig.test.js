@@ -1,7 +1,6 @@
 import { describe, assert, expect, test, beforeEach, vi, beforeAll, afterEach } from 'vitest'
 import { erComponentsConfig, erFormConfig, erGeneratorData, utils } from '@ER/formEditor/index.js'
 import { mount } from '@vue/test-utils'
-import { Plus } from '@element-plus/icons-vue'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 import { computed, nextTick, reactive, ref } from 'vue'
@@ -18,9 +17,6 @@ const _mount = (template, data, otherObj) => mount(
   {
     attachTo: 'body',
     global: {
-      components: {
-        Plus
-      },
       plugins: [
         ElementPlus,
         Vant

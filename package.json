@@ -79,7 +79,6 @@
     "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
-    "@element-plus/icons-vue": "^2.0.10",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "@vue/compiler-sfc": "^3.2.47",

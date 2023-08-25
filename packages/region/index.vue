@@ -301,7 +301,7 @@ onMounted(() => {
               :class="[ns.e('icon'), 'icon-circle-close']"
               @click.stop="handleClear"
             >
-              <circle-close />
+              <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="m466.752 512-90.496-90.496a32 32 0 0 1 45.248-45.248L512 466.752l90.496-90.496a32 32 0 1 1 45.248 45.248L557.248 512l90.496 90.496a32 32 0 1 1-45.248 45.248L512 557.248l-90.496 90.496a32 32 0 0 1-45.248-45.248L466.752 512z"></path><path fill="currentColor" d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768zm0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896z"></path></svg>
             </el-icon>
             <el-icon
               v-else
@@ -313,7 +313,7 @@ onMounted(() => {
               ]"
               @click.stop="togglePopperVisible()"
             >
-              <arrow-down />
+              <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z"></path></svg>
             </el-icon>
           </template>
         </el-input>
@@ -397,7 +397,7 @@ onMounted(() => {
                   <span :class="[ns.e('label')]">{{node.label}}</span>
                   <template v-if="!node.isLeaf">
                     <el-icon :class="['arrow-right', ns.e('postfix')]">
-                      <arrow-right />
+                      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512 340.864 831.872a30.592 30.592 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"></path></svg>
                     </el-icon>
                   </template>
                 </li>
