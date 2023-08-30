@@ -22,7 +22,7 @@ export const _mount = (template, data, otherObj) => mount(
     }
   }
 )
-export const wrapLayoutDataByLayoutType = (layout, field, layoutType = 1) => {
+export const wrapLayoutDataByLayoutType = (layout, fields, layoutType = 1) => {
   const result = {
     config: {
       isSync: true,
@@ -46,9 +46,10 @@ export const wrapLayoutDataByLayoutType = (layout, field, layoutType = 1) => {
     },
     logic: {},
     data: {},
-    fields: [
-      field.columns[0]
-    ]
+    fields
+    // fields: [
+    //   field.columns[0]
+    // ]
   }
   if (layoutType === 1) {
     result.list = layout

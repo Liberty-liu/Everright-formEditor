@@ -101,18 +101,16 @@ const combinationData1 = (data) => {
     fields: data.fields,
     logic: data.logic
   }
-  flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
+  const fn = (nodes, node, currentIndex) => {
     const cur = _.find(data.fields, { id: node })
     if (!_.isEmpty(cur)) {
+      if (cur.type === 'subform') {
+        flatNodes(cur.list, excludes, fn)
+      }
       nodes[currentIndex] = cur
     }
-  })
-  flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
-    const cur = _.find(data.fields, { id: node })
-    if (!_.isEmpty(cur)) {
-      nodes[currentIndex] = cur
-    }
-  })
+  }
+  flatNodes(data.list, excludes, fn)
   return result
 }
 const combinationData2 = (list, fields) => {

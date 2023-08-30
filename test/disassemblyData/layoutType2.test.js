@@ -34,7 +34,7 @@ describe('Fields and layout separated', () => {
       mobile: [
         newField
       ]
-    }, field, 2)
+    }, [field.columns[0]], 2)
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     await nextTick()
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
@@ -51,7 +51,7 @@ describe('Fields and layout separated', () => {
       mobile: [
         layout
       ]
-    }, field, 2)
+    }, [field.columns[0]], 2)
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     await nextTick()
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
@@ -68,7 +68,7 @@ describe('Fields and layout separated', () => {
       mobile: [
         layout
       ]
-    }, field, 2)
+    }, [field.columns[0]], 2)
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     await nextTick()
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
@@ -85,7 +85,7 @@ describe('Fields and layout separated', () => {
       mobile: [
         layout
       ]
-    }, field, 2)
+    }, [field.columns[0]], 2)
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     await nextTick()
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
@@ -104,7 +104,7 @@ describe('Fields and layout separated', () => {
       mobile: [
         grid0
       ]
-    }, field, 2)
+    }, [field.columns[0]], 2)
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     await nextTick()
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
