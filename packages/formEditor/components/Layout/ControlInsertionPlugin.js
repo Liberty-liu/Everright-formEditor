@@ -336,7 +336,12 @@ function ControlInsertionPlugin (ER) {
         }
       }
       if (inserRowIndex !== '') {
-        const store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+        let store = []
+        if (prevSortable.options.parent.type === 'subform') {
+          store = prevSortable.options.parent.list[0]
+        } else {
+          store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+        }
         store.splice(inserRowIndex, 0, newElement)
         utils.addContext(store[inserRowIndex], prevSortable.options.parent)
       }

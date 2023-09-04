@@ -1,3 +1,15 @@
 @include b(SubformLayout) {
-  //width: 100%;
+  @include e(content) {
+    width: 100%;
+  }
+  .el-form-item {
+    display: block;
+    .el-form-item__label {
+      display: block;
+      height: auto;
+      text-align: left;
+      margin-bottom: 8px;
+      line-height: 22px;
+    }
+  }
 }

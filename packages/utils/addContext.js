@@ -874,7 +874,12 @@ export const addContext = (node, parent, fn) => {
     enumerable: false,
     configurable: true
   })
-  const nodes = node.columns || node.list || node.rows || []
+  let nodes = []
+  if (node.type === 'subform') {
+    nodes = node.list[0]
+  } else {
+    nodes = node.columns || node.list || node.rows || []
+  }
   nodes.forEach(e => {
     addContext(e, node, fn)
   })

@@ -341,6 +341,7 @@ const setData1 = (data) => {
   if (_.isEmpty(data)) return false
   // stop()
   const newData = utils.combinationData1(_.cloneDeep(data))
+  // console.log(newData.list[0].columns[0].list[0][0].columns[0])
   isShow.value = false
   // console.log(data.list.slice(data.list.length - 1))
   state.store = newData.list
@@ -358,6 +359,7 @@ const setData1 = (data) => {
     // restart()
   })
 }
+window.state = state
 const setData2 = (data) => {
   if (_.isEmpty(data)) return false
   // stop()

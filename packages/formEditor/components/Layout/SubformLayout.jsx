@@ -26,11 +26,13 @@ export default defineComponent({
             <el-form-item
               {...typeProps.value}
             >
-              <div style={ { width: '100%' } }>
+              <div
+                class={[ns.e('content')]}
+              >
                 {
                   <LayoutDragGable
                     data-layout-type={'subform'}
-                    data={props.data.list}
+                    data={props.data.list[0]}
                     ControlInsertion={true}
                     parent={props.data}/>
                 }

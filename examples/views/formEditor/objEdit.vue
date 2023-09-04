@@ -41,7 +41,6 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
-  console.log(type)
   switch (type) {
     case 'lang':
       lang.value = data
@@ -53,6 +52,7 @@ const handleListener = async ({ type, data }) => {
       }
       loading.value = true
       try {
+        // console.log(data)
         const postData = {
           name: state.name,
           content: Object.assign({

@@ -11,6 +11,7 @@ const deepTraversal = (node, fn) => {
 const wrapElement = (element, fn) => {
   const result = element
   deepTraversal(result, (node) => {
+    if (Array.isArray(node)) return false
     if (!node.style) {
       node.style = {}
     }
@@ -72,7 +73,7 @@ const flatNodes = (nodes, excludes, fn, excludesFn) => {
     } else {
       excludesFn && excludesFn(nodes, node, currentIndex)
     }
-    const children = node.list || node.rows || node.columns || node.children || []
+    const children = node.type === 'subform' ? node.list[0] : (node.list || node.rows || node.columns || node.children || [])
     res = res.concat(flatNodes(children, excludes, fn, excludesFn))
     return res
   }, [])
@@ -105,7 +106,7 @@ const combinationData1 = (data) => {
     const cur = _.find(data.fields, { id: node })
     if (!_.isEmpty(cur)) {
       if (cur.type === 'subform') {
-        flatNodes(cur.list, excludes, fn)
+        flatNodes(cur.list[0], excludes, fn)
       }
       nodes[currentIndex] = cur
     }

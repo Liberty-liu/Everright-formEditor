@@ -569,7 +569,9 @@ export const fieldsConfig = [
         label: '子表单',
         icon: 'subform',
         id: '',
-        list: [],
+        list: [
+          []
+        ],
         options: {
           defaultValue: [],
           accordion: false,

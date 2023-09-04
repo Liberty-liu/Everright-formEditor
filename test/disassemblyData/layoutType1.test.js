@@ -66,12 +66,11 @@ describe('Fields and layout not separated', () => {
   test('Sub-form', async () => {
     const newField = _.cloneDeep(field)
     newField.columns[0] = newField.columns[0].id
-    const sufForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
-    const list = _.cloneDeep(sufForm)
-    list.columns[0] = sufForm.columns[0].id
-    sufForm.columns[0].list.push(newField)
-    const data = wrapLayoutDataByLayoutType([list], [sufForm.columns[0], field.columns[0]])
-    // console.log(JSON.stringify(data, '', 2))
+    const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    const list = _.cloneDeep(subForm)
+    list.columns[0] = subForm.columns[0].id
+    subForm.columns[0].list[0].push(newField)
+    const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
     wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     expect(wrapper.findComponent({ ref: 'EReditorRef' }).vm.getData()).toEqual(data)
   })
