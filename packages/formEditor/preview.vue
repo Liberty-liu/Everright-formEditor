@@ -33,27 +33,28 @@ const state = reactive({
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
-// const checkFieldsValidation = async () => {
-//   for (const [key, value] of state.fieldsValidation) {
-//     if (value) {
-//       if (utils.isPc()) {
-//         ElMessage({
-//           message: key.value,
-//           type: 'warning'
-//         })
-//       } else {
-//         showNotify({ type: 'warning', message: key.value })
-//       }
-//       return Promise.reject(key)
-//     }
-//   }
-//   return Promise.resolve()
-// }
-// window.checkFieldsValidation = checkFieldsValidation
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
-    result[e.key] = e.options.defaultValue
+    if (e.type === 'subform') {
+      result[e.key] = e.list.map(e => {
+        const cur = {}
+        const children = []
+        e.forEach(e => {
+          e.columns.forEach(e => {
+            children.push(e)
+          })
+        })
+        children.forEach(e => {
+          cur[e.key] = e.options.defaultValue
+        })
+        return cur
+      })
+    } else {
+      if (!utils.checkIsInSubform(e)) {
+        result[e.key] = e.options.defaultValue
+      }
+    }
   })
   return _.cloneDeep(result)
 }
@@ -96,7 +97,13 @@ const setData2 = (data, value) => {
     })
   }
 }
-const setData1 = (data, value) => {
+const setValue = (field, value) => {
+  if (field.type === 'time' && !field.options.valueFormat) {
+    field.options.valueFormat = 'HH:mm:ss'
+  }
+  field.options.defaultValue = value
+}
+const setData1 = async (data, value) => {
   if (_.isEmpty(data)) return false
   const newData = utils.combinationData1(_.cloneDeep(data))
   state.store = newData.list
@@ -107,13 +114,33 @@ const setData1 = (data, value) => {
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
+  // For SubformLayout.jsx to get the first data
+  await nextTick()
   if (!_.isEmpty(value)) {
-    state.fields.forEach((e) => {
-      if (e.type === 'time' && !e.options.valueFormat) {
-        e.options.valueFormat = 'HH:mm:ss'
-      }
-      if (value[e.key]) {
-        e.options.defaultValue = value[e.key]
+    state.fields.forEach((field) => {
+      if (field.type === 'subform') {
+        const addData = _.cloneDeep(field.list[0])
+        for (let i = 1; i < value[field.key].length; i++) {
+          field.list.push(addData)
+        }
+        field.list[field.list.length - 1].forEach(e => {
+          utils.addContext(e, field)
+        })
+        field.list.forEach((e, index) => {
+          e.forEach(e => {
+            e.columns.forEach(e => {
+              if (value[field.key]) {
+                setValue(e, value[field.key][index][e.key])
+              }
+            })
+          })
+        })
+      } else {
+        if (!utils.checkIsInSubform(field)) {
+          if (value[field.key]) {
+            setValue(field, value[field.key])
+          }
+        }
       }
     })
   }

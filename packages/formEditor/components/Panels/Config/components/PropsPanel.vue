@@ -37,7 +37,8 @@ const {
   isSelectTabs,
   isSelectCollapse,
   isSelectTable,
-  isPc
+  isPc,
+  isSelectSubform
 } = hooks.useTarget()
 defineEmits(['changePanel'])
 const bgStatus = ref(false)
@@ -415,7 +416,7 @@ onMounted(() => {
       <template v-slot:content>
         <div :class="[ns.e('collapseWrap'), ns.e('collapseWrap-left')]">
           <el-row justify="space-between" align="middle">
-            <el-col :span="isPc ? 11 : 24">
+            <el-col :span="isSelectSubform ? 24 : (isPc ? 11 : 24)">
               <el-form-item v-bind="utils.addTestId('configPanel:title')">
                 <template v-slot:label>
                   <Icon icon="title"/>
@@ -427,7 +428,7 @@ onMounted(() => {
                 />
               </el-form-item>
             </el-col>
-            <el-col :span="12" v-if="isPc">
+            <el-col :span="12" v-if="isPc && !isSelectSubform">
               <el-form-item v-bind="utils.addTestId('configPanel:titleWidth')">
                 <template v-slot:label>
                   <Icon icon="dragWidth"/>

@@ -2,6 +2,23 @@
   @include e(content) {
     width: 100%;
   }
+  @include e(item) {
+    position: relative;
+    &:hover {
+      background: #F9F9F9;
+      .#{$namespace}-SubformLayout__button {
+        button:first-child {
+          display: none;
+        }
+        button:last-child {
+          display: inline-flex;
+        }
+      }
+    }
+    [data-layout-type="subform"] {
+      padding-left: 50px;
+    }
+  }
   .el-form-item {
     display: block;
     .el-form-item__label {
@@ -11,5 +28,26 @@
       margin-bottom: 8px;
       line-height: 22px;
     }
+  }
+  @include e(button) {
+    width: 50px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    button {
+      margin: 0 !important;
+    }
+    button:last-child {
+      display: none;
+      svg {
+        color: #ffffff;
+      }
+    }
+  }
+  .#{$namespace}-InlineLayout {
+    //&:hover {
+    //  background: #F9F9F9;
+    //}
+    //background: #000;
   }
 }

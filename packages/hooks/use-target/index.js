@@ -97,6 +97,11 @@ export const useTarget = () => {
       return /^(edit|config)$/.test(state.mode)
     }
   })
+  const isSelectSubform = computed({
+    get () {
+      return checkTypeBySelected(['subform'])
+    }
+  })
   return {
     state,
     setSelection,
@@ -113,6 +118,7 @@ export const useTarget = () => {
     isSelectTable,
     isSelectRoot,
     isPc,
-    isEditModel
+    isEditModel,
+    isSelectSubform
   }
 }
