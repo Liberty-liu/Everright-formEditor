@@ -5,6 +5,7 @@ import _ from 'lodash-es'
 import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
+import utils from '@ER/utils'
 const findPosition = (node, parent) => {
   for (let y = 0; y < parent.list.length; y++) {
     const row = parent.list[y]
@@ -15,6 +16,15 @@ const findPosition = (node, parent) => {
   }
 
   return { x: -1, y: -1 }
+}
+const findAllFields = (node) => {
+  const result = []
+  node.list.forEach(e => {
+    e.forEach(e => {
+      result.push(...e.columns)
+    })
+  })
+  return result
 }
 const addValidate = (result, node, isPc, t) => {
   const {
@@ -54,31 +64,39 @@ const addValidate = (result, node, isPc, t) => {
 
   const obj = {
   }
-  // if (node.type === 'select') {
-  //   // obj.type = 'array'
-  // }
   const validator = (...arg0) => new Promise((...arg1) => {
-    const resolve = arg1[0]
+    const resolve = () => {
+      arg1[0]()
+    }
     const reject = isPc
       ? arg1[1]
       : (message) => {
           obj.message = message
           arg1[0](false)
         }
-    // const value = options.isShowTrim ? (isPc ? arg0[1] : arg0[0]).trim() : (isPc ? arg0[1] : arg0[0])
-    // let message
-    // let result = true
-    // let msg = ''
     let value = isPc ? arg0[1] : arg0[0]
     // only for mobile
     if (/^(signature|radio|checkbox|select|html)$/.test(node.type)) {
       value = options.defaultValue
     }
     const newValue = options.isShowTrim ? value.trim() : value
-    // if (options.required && (!newValue || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
-    if (result.required && (newValue === '' || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
-      reject(t('er.validateMsg.required'))
-      return
+    if (node.type === 'subform') {
+      if (result.required && findAllFields(node).some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {
+        reject(t('er.validateMsg.required'))
+      } else {
+        resolve()
+      }
+    } else {
+      let isRequired = result.required
+      if (utils.checkIsInSubform(node)) {
+        if (node.context.parent.context.parent.options.required) {
+          isRequired = true
+        }
+      }
+      if (isRequired && node.type !== 'subform' && utils.isEmpty(newValue)) {
+        reject(t('er.validateMsg.required'))
+        return
+      }
     }
     switch (node.type) {
       case 'input':
