@@ -47,7 +47,10 @@ export default defineComponent({
                   props.data.list.map((node, index) =>
                     (
                       <div
-                        class={[ns.e('item')]}
+                        class={[
+                          ns.e('item'),
+                          !unref(isEditModel) && ns.e('edit')
+                        ]}
                       >
                         <div
                           class={[ns.e('button')]}>
@@ -74,13 +77,17 @@ export default defineComponent({
                       </div>
                     ))
                 }
-                <el-button
-                  link
-                  type="primary"
-                  onClick={handleAdd}
+                <div
+                  class={[ns.e('addButton')]}
                 >
-                  Add new
-                </el-button>
+                  <el-button
+                    link
+                    type="primary"
+                    onClick={!unref(isEditModel) && handleAdd}
+                  >
+                    Add new
+                  </el-button>
+                </div>
               </div>
             </el-form-item>
           </div>

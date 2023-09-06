@@ -5,6 +5,17 @@ import _ from 'lodash-es'
 import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
+const findPosition = (node, parent) => {
+  for (let y = 0; y < parent.list.length; y++) {
+    const row = parent.list[y]
+    const x = row.indexOf(node)
+    if (x !== -1) {
+      return { x, y }
+    }
+  }
+
+  return { x: -1, y: -1 }
+}
 const addValidate = (result, node, isPc, t) => {
   const {
     options
@@ -17,17 +28,25 @@ const addValidate = (result, node, isPc, t) => {
       } else {
         const parent = e.context.parent
         let nodes = []
-        if (parent.columns) {
-          nodes = parent.columns
-          result += 'columns.'
-        } else if (parent.list) {
-          nodes = parent.list
-          result += 'list.'
-        } else if (parent.rows) {
-          nodes = parent.rows
-          result += 'rows.'
+        if (parent.type === 'subform') {
+          const {
+            x,
+            y
+          } = findPosition(e, parent)
+          result += `list.${y}.${x}`
+        } else {
+          if (parent.columns) {
+            nodes = parent.columns
+            result += 'columns.'
+          } else if (parent.list) {
+            nodes = parent.list
+            result += 'list.'
+          } else if (parent.rows) {
+            nodes = parent.rows
+            result += 'rows.'
+          }
+          result += nodes.indexOf(e)
         }
-        result += nodes.indexOf(e)
       }
       return result
     }).join('.') + '.options.defaultValue'

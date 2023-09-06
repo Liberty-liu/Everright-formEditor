@@ -3,7 +3,7 @@ import { nanoid } from './nanoid'
 const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region|subform)$/
 const deepTraversal = (node, fn) => {
   fn(node)
-  const nodes = node.list || node.rows || node.columns || node.children || []
+  const nodes = node.type === 'subform' ? node.list[0] : (node.list || node.rows || node.columns || node.children || [])
   nodes.forEach(e => {
     deepTraversal(e, fn)
   })
