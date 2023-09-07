@@ -49,7 +49,7 @@ export default defineComponent({
                       <div
                         class={[
                           ns.e('item'),
-                          !unref(isEditModel) && ns.e('edit')
+                          !unref(isEditModel) && !typeProps.value.disabled && ns.e('edit')
                         ]}
                       >
                         <div
@@ -77,7 +77,8 @@ export default defineComponent({
                       </div>
                     ))
                 }
-                <div
+                {
+                  !typeProps.value.disabled && (<div
                   class={[ns.e('addButton')]}
                 >
                   <el-button
@@ -87,7 +88,8 @@ export default defineComponent({
                   >
                     Add new
                   </el-button>
-                </div>
+                </div>)
+                }
               </div>
             </el-form-item>
           </div>

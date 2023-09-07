@@ -96,4 +96,7 @@ describe('Generate field data:', () => {
   test('Divider', () => {
     expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[4], true, 'en')).toMatchSnapshot()
   })
+  test('Subform', () => {
+    expect(erGeneratorData(erComponentsConfig.fieldsConfig[2].list[5], true, 'en')).toMatchSnapshot()
+  })
 })

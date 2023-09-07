@@ -574,7 +574,6 @@ export const fieldsConfig = [
         ],
         options: {
           defaultValue: [],
-          accordion: false,
           isShowLabel: true
         }
       }

@@ -204,6 +204,9 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         result.required = result.disabled ? false : required === 1
       }
     }
+    if (utils.checkIsInSubform(node) && !!node?.context?.parent?.context?.parent?.options?.disabled) {
+      result.disabled = true
+    }
     addValidate(result, node, isPc, t)
     if (isPc) {
       result.labelWidth = options.isShowLabel ? options.labelWidth + 'px' : 'auto'
