@@ -53,6 +53,7 @@ const handleListener = async ({ type, data }) => {
       loading.value = true
       try {
         // console.log(data)
+        // data.fields[0].options.defaultValue = []
         const postData = {
           name: state.name,
           content: Object.assign({

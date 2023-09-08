@@ -13,6 +13,7 @@ import PanelsConfigComponentsBackgroundComponent from './BackgroundComponent.vue
 import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
 import PanelsConfigComponentsDataComponent2 from './DataComponent2.jsx'
 import PanelsConfigComponentsDataComponent3 from './DataComponent3.vue'
+import PanelsConfigComponentsSubformDefaultValue from './SubformDefaultValue.vue'
 import Icon from '@ER/icon'
 import _ from 'lodash-es'
 export default {
@@ -459,7 +460,8 @@ onMounted(() => {
       'button',
       'divider',
       'cascader',
-      'region'
+      'region',
+      'subform'
     ], 'defaultValue')">
       <template v-if="checkTypeBySelected(['cascader', 'region'], 'defaultValue')">
         <el-cascader
@@ -528,6 +530,9 @@ onMounted(() => {
           v-model="target.options.defaultValue"
           style="padding: 0 14px;"
         />
+      </template>
+      <template v-else-if="checkTypeBySelected(['subform'], 'defaultValue')">
+        <PanelsConfigComponentsSubformDefaultValue/>
       </template>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent

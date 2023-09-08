@@ -1,0 +1,14 @@
+@include b(ConfigSubformDefaultValueComponent) {
+  @include e(button) {
+    width: calc(100% - 20px);
+    border: none;
+    margin: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1) !important;
+    &:focus {
+      background-color: transparent;
+    }
+    &:hover {
+      background: var(--el-button-hover-bg-color);
+    }
+  }
+}

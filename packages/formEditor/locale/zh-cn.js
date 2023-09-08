@@ -173,7 +173,8 @@ export default {
         alpha: '透明度',
         anyNode: '选择任意节点',
         clearable: '一键清除按钮',
-        star: '星星数'
+        star: '星星数',
+        setDefaultContent: '设置默认内容'
       }
     },
     public: {

@@ -173,7 +173,8 @@ export default {
         alpha: 'Alpha',
         anyNode: 'Select any node',
         clearable: 'clearable',
-        star: 'Star'
+        star: 'Star',
+        setDefaultContent: 'Set default content'
       }
     },
     public: {

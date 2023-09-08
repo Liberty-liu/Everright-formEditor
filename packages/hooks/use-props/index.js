@@ -1,4 +1,4 @@
-import { computed, isRef } from 'vue'
+import { computed, inject, isRef } from 'vue'
 import { showToast } from 'vant'
 import dayjs from 'dayjs'
 import _ from 'lodash-es'
@@ -163,6 +163,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
     t
   } = useI18n()
   return computed(() => {
+    const ExtraParams = inject('EverrightExtraParams', {})
     let node = isRoot ? data.config : data
     let result = {}
     const platform = isPc ? 'pc' : 'mobile'
@@ -206,6 +207,9 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
     }
     if (utils.checkIsInSubform(node) && !!node?.context?.parent?.context?.parent?.options?.disabled) {
       result.disabled = true
+    }
+    if (ExtraParams.inSubformDefaultValueComponent) {
+      result.disabled = result.required = false
     }
     addValidate(result, node, isPc, t)
     if (isPc) {

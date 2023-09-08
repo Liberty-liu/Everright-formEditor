@@ -64,12 +64,18 @@ const fireEvent = (type, data) => {
     data
   })
 }
+const setValue = (field, value) => {
+  if (field.type === 'time' && !field.options.valueFormat) {
+    field.options.valueFormat = 'HH:mm:ss'
+  }
+  field.options.defaultValue = value
+}
 provide('Everright', {
   state,
   getData,
   props,
-  fireEvent
-  // checkFieldsValidation
+  fireEvent,
+  setValue
 })
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
@@ -97,12 +103,7 @@ const setData2 = (data, value) => {
     })
   }
 }
-const setValue = (field, value) => {
-  if (field.type === 'time' && !field.options.valueFormat) {
-    field.options.valueFormat = 'HH:mm:ss'
-  }
-  field.options.defaultValue = value
-}
+window.state = state
 const setData1 = async (data, value) => {
   if (_.isEmpty(data)) return false
   const newData = utils.combinationData1(_.cloneDeep(data))
@@ -114,22 +115,30 @@ const setData1 = async (data, value) => {
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
+  const subforms = _.cloneDeep(state.fields.filter(e => e.type === 'subform'))
+  // console.log(value)
   // For SubformLayout.jsx to get the first data
   await nextTick()
   if (!_.isEmpty(value)) {
     state.fields.forEach((field) => {
       if (field.type === 'subform') {
-        const addData = _.cloneDeep(field.list[0])
-        for (let i = 1; i < value[field.key].length; i++) {
-          field.list.push(addData)
+        const subFormValue = value[field.key]
+        if (subFormValue.length) {
+          const addData = _.cloneDeep(_.find(subforms, { id: field.id }).list[0])
+          field.list.splice(0, field.list.length)
+          subFormValue.forEach((e, index) => {
+            const addItems = _.cloneDeep(addData)
+            field.list.splice(index, 0, addItems)
+            addItems.forEach(e => {
+              utils.addContext(e, field)
+            })
+          })
         }
-        field.list[field.list.length - 1].forEach(e => {
-          utils.addContext(e, field)
-        })
         field.list.forEach((e, index) => {
           e.forEach(e => {
             e.columns.forEach(e => {
               if (value[field.key]) {
+                console.log(value[field.key][index])
                 setValue(e, value[field.key][index][e.key])
               }
             })

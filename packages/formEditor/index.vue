@@ -305,18 +305,6 @@ const fireEvent = (type, data) => {
     data
   })
 }
-provide('Everright', {
-  state,
-  setSelection,
-  props,
-  wrapElement,
-  delField,
-  addField,
-  switchPlatform,
-  addFieldData,
-  canvesScrollRef,
-  fireEvent
-})
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
   return utils.disassemblyData1(_.cloneDeep({
@@ -356,6 +344,7 @@ const setData1 = (data) => {
   })
   nextTick(() => {
     isShow.value = true
+    // setSelection(state.store[0])
     // restart()
   })
 }
@@ -457,6 +446,19 @@ watch(() => state.selected, (newVal) => {
 })
 const onClickOutside = () => {
 }
+provide('Everright', {
+  state,
+  setSelection,
+  props,
+  wrapElement,
+  delField,
+  addField,
+  switchPlatform,
+  addFieldData,
+  canvesScrollRef,
+  fireEvent,
+  getData
+})
 </script>
 <template>
   <el-dialog

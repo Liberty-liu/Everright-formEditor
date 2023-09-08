@@ -1,7 +1,7 @@
 import {
   defineComponent,
   useAttrs,
-  unref
+  unref, inject
 } from 'vue'
 import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
@@ -18,6 +18,8 @@ export default defineComponent({
     parent: Array
   },
   setup (props) {
+    const ER = inject('Everright')
+    const ExtraParams = inject('EverrightExtraParams', {})
     const ns = hooks.useNamespace('SubformLayout')
     const {
       state,
@@ -27,11 +29,34 @@ export default defineComponent({
     } = hooks.useTarget()
     const typeProps = hooks.useProps(state, props.data, unref(isPc))
     const addData = unref(isEditModel) ? [] : _.cloneDeep(props.data.list[0])
+    // console.log(addData)
     const handleAdd = () => {
-      props.data.list.splice(props.data.list.length, 0, addData)
+      props.data.list.splice(props.data.list.length, 0, _.cloneDeep(addData))
+      // console.log(props.data.list)
+      // console.log(props.data.list[props.data.list.length - 1])
       props.data.list[props.data.list.length - 1].forEach(e => {
         utils.addContext(e, props.data)
       })
+    }
+    if (!unref(isEditModel)) {
+      props.data.list.splice(0, 1)
+      if (props.data.options.defaultValue.length) {
+        props.data.options.defaultValue.forEach((e, index) => {
+          handleAdd()
+        })
+      }
+      props.data.list.forEach((e, index) => {
+        e.forEach(e => {
+          e.columns.forEach(e => {
+            if (props.data.options.defaultValue) {
+              ER.setValue(e, props.data.options.defaultValue[index][e.key])
+            }
+          })
+        })
+      })
+    }
+    if (ExtraParams.inSubformDefaultValueComponent) {
+      ExtraParams.handle.handleAdd = handleAdd
     }
     return () => {
       return (
@@ -78,7 +103,7 @@ export default defineComponent({
                     ))
                 }
                 {
-                  !typeProps.value.disabled && (<div
+                  (!typeProps.value.disabled && !ExtraParams.inSubformDefaultValueComponent) && (<div
                   class={[ns.e('addButton')]}
                 >
                   <el-button
