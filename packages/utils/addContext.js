@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import _ from 'lodash-es'
 import { nanoid } from './nanoid'
 import { wrapElement } from './field'
+import utils from '@ER/utils/index.js'
 
 const getNodes = (node, key) => {
   const {
@@ -595,11 +596,11 @@ export const addContext = (node, parent, fn) => {
       arr.splice(index + 1, 0, newNode)
     },
     delete () {
-      // console.log(123123)
-      arr.splice(arr.indexOf(node), 1)
-      // if (node.context.parent.type === 'inline' && !arr.length) {
-      //   node.context.parent.context.delete()
-      // }
+      if (utils.checkIsInSubform(node) && node.type === 'inline') {
+        arr[0].splice(arr[0].indexOf(node), 1)
+      } else {
+        arr.splice(arr.indexOf(node), 1)
+      }
     },
     appendCol () {
       const newNode = wrapElement({
