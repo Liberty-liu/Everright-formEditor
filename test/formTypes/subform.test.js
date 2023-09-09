@@ -3,17 +3,22 @@ import { mount, flushPromises, enableAutoUnmount, config } from '@vue/test-utils
 import erGeneratorData from '@ER/formEditor/generatorData.js'
 import * as erComponentsConfig from '@ER/formEditor/componentsConfig.js'
 import _ from 'lodash-es'
-import { nextTick } from 'vue'
+import { nextTick, reactive } from 'vue'
 import { _mount, wrapLayoutDataByLayoutType } from '@ER-test/utils.js'
 import { utils } from '@ER/formEditor/index.js'
 describe('Field: subform', () => {
-  let wrapper = {}
+  let previewWrapper = {}
+  let configWrapper = {}
   const handleListener = vi.fn()
   let field = {}
   const layoutType = 1
+  const store = reactive({
+    fields: [],
+    sector: 'root'
+  })
   beforeAll(() => {
     vi.stubEnv('TESTIDTYPE', 'nanoid')
-    wrapper = _mount(`
+    previewWrapper = _mount(`
       <er-form-preview
         @listener="handleListener"
         :layoutType="layoutType"
@@ -21,6 +26,19 @@ describe('Field: subform', () => {
       `, () => ({
       handleListener,
       layoutType
+    })
+    )
+    configWrapper = _mount(`
+      <er-form-config
+        @listener="handleListener"
+        :layoutType="layoutType"
+        :field="store.sector"
+        :fields="store.fields"
+        ref="EReditorRef"/>
+      `, () => ({
+      handleListener,
+      layoutType,
+      store
     })
     )
     return () => {
@@ -35,11 +53,15 @@ describe('Field: subform', () => {
     const list = _.cloneDeep(subForm)
     list.columns[0] = subForm.columns[0].id
     const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0]], layoutType)
-    await wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
-    expect(wrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
+    store.fields.push(subForm.columns[0])
+    store.sector = subForm.columns[0]
+    await flushPromises()
+    expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(false)
   })
-  test('Only one child', async () => {
+  test.only('Only one child', async () => {
     const newField = _.cloneDeep(field)
     newField.columns[0] = newField.columns[0].id
     const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
@@ -47,11 +69,17 @@ describe('Field: subform', () => {
     list.columns[0] = subForm.columns[0].id
     subForm.columns[0].list[0].push(newField)
     const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
-    await wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
-    expect(wrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
-    await wrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(1)
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
+    await previewWrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(1)
+    const subForm1 = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    subForm1.columns[0].list[0].push(_.cloneDeep(field))
+    store.fields.push(subForm1.columns[0])
+    store.sector = subForm1.columns[0]
+    await flushPromises()
+    expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
   })
   test('Only one child: has 2 default contents', async () => {
     const values = ['1', '2']
@@ -67,14 +95,14 @@ describe('Field: subform', () => {
       return result
     })
     const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
-    await wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
-    expect(wrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
     await new Promise(resolve => setTimeout(resolve, 1000))
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
-    await wrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
+    await previewWrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
     await flushPromises()
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
   })
   test('Only one child: has 2 default contents && field has default', async () => {
     const values = ['1', '2']
@@ -92,13 +120,13 @@ describe('Field: subform', () => {
     })
     field.columns[0].options.defaultValue = addValue
     const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
-    await wrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
-    expect(wrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
     await new Promise(resolve => setTimeout(resolve, 1000))
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
-    await wrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
+    await previewWrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
     await flushPromises()
-    expect(wrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
   })
 })

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { erFormEditor, erFormPreview } from '@ER/formEditor/index.js'
+import { erFormEditor, erFormPreview, erFormConfig } from '@ER/formEditor/index.js'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 
@@ -7,7 +7,8 @@ export const _mount = (template, data, otherObj) => mount(
   {
     components: {
       erFormEditor,
-      erFormPreview
+      erFormPreview,
+      erFormConfig
     },
     template,
     data,

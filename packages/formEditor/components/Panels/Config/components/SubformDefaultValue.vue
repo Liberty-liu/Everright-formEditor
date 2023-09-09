@@ -1,6 +1,7 @@
 <script>
 import hooks from '@ER/hooks'
 import { ref, inject, nextTick, reactive, computed, watch, onMounted, provide, onBeforeUnmount } from 'vue'
+import utils from '@ER/utils'
 import erFormPreview from '@ER/formEditor/preview.vue'
 export default {
   name: 'ConfigSubformDefaultValueComponent',
@@ -111,7 +112,12 @@ onMounted(() => {
       </span>
     </template>
   </el-drawer>
-  <el-button style="width: 100%;" type="primary" @click="openDialog">
+  <el-button
+    v-if="target.list[0].length"
+    v-bind="utils.addTestId('configPanel:defaultValue:button')"
+    style="width: 100%;"
+    type="primary"
+    @click="openDialog">
     {{ t('er.config.propsPanel.setDefaultContent') }}
   </el-button>
 </template>
