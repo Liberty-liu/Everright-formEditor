@@ -76,6 +76,7 @@ export default defineComponent({
                           ns.e('item'),
                           !unref(isEditModel) && !typeProps.value.disabled && ns.e('edit')
                         ]}
+                        {...utils.addTestId('SubformLayout:item')}
                       >
                         <div
                           class={[ns.e('button')]}>
