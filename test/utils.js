@@ -1,7 +1,8 @@
 import { mount } from '@vue/test-utils'
-import { erFormEditor, erFormPreview, erFormConfig } from '@ER/formEditor/index.js'
+import { erFormEditor, erFormPreview, erFormConfig, utils } from '@ER/formEditor/index.js'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
+import { generateData } from '@ER/utils/generateOptions.js'
 
 export const _mount = (template, data, otherObj) => mount(
   {
@@ -25,34 +26,8 @@ export const _mount = (template, data, otherObj) => mount(
   }
 )
 export const wrapLayoutDataByLayoutType = (layout, fields = [], layoutType = 1) => {
-  const result = {
-    config: {
-      isSync: true,
-      pc: {
-        size: 'default',
-        labelPosition: 'left',
-        completeButton: {
-          text: 'Submit',
-          color: '',
-          backgroundColor: ''
-        }
-      },
-      mobile: {
-        labelPosition: 'left',
-        completeButton: {
-          text: 'Submit',
-          color: '',
-          backgroundColor: ''
-        }
-      }
-    },
-    logic: {},
-    data: {},
-    fields
-    // fields: [
-    //   field.columns[0]
-    // ]
-  }
+  const result = utils.generateData(layoutType)
+  result.fields = fields
   if (layoutType === 1) {
     result.list = layout
   }

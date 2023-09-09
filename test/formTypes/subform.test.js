@@ -1,5 +1,5 @@
 import { describe, assert, expect, test, beforeEach, beforeAll, vi } from 'vitest'
-import { mount, flushPromises, enableAutoUnmount, config } from '@vue/test-utils'
+import { mount, flushPromises, enableAutoUnmount, config, DOMWrapper } from '@vue/test-utils'
 import erGeneratorData from '@ER/formEditor/generatorData.js'
 import * as erComponentsConfig from '@ER/formEditor/componentsConfig.js'
 import _ from 'lodash-es'
@@ -61,7 +61,7 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(false)
   })
-  test.only('Only one child', async () => {
+  test('Only one child', async () => {
     const newField = _.cloneDeep(field)
     newField.columns[0] = newField.columns[0].id
     const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
@@ -80,6 +80,10 @@ describe('Field: subform', () => {
     store.sector = subForm1.columns[0]
     await flushPromises()
     expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
+    await configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).trigger('click')
+    await flushPromises()
+    const setDefaultEl = new DOMWrapper(document.querySelector('.Everright-formEditor-ConfigSubformDefaultValueComponent'))
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
   })
   test('Only one child: has 2 default contents', async () => {
     const values = ['1', '2']
@@ -103,8 +107,27 @@ describe('Field: subform', () => {
     await previewWrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
     await flushPromises()
     expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
+    const subForm1 = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    subForm1.columns[0].list[0].push(_.cloneDeep(field))
+    subForm1.columns[0].options.defaultValue = values.map(e => {
+      const result = {}
+      result[field.columns[0].key] = e
+      return result
+    })
+    store.fields.push(subForm1.columns[0])
+    store.sector = subForm1.columns[0]
+    await flushPromises()
+    expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
+    await configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).trigger('click')
+    await flushPromises()
+    const setDefaultEl = new DOMWrapper(document.querySelector('.Everright-formEditor-ConfigSubformDefaultValueComponent'))
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
+    await setDefaultEl.find(utils.getTestId('configPanel:defaultValue:addButton')).trigger('click')
+    await flushPromises()
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
   })
-  test('Only one child: has 2 default contents && field has default', async () => {
+  test.only('Only one child: has 2 default contents && field has default', async () => {
     const values = ['1', '2']
     const addValue = 'everright-formeditor'
     const newField = _.cloneDeep(field)
@@ -128,5 +151,24 @@ describe('Field: subform', () => {
     await previewWrapper.find(utils.getTestId('SubformLayout:addButton')).find('button').trigger('click')
     await flushPromises()
     expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
+    const subForm1 = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    subForm1.columns[0].list[0].push(_.cloneDeep(field))
+    subForm1.columns[0].options.defaultValue = values.map(e => {
+      const result = {}
+      result[field.columns[0].key] = e
+      return result
+    })
+    store.fields.push(subForm1.columns[0])
+    store.sector = subForm1.columns[0]
+    await flushPromises()
+    expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
+    await configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).trigger('click')
+    await flushPromises()
+    const setDefaultEl = new DOMWrapper(document.querySelector('.Everright-formEditor-ConfigSubformDefaultValueComponent'))
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
+    await setDefaultEl.find(utils.getTestId('configPanel:defaultValue:addButton')).trigger('click')
+    await flushPromises()
+    expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
   })
 })

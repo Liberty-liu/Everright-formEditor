@@ -1,4 +1,5 @@
 <script>
+import _ from 'lodash-es'
 import hooks from '@ER/hooks'
 import { ref, inject, nextTick, reactive, computed, watch, onMounted, provide, onBeforeUnmount } from 'vue'
 import utils from '@ER/utils'
@@ -24,7 +25,8 @@ const {
   lang
 } = hooks.useI18n()
 const {
-  target
+  target,
+  state
 } = hooks.useTarget()
 const ns = hooks.useNamespace('ConfigSubformDefaultValueComponent')
 const dialogVisible = ref(false)
@@ -35,10 +37,20 @@ const handleClosed = () => {
 }
 const openDialog = async () => {
   dialogVisible.value = true
-  const rawData = ER.getData()
-  const inline = ER.wrapElement({})
-  inline.columns = [target.value.id]
-  rawData.list = [inline]
+  let rawData = {}
+  if (state.mode === 'config') {
+    rawData = utils.generateData()
+    rawData.list = [target.value]
+    rawData = utils.disassemblyData1(_.cloneDeep(rawData))
+  } else {
+    rawData = ER.getData()
+    rawData.list = [{
+      type: 'inline',
+      columns: [
+        target.value.id
+      ]
+    }]
+  }
   await nextTick()
   const value = {}
   value[target.value.key] = target.value.options.defaultValue
@@ -97,7 +109,11 @@ onMounted(() => {
           :isShowCompleteButton="false"
         />
       </el-scrollbar>
-      <el-button :class="[ns.e('button')]" @click="handleAction(1)">
+      <el-button
+        :class="[ns.e('button')]"
+        @click="handleAction(1)"
+        v-bind="utils.addTestId('configPanel:defaultValue:addButton')"
+      >
         {{ t('er.public.add')}}
       </el-button>
     </div>
