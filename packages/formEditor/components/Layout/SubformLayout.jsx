@@ -103,8 +103,10 @@ export default defineComponent({
                     ))
                 }
                 {
-                  (!typeProps.value.disabled && !ExtraParams.inSubformDefaultValueComponent) && (<div
+                  (!typeProps.value.disabled && !ExtraParams.inSubformDefaultValueComponent && addData.length)
+                    ? (<div
                   class={[ns.e('addButton')]}
+                  {...utils.addTestId('SubformLayout:addButton')}
                 >
                   <el-button
                     link
@@ -114,6 +116,7 @@ export default defineComponent({
                     Add new
                   </el-button>
                 </div>)
+                    : ''
                 }
               </div>
             </el-form-item>

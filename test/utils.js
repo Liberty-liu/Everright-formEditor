@@ -1,12 +1,13 @@
 import { mount } from '@vue/test-utils'
-import { erFormEditor } from '@ER/formEditor/index.js'
+import { erFormEditor, erFormPreview } from '@ER/formEditor/index.js'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 
 export const _mount = (template, data, otherObj) => mount(
   {
     components: {
-      erFormEditor
+      erFormEditor,
+      erFormPreview
     },
     template,
     data,
@@ -22,7 +23,7 @@ export const _mount = (template, data, otherObj) => mount(
     }
   }
 )
-export const wrapLayoutDataByLayoutType = (layout, fields, layoutType = 1) => {
+export const wrapLayoutDataByLayoutType = (layout, fields = [], layoutType = 1) => {
   const result = {
     config: {
       isSync: true,
