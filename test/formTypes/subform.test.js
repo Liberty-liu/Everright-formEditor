@@ -142,6 +142,19 @@ describe('Field: subform', () => {
     expect([list.columns[0], newField.columns[0]]).toStrictEqual(previewWrapper.findAll('[data-field-id]').map(element => element.element.dataset.fieldId))
     expect(previewWrapper.find(`[data-field-id="${newField.columns[0]}"] .el-input`).classes()).toContain('is-disabled')
   })
+  test('Only one child: Disabled', async () => {
+    const newField = _.cloneDeep(field)
+    newField.columns[0] = newField.columns[0].id
+    const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    subForm.columns[0].options.disabled = true
+    const list = _.cloneDeep(subForm)
+    list.columns[0] = subForm.columns[0].id
+    subForm.columns[0].list[0].push(newField)
+    const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
+    console.log(JSON.stringify(data, '', 2))
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
+  })
   test('Only one child: has 2 default contents', async () => {
     const values = ['1', '2']
     const newField = _.cloneDeep(field)
