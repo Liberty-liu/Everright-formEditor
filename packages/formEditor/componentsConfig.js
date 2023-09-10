@@ -574,7 +574,9 @@ export const fieldsConfig = [
         ],
         options: {
           defaultValue: [],
-          isShowLabel: true
+          isShowLabel: true,
+          required: false,
+          disabled: false
         }
       }
     ]

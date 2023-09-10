@@ -780,7 +780,9 @@ exports[`Generate field data: > Subform 1`] = `
       ],
       "options": {
         "defaultValue": [],
+        "disabled": false,
         "isShowLabel": true,
+        "required": false,
       },
       "style": {
         "width": {

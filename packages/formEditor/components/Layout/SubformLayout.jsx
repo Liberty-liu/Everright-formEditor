@@ -58,9 +58,25 @@ export default defineComponent({
     if (ExtraParams.inSubformDefaultValueComponent) {
       ExtraParams.handle.handleAdd = handleAdd
     }
+    const params = {
+      hasCopy: true,
+      hasDel: true,
+      hasDrag: true,
+      hasWidthScale: true,
+      data: props.data,
+      parent: props.parent
+    }
+    if (process.env.NODE_ENV === 'test') {
+      params['data-field-id'] = `${props.data.id}`
+    }
     return () => {
       return (
-        <Selection {...useAttrs()} hasCopy hasDel hasDrag hasWidthScale data={props.data} parent={props.parent}>
+        <Selection
+          {...useAttrs()}
+          {
+            ...params
+          }
+        >
           <div class={ns.b()}>
             <el-form-item
               {...typeProps.value}

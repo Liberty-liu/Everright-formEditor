@@ -56,10 +56,28 @@ describe('Field: subform', () => {
     await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
     expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
+    previewWrapper.find('[data-test="er-complete-button"] button').trigger('click')
+    await flushPromises()
+    expect([list.columns[0]]).toStrictEqual(previewWrapper.findAll('[data-field-id]').map(element => element.element.dataset.fieldId))
+    expect(previewWrapper.find(`[data-field-id="${list.columns[0]}"] .el-form-item`).classes()).not.toContain('is-required')
     store.fields.push(subForm.columns[0])
     store.sector = subForm.columns[0]
     await flushPromises()
     expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(false)
+  })
+  test('No child: Required', async () => {
+    const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    subForm.columns[0].options.required = true
+    const list = _.cloneDeep(subForm)
+    list.columns[0] = subForm.columns[0].id
+    const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0]], layoutType)
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(0)
+    previewWrapper.find('[data-test="er-complete-button"] button').trigger('click')
+    await flushPromises()
+    expect([list.columns[0]]).toStrictEqual(previewWrapper.findAll('[data-field-id]').map(element => element.element.dataset.fieldId))
+    expect(previewWrapper.find(`[data-field-id="${list.columns[0]}"] .el-form-item`).classes()).toContain('is-required')
   })
   test('Only one child', async () => {
     const newField = _.cloneDeep(field)
@@ -119,7 +137,7 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
     await configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).trigger('click')
-    await flushPromises()
+    await new Promise(resolve => setTimeout(resolve, 1000))
     const setDefaultEl = new DOMWrapper(document.querySelector('.Everright-formEditor-ConfigSubformDefaultValueComponent'))
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
@@ -127,7 +145,7 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
   })
-  test.only('Only one child: has 2 default contents && field has default', async () => {
+  test('Only one child: has 2 default contents && field has default', async () => {
     const values = ['1', '2']
     const addValue = 'everright-formeditor'
     const newField = _.cloneDeep(field)
@@ -163,7 +181,7 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).exists()).toBe(true)
     await configWrapper.find(utils.getTestId('configPanel:defaultValue:button')).trigger('click')
-    await flushPromises()
+    await new Promise(resolve => setTimeout(resolve, 1000))
     const setDefaultEl = new DOMWrapper(document.querySelector('.Everright-formEditor-ConfigSubformDefaultValueComponent'))
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(values)
@@ -171,4 +189,5 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
   })
+  // test.only('Only one child: has 2 default contents && field has default', async () => {})
 })

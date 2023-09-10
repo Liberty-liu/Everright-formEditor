@@ -81,8 +81,15 @@ const addValidate = (result, node, isPc, t) => {
     }
     const newValue = options.isShowTrim ? value.trim() : value
     if (node.type === 'subform') {
-      if (result.required && findAllFields(node).some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {
-        reject(t('er.validateMsg.required'))
+      const allFields = findAllFields(node)
+      if (result.required) {
+        if (allFields.length) {
+          if (allFields.some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {
+            reject(t('er.validateMsg.required'))
+          }
+        } else {
+          reject(t('er.validateMsg.required'))
+        }
       } else {
         resolve()
       }
