@@ -151,7 +151,6 @@ describe('Field: subform', () => {
     list.columns[0] = subForm.columns[0].id
     subForm.columns[0].list[0].push(newField)
     const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
-    console.log(JSON.stringify(data, '', 2))
     await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
     expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
   })
@@ -197,6 +196,40 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual('')
   })
+  test('Only one child: has 2 default contents & Disabled', async () => {
+    const values = ['1', '2']
+    const newField = _.cloneDeep(field)
+    newField.columns[0] = newField.columns[0].id
+    const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    const list = _.cloneDeep(subForm)
+    list.columns[0] = subForm.columns[0].id
+    subForm.columns[0].list[0].push(newField)
+    subForm.columns[0].options.defaultValue = values.map(e => {
+      const result = {}
+      result[field.columns[0].key] = e
+      return result
+    })
+    subForm.columns[0].options.disabled = true
+    const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(false)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(2)
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    expect(previewWrapper.findAll(`[data-field-id="${newField.columns[0]}"]`).map(e => e.find('.el-input').classes())).toStrictEqual([
+      [
+        'el-input',
+        'el-input--default',
+        'is-disabled',
+        'el-input--suffix'
+      ],
+      [
+        'el-input',
+        'el-input--default',
+        'is-disabled',
+        'el-input--suffix'
+      ]
+    ])
+  })
   test('Only one child: has 2 default contents && field has default', async () => {
     const values = ['1', '2']
     const addValue = 'everright-formeditor'
@@ -241,5 +274,4 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
   })
-  // test.only('Only one child: has 2 default contents && field has default', async () => {})
 })
