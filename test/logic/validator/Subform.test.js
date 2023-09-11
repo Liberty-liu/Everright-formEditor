@@ -6,7 +6,7 @@ import * as erComponentsConfig from '@ER/formEditor/componentsConfig.js'
 describe('Subform', () => {
   let field = {}
   beforeAll(() => {
-    field = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    field = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), false, 'en')
   })
   test('empty', () => {
     expect(
