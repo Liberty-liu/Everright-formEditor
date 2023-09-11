@@ -129,7 +129,6 @@ onMounted(() => {
     </template>
   </el-drawer>
   <el-button
-    v-if="target.list[0].length"
     v-bind="utils.addTestId('configPanel:defaultValue:button')"
     style="width: 100%;"
     type="primary"

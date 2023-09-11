@@ -17,15 +17,6 @@ const findPosition = (node, parent) => {
 
   return { x: -1, y: -1 }
 }
-const findAllFields = (node) => {
-  const result = []
-  node.list.forEach(e => {
-    e.forEach(e => {
-      result.push(...e.columns)
-    })
-  })
-  return result
-}
 const addValidate = (result, node, isPc, t) => {
   const {
     options
@@ -81,7 +72,7 @@ const addValidate = (result, node, isPc, t) => {
     }
     const newValue = options.isShowTrim ? value.trim() : value
     if (node.type === 'subform') {
-      const allFields = findAllFields(node)
+      const allFields = utils.findSubFormAllFields(node)
       if (result.required) {
         if (allFields.length) {
           if (allFields.some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {

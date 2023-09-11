@@ -214,6 +214,28 @@ const checkIsInSubform = (node) => {
   }
   return result
 }
+const getSubFormValues = (subform) => subform.list.map(e => {
+  const cur = {}
+  const children = []
+  e.forEach(e => {
+    e.columns.forEach(e => {
+      children.push(e)
+    })
+  })
+  children.forEach(e => {
+    cur[e.key] = e.options.defaultValue
+  })
+  return cur
+})
+const findSubFormAllFields = (subform) => {
+  const result = []
+  subform.list.forEach(e => {
+    e.forEach(e => {
+      result.push(...e.columns)
+    })
+  })
+  return result
+}
 export {
   syncWidthByPlatform,
   wrapElement,
@@ -232,5 +254,7 @@ export {
   transferLabelPath,
   isNull,
   repairLayout,
-  checkIsInSubform
+  checkIsInSubform,
+  getSubFormValues,
+  findSubFormAllFields
 }

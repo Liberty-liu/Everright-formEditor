@@ -37,22 +37,13 @@ const getData = () => {
   const result = {}
   state.fields.forEach(e => {
     if (e.type === 'subform') {
-      result[e.key] = e.list.map(e => {
-        const cur = {}
-        const children = []
-        e.forEach(e => {
-          e.columns.forEach(e => {
-            children.push(e)
-          })
-        })
-        children.forEach(e => {
-          cur[e.key] = e.options.defaultValue
-        })
-        return cur
-      })
+      result[e.key] = utils.getSubFormValues(e)
     } else {
-      if (!utils.checkIsInSubform(e)) {
-        result[e.key] = e.options.defaultValue
+      try {
+        if (!utils.checkIsInSubform(e)) {
+          result[e.key] = e.options.defaultValue
+        }
+      } catch (e) {
       }
     }
   })
@@ -103,7 +94,6 @@ const setData2 = (data, value) => {
     })
   }
 }
-window.state = state
 const setData1 = async (data, value) => {
   if (_.isEmpty(data)) return false
   const newData = utils.combinationData1(_.cloneDeep(data))
@@ -116,7 +106,6 @@ const setData1 = async (data, value) => {
     utils.addContext(e, state.store)
   })
   const subforms = _.cloneDeep(state.fields.filter(e => e.type === 'subform'))
-  // console.log(value)
   // For SubformLayout.jsx to get the first data
   await nextTick()
   if (!_.isEmpty(value)) {
@@ -138,17 +127,22 @@ const setData1 = async (data, value) => {
           e.forEach(e => {
             e.columns.forEach(e => {
               if (value[field.key]) {
-                console.log(value[field.key][index])
-                setValue(e, value[field.key][index][e.key])
+                try {
+                  setValue(e, value[field.key][index][e.key])
+                } catch (e) {
+                }
               }
             })
           })
         })
       } else {
-        if (!utils.checkIsInSubform(field)) {
-          if (value[field.key]) {
-            setValue(field, value[field.key])
+        try {
+          if (!utils.checkIsInSubform(field)) {
+            if (value[field.key]) {
+              setValue(field, value[field.key])
+            }
           }
+        } catch (e) {
         }
       }
     })

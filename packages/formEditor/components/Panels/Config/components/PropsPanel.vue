@@ -447,7 +447,7 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent
       :label="t('er.config.propsPanel.defaultContent')"
       :layoutType="0"
-      v-if="checkTypeBySelected([
+      v-if="checkTypeBySelected(['subform'], 'defaultValue') ? target.list[0].length : checkTypeBySelected([
       'input',
       'textarea',
       'time',
@@ -460,8 +460,7 @@ onMounted(() => {
       'button',
       'divider',
       'cascader',
-      'region',
-      'subform'
+      'region'
     ], 'defaultValue')">
       <template v-if="checkTypeBySelected(['cascader', 'region'], 'defaultValue')">
         <el-cascader
