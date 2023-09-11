@@ -318,7 +318,8 @@ const listenEvent = (state) => {
           subform.options.defaultValue = utils.getSubFormValues(subform)
         }, {
           immediate: true,
-          deep: true
+          deep: true,
+          flush: 'sync'
         })
       })
       watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
