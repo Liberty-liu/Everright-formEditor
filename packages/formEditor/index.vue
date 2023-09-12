@@ -230,7 +230,7 @@ const syncLayout = (platform, fn) => {
   layout[isPc ? 'mobile' : 'pc'] = original
   if (_.isEmpty(isPc ? layout.pc : layout.mobile)) {
     // const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false)))
-    const newData = state.fields.map(e => wrapElement(e, true, false, false, false))
+    const newData = state.fields.filter(field => !utils.checkIsInSubform(field)).map(e => wrapElement(e, true, false, false, false))
     fn && fn(newData)
   } else {
     // debugger
@@ -240,7 +240,7 @@ const syncLayout = (platform, fn) => {
       }
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
-    const addFields = _.differenceBy(state.fields, layoutFields, 'id')
+    const addFields = _.differenceBy(state.fields.filter(field => !utils.checkIsInSubform(field)), layoutFields, 'id')
     const delFields = _.differenceBy(layoutFields, state.fields, 'id')
     utils.repairLayout(copyData, delFields)
     // console.log(JSON.stringify(copyData, '', 2))
@@ -259,7 +259,7 @@ const getLayoutDataByplatform = (platform) => {
       utils.disassemblyData2(original)
       return original
     } else {
-      const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false, false, false)))
+      const newData = _.cloneDeep(state.fields.filter(field => !utils.checkIsInSubform(field)).map(e => wrapElement(e, true, false, false, false)))
       utils.disassemblyData2(newData)
       return newData
     }
@@ -275,7 +275,7 @@ const getLayoutDataByplatform = (platform) => {
       }
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
-    const addFields = _.cloneDeep(_.differenceBy(state.fields, layoutFields, 'id').map(e => wrapElement(e, true, false, false, false)))
+    const addFields = _.cloneDeep(_.differenceBy(state.fields.filter(field => !utils.checkIsInSubform(field)), layoutFields, 'id').map(e => wrapElement(e, true, false, false, false)))
     const delFields = _.differenceBy(layoutFields, state.fields, 'id')
     utils.repairLayout(copyData, delFields)
     utils.disassemblyData2(addFields)
@@ -315,13 +315,14 @@ const getData1 = () => {
   }))
 }
 const getData2 = () => {
+  const fields = utils.processField(_.cloneDeep(state.store))
   layout.pc = getLayoutDataByplatform('pc')
   layout.mobile = getLayoutDataByplatform('mobile')
   return _.cloneDeep({
     layout,
     data: state.data,
     config: state.config,
-    fields: state.fields,
+    fields: fields,
     logic: state.logic
   })
 }

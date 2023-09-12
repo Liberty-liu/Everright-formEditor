@@ -82,13 +82,14 @@ const getAllFields = (store) => flatNodes(store, excludes)
 const pickfields = (list) => {
   return flatNodes(list, excludes)
 }
+const processField = (list) => flatNodes(list, excludes, (nodes, node, currentIndex) => {
+  nodes[currentIndex] = node.id
+})
 const disassemblyData1 = (data) => {
   const result = {
     list: data.list,
     config: data.config,
-    fields: flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
-      nodes[currentIndex] = node.id
-    }),
+    fields: processField(data.list),
     data: data.data,
     logic: data.logic
   }
@@ -115,12 +116,16 @@ const combinationData1 = (data) => {
   return result
 }
 const combinationData2 = (list, fields) => {
-  flatNodes(list, excludes, (nodes, node, currentIndex) => {
+  const fn = (nodes, node, currentIndex) => {
     const cur = _.find(fields, { id: node })
     if (!_.isEmpty(cur)) {
+      if (cur.type === 'subform') {
+        flatNodes(cur.list[0], excludes, fn)
+      }
       nodes[currentIndex] = cur
     }
-  })
+  }
+  flatNodes(list, excludes, fn)
 }
 const repairLayout = (layout, fields) => {
   flatNodes(layout, excludes, (nodes, node, currentIndex) => {
@@ -256,5 +261,6 @@ export {
   repairLayout,
   checkIsInSubform,
   getSubFormValues,
-  findSubFormAllFields
+  findSubFormAllFields,
+  processField
 }
