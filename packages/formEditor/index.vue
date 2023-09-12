@@ -51,6 +51,10 @@ const props = defineProps(_.merge({
     type: String,
     default: 'icon',
     validator: (value) => ['full', 'icon'].includes(value)
+  },
+  checkFieldsForNewBadge: {
+    type: Function,
+    default: () => {}
   }
 }, defaultProps))
 const layout = {

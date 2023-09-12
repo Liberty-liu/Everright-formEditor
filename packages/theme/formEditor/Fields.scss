@@ -21,7 +21,20 @@
     justify-content: space-between;
     flex-wrap: wrap;
     li {
-      overflow: hidden;
+      @include when(new) {
+        &::after {
+          content: 'new';
+          position: absolute;
+          top: -6px;
+          right: 0;
+          color: #fff;
+          background-color: #f00;
+          font-size: 12px;
+          padding: 0 6px;
+          border-radius: 10px;
+        }
+      }
+      position: relative;
       border-radius: 4px;
       margin: 4px;
       background: #F9F9F9;

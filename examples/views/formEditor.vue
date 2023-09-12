@@ -14,9 +14,13 @@ const handleListener = async ({ type, data }) => {
       break
   }
 }
+const checkFieldsForNewBadge = (field) => {
+  return field.type === 'subform'
+}
 </script>
 <template>
   <er-form-editor
+    :checkFieldsForNewBadge="checkFieldsForNewBadge"
     :lang="lang"
     @listener="handleListener"
     ref="EReditorRef"/>

@@ -90,6 +90,9 @@ const quickImages = ref([
   '/public/Everright-logo.svg',
   '/public/Everright-logo.svg'
 ])
+const checkFieldsForNewBadge = (field) => {
+  return field.type === 'subform'
+}
 </script>
 <template>
   <div
@@ -97,6 +100,7 @@ const quickImages = ref([
   >
     <er-form-editor
       :checkPropsBySelected="checkPropsBySelected"
+      :checkFieldsForNewBadge="checkFieldsForNewBadge"
       v-if="isRender"
       :quickImages="quickImages"
       :layoutType="layoutType"
