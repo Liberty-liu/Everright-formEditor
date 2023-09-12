@@ -1,6 +1,6 @@
 {
   "name": "everright-formeditor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "🦮 Powerful lowcode|vue form editor,generator,designer,builder library. It provides an easy way to create custom forms. The project is extensible, easy to use and configure, and provides many commonly used form components and functions(vue可视化低代码表单设计器、表单编辑器、element-plus vant表单设计)",
   "files": [
     "dist",
@@ -31,7 +31,8 @@
       "import": "./dist/Everright-formEditor.js",
       "require": "./dist/Everright-formEditor.umd.cjs"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css",
+    "./packages/formEditor/componentsConfig.js": "./packages/formEditor/componentsConfig.js"
   },
   "scripts": {
     "dev:server": "nodemon server --watch server",
