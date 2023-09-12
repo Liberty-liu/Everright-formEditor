@@ -1,7 +1,9 @@
 import {
   defineComponent,
   useAttrs,
-  unref, inject
+  unref,
+  inject,
+  onBeforeUnmount
 } from 'vue'
 import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
@@ -29,7 +31,6 @@ export default defineComponent({
     } = hooks.useTarget()
     const typeProps = hooks.useProps(state, props.data, unref(isPc))
     const addData = unref(isEditModel) ? [] : _.cloneDeep(props.data.list[0])
-    // console.log(addData)
     const handleAdd = () => {
       props.data.list.splice(props.data.list.length, 0, _.cloneDeep(addData))
       // console.log(props.data.list)
@@ -38,22 +39,40 @@ export default defineComponent({
         utils.addContext(e, props.data)
       })
     }
-    if (!unref(isEditModel)) {
-      props.data.list.splice(0, 1)
-      if (props.data.options.defaultValue.length) {
-        props.data.options.defaultValue.forEach((e, index) => {
-          handleAdd()
-        })
+    const clearList = () => {
+      props.data.list.splice(0, props.data.list.length)
+    }
+    const setList = (length, values) => {
+      clearList()
+      for (let i = 0; i < length; i++) {
+        handleAdd()
       }
       props.data.list.forEach((e, index) => {
         e.forEach(e => {
           e.columns.forEach(e => {
             if (props.data.options.defaultValue) {
-              ER.setValue(e, props.data.options.defaultValue[index][e.key])
+              try {
+                ER.setValue(e, values[index][e.key])
+              } catch (e) {
+              }
             }
           })
         })
       })
+    }
+    if (!unref(isEditModel)) {
+      onBeforeUnmount(() => {
+        props.data.list[0] = addData
+      })
+      clearList()
+      if (ER.state.remoteValues.has(props.data.key)) {
+        const values = ER.state.remoteValues.get(props.data.key)
+        setList(values.length, values)
+      } else {
+        if (props.data.options.defaultValue.length) {
+          setList(props.data.options.defaultValue.length, props.data.options.defaultValue)
+        }
+      }
     }
     if (ExtraParams.inSubformDefaultValueComponent) {
       ExtraParams.handle.handleAdd = handleAdd

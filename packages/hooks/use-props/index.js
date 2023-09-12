@@ -87,8 +87,10 @@ const addValidate = (result, node, isPc, t) => {
     } else {
       let isRequired = result.required
       if (utils.checkIsInSubform(node)) {
-        if (node.context.parent.context.parent.options.required) {
-          isRequired = true
+        const parent = node?.context?.parent?.context?.parent
+        if (parent) {
+          const parentProps = useProps(state, parent, isPc).value
+          isRequired = parentProps.required
         }
       }
       if (isRequired && node.type !== 'subform' && utils.isEmpty(newValue)) {
@@ -203,11 +205,19 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         result.required = result.disabled ? false : required === 1
       }
     }
-    if (utils.checkIsInSubform(node) && !!node?.context?.parent?.context?.parent?.options?.disabled) {
-      result.disabled = true
+    if (utils.checkIsInSubform(node)) {
+      const parent = node?.context?.parent?.context?.parent
+      if (parent) {
+        const parentProps = useProps(state, parent, isPc).value
+        result.disabled = parentProps.disabled
+        result.required = parentProps.required
+      }
     }
-    if (ExtraParams.inSubformDefaultValueComponent) {
-      result.disabled = result.required = false
+    try {
+      if (ExtraParams.inSubformDefaultValueComponent) {
+        result.disabled = result.required = false
+      }
+    } catch (e) {
     }
     addValidate(result, node, isPc, t)
     if (isPc) {

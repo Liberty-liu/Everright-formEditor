@@ -29,7 +29,8 @@ const state = reactive({
   data: {},
   fields: [],
   logic: {},
-  fieldsLogicState: new Map()
+  fieldsLogicState: new Map(),
+  remoteValues: new Map()
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
@@ -109,38 +110,14 @@ const setData1 = async (data, value) => {
   // For SubformLayout.jsx to get the first data
   await nextTick()
   if (!_.isEmpty(value)) {
+    for (const key in value) {
+      state.remoteValues.set(key, value[key])
+    }
     state.fields.forEach((field) => {
-      if (field.type === 'subform') {
-        const subFormValue = value[field.key]
-        if (subFormValue.length) {
-          const addData = _.cloneDeep(_.find(subforms, { id: field.id }).list[0])
-          field.list.splice(0, field.list.length)
-          subFormValue.forEach((e, index) => {
-            const addItems = _.cloneDeep(addData)
-            field.list.splice(index, 0, addItems)
-            addItems.forEach(e => {
-              utils.addContext(e, field)
-            })
-          })
-        }
-        field.list.forEach((e, index) => {
-          e.forEach(e => {
-            e.columns.forEach(e => {
-              if (value[field.key]) {
-                try {
-                  setValue(e, value[field.key][index][e.key])
-                } catch (e) {
-                }
-              }
-            })
-          })
-        })
-      } else {
+      if (field.type !== 'subform') {
         try {
           if (!utils.checkIsInSubform(field)) {
-            if (value[field.key]) {
-              setValue(field, value[field.key])
-            }
+            setValue(field, value[field.key])
           }
         } catch (e) {
         }
@@ -156,6 +133,7 @@ defineExpose({
   setData,
   getData
 })
+window.state = state
 </script>
 <template>
   <CanvesPanel v-if="state.store.length"></CanvesPanel>

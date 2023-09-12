@@ -11,7 +11,6 @@ export default {
 }
 </script>
 <script setup>
-// let observer = ''
 const handle = {}
 const ExtraParams = provide('EverrightExtraParams', {
   inSubformDefaultValueComponent: true,
@@ -44,6 +43,7 @@ const openDialog = async () => {
     rawData = utils.disassemblyData1(_.cloneDeep(rawData))
   } else {
     rawData = ER.getData()
+    rawData.logic = {}
     rawData.list = [{
       type: 'inline',
       columns: [
@@ -73,22 +73,6 @@ const handleAction = (type) => {
       break
   }
 }
-const callback = (mutationsList) => {
-  scrollbarRef.value.setScrollTop(scrollbarRef.value.wrapRef.scrollHeight)
-}
-onMounted(() => {
-  // openDialog()
-  nextTick(() => {
-    // const config = { attributes: false, childList: true, subtree: true }
-    // observer = new MutationObserver(callback)
-    // observer.observe(scrollbarRef.value.wrapRef, config)
-  })
-})
-
-// onBeforeUnmount(() => {
-//   observer.disconnect()
-//   observer = null
-// })
 </script>
 <template>
   <el-drawer

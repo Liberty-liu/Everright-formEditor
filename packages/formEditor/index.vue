@@ -74,7 +74,6 @@ const state = reactive({
   Namespace: 'formEditor',
   logic: {}
 })
-window.state = state
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)
 state.validator = (target, fn) => {
@@ -349,7 +348,6 @@ const setData1 = (data) => {
     // restart()
   })
 }
-window.state = state
 const setData2 = (data) => {
   if (_.isEmpty(data)) return false
   // stop()
@@ -364,6 +362,7 @@ const setData2 = (data) => {
   state.store = curLayout
   state.config = newData.config
   state.data = newData.data
+  state.logic = newData.logic
   setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
