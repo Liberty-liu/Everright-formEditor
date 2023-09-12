@@ -163,7 +163,7 @@ const setBorder = (el, className) => {
   el.classList.add(className)
 }
 const getDragElement = (node) => {
-  return node.__draggable_context.element
+  return node.__draggable_context?.element
 }
 
 const setStates = (newTarget, ev, ER) => {
@@ -313,14 +313,6 @@ function ControlInsertionPlugin (ER) {
   }
   ControlInsertion.prototype = {
     dragStart (e) {
-      // const {
-      //   rootEl,
-      //   target
-      // } = e
-      // const isBlock = _.get(e, 'sortable.options.dataSource', false) === 'block'
-      // if (isBlock) return false
-      // const targetContainer = rootEl.parentNode
-      // targetContainer.style.zIndex = 2
     },
     drop (e) {
       if (!prevEl || !e.activeSortable) {
@@ -344,7 +336,12 @@ function ControlInsertionPlugin (ER) {
         }
       }
       if (inserRowIndex !== '') {
-        const store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+        let store = []
+        if (prevSortable.options.parent.type === 'subform') {
+          store = prevSortable.options.parent.list[0]
+        } else {
+          store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+        }
         store.splice(inserRowIndex, 0, newElement)
         utils.addContext(store[inserRowIndex], prevSortable.options.parent)
       }
@@ -382,7 +379,7 @@ function ControlInsertionPlugin (ER) {
       const {
         activeSortable: {
           constructor: {
-            utils
+            utils: SortableUtils
           },
           options: {
             dataSource
@@ -413,15 +410,26 @@ function ControlInsertionPlugin (ER) {
       if (target.dataset.layoutType === 'grid') {
         return false
       }
+      const dragNode = getDragElement(dragEl)
+      const targetNode = getDragElement(target)
+      if ((!utils.checkIsField(dragNode) || dragNode.type === 'subform') && utils.checkIsInSubform(targetNode)) {
+        return false
+      }
+      if (target.dataset.layoutType === 'subform') {
+        // console.log(utils)
+        if (!utils.checkIsField(dragNode) || dragNode.type === 'subform') {
+          return false
+        }
+      }
       originalEvent.stopPropagation && originalEvent.stopPropagation()
       const direction = ''
       const targetContainer = el.parentNode
       const targetOnlyOne = targetList.length === 1
-      let newTarget = utils.closest(target, this.options.draggable, sortable.el)
+      let newTarget = SortableUtils.closest(target, this.options.draggable, sortable.el)
       if (dragEl.contains(newTarget)) {
         return false
       }
-      if (/^(grid-col|tabs-col|td|collapse-col|root|inline)$/.test(target.dataset.layoutType)) {
+      if (/^(grid-col|tabs-col|td|collapse-col|root|inline|subform)$/.test(target.dataset.layoutType)) {
         newTarget = target
         const state = (newTarget.__draggable_component__ || newTarget.children[0].__draggable_component__)
         if (!state.list.length) {
@@ -433,9 +441,6 @@ function ControlInsertionPlugin (ER) {
           if (/^(root|grid-col)$/.test(target.dataset.layoutType)) {
             const rows = el.children
             prevEl = lastChild(el)
-            // if (prevEl.contains(dragEl) && list.length === 1) {
-            // console.log(prevEl)
-            // console.log(dragEl)
             if (prevEl === dragEl.parentNode.parentNode && list.length === 1) {
               prevEl = ''
               return false

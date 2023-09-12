@@ -1,9 +1,9 @@
 import _ from 'lodash-es'
 import { nanoid } from './nanoid'
-const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region)$/
+const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region|subform)$/
 const deepTraversal = (node, fn) => {
   fn(node)
-  const nodes = node.list || node.rows || node.columns || node.children || []
+  const nodes = node.type === 'subform' ? node.list[0] : (node.list || node.rows || node.columns || node.children || [])
   nodes.forEach(e => {
     deepTraversal(e, fn)
   })
@@ -11,6 +11,7 @@ const deepTraversal = (node, fn) => {
 const wrapElement = (element, fn) => {
   const result = element
   deepTraversal(result, (node) => {
+    if (Array.isArray(node)) return false
     if (!node.style) {
       node.style = {}
     }
@@ -72,7 +73,7 @@ const flatNodes = (nodes, excludes, fn, excludesFn) => {
     } else {
       excludesFn && excludesFn(nodes, node, currentIndex)
     }
-    const children = node.list || node.rows || node.columns || node.children || []
+    const children = node.type === 'subform' ? node.list[0] : (node.list || node.rows || node.columns || node.children || [])
     res = res.concat(flatNodes(children, excludes, fn, excludesFn))
     return res
   }, [])
@@ -81,14 +82,16 @@ const getAllFields = (store) => flatNodes(store, excludes)
 const pickfields = (list) => {
   return flatNodes(list, excludes)
 }
+const processField = (list) => flatNodes(list, excludes, (nodes, node, currentIndex) => {
+  nodes[currentIndex] = node.id
+})
 const disassemblyData1 = (data) => {
   const result = {
     list: data.list,
     config: data.config,
-    fields: flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
-      nodes[currentIndex] = node.id
-    }),
-    data: data.data
+    fields: processField(data.list),
+    data: data.data,
+    logic: data.logic
   }
   return result
 }
@@ -100,21 +103,29 @@ const combinationData1 = (data) => {
     fields: data.fields,
     logic: data.logic
   }
-  flatNodes(data.list, excludes, (nodes, node, currentIndex) => {
+  const fn = (nodes, node, currentIndex) => {
     const cur = _.find(data.fields, { id: node })
     if (!_.isEmpty(cur)) {
+      if (cur.type === 'subform') {
+        flatNodes(cur.list[0], excludes, fn)
+      }
       nodes[currentIndex] = cur
     }
-  })
+  }
+  flatNodes(data.list, excludes, fn)
   return result
 }
 const combinationData2 = (list, fields) => {
-  flatNodes(list, excludes, (nodes, node, currentIndex) => {
+  const fn = (nodes, node, currentIndex) => {
     const cur = _.find(fields, { id: node })
     if (!_.isEmpty(cur)) {
+      if (cur.type === 'subform') {
+        flatNodes(cur.list[0], excludes, fn)
+      }
       nodes[currentIndex] = cur
     }
-  })
+  }
+  flatNodes(list, excludes, fn)
 }
 const repairLayout = (layout, fields) => {
   flatNodes(layout, excludes, (nodes, node, currentIndex) => {
@@ -196,6 +207,40 @@ const transferData = (lang, path, locale, options = {}) => {
   return result
 }
 const isNull = (e) => e === '' || e === null || e === undefined
+const checkIsInSubform = (node) => {
+  if (!node) return false
+  let result = false
+  let parent = node.context.parent
+  while (parent && !result) {
+    if (parent.type === 'subform') {
+      result = true
+    }
+    parent = parent.context?.parent
+  }
+  return result
+}
+const getSubFormValues = (subform) => subform.list.map(e => {
+  const cur = {}
+  const children = []
+  e.forEach(e => {
+    e.columns.forEach(e => {
+      children.push(e)
+    })
+  })
+  children.forEach(e => {
+    cur[e.key] = e.options.defaultValue
+  })
+  return cur
+})
+const findSubFormAllFields = (subform) => {
+  const result = []
+  subform.list.forEach(e => {
+    e.forEach(e => {
+      result.push(...e.columns)
+    })
+  })
+  return result
+}
 export {
   syncWidthByPlatform,
   wrapElement,
@@ -213,5 +258,9 @@ export {
   transferData,
   transferLabelPath,
   isNull,
-  repairLayout
+  repairLayout,
+  checkIsInSubform,
+  getSubFormValues,
+  findSubFormAllFields,
+  processField
 }

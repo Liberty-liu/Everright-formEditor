@@ -41,7 +41,6 @@ const getObjData = async () => {
   }
 }
 const handleListener = async ({ type, data }) => {
-  console.log(type)
   switch (type) {
     case 'lang':
       lang.value = data
@@ -53,6 +52,8 @@ const handleListener = async ({ type, data }) => {
       }
       loading.value = true
       try {
+        // console.log(data)
+        // data.fields[0].options.defaultValue = []
         const postData = {
           name: state.name,
           content: Object.assign({
@@ -89,6 +90,9 @@ const quickImages = ref([
   '/public/Everright-logo.svg',
   '/public/Everright-logo.svg'
 ])
+const checkFieldsForNewBadge = (field) => {
+  return field.type === 'subform'
+}
 </script>
 <template>
   <div
@@ -96,6 +100,7 @@ const quickImages = ref([
   >
     <er-form-editor
       :checkPropsBySelected="checkPropsBySelected"
+      :checkFieldsForNewBadge="checkFieldsForNewBadge"
       v-if="isRender"
       :quickImages="quickImages"
       :layoutType="layoutType"

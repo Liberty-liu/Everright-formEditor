@@ -1,7 +1,6 @@
 import { describe, assert, expect, test, beforeEach, vi, beforeAll, afterEach } from 'vitest'
 import { erComponentsConfig, erFormConfig, erGeneratorData, utils } from '@ER/formEditor/index.js'
 import { mount } from '@vue/test-utils'
-import { Plus } from '@element-plus/icons-vue'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 import { computed, nextTick, reactive, ref } from 'vue'
@@ -18,9 +17,6 @@ const _mount = (template, data, otherObj) => mount(
   {
     attachTo: 'body',
     global: {
-      components: {
-        Plus
-      },
       plugins: [
         ElementPlus,
         Vant
@@ -2658,5 +2654,99 @@ describe('Configuration options owned by the config panel', () => {
     expect(wrapper.find(utils.getTestId('configPanel:dataEntry3')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:accordion')).exists()).toBe(false)
     expect(wrapper.find(utils.getTestId('configPanel:contentPosition')).exists()).toBe(true)
+  })
+  test('Subform:pc', async () => {
+    value0.value = store.layouts[9].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Sub-form'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:displayStyle')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:multiple')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:format')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateRange')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:star')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:allowHalf')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:sliderCount')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:step')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:precision')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:filterable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:anyNode')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:tabsType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:tabPosition')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry3')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accordion')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:contentPosition')).exists()).toBe(false)
+  })
+  test('Subform:mobile', async () => {
+    value0.value = store.layouts[9].id
+    await nextTick()
+    expect(wrapper.find(utils.getTestId('configPanel:breadcrumb')).findAll('.el-breadcrumb__item').map(e => e.text())).toEqual(['Form Attribute', 'Sub-form'])
+    expect(wrapper.find(utils.getTestId('configPanel:id')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:title')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:titleWidth')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:defaultValue')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:placeholder')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:isShowTrim')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:required')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:disabled')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:clearable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:width')).exists()).toBe(true)
+    expect(wrapper.find(utils.getTestId('configPanel:prepend')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:append')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:textareaHeight')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:wordLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:controls')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:displayStyle')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:multiple')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:format')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dateRange')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:star')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:allowHalf')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:sliderCount')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:step')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:precision')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:filterable')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:anyNode')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accept')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:uploadLimit')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:fileSize')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:brushColor')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:justify')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:margin')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:padding')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:background')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:borderLine')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:tabsType')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:tabPosition')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:dataEntry3')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:accordion')).exists()).toBe(false)
+    expect(wrapper.find(utils.getTestId('configPanel:contentPosition')).exists()).toBe(false)
   })
 })

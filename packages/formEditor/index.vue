@@ -51,6 +51,10 @@ const props = defineProps(_.merge({
     type: String,
     default: 'icon',
     validator: (value) => ['full', 'icon'].includes(value)
+  },
+  checkFieldsForNewBadge: {
+    type: Function,
+    default: () => {}
   }
 }, defaultProps))
 const layout = {
@@ -229,7 +233,7 @@ const syncLayout = (platform, fn) => {
   layout[isPc ? 'mobile' : 'pc'] = original
   if (_.isEmpty(isPc ? layout.pc : layout.mobile)) {
     // const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false)))
-    const newData = state.fields.map(e => wrapElement(e, true, false, false, false))
+    const newData = state.fields.filter(field => !utils.checkIsInSubform(field)).map(e => wrapElement(e, true, false, false, false))
     fn && fn(newData)
   } else {
     // debugger
@@ -239,7 +243,7 @@ const syncLayout = (platform, fn) => {
       }
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
-    const addFields = _.differenceBy(state.fields, layoutFields, 'id')
+    const addFields = _.differenceBy(state.fields.filter(field => !utils.checkIsInSubform(field)), layoutFields, 'id')
     const delFields = _.differenceBy(layoutFields, state.fields, 'id')
     utils.repairLayout(copyData, delFields)
     // console.log(JSON.stringify(copyData, '', 2))
@@ -258,7 +262,7 @@ const getLayoutDataByplatform = (platform) => {
       utils.disassemblyData2(original)
       return original
     } else {
-      const newData = _.cloneDeep(state.fields.map(e => wrapElement(e, true, false, false, false)))
+      const newData = _.cloneDeep(state.fields.filter(field => !utils.checkIsInSubform(field)).map(e => wrapElement(e, true, false, false, false)))
       utils.disassemblyData2(newData)
       return newData
     }
@@ -274,7 +278,7 @@ const getLayoutDataByplatform = (platform) => {
       }
     })
     const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile)
-    const addFields = _.cloneDeep(_.differenceBy(state.fields, layoutFields, 'id').map(e => wrapElement(e, true, false, false, false)))
+    const addFields = _.cloneDeep(_.differenceBy(state.fields.filter(field => !utils.checkIsInSubform(field)), layoutFields, 'id').map(e => wrapElement(e, true, false, false, false)))
     const delFields = _.differenceBy(layoutFields, state.fields, 'id')
     utils.repairLayout(copyData, delFields)
     utils.disassemblyData2(addFields)
@@ -304,36 +308,24 @@ const fireEvent = (type, data) => {
     data
   })
 }
-provide('Everright', {
-  state,
-  setSelection,
-  props,
-  wrapElement,
-  delField,
-  addField,
-  switchPlatform,
-  addFieldData,
-  canvesScrollRef,
-  fireEvent
-})
 const ns = hooks.useNamespace('Main', state.Namespace)
 const getData1 = () => {
-  return Object.assign(utils.disassemblyData1(_.cloneDeep({
+  return utils.disassemblyData1(_.cloneDeep({
     list: state.store,
     config: state.config,
-    data: state.data
-  })), {
+    data: state.data,
     logic: state.logic
-  })
+  }))
 }
 const getData2 = () => {
+  const fields = utils.processField(_.cloneDeep(state.store))
   layout.pc = getLayoutDataByplatform('pc')
   layout.mobile = getLayoutDataByplatform('mobile')
   return _.cloneDeep({
     layout,
     data: state.data,
     config: state.config,
-    fields: state.fields,
+    fields: fields,
     logic: state.logic
   })
 }
@@ -341,6 +333,7 @@ const setData1 = (data) => {
   if (_.isEmpty(data)) return false
   // stop()
   const newData = utils.combinationData1(_.cloneDeep(data))
+  // console.log(newData.list[0].columns[0].list[0][0].columns[0])
   isShow.value = false
   // console.log(data.list.slice(data.list.length - 1))
   state.store = newData.list
@@ -355,6 +348,7 @@ const setData1 = (data) => {
   })
   nextTick(() => {
     isShow.value = true
+    // setSelection(state.store[0])
     // restart()
   })
 }
@@ -372,6 +366,7 @@ const setData2 = (data) => {
   state.store = curLayout
   state.config = newData.config
   state.data = newData.data
+  state.logic = newData.logic
   setSelection(state.config)
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
@@ -455,6 +450,19 @@ watch(() => state.selected, (newVal) => {
 })
 const onClickOutside = () => {
 }
+provide('Everright', {
+  state,
+  setSelection,
+  props,
+  wrapElement,
+  delField,
+  addField,
+  switchPlatform,
+  addFieldData,
+  canvesScrollRef,
+  fireEvent,
+  getData
+})
 </script>
 <template>
   <el-dialog

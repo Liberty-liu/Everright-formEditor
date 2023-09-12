@@ -15,6 +15,7 @@ $namespace: 'Everright-formEditor';
 @import './TabsLayout';
 @import './CollapseLayout';
 @import './InlineLayout';
+@import './SubformLayout';
 @import './DragGableLayout';
 @import './SelectElement';
 @import './FormTypes/Signature';
@@ -37,4 +38,5 @@ $namespace: 'Everright-formEditor';
 @import './ConfigCollapseComponent';
 @import './ConfigTypeComponent';
 @import './ConfigLogicComponent';
+@import './ConfigSubformDefaultValueComponent';
 

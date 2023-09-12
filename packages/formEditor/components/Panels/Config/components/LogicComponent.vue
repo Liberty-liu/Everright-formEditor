@@ -5,7 +5,8 @@ import {
   generateIfFilterOptionsData,
   generateIfFilterConditionsData,
   generateThenFilterOptionsData,
-  generateThenFilterConditionsData
+  generateThenFilterConditionsData,
+  findValidFields
 } from './generateFilterdata.js'
 import _ from 'lodash-es'
 import { EverrightFilter } from 'everright-filter'
@@ -58,7 +59,7 @@ const {
 const getIfOptions = (type) => async () => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: generateIfFilterOptionsData(type, state.fields)
+      data: generateIfFilterOptionsData(type, findValidFields(state.fields))
     })
   })
 }
@@ -72,14 +73,14 @@ const getIfConditions = (type) => async ({ property }) => {
 const getThenOptions = (type) => async () => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: generateThenFilterOptionsData(type, state.fields)
+      data: generateThenFilterOptionsData(type, findValidFields(state.fields))
     })
   })
 }
 const getThenConditions = (type) => async ({ property }) => {
   return new Promise((resolve, reject) => {
     resolve({
-      data: generateThenFilterConditionsData(type, state.fields)
+      data: generateThenFilterConditionsData(type, findValidFields(state.fields))
     })
   })
 }

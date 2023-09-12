@@ -138,6 +138,7 @@ const generateIfFilterOptionsData = (activeTab, fields) => {
         break
       case 'signature':
       case 'uploadfile':
+      case 'subform':
         filterNode.renderType = 'NONE'
         filterNode.operatorKey = 'Text'
         filterNode.includeOperator = {
@@ -411,9 +412,15 @@ const generateThenFilterConditionsData = (activeTab, fields) => {
     }
   })
 }
+const findValidFields = (fields) => {
+  return fields.filter(field => {
+    return field.type === 'subform' || !utils.checkIsInSubform(field)
+  })
+}
 export {
   generateIfFilterOptionsData,
   generateIfFilterConditionsData,
   generateThenFilterOptionsData,
-  generateThenFilterConditionsData
+  generateThenFilterConditionsData,
+  findValidFields
 }

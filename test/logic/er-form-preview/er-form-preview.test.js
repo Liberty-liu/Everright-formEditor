@@ -3,7 +3,6 @@ import { mount, flushPromises, enableAutoUnmount } from '@vue/test-utils'
 import { nextTick, reactive } from 'vue'
 import _ from 'lodash-es'
 import ElementPlus from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
 import Vant from 'vant'
 import { erFormPreview } from '@ER/formEditor'
 import previewData from './data/preview.json'
@@ -20,9 +19,6 @@ const _mount = (template, data, otherObj) => mount(
   {
     attachTo: 'body',
     global: {
-      components: {
-        Plus
-      },
       plugins: [
         ElementPlus,
         Vant

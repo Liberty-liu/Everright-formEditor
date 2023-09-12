@@ -29,31 +29,24 @@ const state = reactive({
   data: {},
   fields: [],
   logic: {},
-  fieldsLogicState: new Map()
+  fieldsLogicState: new Map(),
+  remoteValues: new Map()
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
-// const checkFieldsValidation = async () => {
-//   for (const [key, value] of state.fieldsValidation) {
-//     if (value) {
-//       if (utils.isPc()) {
-//         ElMessage({
-//           message: key.value,
-//           type: 'warning'
-//         })
-//       } else {
-//         showNotify({ type: 'warning', message: key.value })
-//       }
-//       return Promise.reject(key)
-//     }
-//   }
-//   return Promise.resolve()
-// }
-// window.checkFieldsValidation = checkFieldsValidation
 const getData = () => {
   const result = {}
   state.fields.forEach(e => {
-    result[e.key] = e.options.defaultValue
+    if (e.type === 'subform') {
+      result[e.key] = utils.getSubFormValues(e)
+    } else {
+      try {
+        if (!utils.checkIsInSubform(e)) {
+          result[e.key] = e.options.defaultValue
+        }
+      } catch (e) {
+      }
+    }
   })
   return _.cloneDeep(result)
 }
@@ -63,12 +56,18 @@ const fireEvent = (type, data) => {
     data
   })
 }
+const setValue = (field, value) => {
+  if (field.type === 'time' && !field.options.valueFormat) {
+    field.options.valueFormat = 'HH:mm:ss'
+  }
+  field.options.defaultValue = value
+}
 provide('Everright', {
   state,
   getData,
   props,
-  fireEvent
-  // checkFieldsValidation
+  fireEvent,
+  setValue
 })
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
@@ -96,7 +95,7 @@ const setData2 = (data, value) => {
     })
   }
 }
-const setData1 = (data, value) => {
+const setData1 = async (data, value) => {
   if (_.isEmpty(data)) return false
   const newData = utils.combinationData1(_.cloneDeep(data))
   state.store = newData.list
@@ -107,13 +106,21 @@ const setData1 = (data, value) => {
   state.store.forEach((e) => {
     utils.addContext(e, state.store)
   })
+  const subforms = _.cloneDeep(state.fields.filter(e => e.type === 'subform'))
+  // For SubformLayout.jsx to get the first data
+  await nextTick()
   if (!_.isEmpty(value)) {
-    state.fields.forEach((e) => {
-      if (e.type === 'time' && !e.options.valueFormat) {
-        e.options.valueFormat = 'HH:mm:ss'
-      }
-      if (value[e.key]) {
-        e.options.defaultValue = value[e.key]
+    for (const key in value) {
+      state.remoteValues.set(key, value[key])
+    }
+    state.fields.forEach((field) => {
+      if (field.type !== 'subform') {
+        try {
+          if (!utils.checkIsInSubform(field)) {
+            setValue(field, value[field.key])
+          }
+        } catch (e) {
+        }
       }
     })
   }
@@ -126,6 +133,7 @@ defineExpose({
   setData,
   getData
 })
+window.state = state
 </script>
 <template>
   <CanvesPanel v-if="state.store.length"></CanvesPanel>

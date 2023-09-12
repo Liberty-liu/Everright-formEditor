@@ -767,6 +767,39 @@ exports[`Generate field data: > Slider 1`] = `
 }
 `;
 
+exports[`Generate field data: > Subform 1`] = `
+{
+  "columns": [
+    {
+      "icon": "subform",
+      "id": "{{test-id-nanoid}}",
+      "key": "subform_{{test-id-nanoid}}",
+      "label": "Sub-form",
+      "list": [
+        [],
+      ],
+      "options": {
+        "defaultValue": [],
+        "disabled": false,
+        "isShowLabel": true,
+        "required": false,
+      },
+      "style": {
+        "width": {
+          "mobile": "100%",
+          "pc": "100%",
+        },
+      },
+      "type": "subform",
+    },
+  ],
+  "id": "{{test-id-nanoid}}",
+  "key": "inline_{{test-id-nanoid}}",
+  "style": {},
+  "type": "inline",
+}
+`;
+
 exports[`Generate field data: > Switch 1`] = `
 {
   "columns": [

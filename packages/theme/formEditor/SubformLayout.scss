@@ -1,0 +1,58 @@
+@include b(SubformLayout) {
+  @include e(content) {
+    width: 100%;
+  }
+  @include e(item) {
+    position: relative;
+    [data-layout-type="subform"] {
+      padding-left: 50px;
+    }
+  }
+  .el-form-item {
+    display: block;
+    .el-form-item__label {
+      display: block;
+      height: auto;
+      text-align: left;
+      margin-bottom: 8px;
+      line-height: 22px;
+    }
+  }
+  @include e(button) {
+    width: 50px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    button {
+      margin: 0 !important;
+    }
+    button:last-child {
+      display: none;
+      svg {
+        color: #ffffff;
+      }
+    }
+  }
+  @include e(edit) {
+    &:hover {
+      background: #F9F9F9;
+      .#{$namespace}-SubformLayout__button {
+        button:first-child {
+          display: none;
+        }
+        button:last-child {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+  @include e(addButton) {
+    padding-top: 20px;
+    //width: 100%;
+    //button {
+    //  //border: 1px dashed #409EFF;
+    //  width: 100%;
+    //  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    //}
+  }
+}

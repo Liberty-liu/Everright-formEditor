@@ -13,6 +13,7 @@ import PanelsConfigComponentsBackgroundComponent from './BackgroundComponent.vue
 import PanelsConfigComponentsDataComponent1 from './DataComponent1.jsx'
 import PanelsConfigComponentsDataComponent2 from './DataComponent2.jsx'
 import PanelsConfigComponentsDataComponent3 from './DataComponent3.vue'
+import PanelsConfigComponentsSubformDefaultValue from './SubformDefaultValue.vue'
 import Icon from '@ER/icon'
 import _ from 'lodash-es'
 export default {
@@ -37,7 +38,8 @@ const {
   isSelectTabs,
   isSelectCollapse,
   isSelectTable,
-  isPc
+  isPc,
+  isSelectSubform
 } = hooks.useTarget()
 defineEmits(['changePanel'])
 const bgStatus = ref(false)
@@ -415,7 +417,7 @@ onMounted(() => {
       <template v-slot:content>
         <div :class="[ns.e('collapseWrap'), ns.e('collapseWrap-left')]">
           <el-row justify="space-between" align="middle">
-            <el-col :span="isPc ? 11 : 24">
+            <el-col :span="isSelectSubform ? 24 : (isPc ? 11 : 24)">
               <el-form-item v-bind="utils.addTestId('configPanel:title')">
                 <template v-slot:label>
                   <Icon icon="title"/>
@@ -427,7 +429,7 @@ onMounted(() => {
                 />
               </el-form-item>
             </el-col>
-            <el-col :span="12" v-if="isPc">
+            <el-col :span="12" v-if="isPc && !isSelectSubform">
               <el-form-item v-bind="utils.addTestId('configPanel:titleWidth')">
                 <template v-slot:label>
                   <Icon icon="dragWidth"/>
@@ -445,7 +447,7 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent
       :label="t('er.config.propsPanel.defaultContent')"
       :layoutType="0"
-      v-if="checkTypeBySelected([
+      v-if="checkTypeBySelected(['subform'], 'defaultValue') ? target.list[0].length : checkTypeBySelected([
       'input',
       'textarea',
       'time',
@@ -527,6 +529,9 @@ onMounted(() => {
           v-model="target.options.defaultValue"
           style="padding: 0 14px;"
         />
+      </template>
+      <template v-else-if="checkTypeBySelected(['subform'], 'defaultValue')">
+        <PanelsConfigComponentsSubformDefaultValue/>
       </template>
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent

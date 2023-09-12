@@ -33,7 +33,8 @@ export default {
       divider: 'Divider',
       container: 'Container',
       field: 'Basic field',
-      defaultField: 'Default field'
+      defaultField: 'Default field',
+      subform: 'Sub-form'
     },
     layout: {
       tabsCol: 'Tab panel',
@@ -172,7 +173,8 @@ export default {
         alpha: 'Alpha',
         anyNode: 'Select any node',
         clearable: 'clearable',
-        star: 'Star'
+        star: 'Star',
+        setDefaultContent: 'Set default content'
       }
     },
     public: {

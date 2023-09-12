@@ -33,7 +33,8 @@ export default {
       divider: '分割线',
       container: '容器',
       field: '基础字段',
-      defaultField: '预设字段'
+      defaultField: '预设字段',
+      subform: '子表单'
     },
     layout: {
       tabsCol: '标签面板',
@@ -172,7 +173,8 @@ export default {
         alpha: '透明度',
         anyNode: '选择任意节点',
         clearable: '一键清除按钮',
-        star: '星星数'
+        star: '星星数',
+        setDefaultContent: '设置默认内容'
       }
     },
     public: {

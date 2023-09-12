@@ -41,6 +41,11 @@ watch(lang, (newLang) => {
         node.columns[0].rows[0].columns[0].label = `${node.columns[0].label} > ${node.columns[0].rows[0].columns[0].type}`
         store.layouts.push(node.columns[0].rows[0].columns[0])
         break
+      case 'subform':
+        node.columns[0].list[0].push(erGeneratorData(erComponentsConfig.fieldsConfig[1].list[0], true, 'en'))
+        // node.columns[0].rows[0].columns[0].label = `${node.columns[0].label} > ${node.columns[0].rows[0].columns[0].type}`
+        // store.layouts.push(node.columns[0].rows[0].columns[0])
+        break
     }
   })
   all.value = [...store.fields, ...store.layouts]

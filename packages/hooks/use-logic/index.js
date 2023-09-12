@@ -312,7 +312,16 @@ const listenEvent = (state) => {
     rules[type].forEach(rule => {
       const targetFields = findFieldsByid(rule.if.conditions.map(e => e.property), state.fields)
       const operator = (v) => rule.if.logicalOperator === 'and' ? v.every(v => v) : v.some(v => v)
-      // console.log(rule)
+      const subforms = targetFields.filter(field => field.type === 'subform')
+      subforms.forEach(subform => {
+        watch(() => utils.findSubFormAllFields(subform).map(e => e.options.defaultValue), () => {
+          subform.options.defaultValue = utils.getSubFormValues(subform)
+        }, {
+          immediate: true,
+          deep: true,
+          flush: 'sync'
+        })
+      })
       watch(() => targetFields.map(e => e.options.defaultValue), (values) => {
         // console.log(operator(values.map((value, index) => validator(rule.if.conditions[index], value, targetFields[index]))))
         switch (type) {

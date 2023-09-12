@@ -10,7 +10,6 @@ specifiers:
   '@ckeditor/ckeditor5-vue': ^4.0.1
   '@commitlint/cli': ^17.4.4
   '@commitlint/config-conventional': ^17.4.4
-  '@element-plus/icons-vue': ^2.0.10
   '@vant/area-data': ^1.4.0
   '@vant/touch-emulator': ^1.4.0
   '@vitejs/plugin-vue': ^3.2.0
@@ -34,7 +33,7 @@ specifiers:
   eslint-plugin-n: ^15.6.1
   eslint-plugin-promise: ^6.1.1
   eslint-plugin-vue: ^9.9.0
-  everright-filter: ^0.0.22
+  everright-filter: ^1.1.1
   express: ^4.18.2
   husky: ^8.0.3
   jsdom: ^22.0.0
@@ -68,7 +67,7 @@ dependencies:
   canvas: 2.11.2
   dayjs: registry.npmmirror.com/dayjs/1.11.7
   element-plus: registry.npmmirror.com/element-plus/2.3.1_vue@3.2.47
-  everright-filter: 0.0.22_ap7lbsygcc6j7vt74w6nzwfhdi
+  everright-filter: 1.1.1_ap7lbsygcc6j7vt74w6nzwfhdi
   jss: registry.npmmirror.com/jss/10.10.0
   jss-preset-default: registry.npmmirror.com/jss-preset-default/10.10.0
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
@@ -90,7 +89,6 @@ devDependencies:
   '@ckeditor/ckeditor5-vue': registry.npmmirror.com/@ckeditor/ckeditor5-vue/4.0.1
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/17.4.4
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/17.4.4
-  '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/2.1.0_vue@3.2.47
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.2.0_vite@3.2.5+vue@3.2.47
   '@vitejs/plugin-vue-jsx': registry.npmmirror.com/@vitejs/plugin-vue-jsx/2.1.1_vite@3.2.5+vue@3.2.47
   '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.47
@@ -279,10 +277,6 @@ packages:
       '@vue/shared': 3.2.47
     dev: true
     optional: true
-
-  /@vue/devtools-api/6.5.0:
-    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
-    dev: false
 
   /@vue/server-renderer/3.2.47_vue@3.2.47:
     resolution: {integrity: sha512-dN9gc1i8EvmP9RCzvneONXsKfBRgqFeFZLurmHOveL7oH6HiFXJw5OGu294n1nHc/HMgTy6LulU/tv5/A7f/LA==}
@@ -823,8 +817,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /everright-filter/0.0.22_ap7lbsygcc6j7vt74w6nzwfhdi:
-    resolution: {integrity: sha512-wVKk4FCgB1G6owZwByz/wFqeQ3Gx2UzIVqd2OwElizxaT7fX2n/KpghE5gs6YiyenupQZRfsxCv2Ou77UFNJCw==}
+  /everright-filter/1.1.1_ap7lbsygcc6j7vt74w6nzwfhdi:
+    resolution: {integrity: sha512-xQGZ15FcLVw8ja54JiL6nLlvMdviGXketkNwUtfzV+Hvxt0cgr10bKZcaEES1aGzfw+qo5W6c5s1bVebdCL66g==}
     peerDependencies:
       element-plus: ^2.2.28
       vue: ^3.2.45
@@ -839,8 +833,6 @@ packages:
       lodash-es: 4.17.21
       nzh: 1.0.8
       vue: registry.npmmirror.com/vue/3.2.47
-      vue-router: 4.1.6_vue@3.2.47
-      vuedraggable: 4.1.0_vue@3.2.47
       written-number: 0.11.1
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -1090,7 +1082,6 @@ packages:
 
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: false
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -1441,10 +1432,6 @@ packages:
       once: 1.4.0
       simple-concat: 1.0.1
 
-  /sortablejs/1.14.0:
-    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
-    dev: false
-
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -1732,24 +1719,6 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      vue: registry.npmmirror.com/vue/3.2.47
-    dev: false
-
-  /vue-router/4.1.6_vue@3.2.47:
-    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      '@vue/devtools-api': 6.5.0
-      vue: registry.npmmirror.com/vue/3.2.47
-    dev: false
-
-  /vuedraggable/4.1.0_vue@3.2.47:
-    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
-    peerDependencies:
-      vue: ^3.0.1
-    dependencies:
-      sortablejs: 1.14.0
       vue: registry.npmmirror.com/vue/3.2.47
     dev: false
 
@@ -2408,7 +2377,7 @@ packages:
       '@ckeditor/ckeditor5-engine': registry.npmmirror.com/@ckeditor/ckeditor5-engine/35.4.0
       '@ckeditor/ckeditor5-utils': registry.npmmirror.com/@ckeditor/ckeditor5-utils/35.4.0
       '@ckeditor/ckeditor5-widget': registry.npmmirror.com/@ckeditor/ckeditor5-widget/35.4.0
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@ckeditor/ckeditor5-cloud-services/35.4.0:
@@ -2429,7 +2398,7 @@ packages:
       '@ckeditor/ckeditor5-engine': registry.npmmirror.com/@ckeditor/ckeditor5-engine/35.4.0
       '@ckeditor/ckeditor5-ui': registry.npmmirror.com/@ckeditor/ckeditor5-ui/35.4.0
       '@ckeditor/ckeditor5-utils': registry.npmmirror.com/@ckeditor/ckeditor5-utils/35.4.0
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@ckeditor/ckeditor5-easy-image/35.4.0:
@@ -2478,7 +2447,7 @@ packages:
     engines: {node: '>=14.0.0', npm: '>=5.7.1'}
     dependencies:
       '@ckeditor/ckeditor5-utils': registry.npmmirror.com/@ckeditor/ckeditor5-utils/35.4.0
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@ckeditor/ckeditor5-enter/35.4.0:
@@ -2630,7 +2599,7 @@ packages:
     dependencies:
       '@ckeditor/ckeditor5-core': registry.npmmirror.com/@ckeditor/ckeditor5-core/35.4.0
       '@ckeditor/ckeditor5-utils': registry.npmmirror.com/@ckeditor/ckeditor5-utils/35.4.0
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@ckeditor/ckeditor5-undo/35.4.0:
@@ -2661,7 +2630,7 @@ packages:
     version: 35.4.0
     engines: {node: '>=14.0.0', npm: '>=5.7.1'}
     dependencies:
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@ckeditor/ckeditor5-vue/4.0.1:
@@ -2683,7 +2652,7 @@ packages:
       '@ckeditor/ckeditor5-typing': registry.npmmirror.com/@ckeditor/ckeditor5-typing/35.4.0
       '@ckeditor/ckeditor5-ui': registry.npmmirror.com/@ckeditor/ckeditor5-ui/35.4.0
       '@ckeditor/ckeditor5-utils': registry.npmmirror.com/@ckeditor/ckeditor5-utils/35.4.0
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      lodash-es: 4.17.21
     dev: true
 
   registry.npmmirror.com/@commitlint/cli/17.4.4:
@@ -2913,6 +2882,7 @@ packages:
       vue: ^3.2.0
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.47
+    dev: false
 
   registry.npmmirror.com/@eslint-community/eslint-utils/4.3.0_eslint@8.36.0:
     resolution: {integrity: sha512-v3oplH6FYCULtFuCeqyuTd9D2WKO937Dxdq+GmHOLL72TTRriLxz2VLlNfkZRsvj6PKnOPAtuT6dwrs/pA5DvA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@eslint-community/eslint-utils/-/eslint-utils-4.3.0.tgz}
@@ -3447,7 +3417,7 @@ packages:
     name: '@vueuse/shared'
     version: 9.13.0
     dependencies:
-      vue-demi: registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.47
+      vue-demi: 0.13.11_vue@3.2.47
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue

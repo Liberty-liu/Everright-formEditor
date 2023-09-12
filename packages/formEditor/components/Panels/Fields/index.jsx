@@ -23,7 +23,6 @@ export default {
     const {
       t
     } = hooks.useI18n()
-    // console.log(t('lhf'))
     const {
       state,
       setSelection
@@ -42,7 +41,7 @@ export default {
     const slots = {
       item: ({ element }) => {
         return (
-          <li onClick={() => addStore(element)}>
+          <li class={[ER.props.checkFieldsForNewBadge(element) ? ns.is('new') : '']} onClick={() => addStore(element)}>
             <Icon class={[ns.e('icon')]} icon={element.icon}></Icon>
             <span>{utils.fieldLabel(t, element)}</span>
           </li>

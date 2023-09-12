@@ -1,10 +1,22 @@
-import { computed, isRef } from 'vue'
+import { computed, inject, isRef } from 'vue'
 import { showToast } from 'vant'
 import dayjs from 'dayjs'
 import _ from 'lodash-es'
 import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
+import utils from '@ER/utils'
+const findPosition = (node, parent) => {
+  for (let y = 0; y < parent.list.length; y++) {
+    const row = parent.list[y]
+    const x = row.indexOf(node)
+    if (x !== -1) {
+      return { x, y }
+    }
+  }
+
+  return { x: -1, y: -1 }
+}
 const addValidate = (result, node, isPc, t) => {
   const {
     options
@@ -17,17 +29,25 @@ const addValidate = (result, node, isPc, t) => {
       } else {
         const parent = e.context.parent
         let nodes = []
-        if (parent.columns) {
-          nodes = parent.columns
-          result += 'columns.'
-        } else if (parent.list) {
-          nodes = parent.list
-          result += 'list.'
-        } else if (parent.rows) {
-          nodes = parent.rows
-          result += 'rows.'
+        if (parent.type === 'subform') {
+          const {
+            x,
+            y
+          } = findPosition(e, parent)
+          result += `list.${y}.${x}`
+        } else {
+          if (parent.columns) {
+            nodes = parent.columns
+            result += 'columns.'
+          } else if (parent.list) {
+            nodes = parent.list
+            result += 'list.'
+          } else if (parent.rows) {
+            nodes = parent.rows
+            result += 'rows.'
+          }
+          result += nodes.indexOf(e)
         }
-        result += nodes.indexOf(e)
       }
       return result
     }).join('.') + '.options.defaultValue'
@@ -35,31 +55,48 @@ const addValidate = (result, node, isPc, t) => {
 
   const obj = {
   }
-  // if (node.type === 'select') {
-  //   // obj.type = 'array'
-  // }
   const validator = (...arg0) => new Promise((...arg1) => {
-    const resolve = arg1[0]
+    const resolve = () => {
+      arg1[0]()
+    }
     const reject = isPc
       ? arg1[1]
       : (message) => {
           obj.message = message
           arg1[0](false)
         }
-    // const value = options.isShowTrim ? (isPc ? arg0[1] : arg0[0]).trim() : (isPc ? arg0[1] : arg0[0])
-    // let message
-    // let result = true
-    // let msg = ''
     let value = isPc ? arg0[1] : arg0[0]
     // only for mobile
     if (/^(signature|radio|checkbox|select|html)$/.test(node.type)) {
       value = options.defaultValue
     }
     const newValue = options.isShowTrim ? value.trim() : value
-    // if (options.required && (!newValue || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
-    if (result.required && (newValue === '' || newValue === null || newValue === undefined || (Array.isArray(newValue) && !newValue.length))) {
-      reject(t('er.validateMsg.required'))
-      return
+    if (node.type === 'subform') {
+      const allFields = utils.findSubFormAllFields(node)
+      if (result.required) {
+        if (allFields.length) {
+          if (allFields.some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {
+            reject(t('er.validateMsg.required'))
+          }
+        } else {
+          reject(t('er.validateMsg.required'))
+        }
+      } else {
+        resolve()
+      }
+    } else {
+      let isRequired = result.required
+      if (utils.checkIsInSubform(node)) {
+        const parent = node?.context?.parent?.context?.parent
+        if (parent) {
+          const parentProps = useProps(state, parent, isPc).value
+          isRequired = parentProps.required
+        }
+      }
+      if (isRequired && node.type !== 'subform' && utils.isEmpty(newValue)) {
+        reject(t('er.validateMsg.required'))
+        return
+      }
     }
     switch (node.type) {
       case 'input':
@@ -126,6 +163,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
     t
   } = useI18n()
   return computed(() => {
+    const ExtraParams = inject('EverrightExtraParams', {})
     let node = isRoot ? data.config : data
     let result = {}
     const platform = isPc ? 'pc' : 'mobile'
@@ -166,6 +204,20 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       } else {
         result.required = result.disabled ? false : required === 1
       }
+    }
+    if (utils.checkIsInSubform(node)) {
+      const parent = node?.context?.parent?.context?.parent
+      if (parent) {
+        const parentProps = useProps(state, parent, isPc).value
+        result.disabled = parentProps.disabled
+        result.required = parentProps.required
+      }
+    }
+    try {
+      if (ExtraParams.inSubformDefaultValueComponent) {
+        result.disabled = result.required = false
+      }
+    } catch (e) {
     }
     addValidate(result, node, isPc, t)
     if (isPc) {
