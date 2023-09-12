@@ -91,7 +91,7 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 | Tabs  |  :white_check_mark: | :white_check_mark:  |
 | Collapse  | :white_check_mark:  | :white_check_mark:  |
 | Divider  | :white_check_mark:  | :white_check_mark:  |
-
+| Subform  | :white_check_mark:  | :white_check_mark:  |
 
 ## 逻辑控制器操作符
 
@@ -119,7 +119,8 @@ Everright-formEditor是一个免费开源的javascript可视化低代码编辑�
 | Cascader  | :white_check_mark: | :white_check_mark:| | | | | | | | | | | | :white_check_mark: | :white_check_mark: |
 | File  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
 | Signature  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
-| Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| 
+| Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:|
+|     Subform      |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
 
 
 ## Contributors

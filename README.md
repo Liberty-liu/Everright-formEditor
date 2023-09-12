@@ -90,6 +90,7 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | Tabs  |  :white_check_mark: | :white_check_mark:  |
 | Collapse  | :white_check_mark:  | :white_check_mark:  |
 | Divider  | :white_check_mark:  | :white_check_mark:  |
+| Subform  | :white_check_mark:  | :white_check_mark:  |
 
 
 ## Logical controller operator
@@ -118,7 +119,8 @@ Everright-formEditor is a free and open source javascript visual low-code editor
 | Cascader  | :white_check_mark: | :white_check_mark:| | | | | | | | | | | | :white_check_mark: | :white_check_mark: | 
 | File  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: | 
 | Signature  |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: | 
-| Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| 
+| Region  |  | | | | | | | | |:white_check_mark: | :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:| :white_check_mark:|
+|     Subform      |  | | | | | | | | | | | | |:white_check_mark: |:white_check_mark: |
 
 ## Contributors
 
