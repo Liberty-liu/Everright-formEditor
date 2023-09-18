@@ -325,7 +325,7 @@ const getData2 = () => {
     layout,
     data: state.data,
     config: state.config,
-    fields: fields,
+    fields,
     logic: state.logic
   })
 }
