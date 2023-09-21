@@ -107,8 +107,6 @@ const setData1 = async (data, value) => {
     utils.addContext(e, state.store)
   })
   const subforms = _.cloneDeep(state.fields.filter(e => e.type === 'subform'))
-  // For SubformLayout.jsx to get the first data
-  await nextTick()
   if (!_.isEmpty(value)) {
     for (const key in value) {
       state.remoteValues.set(key, value[key])
@@ -133,7 +131,6 @@ defineExpose({
   setData,
   getData
 })
-window.state = state
 </script>
 <template>
   <CanvesPanel v-if="state.store.length"></CanvesPanel>

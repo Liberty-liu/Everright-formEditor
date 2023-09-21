@@ -274,4 +274,31 @@ describe('Field: subform', () => {
     await flushPromises()
     expect(setDefaultEl.findAll(utils.getTestId('SubformLayout:item'))[2].find('input').element.value).toEqual(addValue)
   })
+  test('Value priority is greater than default content', async () => {
+    const values = ['1', '2']
+    const addValue = 'everright-formeditor'
+    const newField = _.cloneDeep(field)
+    newField.columns[0] = newField.columns[0].id
+    const subForm = erGeneratorData(_.cloneDeep(erComponentsConfig.fieldsConfig[2].list[5]), true, 'en')
+    const list = _.cloneDeep(subForm)
+    list.columns[0] = subForm.columns[0].id
+    subForm.columns[0].list[0].push(newField)
+    subForm.columns[0].options.defaultValue = values.map(e => {
+      const result = {}
+      result[field.columns[0].key] = e
+      return result
+    })
+    field.columns[0].options.defaultValue = addValue
+    const data = wrapLayoutDataByLayoutType([list], [subForm.columns[0], field.columns[0]])
+    const remoteValue = {}
+    remoteValue[subForm.columns[0].key] = []
+    remoteValue[subForm.columns[0].key].push(JSON.parse(`{"${field.columns[0].key}": "${addValue + 1}"}`))
+    remoteValue[subForm.columns[0].key].push(JSON.parse(`{"${field.columns[0].key}": "${addValue + 2}"}`))
+    remoteValue[subForm.columns[0].key].push(JSON.parse(`{"${field.columns[0].key}": "${addValue + 3}"}`))
+    await previewWrapper.findComponent({ ref: 'EReditorRef' }).vm.setData(data, remoteValue)
+    expect(previewWrapper.find(utils.getTestId('SubformLayout:addButton')).exists()).toBe(true)
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item'))).toHaveLength(3)
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    expect(previewWrapper.findAll(utils.getTestId('SubformLayout:item')).map(e => e.find('input').element.value)).toEqual(new Array(3).fill(addValue).map((e, i) => e + (i + 1)))
+  })
 })
