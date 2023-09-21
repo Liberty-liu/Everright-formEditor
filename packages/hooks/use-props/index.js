@@ -17,7 +17,7 @@ const findPosition = (node, parent) => {
 
   return { x: -1, y: -1 }
 }
-const addValidate = (result, node, isPc, t) => {
+const addValidate = (result, node, isPc, t, state, ExtraParams) => {
   const {
     options
   } = node
@@ -66,7 +66,6 @@ const addValidate = (result, node, isPc, t) => {
           arg1[0](false)
         }
     let value = isPc ? arg0[1] : arg0[0]
-    // only for mobile
     if (/^(signature|radio|checkbox|select|html)$/.test(node.type)) {
       value = options.defaultValue
     }
@@ -86,11 +85,17 @@ const addValidate = (result, node, isPc, t) => {
       }
     } else {
       let isRequired = result.required
-      if (utils.checkIsInSubform(node)) {
+      if (state.mode === 'preview' && utils.checkIsInSubform(node)) {
         const parent = node?.context?.parent?.context?.parent
         if (parent) {
-          const parentProps = useProps(state, parent, isPc).value
-          isRequired = parentProps.required
+          const {
+            readOnly,
+            required
+          } = getLogicStateByField(parent, state.fieldsLogicState)
+          const parentProps = useProps(state, parent, isPc, false, false, t, ExtraParams).value
+          if (required !== undefined) {
+            isRequired = parentProps.required
+          }
         }
       }
       if (isRequired && node.type !== 'subform' && utils.isEmpty(newValue)) {
@@ -158,12 +163,23 @@ const addValidate = (result, node, isPc, t) => {
   }
   result.rules = [obj]
 }
-export const useProps = (state, data, isPc = true, isRoot = false, specialHandling) => {
-  const {
-    t
-  } = useI18n()
+const getLogicStateByField = (field, fieldsLogicState) => {
+  const fieldState = fieldsLogicState.get(field)
+  const required = _.get(fieldState, 'required', undefined)
+  const readOnly = _.get(fieldState, 'readOnly', undefined)
+  return {
+    required,
+    readOnly
+  }
+}
+export const useProps = (state, data, isPc = true, isRoot = false, specialHandling, t, ExtraParams) => {
+  if (!t) {
+    t = useI18n().t
+  }
+  if (!ExtraParams) {
+    ExtraParams = inject('EverrightExtraParams', {})
+  }
   return computed(() => {
-    const ExtraParams = inject('EverrightExtraParams', {})
     let node = isRoot ? data.config : data
     let result = {}
     const platform = isPc ? 'pc' : 'mobile'
@@ -191,9 +207,10 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       required: options.required
     }
     if (state.mode === 'preview') {
-      const fieldState = state.fieldsLogicState.get(node)
-      const required = _.get(fieldState, 'required', undefined)
-      const readOnly = _.get(fieldState, 'readOnly', undefined)
+      const {
+        readOnly,
+        required
+      } = getLogicStateByField(node, state.fieldsLogicState)
       if (readOnly === undefined) {
         result.disabled = options.disabled
       } else {
@@ -204,13 +221,21 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       } else {
         result.required = result.disabled ? false : required === 1
       }
-    }
-    if (utils.checkIsInSubform(node)) {
-      const parent = node?.context?.parent?.context?.parent
-      if (parent) {
-        const parentProps = useProps(state, parent, isPc).value
-        result.disabled = parentProps.disabled
-        result.required = parentProps.required
+      if (utils.checkIsInSubform(node)) {
+        const parent = node?.context?.parent?.context?.parent
+        if (parent) {
+          const {
+            readOnly,
+            required
+          } = getLogicStateByField(node, state.fieldsLogicState)
+          const parentProps = useProps(state, parent, isPc, false, false, t, ExtraParams).value
+          if (readOnly !== undefined) {
+            result.disabled = parentProps.disabled
+          }
+          if (required !== undefined) {
+            result.required = parentProps.required
+          }
+        }
       }
     }
     try {
@@ -219,7 +244,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       }
     } catch (e) {
     }
-    addValidate(result, node, isPc, t)
+    addValidate(result, node, isPc, t, state, ExtraParams)
     if (isPc) {
       result.labelWidth = options.isShowLabel ? options.labelWidth + 'px' : 'auto'
     }
