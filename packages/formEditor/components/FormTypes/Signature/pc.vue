@@ -5,7 +5,7 @@ import Icon from '@ER/icon'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 export default {
-  name: 'er-button',
+  name: 'er-signature',
   inheritAttrs: false,
   customOptions: {}
 }
@@ -60,6 +60,7 @@ const handleOpen = () => {
   })
 }
 const handleReOpen = () => {
+  if (props.params.disabled) return false
   dialogVisible.value = true
   showClear.value = false
   changed.value = false
@@ -105,13 +106,24 @@ const handleCommit = async () => {
         :fit="'contain'"
         style="width: 100%; height: 100%;"
       />
-      <Icon @click="data.options.defaultValue = ''" :class="[ns.e('clear')]" icon="delete"></Icon>
+      <Icon
+        v-if="!params.disabled"
+        @click="data.options.defaultValue = ''"
+        :class="[ns.e('clear')]"
+        icon="delete"/>
     </template>
     <div
       v-else
       :class="[ns.e('noData')]"
     >
-      <el-button @click="handleOpen" text type="primary" icon="Edit" circle>
+      <el-button
+        @click="handleOpen"
+        text
+        circle
+        type="primary"
+        icon="Edit"
+        :disabled="params.disabled"
+      >
         {{ t('er.form.addSignature') }}
       </el-button>
     </div>

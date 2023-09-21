@@ -6,7 +6,7 @@ import Icon from '@ER/icon'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 export default {
-  name: 'er-button',
+  name: 'er-signature',
   inheritAttrs: false,
   customOptions: {}
 }
@@ -108,10 +108,6 @@ const handleAction = async (type) => {
       <template
         v-if="data.options.defaultValue"
       >
-<!--        <img-->
-<!--          :src="data.options.defaultValue.url"-->
-<!--          style="object-fit: contain; width: 100%; height: 100%;"-->
-<!--        >-->
         <van-image
           width="100%"
           height="100"
@@ -123,12 +119,18 @@ const handleAction = async (type) => {
         v-else
         :class="[ns.e('noData')]"
       >
-        <el-button text type="primary" icon="Edit" circle>
+        <el-button
+          text
+          circle
+          type="primary"
+          icon="Edit"
+          :disabled="params.disabled"
+        >
           {{t('er.form.addSignature')}}
         </el-button>
       </div>
     </template>
-    <template v-if="data.options.defaultValue" #button>
+    <template v-if="data.options.defaultValue && !params.disabled" #button>
       <van-icon @click.stop="data.options.defaultValue = ''" name="clear" />
     </template>
   </van-field>
