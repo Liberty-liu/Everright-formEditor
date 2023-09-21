@@ -328,11 +328,11 @@ function ControlInsertionPlugin (ER) {
       if (!isBlock) {
         if (oldEl.context) {
           oldEl.context.delete()
-          utils.deepTraversal(oldEl, (node) => {
-            if (utils.checkIsField(node)) {
-              ER.delField(node)
-            }
-          })
+          // utils.deepTraversal(oldEl, (node) => {
+          //   if (utils.checkIsField(node) && node.type !== 'subform') {
+          //     ER.delField(node)
+          //   }
+          // })
         }
       }
       if (inserRowIndex !== '') {
