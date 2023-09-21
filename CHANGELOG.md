@@ -1,3 +1,23 @@
+## [1.2.2](https://github.com/Liberty-liu/Everright-formEditor/compare/v1.2.1...v1.2.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **formType-signature:** fixed disabled status ([44fbb44](https://github.com/Liberty-liu/Everright-formEditor/commit/44fbb44b6c3aacb359502dadb56dc0b8af2d50eb))
+* **subform:** subform logic ([d31c8c7](https://github.com/Liberty-liu/Everright-formEditor/commit/d31c8c7c57b230c77e3bce4b2064acbe48366238))
+
+
+### Features
+
+* add changelog ([61af8b7](https://github.com/Liberty-liu/Everright-formEditor/commit/61af8b7d4dd1bb8b2b9153868363adfac7317fbf))
+
+
+### Performance Improvements
+
+* optimize drop logic and add id to inline child elements ([9579750](https://github.com/Liberty-liu/Everright-formEditor/commit/9579750dc16c5da46f0a0e89458cdb4ae643dced))
+
+
+
 ## [1.2.1](https://github.com/Liberty-liu/Everright-formEditor/compare/v1.1.1...v1.2.1) (2023-09-12)
 
 

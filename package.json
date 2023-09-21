@@ -1,6 +1,6 @@
 {
   "name": "everright-formeditor",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "🦮 Powerful lowcode|vue form editor,generator,designer,builder library. It provides an easy way to create custom forms. The project is extensible, easy to use and configure, and provides many commonly used form components and functions(vue可视化低代码表单设计器、表单编辑器、element-plus vant表单设计)",
   "files": [
     "dist",
@@ -8,16 +8,7 @@
   ],
   "packageManager": "pnpm@7.9.5",
   "license": "MIT",
-  "keywords": [
-    "drag-and-drop",
-    "form",
-    "formbuilder",
-    "low-code",
-    "no-code",
-    "vue",
-    "element-plus",
-    "vant"
-  ],
+  "keywords": ["vue","drag-and-drop","validator","form","form-builder","designer","wysiwyg-editor","json-form","form-generator","low-code","no-code","form-designer","schema-form","vant","vue-form","form-editor","vue3","element-plus","lowcode-editor","everright"],
   "type": "module",
   "repository": {
     "type": "git",
