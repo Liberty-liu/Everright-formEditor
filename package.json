@@ -45,7 +45,8 @@
     "lint-fix": "eslint --fix . --ext .js,.jsx,.vue",
     "prepare": "husky install",
     "init": "node ./server/db/generateDatabase.js && mkdir uploads",
-    "test": "vitest"
+    "test": "vitest",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
     "@vant/area-data": "^1.4.0",
@@ -86,6 +87,7 @@
     "@vue/test-utils": "^2.3.2",
     "better-sqlite3": "^8.2.0",
     "connect-multiparty": "^2.2.0",
+    "conventional-changelog-cli": "^4.1.0",
     "cz-git": "^1.5.3",
     "eslint": "^8.32.0",
     "eslint-config-standard": "^17.0.0",
