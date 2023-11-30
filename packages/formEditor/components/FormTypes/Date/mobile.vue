@@ -1,9 +1,10 @@
 <script>
 import dayjs from 'dayjs'
+import arraySupport from 'dayjs/plugin/arraySupport.js'
 import hooks from '@ER/hooks'
 import { ref, computed, watch } from 'vue'
 import _ from 'lodash-es'
-// 统一交换时间戳
+dayjs.extend(arraySupport)
 export default {
   name: 'er-date',
   inheritAttrs: false,
