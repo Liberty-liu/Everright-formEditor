@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/Liberty-liu/Everright-formEditor/compare/v1.2.2...v1.2.3) (2023-11-30)
+
+
+### Bug Fixes
+
+* fixed date field parsing array format on ios ([c50edc5](https://github.com/Liberty-liu/Everright-formEditor/commit/c50edc51a79beaf8e0b590b401cfbf5185b49254))
+
+
+
 ## [1.2.2](https://github.com/Liberty-liu/Everright-formEditor/compare/v1.2.1...v1.2.2) (2023-09-21)
 
 
