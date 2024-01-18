@@ -61,6 +61,7 @@ const layout = {
   pc: [],
   mobile: []
 }
+const form = ref('')
 const previewPlatform = ref('pc')
 const previewLoading = ref(true)
 const state = reactive({
@@ -391,6 +392,7 @@ const getData = () => {
 }
 const setData = props.layoutType === 1 ? setData1 : setData2
 defineExpose({
+  form,
   switchPlatform (platform) {
     switchPlatform(platform)
   },
@@ -461,7 +463,8 @@ provide('Everright', {
   addFieldData,
   canvesScrollRef,
   fireEvent,
-  getData
+  getData,
+  form
 })
 </script>
 <template>

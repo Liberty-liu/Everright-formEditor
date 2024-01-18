@@ -18,6 +18,7 @@ const layout = {
   pc: [],
   mobile: []
 }
+const form = ref('')
 const state = reactive({
   store: [],
   selection: {},
@@ -67,7 +68,8 @@ provide('Everright', {
   getData,
   props,
   fireEvent,
-  setValue
+  setValue,
+  form
 })
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
@@ -129,7 +131,8 @@ defineExpose({
     state.platform = platform
   },
   setData,
-  getData
+  getData,
+  form
 })
 </script>
 <template>

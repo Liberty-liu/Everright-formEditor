@@ -17,7 +17,6 @@ export default defineComponent({
       isEditModel,
       isPc
     } = hooks.useTarget()
-    const form = ref('')
     const handleClick = (e) => {
       setSelection('root')
     }
@@ -27,12 +26,12 @@ export default defineComponent({
       const Layout = (<LayoutDragGable data-layout-type={'root'} class={[unref(isEditModel) && ns.e('wrap')]} data={state.store} parent={state.store} isRoot></LayoutDragGable>)
       return (
         <div>
-          <TagComponent ref={form} onClick={unref(isEditModel) && handleClick} {...typeProps.value}>
+          <TagComponent ref={ER.form} onClick={unref(isEditModel) && handleClick} {...typeProps.value}>
             {
               unref(isEditModel) ? Layout : Layout
             }
           </TagComponent>
-          {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={form}/>}
+          {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={ER.form}/>}
         </div>
       )
     }
