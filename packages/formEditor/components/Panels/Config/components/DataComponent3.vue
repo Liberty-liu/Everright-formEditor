@@ -27,7 +27,7 @@ if (checkTypeBySelected(['collapse'])) {
       target.value.options.defaultValue = [target.value.columns[0].id]
     }
     checkList.value = [target.value.columns[0].id]
-  })
+  }, { flush: 'post' })
   checkList.value = target.value.options.accordion ? [target.value.options.defaultValue] : _.cloneDeep(target.value.options.defaultValue)
 } else if (checkTypeBySelected(['tabs'])) {
   checkList.value = [target.value.columns[0].id]
