@@ -333,6 +333,16 @@ const handleMultipleChange = (value) => {
     target.value.options.defaultValue = ''
   }
 }
+const handleAccordionChange = (value) => {
+  // if (value) {
+  //   target.value.options.defaultValue = []
+  //   if (target.value.columns.length) {
+  //     target.value.options.defaultValue.push(target.value.columns[0].id)
+  //   }
+  // } else {
+  //   target.value.options.defaultValue = ''
+  // }
+}
 const handleAction = (type, value) => {
   switch (type) {
     case 1:
@@ -970,6 +980,7 @@ onMounted(() => {
     </PanelsConfigComponentsCollapseComponent>
     <PanelsConfigComponentsCheckboxComponent
       v-if="isSelectCollapse" :label="t('er.config.propsPanel.accordion')"
+      @change="handleAccordionChange"
       field="accordion"
       v-bind="utils.addTestId('configPanel:accordion')"
     >
