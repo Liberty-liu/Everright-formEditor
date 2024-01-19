@@ -361,6 +361,7 @@ const handleAction = (type, value) => {
         unref(dataRef).getData().then(({ data, defaultValue }) => {
           state.data[target.value.options.dataKey].list = data
           target.value.options.defaultValue = defaultValue
+          target.value.options.otherRequired = _.findIndex(data, { value: 'other' }) !== -1
           dialogVisible.value = false
         })
       }
@@ -401,6 +402,13 @@ const handleTypeListener = ({ property, data }) => {
       break
   }
 }
+const isShowotherRequired = computed(() => {
+  let result = false
+  result = isSelectField.value && checkTypeBySelected(['select', 'checkbox', 'radio'], 'otherRequired')
+  const datalist = _.get(state.data[target.value.options.dataKey], 'list', [])
+  result = _.findIndex(datalist, { value: 'other' }) !== -1
+  return result
+})
 onMounted(() => {
   titleRef.value && titleRef.value.focus()
 })
@@ -593,6 +601,21 @@ onMounted(() => {
         v-model="target.options.placeholder"
         clearable
         v-bind="utils.addTestId('configPanel:placeholder')"
+      />
+    </PanelsConfigComponentsTypeComponent>
+    <PanelsConfigComponentsTypeComponent
+      :layoutType="0"
+      :label="t('er.config.propsPanel.otherPlaceholder')"
+      v-if="checkTypeBySelected([
+      'checkbox',
+      'radio',
+      'select',
+    ], 'placeholder') && target.options.otherRequired">
+      <el-input
+        type="textarea"
+        v-model="target.options.otherPlaceholder"
+        clearable
+        v-bind="utils.addTestId('configPanel:otherPlaceholder')"
       />
     </PanelsConfigComponentsTypeComponent>
     <PanelsConfigComponentsTypeComponent
@@ -845,6 +868,12 @@ onMounted(() => {
       :label="t('er.validateMsg.required')"
       field="required"
       v-bind="utils.addTestId('configPanel:required')"
+    />
+    <PanelsConfigComponentsCheckboxComponent
+      v-if="isShowotherRequired"
+      :label="t('er.config.propsPanel.otherRequired')"
+      field="otherRequired"
+      v-bind="utils.addTestId('configPanel:otherRequired')"
     />
     <PanelsConfigComponentsTypeComponent
       v-if="isSelectGrid"

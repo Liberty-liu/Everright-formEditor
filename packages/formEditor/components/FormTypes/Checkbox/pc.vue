@@ -1,5 +1,6 @@
 <script>
 import hooks from '@ER/hooks'
+import Other from '../Other/pc.vue'
 export default {
   name: 'er-checkbox',
   inheritAttrs: false,
@@ -19,6 +20,7 @@ const ns = hooks.useNamespace('FormTypesCheckbox')
       {{ item.label }}
     </el-checkbox>
   </el-checkbox-group>
+  <Other :data="data" :params="params"/>
 </template>
 
 <style scoped>

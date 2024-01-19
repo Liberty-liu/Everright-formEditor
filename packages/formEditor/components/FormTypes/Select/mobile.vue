@@ -1,6 +1,7 @@
 <script>
 import { ref } from 'vue'
 import hooks from '@ER/hooks'
+import Other from '../Other/mobile.vue'
 export default {
   name: 'er-select',
   inheritAttrs: false,
@@ -23,18 +24,21 @@ const onClear = () => {
     ref="element"
   >
     <template #input>
-      <el-select
-        @change="element.resetValidation()"
-        v-model="data.options.defaultValue"
-        v-bind="params"
-      >
-        <el-option
-          v-for="item in params.options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
+      <div style="width: 100%;">
+        <el-select
+          @change="element.resetValidation()"
+          v-model="data.options.defaultValue"
+          v-bind="params"
+        >
+          <el-option
+            v-for="item in params.options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <Other :data="data" :params="params"/>
+      </div>
     </template>
     <template v-if="data.options.defaultValue.length && params.clearable" #button>
       <van-icon @click.stop="onClear" name="clear" />

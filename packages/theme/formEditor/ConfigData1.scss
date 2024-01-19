@@ -61,6 +61,10 @@
   }
   @include e(button) {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
     button {
       border: 1px dashed #409EFF;
       width: 100%;

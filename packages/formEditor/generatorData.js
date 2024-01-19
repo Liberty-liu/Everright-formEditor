@@ -16,6 +16,9 @@ export default function (node, isWrap = true, lang = 'zh-cn', isCreateLabel = tr
     if (/^(select|cascader|region|date|time)$/.test(node.type)) {
       node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder2', locale)
     }
+    if (/^(select|checkbox|radio)$/.test(node.type)) {
+      node.options.otherPlaceholder = utils.transferData(lang, 'er.validateMsg.placeholder3', locale)
+    }
     if (/^(input|textarea|html)$/.test(node.type)) {
       node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder1', locale)
     }

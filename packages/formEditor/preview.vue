@@ -31,7 +31,8 @@ const state = reactive({
   fields: [],
   logic: {},
   fieldsLogicState: new Map(),
-  remoteValues: new Map()
+  remoteValues: new Map(),
+  othersFiles: {}
 })
 const ns = hooks.useNamespace('Main', state.Namespace)
 hooks.useLogic(state)
@@ -49,7 +50,7 @@ const getData = () => {
       }
     }
   })
-  return _.cloneDeep(result)
+  return _.cloneDeep(_.merge(result, state.othersFiles))
 }
 const fireEvent = (type, data) => {
   emit('listener', {
@@ -71,6 +72,11 @@ provide('Everright', {
   setValue,
   form
 })
+const setOhters = (value) => {
+  _.toPairs(value).filter(([key]) => key.indexOf('_other') !== -1).forEach(([key, val]) => {
+    state.othersFiles[key] = val
+  })
+}
 const setData2 = (data, value) => {
   const newData = _.cloneDeep(data)
   layout.pc = newData.layout.pc
@@ -87,6 +93,7 @@ const setData2 = (data, value) => {
     utils.addContext(e, state.store, false)
   })
   if (!_.isEmpty(value)) {
+    setOhters(value)
     state.fields.forEach((e) => {
       if (e.type === 'time' && !e.options.valueFormat) {
         e.options.valueFormat = 'HH:mm:ss'
@@ -110,6 +117,7 @@ const setData1 = async (data, value) => {
   })
   const subforms = _.cloneDeep(state.fields.filter(e => e.type === 'subform'))
   if (!_.isEmpty(value)) {
+    setOhters(value)
     for (const key in value) {
       state.remoteValues.set(key, value[key])
     }

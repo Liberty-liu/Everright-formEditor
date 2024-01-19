@@ -77,7 +77,8 @@ const state = reactive({
   validateStates: [],
   fields: [],
   Namespace: 'formEditor',
-  logic: {}
+  logic: {},
+  othersFiles: {}
 })
 const isFoldFields = ref(true)
 const isFoldConfig = ref(true)

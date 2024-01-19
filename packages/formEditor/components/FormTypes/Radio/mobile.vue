@@ -1,6 +1,7 @@
 <script>
 import hooks from '@ER/hooks'
 import { ref } from 'vue'
+import Other from '../Other/mobile.vue'
 export default {
   name: 'er-radio',
   inheritAttrs: false,
@@ -19,15 +20,18 @@ const element = ref()
     ref="element"
   >
     <template #input>
-      <el-radio-group
-        @change="element.resetValidation()"
-        v-model="data.options.defaultValue"
-        :class="[ns.e('radioGroup'), data.options.displayStyle === 'block' && ns.e('blockLayout')]"
-        v-bind="params">
-        <el-radio v-for="item in params.options" :key="item.value" :label="item.value">
-          {{ item.label }}
-        </el-radio>
-      </el-radio-group>
+      <div style="width: 100%;">
+        <el-radio-group
+          @change="element.resetValidation()"
+          v-model="data.options.defaultValue"
+          :class="[ns.e('radioGroup'), data.options.displayStyle === 'block' && ns.e('blockLayout')]"
+          v-bind="params">
+          <el-radio v-for="item in params.options" :key="item.value" :label="item.value">
+            {{ item.label }}
+          </el-radio>
+        </el-radio-group>
+        <Other :data="data" :params="params"/>
+      </div>
     </template>
   </van-field>
 </template>

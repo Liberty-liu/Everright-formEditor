@@ -8,6 +8,9 @@
       box-shadow: none !important;
     }
   }
+  .van-field__body {
+    align-items: flex-start;
+  }
 }
 @include b(FormTypesSelect_pc) {
   width: 100%;

@@ -1,5 +1,6 @@
 <script>
 import hooks from '@ER/hooks'
+import Other from '../Other/pc.vue'
 export default {
   name: 'er-radio',
   inheritAttrs: false,
@@ -23,6 +24,7 @@ const {
       {{ item.label }}
     </el-radio>
   </el-radio-group>
+  <Other :data="data" :params="params"/>
 </template>
 
 <style scoped>
