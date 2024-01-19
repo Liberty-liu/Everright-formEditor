@@ -120,7 +120,7 @@ export default defineComponent({
             </td>
             <td>
               <el-form-item prop={`${index}.value`} rules={{ validator }}>
-                <el-input clearable vModel={element.value}></el-input>
+                <el-input disabled={element.value === 'other'} clearable vModel={element.value}></el-input>
               </el-form-item>
             </td>
             <td>
@@ -147,6 +147,11 @@ export default defineComponent({
           })
           break
         case 2:
+          this.data.push({
+            label: 'Other',
+            value: 'other'
+          })
+          // utils.generateOptions(1)
           // target.value.options.defaultValue = isMultiple.value ? [] : ''
           break
       }
@@ -200,6 +205,7 @@ export default defineComponent({
           </el-form>
         </el-scrollbar>
         <div class={ns.e('button')}>
+          <el-button disabled={_.findIndex(this.data, { value: 'other' }) !== -1} onClick={() => handleAction(2)}>{t('er.config.dataComponent1.addOther')}</el-button>
           <el-button onClick={() => handleAction(1)}>{t('er.config.dataComponent1.add')}</el-button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 <script>
 import hooks from '@ER/hooks'
+import Other from '../Other/pc.vue'
 export default {
   name: 'er-select',
   inheritAttrs: false,
@@ -26,6 +27,7 @@ const ns = hooks.useNamespace('FormTypesSelect_pc')
       :value="item.value"
     />
   </el-select>
+  <Other :data="data" :params="params"/>
 </template>
 
 <style scoped>

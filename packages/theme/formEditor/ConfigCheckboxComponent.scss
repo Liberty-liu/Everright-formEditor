@@ -12,4 +12,12 @@
   @include e(slot) {
     padding-top: 10px;
   }
+  .el-checkbox{
+    height: auto;
+    padding: 10px 0;
+  }
+  .el-checkbox__label {
+    text-wrap: wrap;
+    line-height: 20px;
+  }
 }

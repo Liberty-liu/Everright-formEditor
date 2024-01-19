@@ -101,7 +101,8 @@ export default {
         unique: 'Unique id',
         name: 'Name',
         operate: 'Operate',
-        add: 'Add'
+        add: 'Add',
+        addOther: 'Add other'
       },
       dataComponent2: {
         level: 'Level',
@@ -112,11 +113,13 @@ export default {
         add: 'Add'
       },
       propsPanel: {
+        otherRequired: 'When selecting "Other", supplementary information is required',
         title: 'Title',
         titleWidth: 'Title width',
         id: 'Id',
         defaultContent: 'Default content',
         placeholder: 'Placeholder',
+        otherPlaceholder: 'Guide text for supplementary information',
         brushColor: 'Brush color',
         format: 'Format',
         dateType: 'Date type',
@@ -214,7 +217,8 @@ export default {
       fileSize: 'File size cannot exceed <%= size %> MB',
       idUnique: 'ID must be unique',
       placeholder1: 'Please enter',
-      placeholder2: 'Please select'
+      placeholder2: 'Please select',
+      placeholder3: 'Please enter additional information'
     },
     form: {
       selectDate: 'Select date',

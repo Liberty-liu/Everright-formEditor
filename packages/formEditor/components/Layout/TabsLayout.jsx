@@ -12,6 +12,10 @@ export default defineComponent({
   },
   setup (props) {
     const ns = hooks.useNamespace('TabsLayout')
+    if (!props.data.options.defaultValue) {
+      // eslint-disable-next-line vue/no-setup-props-destructure
+      props.data.options.defaultValue = props.data.columns[0].id
+    }
     return () => {
       return (
         <Selection {...useAttrs()} data={props.data} parent={props.parent} hasCopy hasDel hasDrag hasWidthScale>
@@ -21,7 +25,7 @@ export default defineComponent({
                 return (
                   <Selection
                     class={[ns.e('area')]}
-                    tag='el-tab-pane' label={element.label} name={element.value} data={element} parent={props.data}
+                    tag='el-tab-pane' label={element.label} name={element.id} data={element} parent={props.data}
                   >
                     <LayoutDragGable
                       data-layout-type={'tabs-col'}

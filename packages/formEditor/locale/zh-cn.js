@@ -101,7 +101,8 @@ export default {
         unique: '选项唯一标识',
         name: '选项名称',
         operate: '操作',
-        add: '添加选项'
+        add: '添加选项',
+        addOther: '添加其它'
       },
       dataComponent2: {
         level: '级选项',
@@ -112,11 +113,13 @@ export default {
         add: '添加面板'
       },
       propsPanel: {
+        otherRequired: '选择“其他”时，补充信息必填',
         title: '标题',
         titleWidth: '宽度',
         id: '字段标识',
         defaultContent: '默认内容',
         placeholder: '提示文字',
+        otherPlaceholder: '补充信息的引导文字',
         brushColor: '画笔颜色',
         format: '显示格式',
         dateType: '日期类型',
@@ -214,7 +217,8 @@ export default {
       fileSize: '文件大小不能超过 <%= size %> MB',
       idUnique: '字段标识重复',
       placeholder1: '请输入',
-      placeholder2: '请选择'
+      placeholder2: '请选择',
+      placeholder3: '请输入补充信息'
     },
     form: {
       selectDate: '选择日期',

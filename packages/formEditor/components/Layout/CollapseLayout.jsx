@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent } from 'vue'
+import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent, inject } from 'vue'
 import Selection from '@ER/formEditor/components/Selection/selectElement.jsx'
 import LayoutDragGable from './DragGable.jsx'
 import hooks from '@ER/hooks'
@@ -11,6 +11,7 @@ export default defineComponent({
     parent: Array
   },
   setup (props) {
+    const ER = inject('Everright')
     const ns = hooks.useNamespace('CollapseLayout')
     if (!props.data.options.defaultValue.length) {
       props.data.options.defaultValue.push(props.data.columns[0].id)
@@ -24,7 +25,7 @@ export default defineComponent({
                 return (
                   <el-collapse-item title={element.label} name={element.id}>
                     <Selection
-                      class={[ns.e('area')]}
+                      class={[ER.state.mode === 'edit' ? ns.e('area') : '']}
                       data={element} parent={props.data}
                     >
                       <LayoutDragGable

@@ -102,6 +102,15 @@ const addValidate = (result, node, isPc, t, state, ExtraParams) => {
         reject(t('er.validateMsg.required'))
         return
       }
+      if (/^(select|checkbox|radio)$/.test(node.type)) {
+        if ((_.isArray(node.options.defaultValue) ? node.options.defaultValue : [node.options.defaultValue]).includes('other')) {
+          const key = node.key + '_other'
+          if (!state.othersFiles[key]) {
+            reject(t('er.validateMsg.placeholder3'))
+            return false
+          }
+        }
+      }
     }
     switch (node.type) {
       case 'input':
